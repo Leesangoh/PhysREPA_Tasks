@@ -87,16 +87,24 @@ def ee_position_b(
 
 def ee_velocity_w(
     env: ManagerBasedRLEnv,
-    robot_cfg: SceneEntityCfg = SceneEntityCfg("robot"),
+    ee_frame_cfg: SceneEntityCfg = SceneEntityCfg("ee_frame"),
 ) -> torch.Tensor:
     """End-effector linear velocity in world frame (3D).
 
-    Approximated from body velocity of panda_hand.
+    Uses ee_frame sensor for robot-agnostic velocity.
     """
-    robot = env.scene[robot_cfg.name]
-    # body index for panda_hand
-    hand_idx = robot.find_bodies("panda_hand")[0][0]
-    return robot.data.body_lin_vel_w[:, hand_idx, :]
+    ee_frame = env.scene[ee_frame_cfg.name]
+    # Finite-difference velocity from frame transformer positions
+    # Fallback: use the target body's velocity from the robot
+    # Get the body that ee_frame tracks
+    ee_pos_w = ee_frame.data.target_pos_w[..., 0, :]
+    # Store previous position for finite difference
+    if not hasattr(env, '_prev_ee_pos_w'):
+        env._prev_ee_pos_w = ee_pos_w.clone()
+    dt = env.step_dt
+    vel = (ee_pos_w - env._prev_ee_pos_w) / dt
+    env._prev_ee_pos_w = ee_pos_w.clone()
+    return vel
 
 
 def ee_to_object_distance(
@@ -123,12 +131,10 @@ def contact_force(
 
 def ee_acceleration_w(
     env: ManagerBasedRLEnv,
-    robot_cfg: SceneEntityCfg = SceneEntityCfg("robot"),
+    ee_frame_cfg: SceneEntityCfg = SceneEntityCfg("ee_frame"),
 ) -> torch.Tensor:
     """EE acceleration via finite difference of velocity. Returns (num_envs, 3)."""
-    robot = env.scene[robot_cfg.name]
-    hand_idx = robot.find_bodies("panda_hand")[0][0]
-    current_vel = robot.data.body_lin_vel_w[:, hand_idx, :]
+    current_vel = ee_velocity_w(env, ee_frame_cfg)
 
     if not hasattr(env, "_physrepa_prev_ee_vel"):
         env._physrepa_prev_ee_vel = current_vel.clone()
@@ -207,6 +213,32 @@ def contact_flag(
     sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
     force_magnitude = torch.norm(sensor.data.net_forces_w[:, 0, :], dim=-1, keepdim=True)
     return (force_magnitude > threshold).float()
+
+
+def handle_position_w(
+    env: ManagerBasedRLEnv,
+    cabinet_frame_cfg: SceneEntityCfg = SceneEntityCfg("cabinet_frame"),
+) -> torch.Tensor:
+    """Drawer handle position in world frame (3D)."""
+    cabinet_frame = env.scene[cabinet_frame_cfg.name]
+    return cabinet_frame.data.target_pos_w[..., 0, :]
+
+
+def handle_velocity_w(
+    env: ManagerBasedRLEnv,
+    cabinet_frame_cfg: SceneEntityCfg = SceneEntityCfg("cabinet_frame"),
+) -> torch.Tensor:
+    """Drawer handle velocity via finite difference (3D)."""
+    cabinet_frame = env.scene[cabinet_frame_cfg.name]
+    handle_pos = cabinet_frame.data.target_pos_w[..., 0, :]
+
+    if not hasattr(env, "_prev_handle_pos_w"):
+        env._prev_handle_pos_w = handle_pos.clone()
+
+    dt = env.step_dt
+    vel = (handle_pos - env._prev_handle_pos_w) / dt
+    env._prev_handle_pos_w = handle_pos.clone()
+    return vel
 
 
 def object_friction_obs(

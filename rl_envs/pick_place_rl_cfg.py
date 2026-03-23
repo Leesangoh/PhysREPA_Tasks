@@ -124,7 +124,7 @@ class CommandsCfg:
         asset_name="robot",
         body_name="panda_hand",
         resampling_time_range=(12.0, 12.0),
-        debug_vis=True,
+        debug_vis=False,
         ranges=mdp.UniformPoseCommandCfg.Ranges(
             pos_x=(0.35, 0.65),
             pos_y=(-0.20, 0.20),

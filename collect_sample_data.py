@@ -31,6 +31,8 @@ parser = argparse.ArgumentParser(description="Collect PhysREPA sample data in Le
 parser.add_argument("--task", type=str, required=True, choices=["lift", "pick_place", "push", "stack", "strike", "drawer", "reach", "peg_insert", "nut_thread"])
 parser.add_argument("--num_episodes", type=int, default=5)
 parser.add_argument("--use_oracle", action="store_true", help="Use scripted oracle policy instead of random actions")
+parser.add_argument("--step0", action="store_true", help="Use Step 0 scripted policy (no target, random direction)")
+parser.add_argument("--rl_checkpoint", type=str, default=None, help="Path to RL checkpoint (.pt for RSL-RL, .pth for RL-Games)")
 parser.add_argument("--output_dir", type=str, default="/mnt/md1/solee/data/isaac_physrepa")
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
@@ -58,6 +60,7 @@ from physrepa_tasks.envs.nut_thread_env_cfg import PhysREPANutThreadEnvCfg
 from physrepa_tasks.policies.scripted_policy import (
     LiftPolicy, PickPlacePolicy, PushPolicy, StackPolicy,
     ReachPolicy, StrikePolicy, DrawerPolicy, PegInsertPolicy, NutThreadPolicy,
+    Step0PushPolicy, Step0StrikePolicy,
 )
 
 # Phase labels for future use (all random actions = idle)
@@ -125,7 +128,7 @@ TASK_STATE_TO_PHASE = {
 # Object size constants for on_surface checks
 TABLE_SURFACE_Z = 0.0
 CUBE_HALF_SIZE = 0.03  # 0.06m cube / 2 (lift, pick_place, push)
-BALL_RADIUS = 0.04  # strike ball radius
+BALL_RADIUS = 0.03  # strike ball radius
 CUBE_A_HALF_SIZE = 0.025  # 0.05m small cube / 2 (stack)
 CUBE_B_HALF_SIZE = 0.035  # 0.07m large cube / 2 (stack)
 ON_SURFACE_MARGIN = 0.01
@@ -236,6 +239,7 @@ def read_physics_params(env, task_name: str) -> dict:
         mat_fixed = fixed.root_physx_view.get_material_properties()
         params["peg_static_friction"] = round(mat_held[0, 0, 0].item(), 4)
         params["peg_dynamic_friction"] = round(mat_held[0, 0, 1].item(), 4)
+        params["peg_mass"] = round(held.root_physx_view.get_masses()[0, 0].item(), 6)
         params["hole_static_friction"] = round(mat_fixed[0, 0, 0].item(), 4)
         params["hole_dynamic_friction"] = round(mat_fixed[0, 0, 1].item(), 4)
         params["task_type"] = "peg_insert"
@@ -246,6 +250,7 @@ def read_physics_params(env, task_name: str) -> dict:
         mat_fixed = fixed.root_physx_view.get_material_properties()
         params["nut_static_friction"] = round(mat_held[0, 0, 0].item(), 4)
         params["nut_dynamic_friction"] = round(mat_held[0, 0, 1].item(), 4)
+        params["nut_mass"] = round(held.root_physx_view.get_masses()[0, 0].item(), 6)
         params["bolt_static_friction"] = round(mat_fixed[0, 0, 0].item(), 4)
         params["bolt_dynamic_friction"] = round(mat_fixed[0, 0, 1].item(), 4)
         params["task_type"] = "nut_thread"
@@ -272,9 +277,13 @@ def read_physics_params(env, task_name: str) -> dict:
     return params
 
 
-def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle: bool = False):
+def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle: bool = False,
+                  rl_checkpoint: str | None = None, step0: bool = False):
     """Collect episodes for a single task and save in LeRobot V2 format."""
     is_factory = task_name in ("peg_insert", "nut_thread")
+    is_drawer_rl = False
+    rl_policy = None
+    _drawer_env_wrapped = None
 
     if is_factory:
         from physrepa_tasks.envs.factory_camera_env import (
@@ -283,10 +292,123 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         cfg = PegInsertCameraCfg() if task_name == "peg_insert" else NutThreadCameraCfg()
         cfg.scene.num_envs = 1
         env = FactoryCameraEnv(cfg=cfg)
+
+        # Load RL-Games checkpoint for Factory tasks
+        if rl_checkpoint is not None:
+            from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
+            rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
+            print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+    elif rl_checkpoint is not None and task_name == "drawer":
+        # Drawer: use Isaac Lab official RL env with cameras added
+        import gymnasium as gym
+        import isaaclab.sim as sim_utils
+        import isaaclab_tasks  # register official envs
+        import importlib
+        gym_id = "Isaac-Open-Drawer-Franka-v0"
+        spec = gym.spec(gym_id)
+        env_cfg_entry = spec.kwargs["env_cfg_entry_point"]
+        if isinstance(env_cfg_entry, str):
+            mod_path, cls_name = env_cfg_entry.rsplit(":", 1)
+            mod = importlib.import_module(mod_path)
+            cfg = getattr(mod, cls_name)()
+        else:
+            cfg = env_cfg_entry()
+        cfg.scene.num_envs = 1
+        cfg.observations.policy.enable_corruption = False
+        # Disable debug visualization arrows
+        if hasattr(cfg.scene, 'cabinet_frame'):
+            cfg.scene.cabinet_frame.debug_vis = False
+        # Add cameras to scene
+        from isaaclab.sensors import CameraCfg
+        cfg.scene.table_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 5.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(-0.2, 0.9, 0.8), rot=(0.16560, -0.23780, 0.78541, -0.54695), convention="ros"),
+        )
+        cfg.scene.wrist_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_hand/wrist_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 2.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
+        )
+        env = gym.make(gym_id, cfg=cfg)
+        # Load RSL-RL policy
+        from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
+        from rsl_rl.runners import OnPolicyRunner
+        agent_cfg_entry = spec.kwargs["rsl_rl_cfg_entry_point"]
+        mod_path, cls_name = agent_cfg_entry.rsplit(":", 1)
+        mod = importlib.import_module(mod_path)
+        agent_cfg = getattr(mod, cls_name)()
+        _drawer_env_wrapped = RslRlVecEnvWrapper(env, clip_actions=agent_cfg.clip_actions)
+        ppo_runner = OnPolicyRunner(_drawer_env_wrapped, agent_cfg.to_dict(), log_dir=None, device=env.unwrapped.device)
+        ppo_runner.load(rl_checkpoint)
+        rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
+        # Use unwrapped for scene access, wrapped for stepping
+        env = env.unwrapped
+        is_drawer_rl = True
+        print(f"  Loaded RSL-RL Drawer checkpoint: {rl_checkpoint}")
+    elif rl_checkpoint is not None and task_name in ("push", "strike"):
+        # Push/Strike: use RL env (IK relative) with cameras added
+        import gymnasium as gym
+        import isaaclab.sim as sim_utils
+        import importlib
+        import physrepa_tasks.rl_envs  # register envs
+        gym_id = {"push": "PhysREPA-Push-Franka-v0", "strike": "PhysREPA-Strike-Franka-v0"}[task_name]
+        spec = gym.spec(gym_id)
+        env_cfg_entry = spec.kwargs["env_cfg_entry_point"]
+        if isinstance(env_cfg_entry, str):
+            mod_path, cls_name = env_cfg_entry.rsplit(":", 1)
+            mod = importlib.import_module(mod_path)
+            cfg = getattr(mod, cls_name)()
+        else:
+            cfg = env_cfg_entry()
+        cfg.scene.num_envs = 1
+        cfg.observations.policy.enable_corruption = False
+        # Add cameras
+        from isaaclab.sensors import CameraCfg
+        cfg.scene.table_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=19.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(1.6, 0.0, 0.90), rot=(0.33900, -0.62054, -0.62054, 0.33900), convention="ros"),
+        )
+        cfg.scene.wrist_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_hand/wrist_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 2.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
+        )
+        env = gym.make(gym_id, cfg=cfg)
+        # Load RSL-RL policy
+        from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
+        from rsl_rl.runners import OnPolicyRunner
+        agent_cfg_entry = spec.kwargs["rsl_rl_cfg_entry_point"]
+        mod_path, cls_name = agent_cfg_entry.rsplit(":", 1)
+        mod = importlib.import_module(mod_path)
+        agent_cfg = getattr(mod, cls_name)()
+        _drawer_env_wrapped = RslRlVecEnvWrapper(env, clip_actions=agent_cfg.clip_actions)
+        ppo_runner = OnPolicyRunner(_drawer_env_wrapped, agent_cfg.to_dict(), log_dir=None, device=env.unwrapped.device)
+        ppo_runner.load(rl_checkpoint)
+        rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
+        env = env.unwrapped
+        is_drawer_rl = True  # reuse same stepping logic as drawer
+        print(f"  Loaded RSL-RL {task_name} checkpoint: {rl_checkpoint}")
     else:
         cfg_cls = TASK_CONFIGS[task_name]
         cfg = cfg_cls()
         cfg.scene.num_envs = 1
+        # Step0: remove target marker (no target needed)
+        if step0 and hasattr(cfg.scene, 'target_marker'):
+            cfg.scene.target_marker = None
         env = ManagerBasedRLEnv(cfg=cfg)
 
     print(f"\n{'='*60}")
@@ -296,7 +418,10 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     print(f"{'='*60}")
 
     robot = env.scene["robot"] if not is_factory else env._robot
-    finger_ids = robot.find_joints("panda_finger.*")[0] if not is_factory else None
+    try:
+        finger_ids = robot.find_joints("panda_finger.*")[0] if not is_factory else None
+    except Exception:
+        finger_ids = None  # UR10 has no fingers
 
     # Get EE frame sensor (not available in Factory env)
     ee_frame = env.scene["ee_frame"] if not is_factory else None
@@ -307,7 +432,12 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
     # Oracle policy
     oracle_policy = None
-    if use_oracle:
+    if step0 and task_name in ("push", "strike"):
+        step0_policies = {"push": Step0PushPolicy, "strike": Step0StrikePolicy}
+        policy_cls = step0_policies[task_name]
+        oracle_policy = policy_cls(num_envs=1, device=env.device)
+        print(f"  Using Step 0 policy: {policy_cls.__name__} (no target, random direction)")
+    elif use_oracle:
         policy_cls = TASK_POLICIES[task_name]
         oracle_policy = policy_cls(num_envs=1, device=env.device)
         print(f"  Using oracle policy: {policy_cls.__name__}")
@@ -319,10 +449,15 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     all_episode_stats = {"observation.state": [], "action": [], "timestamp": []}
 
     # Physics GT column names — task-specific
-    if task_name == "reach":
+    # RL envs (is_drawer_rl covers push/strike/drawer RL) don't have physics_gt obs
+    if is_drawer_rl:
+        physics_gt_keys = []
+    elif task_name == "reach":
         physics_gt_keys = [
             "physics_gt.ee_position",
+            "physics_gt.ee_orientation",
             "physics_gt.ee_velocity",
+            "physics_gt.ee_angular_velocity",
             "physics_gt.ee_acceleration",
             "physics_gt.target_position",
             "physics_gt.phase",
@@ -330,7 +465,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     elif task_name == "peg_insert":
         physics_gt_keys = [
             "physics_gt.ee_position",
+            "physics_gt.ee_orientation",
             "physics_gt.ee_velocity",
+            "physics_gt.ee_angular_velocity",
             "physics_gt.ee_acceleration",
             "physics_gt.peg_position",
             "physics_gt.peg_orientation",
@@ -344,7 +481,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     elif task_name == "nut_thread":
         physics_gt_keys = [
             "physics_gt.ee_position",
+            "physics_gt.ee_orientation",
             "physics_gt.ee_velocity",
+            "physics_gt.ee_angular_velocity",
             "physics_gt.ee_acceleration",
             "physics_gt.nut_position",
             "physics_gt.nut_orientation",
@@ -359,10 +498,14 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     elif task_name == "drawer":
         physics_gt_keys = [
             "physics_gt.ee_position",
+            "physics_gt.ee_orientation",
             "physics_gt.ee_velocity",
+            "physics_gt.ee_angular_velocity",
             "physics_gt.ee_acceleration",
             "physics_gt.drawer_joint_pos",
             "physics_gt.drawer_joint_vel",
+            "physics_gt.handle_position",
+            "physics_gt.handle_velocity",
             "physics_gt.contact_flag",
             "physics_gt.contact_force",
             "physics_gt.contact_point",
@@ -371,7 +514,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     else:
         physics_gt_keys = [
             "physics_gt.ee_position",
+            "physics_gt.ee_orientation",
             "physics_gt.ee_velocity",
+            "physics_gt.ee_angular_velocity",
             "physics_gt.ee_acceleration",
             "physics_gt.object_position",
             "physics_gt.object_orientation",
@@ -414,13 +559,19 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         # Reset with overlap check for pick_place/push
         # Ensure object and target are at least 0.1m apart
         for _reset_attempt in range(10):
-            obs, info = env.reset()
-            if task_name in ("pick_place", "push", "strike"):
+            if is_drawer_rl:
+                obs_w, info = _drawer_env_wrapped.get_observations()
+                obs = {"policy": obs_w}
+                # Trigger reset by getting observations after env auto-resets
+                env.reset()
+            else:
+                obs, info = env.reset()
+            if task_name in ("pick_place", "push", "strike") and not is_drawer_rl:
                 gt = obs["physics_gt"]
                 obj_pos = gt["object_position"][0, :2].cpu()
                 target_pos = gt["target_position"][0, :2].cpu()
                 dist = torch.norm(obj_pos - target_pos).item()
-                if dist >= 0.15:  # min 15cm between object and target
+                if dist >= 0.15:
                     break
                 print(f"  Re-reset: object-target too close ({dist:.3f}m)")
             else:
@@ -434,6 +585,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             tasks_meta_list.append({"task_index": task_idx, "task": task_description})
         current_task_idx = tasks_meta_dict[task_description]
         print(f"  Instruction: {task_description}")
+
+        # Randomize physics for Factory tasks (friction, mass) — PEZ probing
+        if is_factory and hasattr(env, 'randomize_physics'):
+            factory_phys = env.randomize_physics()
+            print(f"  Factory physics randomized: {factory_phys}")
 
         # Read physics params after reset (when randomization has been applied)
         physics_params = read_physics_params(env, task_name)
@@ -456,25 +612,42 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         ep_rewards = []
 
         # Sync target marker to command target position
-        if task_name in ("pick_place", "push", "strike"):
-            from physrepa_tasks.mdp.sync_marker import sync_target_marker
-            sync_target_marker(env, env_ids=None, command_name="object_pose")
-        elif task_name == "reach":
-            from physrepa_tasks.mdp.sync_marker import sync_target_marker
-            sync_target_marker(env, env_ids=None, command_name="ee_pose", fixed_z=None)
+        if not is_factory:
+            if task_name in ("pick_place", "push", "strike"):
+                from physrepa_tasks.mdp.sync_marker import sync_target_marker
+                sync_target_marker(env, env_ids=None, command_name="object_pose")
+            elif task_name == "reach":
+                from physrepa_tasks.mdp.sync_marker import sync_target_marker
+                sync_target_marker(env, env_ids=None, command_name="ee_pose", fixed_z=None)
 
         # Warmup: 0.5 seconds of no-action steps for rendering stabilization
-        action_dim = 6 if (task_name == "reach" or is_factory) else 7
+        if task_name == "reach" or is_factory:
+            action_dim = 6
+        elif rl_checkpoint is not None and task_name == "drawer":
+            action_dim = 8
+        elif step0 and task_name == "push":
+            action_dim = 4  # position-only IK (3D) + gripper (1D)
+        elif step0 and task_name == "strike":
+            action_dim = 4  # position-only IK (3D) + gripper (1D)
+        else:
+            action_dim = 7
         warmup_steps = int(0.5 / dt)
         for _ in range(warmup_steps):
-            obs, _, _, _, _ = env.step(torch.zeros(1, action_dim, device=env.device))
+            if is_drawer_rl:
+                obs_w, _, _, _ = _drawer_env_wrapped.step(torch.zeros(1, action_dim, device=env.device))
+                obs = {"policy": obs_w}
+            else:
+                obs, _, _, _, _ = env.step(torch.zeros(1, action_dim, device=env.device))
 
-        # max_steps = remaining episode time AFTER warmup
-        max_steps = int(cfg.episode_length_s / dt) - warmup_steps
+        # Full episode length (warmup is separate, doesn't subtract from data)
+        episode_s = 5.0 if step0 else cfg.episode_length_s
+        max_steps = int(episode_s / dt)
 
-        # Reset oracle policy after warmup
+        # Reset oracle/RL policy after warmup
         if oracle_policy is not None:
             oracle_policy.reset()
+        if rl_policy is not None and hasattr(rl_policy, 'reset'):
+            rl_policy.reset()
 
         # Previous velocities for acceleration computation
         prev_ee_vel = None
@@ -483,24 +656,80 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
         for step in range(max_steps):
             # Generate action
-            if oracle_policy is not None:
+            if rl_policy is not None:
+                with torch.inference_mode():
+                    if is_factory:
+                        # rl_games LSTM: takes flat obs from Factory env
+                        flat_obs = obs["policy"] if isinstance(obs, dict) else obs
+                        action = rl_policy(flat_obs)
+                    else:
+                        # RSL-RL: takes flat concatenated obs
+                        flat_obs = obs["policy"] if isinstance(obs, dict) else obs
+                        if isinstance(flat_obs, dict):
+                            # Concatenate if dict (shouldn't happen for RL envs)
+                            flat_obs = torch.cat([v.flatten() for v in flat_obs.values()]).unsqueeze(0)
+                        action = rl_policy(flat_obs)
+                    if action.dim() == 1:
+                        action = action.unsqueeze(0)
+            elif oracle_policy is not None:
                 action = oracle_policy.get_action(obs)
             else:
                 action = torch.zeros(1, action_dim, device=env.device)
                 if is_factory:
-                    action[0, :6] = torch.randn(6, device=env.device) * 0.5  # Factory OSC needs larger actions
+                    action[0, :6] = torch.randn(6, device=env.device) * 0.5
                 else:
                     action[0, :6] = torch.randn(6, device=env.device) * 0.1
                     if action_dim == 7:
                         action[0, 6] = 1.0 if step < max_steps // 2 else -1.0
 
-            # Record pre-step data
+            # Record pre-step data (skip physics_gt for RL envs without it)
+            if is_drawer_rl and not is_factory:
+                # RL env rollout: no physics_gt, just record state/action/cameras
+                ee_pos_b_np, ee_quat_b_np = get_ee_pose_in_base_frame(env)
+                gripper_val = robot.data.joint_pos[0, finger_ids].mean().item() / 0.04 if finger_ids is not None else 0.0
+                state_8d = ee_state_to_8d(ee_pos_b_np, ee_quat_b_np, gripper_val)
+                ep_states.append(state_8d)
+                raw_action = action[0].cpu().numpy().astype(np.float32)
+                action_7d = np.zeros(7, dtype=np.float32)
+                action_7d[:min(6, len(raw_action))] = raw_action[:6]
+                if len(raw_action) > 7:
+                    action_7d[6] = 0.0 if raw_action[7] < 0 else 1.0
+                elif len(raw_action) > 6:
+                    action_7d[6] = 0.0 if raw_action[6] < 0 else 1.0
+                ep_actions.append(action_7d)
+                ep_timestamps.append(np.float32(step / fps))
+                # Phase
+                ep_physics_gt["physics_gt.phase"] = []  # not used
+
+                # Camera frames from sensors
+                if "table_cam" in env.scene.sensors:
+                    t_rgb = env.scene.sensors["table_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
+                    ep_frames_table.append(t_rgb)
+                if "wrist_cam" in env.scene.sensors:
+                    w_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
+                    ep_frames_wrist.append(w_rgb)
+
+                # Step
+                if _drawer_env_wrapped is not None:
+                    obs_wrapped, rew_wrapped, dones, infos = _drawer_env_wrapped.step(action)
+                    obs = {"policy": obs_wrapped}
+                    reward = rew_wrapped
+                else:
+                    obs, reward, _, _, _ = env.step(action)
+
+                ep_rewards.append(reward[0].item() if hasattr(reward, '__getitem__') else reward)
+                if step % 100 == 0:
+                    print(f"  Step {step}/{max_steps}, reward={ep_rewards[-1]:.4f}")
+                continue
+
             if is_factory:
                 phys = env.get_physics_data()
                 # Build a fake gt dict for uniform access below
                 gt = {
                     "ee_position": phys["ee_position"],
+                    "ee_orientation": phys["ee_orientation"],
                     "ee_velocity": phys["ee_velocity"],
+                    "ee_angular_velocity": phys["ee_angular_velocity"],
                     "peg_position": phys["held_position"],
                     "peg_orientation": phys["held_orientation"],
                     "peg_velocity": torch.zeros(1, 3, device=env.device),  # not tracked in Factory
@@ -510,11 +739,42 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     "nut_velocity": torch.zeros(1, 3, device=env.device),
                     "bolt_position": phys["fixed_position"],
                     "bolt_orientation": phys["fixed_orientation"],
+                    "contact_flag": phys["contact_flag"],
+                    "contact_force": phys["contact_force"],
+                }
+            elif "physics_gt" in obs:
+                gt = obs["physics_gt"]
+            else:
+                # RL env without physics_gt (e.g., drawer RL) — read from env directly
+                _robot = env.scene["robot"]
+                _ee_frame = env.scene["ee_frame"]
+                _hand_idx = _robot.body_names.index("panda_hand")
+                _ee_pos = _ee_frame.data.target_pos_w[0, 0, :] - env.scene.env_origins[0]
+                _ee_quat = _robot.data.body_quat_w[0, _hand_idx]
+                _ee_vel = _robot.data.body_lin_vel_w[0, _hand_idx]
+                _ee_angvel = _robot.data.body_ang_vel_w[0, _hand_idx]
+                gt = {
+                    "ee_position": _ee_pos.unsqueeze(0),
+                    "ee_orientation": _ee_quat.unsqueeze(0),
+                    "ee_velocity": _ee_vel.unsqueeze(0),
+                    "ee_angular_velocity": _ee_angvel.unsqueeze(0),
                     "contact_flag": torch.zeros(1, 1, device=env.device),
                     "contact_force": torch.zeros(1, 3, device=env.device),
                 }
-            else:
-                gt = obs["physics_gt"]
+                if task_name == "drawer":
+                    _cabinet = env.scene["cabinet"]
+                    _jpos = _cabinet.data.joint_pos[0, _cabinet.find_joints("drawer_top_joint")[0]].unsqueeze(0)
+                    _jvel = _cabinet.data.joint_vel[0, _cabinet.find_joints("drawer_top_joint")[0]].unsqueeze(0)
+                    gt["drawer_joint_pos"] = _jpos.unsqueeze(0)
+                    gt["drawer_joint_vel"] = _jvel.unsqueeze(0)
+                    # Handle world position from cabinet_frame sensor
+                    _cab_frame = env.scene.sensors["cabinet_frame"]
+                    _handle_pos = _cab_frame.data.target_pos_w[0, 0, :] - env.scene.env_origins[0]
+                    gt["handle_position"] = _handle_pos.unsqueeze(0)
+                    # Handle velocity: finite diff of cabinet body
+                    _handle_body_idx = _cabinet.body_names.index("drawer_handle_top")
+                    _handle_vel = _cabinet.data.body_lin_vel_w[0, _handle_body_idx]
+                    gt["handle_velocity"] = _handle_vel.unsqueeze(0)
 
             # EE state: convert to BridgeData 8D format [x,y,z,roll,pitch,yaw,pad,gripper]
             if is_factory:
@@ -525,17 +785,31 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 gripper_val = robot.data.joint_pos[0, -1].item() / 0.04
             else:
                 ee_pos_b_np, ee_quat_b_np = get_ee_pose_in_base_frame(env)
-                gripper_val = robot.data.joint_pos[0, finger_ids].mean().item() / 0.04
+                gripper_val = robot.data.joint_pos[0, finger_ids].mean().item() / 0.04 if finger_ids is not None else 0.0
             state_8d = ee_state_to_8d(ee_pos_b_np, ee_quat_b_np, gripper_val)
             ep_states.append(state_8d)
 
-            # Action: 7D [dx, dy, dz, droll, dpitch, dyaw, gripper]
-            if action_dim == 6:
-                # Reach: pad with 0 gripper
+            # Action: always store as 7D [dx, dy, dz, droll, dpitch, dyaw, gripper]
+            raw_action = action[0].cpu().numpy().astype(np.float32)
+            if action_dim == 3:
+                # UR10 position-only: [dx,dy,dz] → pad to 7D
                 action_7d = np.zeros(7, dtype=np.float32)
-                action_7d[:6] = action[0].cpu().numpy().astype(np.float32)
+                action_7d[:3] = raw_action[:3]
+            elif action_dim == 4:
+                # Position-only IK: [dx,dy,dz, grip] → pad to 7D
+                action_7d = np.zeros(7, dtype=np.float32)
+                action_7d[:3] = raw_action[:3]
+                action_7d[6] = 0.0 if raw_action[3] < 0 else 1.0
+            elif action_dim == 6:
+                action_7d = np.zeros(7, dtype=np.float32)
+                action_7d[:6] = raw_action
+            elif action_dim == 8:
+                # Drawer RL: 7 joint pos + 1 gripper → store as 7D (last joint + gripper)
+                action_7d = np.zeros(7, dtype=np.float32)
+                action_7d[:6] = raw_action[:6]
+                action_7d[6] = raw_action[7] if len(raw_action) > 7 else 0.0
             else:
-                action_7d = action[0].cpu().numpy().astype(np.float32)
+                action_7d = raw_action
                 # Normalize gripper to 0-1 range (currently -1/+1)
                 action_7d[6] = 0.0 if action_7d[6] < 0 else 1.0
             ep_actions.append(action_7d)
@@ -543,11 +817,23 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             # Timestamp
             ep_timestamps.append(np.float32(step / fps))
 
-            # Physics GT: EE
+            # Physics GT: EE (position, orientation, velocity, angular velocity)
             ee_pos_np = gt["ee_position"][0].cpu().numpy()
             ee_vel_np = gt["ee_velocity"][0].cpu().numpy()
             ep_physics_gt["physics_gt.ee_position"].append(ee_pos_np)
             ep_physics_gt["physics_gt.ee_velocity"].append(ee_vel_np)
+            # EE orientation (quaternion) and angular velocity
+            if "ee_orientation" in gt:
+                ep_physics_gt["physics_gt.ee_orientation"].append(gt["ee_orientation"][0].cpu().numpy())
+            else:
+                # Fallback: read from robot body data
+                _hand_idx = robot.body_names.index("panda_hand")
+                ep_physics_gt["physics_gt.ee_orientation"].append(robot.data.body_quat_w[0, _hand_idx].cpu().numpy())
+            if "ee_angular_velocity" in gt:
+                ep_physics_gt["physics_gt.ee_angular_velocity"].append(gt["ee_angular_velocity"][0].cpu().numpy())
+            else:
+                _hand_idx = robot.body_names.index("panda_hand")
+                ep_physics_gt["physics_gt.ee_angular_velocity"].append(robot.data.body_ang_vel_w[0, _hand_idx].cpu().numpy())
 
             # EE acceleration via finite difference
             if prev_ee_vel is None:
@@ -578,9 +864,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.bolt_orientation"].append(gt["bolt_orientation"][0].cpu().numpy())
 
             elif task_name == "drawer":
-                # Drawer: cabinet joint + contact
+                # Drawer: cabinet joint + handle position/velocity
                 ep_physics_gt["physics_gt.drawer_joint_pos"].append(gt["drawer_joint_pos"][0].cpu().numpy())
                 ep_physics_gt["physics_gt.drawer_joint_vel"].append(gt["drawer_joint_vel"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.handle_position"].append(gt["handle_position"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.handle_velocity"].append(gt["handle_velocity"][0].cpu().numpy())
 
             elif "object_position" in gt:
                 obj_pos_np = gt["object_position"][0].cpu().numpy()
@@ -668,13 +956,12 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 obj_obj_contact_pos = np.nan_to_num(obj_obj_contact_pos, nan=0.0)
                 ep_physics_gt["physics_gt.object_object_contact_point"].append(obj_obj_contact_pos.astype(np.float32))
 
-            # Gripper contact (not for reach, Factory uses fake zeros)
+            # Gripper contact (not for reach)
             if task_name not in ("reach",):
                 ep_physics_gt["physics_gt.contact_flag"].append(gt["contact_flag"][0].cpu().numpy())
                 ep_physics_gt["physics_gt.contact_force"].append(gt["contact_force"][0].cpu().numpy())
 
-                if not is_factory:
-                    # Contact point from contact sensor (not available in Factory)
+                if "contact_sensor" in env.scene.sensors:
                     sensor = env.scene.sensors["contact_sensor"]
                     contact_pos = sensor.data.contact_pos_w[0, 0, 0, :].cpu().numpy()
                     contact_pos = np.nan_to_num(contact_pos, nan=0.0)
@@ -701,6 +988,13 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 table_rgb, wrist_rgb = env.get_camera_data()
                 ep_frames_table.append(table_rgb[0].cpu().numpy().astype(np.uint8))
                 ep_frames_wrist.append(wrist_rgb[0].cpu().numpy().astype(np.uint8))
+            elif "table_cam" in env.scene.sensors:
+                # Read from sensors directly (works for both dict and flat obs envs)
+                t_rgb = env.scene.sensors["table_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
+                ep_frames_table.append(t_rgb)
+                if "wrist_cam" in env.scene.sensors:
+                    w_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
+                    ep_frames_wrist.append(w_rgb)
             else:
                 policy_obs = obs["policy"]
                 if isinstance(policy_obs, dict):
@@ -710,7 +1004,16 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                         ep_frames_wrist.append(policy_obs["wrist_cam"][0].cpu().numpy())
 
             # Step environment
-            obs, reward, terminated, truncated, info = env.step(action)
+            if is_drawer_rl:
+                # Drawer RL: step through wrapped env for policy obs
+                obs_wrapped, rew_wrapped, dones, infos = _drawer_env_wrapped.step(action)
+                obs = {"policy": obs_wrapped}  # wrap for compatibility
+                reward = rew_wrapped
+                terminated = dones
+                truncated = dones
+                info = infos
+            else:
+                obs, reward, terminated, truncated, info = env.step(action)
 
             # Record reward (Critical fix #4: for next.done)
             ep_rewards.append(reward[0].item())
@@ -792,7 +1095,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     # Build physics GT shapes dict — must match physics_gt_keys
     _shape_map = {
         "physics_gt.ee_position": [3],
+        "physics_gt.ee_orientation": [4],
         "physics_gt.ee_velocity": [3],
+        "physics_gt.ee_angular_velocity": [3],
         "physics_gt.ee_acceleration": [3],
         "physics_gt.object_position": [3],
         "physics_gt.object_orientation": [4],
@@ -808,6 +1113,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         "physics_gt.target_position": [3],
         "physics_gt.drawer_joint_pos": [1],
         "physics_gt.drawer_joint_vel": [1],
+        "physics_gt.handle_position": [3],
+        "physics_gt.handle_velocity": [3],
         "physics_gt.peg_position": [3],
         "physics_gt.peg_orientation": [4],
         "physics_gt.peg_velocity": [3],
@@ -989,7 +1296,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
 def main():
     output_dir = os.path.join(args_cli.output_dir, args_cli.task)
-    collect_task(args_cli.task, args_cli.num_episodes, output_dir, use_oracle=args_cli.use_oracle)
+    collect_task(args_cli.task, args_cli.num_episodes, output_dir,
+                 use_oracle=args_cli.use_oracle, rl_checkpoint=args_cli.rl_checkpoint,
+                 step0=args_cli.step0)
     simulation_app.close()
 
 

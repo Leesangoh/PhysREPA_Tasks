@@ -32,7 +32,11 @@ class ScriptedPolicy:
         raise NotImplementedError
 
     def _delta_action(self, ee_pos, target_pos, gripper):
-        """Build (num_envs, 7) action: [dx,dy,dz, 0,0,0, gripper]."""
+        """Build (num_envs, 7) action: [dx,dy,dz, droll,dpitch,dyaw, gripper].
+
+        Position: P-control toward target.
+        Orientation: zeros (IK maintains orientation).
+        """
         action = torch.zeros(self.num_envs, 7, device=self.device)
         delta = self.P_GAIN * (target_pos - ee_pos)
         action[:, :3] = delta.clamp(-1.0, 1.0)
@@ -763,3 +767,128 @@ class NutThreadPolicy(ScriptedPolicy):
         action[rotate_mask, 5] = -self.ROTATE_SPEED  # negative yaw for clockwise
         action[:, 6] = grip
         return action
+
+
+class Step0PushPolicy(ScriptedPolicy):
+    """Step 0 Push: no target. Random direction push for PEZ probing.
+
+    Uses constant-velocity straight-line trajectories (not P-control).
+    0. Straight line to behind-object position (at push height)
+    1. Straight line push through object
+    2. Straight line retract up
+    3. Straight line return to home
+    4. Wait
+    """
+
+    PUSH_Z = 0.025  # below cube center (0.03) to prevent tipping
+    HOME_POS = [0.4, 0.0, 0.25]
+    BEHIND_DIST = 0.08
+    PUSH_THROUGH_DIST = 0.20
+    SPEED = 0.15
+    THRESH = 0.015
+    MAX_T = 200
+
+    def __init__(self, num_envs, device):
+        super().__init__(num_envs, device)
+        self.push_dir = torch.zeros(num_envs, 2, device=self.device)
+        self.wp = [torch.zeros(num_envs, 3, device=self.device) for _ in range(5)]
+        self.wp_ready = torch.zeros(num_envs, dtype=torch.bool, device=self.device)
+        self.start_ee = torch.zeros(num_envs, 3, device=self.device)
+        self.start_joint_pos = None  # will be set from env
+
+    def reset(self, env_ids=None):
+        super().reset(env_ids)
+        if env_ids is None:
+            env_ids = torch.arange(self.num_envs, device=self.device)
+        # Restrict to robot-side 180°: angle in [-π/2, π/2] → push dir always +x hemisphere
+        angle = (torch.rand(len(env_ids), device=self.device) - 0.5) * 3.14159
+        self.push_dir[env_ids, 0] = torch.cos(angle)
+        self.push_dir[env_ids, 1] = torch.sin(angle)
+        self.wp_ready[env_ids] = False
+
+    def set_friction(self, surface_friction: float, object_friction: float):
+        pass
+
+    def get_action(self, obs):
+        ee = obs["physics_gt"]["ee_position_b"]
+        obj = obs["policy"]["object_position"]
+
+        # Compute all waypoints ONCE
+        needs = ~self.wp_ready
+        if needs.any():
+            self.start_ee[needs] = ee[needs].clone()
+            # WP0: behind object at push height
+            self.wp[0][needs] = obj[needs].clone()
+            self.wp[0][needs, :2] -= self.push_dir[needs] * self.BEHIND_DIST
+            self.wp[0][needs, 2] = self.PUSH_Z
+            # WP1: push end
+            self.wp[1][needs] = obj[needs].clone()
+            self.wp[1][needs, :2] += self.push_dir[needs] * self.PUSH_THROUGH_DIST
+            self.wp[1][needs, 2] = self.PUSH_Z
+            # WP2: retract straight up from current EE xy (not push end — more natural)
+            self.wp[2][needs] = ee[needs].clone()
+            self.wp[2][needs, 2] = self.start_ee[needs, 2]  # return to start height
+            # WP3: return to exact start EE position
+            self.wp[3][needs] = self.start_ee[needs].clone()
+            self.wp_ready[needs] = True
+
+        # Current target
+        tgt = ee.clone()
+        current_state = self.state.clone()
+        for sid in range(4):
+            s = current_state == sid
+            if s.any():
+                tgt[s] = self.wp[sid][s]
+
+        # Constant velocity — clamp MAGNITUDE not components (preserves direction)
+        # Action: 4D [dx, dy, dz, gripper] for position-only IK
+        action = torch.zeros(self.num_envs, 4, device=self.device)
+        action[:, 3] = -1.0  # closed fist
+
+        delta = tgt - ee
+        dist = torch.norm(delta, dim=-1, keepdim=True).clamp(min=1e-6)
+        direction = delta / dist
+        speed = torch.full_like(dist, self.SPEED)
+        speed = torch.min(speed, dist * 5.0)
+        action_vec = direction * speed
+        mag = torch.norm(action_vec, dim=-1, keepdim=True).clamp(min=1e-6)
+        action_vec = action_vec * torch.min(torch.ones_like(mag), 1.0 / mag)
+        action[:, :3] = action_vec
+
+        # State 4: WAIT
+        wait = current_state >= 4
+        action[wait, :3] = 0.0
+
+        # Advance — snapshot prevents multi-advance
+        arrived = dist.squeeze(-1) < self.THRESH
+        for sid in range(4):
+            s = current_state == sid
+            if s.any():
+                m = torch.zeros(self.num_envs, dtype=torch.bool, device=self.device)
+                m[s] = arrived[s] | (self.state_timer[s] > self.MAX_T)
+                self._advance(m)
+
+        self._tick()
+        return action
+
+
+class Step0StrikePolicy(Step0PushPolicy):
+    """Step 0 Strike: Franka strikes ball. Same as Push with different params.
+
+    7D action (pose IK + gripper). Orientation deltas = 0.
+    """
+
+    PUSH_Z = 0.025  # ball center height (radius=0.025)
+    BEHIND_DIST = 0.08
+    PUSH_THROUGH_DIST = 0.08  # short strike through
+    SPEED = 0.25  # faster than push
+
+    def reset(self, env_ids=None):
+        super().reset(env_ids)
+        if env_ids is None:
+            env_ids = torch.arange(self.num_envs, device=self.device)
+        # Restrict to robot-side 180°: angle in [-π/2, π/2] → push dir always +x hemisphere
+        # Robot at -x, camera at +x. EE approaches from robot side, strikes toward camera.
+        angle = (torch.rand(len(env_ids), device=self.device) - 0.5) * 3.14159  # [-π/2, π/2]
+        self.push_dir[env_ids, 0] = torch.cos(angle)
+        self.push_dir[env_ids, 1] = torch.sin(angle)

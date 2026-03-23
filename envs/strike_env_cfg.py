@@ -45,9 +45,9 @@ class StrikeSceneCfg(InteractiveSceneCfg):
     # Ball (sphere) — configurable mass/friction/restitution
     object: RigidObjectCfg = RigidObjectCfg(
         prim_path="{ENV_REGEX_NS}/Object",
-        init_state=RigidObjectCfg.InitialStateCfg(pos=[0.5, 0, 0.04], rot=[1, 0, 0, 0]),
+        init_state=RigidObjectCfg.InitialStateCfg(pos=[0.5, 0, 0.025], rot=[1, 0, 0, 0]),
         spawn=sim_utils.SphereCfg(
-            radius=0.04,
+            radius=0.025,
             rigid_props=RigidBodyPropertiesCfg(
                 solver_position_iteration_count=16,
                 solver_velocity_iteration_count=1,
@@ -55,6 +55,8 @@ class StrikeSceneCfg(InteractiveSceneCfg):
                 max_linear_velocity=1000.0,
                 max_depenetration_velocity=5.0,
                 disable_gravity=False,
+                linear_damping=6.0,
+                angular_damping=3.0,
             ),
             mass_props=sim_utils.MassPropertiesCfg(mass=0.1),
             collision_props=sim_utils.CollisionPropertiesCfg(),
@@ -141,7 +143,7 @@ class StrikeSceneCfg(InteractiveSceneCfg):
         width=384,
         data_types=["rgb"],
         spawn=sim_utils.PinholeCameraCfg(
-            focal_length=19.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)
+            focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)
         ),
         offset=CameraCfg.OffsetCfg(
             pos=(1.6, 0.0, 0.90), rot=(0.33900, -0.62054, -0.62054, 0.33900), convention="ros"
@@ -177,15 +179,15 @@ class ActionsCfg:
         asset_name="robot",
         joint_names=["panda_joint.*"],
         body_name="panda_hand",
-        controller=DifferentialIKControllerCfg(command_type="pose", use_relative_mode=True, ik_method="dls"),
+        controller=DifferentialIKControllerCfg(command_type="position", use_relative_mode=True, ik_method="dls"),
         scale=0.5,
         body_offset=DifferentialInverseKinematicsActionCfg.OffsetCfg(pos=[0.0, 0.0, 0.107]),
     )
     gripper_action: BinaryJointPositionActionCfg = BinaryJointPositionActionCfg(
         asset_name="robot",
         joint_names=["panda_finger.*"],
-        open_command_expr={"panda_finger_.*": 0.01},
-        close_command_expr={"panda_finger_.*": 0.01},  # closed fist
+        open_command_expr={"panda_finger_.*": 0.0},
+        close_command_expr={"panda_finger_.*": 0.0},  # fully closed
     )
 
 
@@ -266,11 +268,22 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("object"),
-            "static_friction_range": (0.2, 0.8),
-            "dynamic_friction_range": (0.2, 0.8),
+            "static_friction_range": (0.05, 1.5),
+            "dynamic_friction_range": (0.05, 1.5),
             "restitution_range": (0.3, 0.9),
             "num_buckets": 16,
             "make_consistent": True,
+        },
+    )
+
+    # Ball damping randomization
+    randomize_ball_damping = EventTerm(
+        func=mdp.randomize_rigid_body_damping,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("object"),
+            "linear_damping_range": (3.0, 8.0),
+            "angular_damping_ratio": 0.5,
         },
     )
 
@@ -280,8 +293,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("surface"),
-            "static_friction_range": (0.1, 0.9),
-            "dynamic_friction_range": (0.1, 0.9),
+            "static_friction_range": (0.05, 1.5),
+            "dynamic_friction_range": (0.05, 1.5),
             "restitution_range": (0.0, 0.0),
             "num_buckets": 16,
             "make_consistent": True,

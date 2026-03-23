@@ -58,7 +58,7 @@ class DrawerSceneCfg(InteractiveSceneCfg):
             activate_contact_sensors=False,
         ),
         init_state=ArticulationCfg.InitialStateCfg(
-            pos=(0.8, 0, 0.0),  # on ground, handles face robot
+            pos=(0.8, 0, 0.4),  # cabinet origin is at center — z=0.4 puts it on table surface
             rot=(0.0, 0.0, 0.0, 1.0),  # 180° Z — handles toward -x
             joint_pos={
                 "door_left_joint": 0.0,
@@ -249,6 +249,8 @@ class ObservationsCfg:
             func=mdp.joint_vel_rel,
             params={"asset_cfg": SceneEntityCfg("cabinet", joint_names=["drawer_top_joint"])},
         )
+        handle_position = ObsTerm(func=mdp.handle_position_w)
+        handle_velocity = ObsTerm(func=mdp.handle_velocity_w)
         contact_flag = ObsTerm(func=mdp.contact_flag)
         contact_force = ObsTerm(func=mdp.contact_force)
 
@@ -264,30 +266,6 @@ class ObservationsCfg:
 class EventCfg:
     """Resets + physics randomization."""
 
-    robot_physics_material = EventTerm(
-        func=mdp.randomize_rigid_body_material,
-        mode="startup",
-        params={
-            "asset_cfg": SceneEntityCfg("robot", body_names=".*"),
-            "static_friction_range": (0.8, 1.25),
-            "dynamic_friction_range": (0.8, 1.25),
-            "restitution_range": (0.0, 0.0),
-            "num_buckets": 16,
-        },
-    )
-
-    cabinet_physics_material = EventTerm(
-        func=mdp.randomize_rigid_body_material,
-        mode="startup",
-        params={
-            "asset_cfg": SceneEntityCfg("cabinet", body_names="drawer_handle_top"),
-            "static_friction_range": (1.0, 1.25),
-            "dynamic_friction_range": (1.25, 1.5),
-            "restitution_range": (0.0, 0.0),
-            "num_buckets": 16,
-        },
-    )
-
     reset_all = EventTerm(func=mdp.reset_scene_to_default, mode="reset")
 
     reset_robot_joints = EventTerm(
@@ -296,6 +274,46 @@ class EventCfg:
         params={
             "position_range": (-0.1, 0.1),
             "velocity_range": (0.0, 0.0),
+        },
+    )
+
+    # Robot gripper friction (per episode)
+    robot_physics_material = EventTerm(
+        func=mdp.randomize_rigid_body_material,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("robot", body_names=".*finger.*"),
+            "static_friction_range": (0.5, 1.5),
+            "dynamic_friction_range": (0.5, 1.5),
+            "restitution_range": (0.0, 0.0),
+            "num_buckets": 16,
+            "make_consistent": True,
+        },
+    )
+
+    # Cabinet handle friction (per episode — wider range)
+    cabinet_handle_friction = EventTerm(
+        func=mdp.randomize_rigid_body_material,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("cabinet", body_names="drawer_handle_top"),
+            "static_friction_range": (0.2, 1.5),
+            "dynamic_friction_range": (0.2, 1.5),
+            "restitution_range": (0.0, 0.0),
+            "num_buckets": 16,
+            "make_consistent": True,
+        },
+    )
+
+    # Drawer damping randomization (stiffness/damping of drawer joint)
+    randomize_drawer_damping = EventTerm(
+        func=mdp.randomize_actuator_gains,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("cabinet", joint_names=["drawer_top_joint"]),
+            "stiffness_distribution_params": (5.0, 20.0),
+            "damping_distribution_params": (0.5, 5.0),
+            "operation": "abs",
         },
     )
 

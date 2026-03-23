@@ -27,6 +27,8 @@ from isaaclab.managers import TerminationTermCfg as DoneTerm
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sensors import FrameTransformerCfg
 from isaaclab.sensors.frame_transformer.frame_transformer_cfg import OffsetCfg
+from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
+from isaaclab.envs.mdp.actions.actions_cfg import DifferentialInverseKinematicsActionCfg
 from isaaclab.sim.schemas.schemas_cfg import MassPropertiesCfg, RigidBodyPropertiesCfg
 from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdFileCfg
 from isaaclab.sim.spawners.shapes.shapes_cfg import CuboidCfg
@@ -46,7 +48,7 @@ mdp.object_mass_obs = object_mass_obs
 
 # Pre-defined configs
 from isaaclab.markers.config import FRAME_MARKER_CFG  # isort: skip
-from isaaclab_assets.robots.franka import FRANKA_PANDA_CFG  # isort: skip
+from isaaclab_assets.robots.franka import FRANKA_PANDA_HIGH_PD_CFG  # isort: skip
 
 ##
 # Scene definition
@@ -92,6 +94,17 @@ class PushSceneCfg(InteractiveSceneCfg):
         spawn=GroundPlaneCfg(),
     )
 
+    # Target zone — blue disc, r=8cm
+    target_marker = AssetBaseCfg(
+        prim_path="{ENV_REGEX_NS}/TargetMarker",
+        init_state=AssetBaseCfg.InitialStateCfg(pos=[0.5, 0.0, 0.005]),
+        spawn=sim_utils.CylinderCfg(
+            radius=0.08,
+            height=0.005,
+            visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.1, 0.3, 0.9)),
+        ),
+    )
+
     # Lights
     light = AssetBaseCfg(
         prim_path="/World/light",
@@ -112,7 +125,7 @@ class CommandsCfg:
         asset_name="robot",
         body_name="panda_hand",
         resampling_time_range=(12.0, 12.0),
-        debug_vis=True,
+        debug_vis=False,
         ranges=mdp.UniformPoseCommandCfg.Ranges(
             pos_x=(0.35, 0.65),
             pos_y=(-0.20, 0.20),
@@ -126,9 +139,9 @@ class CommandsCfg:
 
 @configclass
 class ActionsCfg:
-    """Action specifications: joint position control for arm + gripper forced open."""
+    """Action specifications: IK relative control for arm + gripper closed."""
 
-    arm_action: mdp.JointPositionActionCfg = MISSING
+    arm_action: DifferentialInverseKinematicsActionCfg = MISSING
     gripper_action: mdp.BinaryJointPositionActionCfg = MISSING
 
 
@@ -309,51 +322,44 @@ def ee_object_proximity(
 
 @configclass
 class RewardsCfg:
-    """Reward terms for pushing — v3: behind-object approach + dense rewards only."""
+    """Reward terms for pushing — v4: prioritize actually moving the object."""
 
-    # 1. EE reaches behind object (opposite side from target)
+    # 1. EE reaches behind object (lowered — positioning aid only)
     reaching_behind = RewTerm(
         func=reaching_behind_object,
         params={"std": 0.1, "offset": 0.08, "command_name": "object_pose"},
-        weight=20.0,
+        weight=5.0,
     )
 
-    # 2. EE at correct push height (table level)
+    # 2. EE at correct push height
     push_height = RewTerm(
         func=ee_at_push_height,
         params={"target_height": 0.03, "std": 0.03},
-        weight=10.0,
+        weight=5.0,
     )
 
-    # 3. Object-target distance (coarse) — core dense reward
+    # 3. Object-target distance (coarse) — PRIMARY reward
     object_target_dist = RewTerm(
         func=object_target_distance,
-        params={"std": 0.06, "command_name": "object_pose"},
-        weight=10.0,
+        params={"std": 0.1, "command_name": "object_pose"},
+        weight=25.0,
     )
 
     # 4. Object-target distance (fine)
     object_target_dist_fine = RewTerm(
         func=object_target_distance,
-        params={"std": 0.02, "command_name": "object_pose"},
-        weight=20.0,
+        params={"std": 0.03, "command_name": "object_pose"},
+        weight=30.0,
     )
 
     # 5. Height penalty — don't lift object
     height_penalty = RewTerm(
         func=object_height_penalty,
         params={"max_height": 0.08},
-        weight=20.0,
-    )
-
-    # 6. Object velocity penalty — prevent hard hitting, encourage gentle push
-    velocity_penalty = RewTerm(
-        func=object_velocity_penalty,
-        params={"max_speed": 0.3},
         weight=10.0,
     )
 
-    # 7. EE-object proximity — reward staying close to object during push
+    # 6. EE-object proximity — reward staying close to object during push
     ee_proximity = RewTerm(
         func=ee_object_proximity,
         params={"std": 0.05},
@@ -424,25 +430,29 @@ class PushRLEnvCfg(ManagerBasedRLEnvCfg):
         self.sim.dt = 0.01  # 100Hz
         self.sim.render_interval = self.decimation
 
-        self.sim.physx.bounce_threshold_velocity = 0.2
         self.sim.physx.bounce_threshold_velocity = 0.01
         self.sim.physx.gpu_found_lost_aggregate_pairs_capacity = 1024 * 1024 * 4
         self.sim.physx.gpu_total_aggregate_pairs_capacity = 16 * 1024
         self.sim.physx.friction_correlation_distance = 0.00625
 
-        # Set Franka as robot
-        self.scene.robot = FRANKA_PANDA_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+        # Set Franka as robot (HIGH_PD for IK tracking)
+        self.scene.robot = FRANKA_PANDA_HIGH_PD_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
-        # Set actions for Franka (joint position control)
-        self.actions.arm_action = mdp.JointPositionActionCfg(
-            asset_name="robot", joint_names=["panda_joint.*"], scale=0.5, use_default_offset=True
+        # IK Relative control — 6D delta EE pose
+        self.actions.arm_action = DifferentialInverseKinematicsActionCfg(
+            asset_name="robot",
+            joint_names=["panda_joint.*"],
+            body_name="panda_hand",
+            controller=DifferentialIKControllerCfg(command_type="pose", use_relative_mode=True, ik_method="dls"),
+            scale=0.2,  # smaller scale to prevent divergence
+            body_offset=DifferentialInverseKinematicsActionCfg.OffsetCfg(pos=[0.0, 0.0, 0.107]),
         )
-        # Gripper forced open: both open and close commands are the same (0.04)
+        # Gripper closed fist
         self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
             asset_name="robot",
             joint_names=["panda_finger.*"],
             open_command_expr={"panda_finger_.*": 0.01},
-            close_command_expr={"panda_finger_.*": 0.01},  # Closed fist — cant grip 6cm cube
+            close_command_expr={"panda_finger_.*": 0.01},
         )
 
         # Set cuboid object (0.06m red cube)
@@ -452,7 +462,7 @@ class PushRLEnvCfg(ManagerBasedRLEnvCfg):
             spawn=CuboidCfg(
                 size=(0.06, 0.06, 0.06),
                 rigid_props=RigidBodyPropertiesCfg(
-                    solver_position_iteration_count=16,
+                    solver_position_iteration_count=64,
                     solver_velocity_iteration_count=1,
                     max_angular_velocity=1000.0,
                     max_linear_velocity=1000.0,

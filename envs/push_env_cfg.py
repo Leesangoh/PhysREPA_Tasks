@@ -10,6 +10,7 @@ from isaaclab.envs.mdp.actions.actions_cfg import (
     DifferentialInverseKinematicsActionCfg,
 )
 from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
+from isaaclab.sensors import CameraCfg
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
 from isaaclab.managers import ObservationTermCfg as ObsTerm
@@ -47,6 +48,21 @@ class PhysREPAPushSceneCfg(PhysREPALiftSceneCfg):
         ),
     )
 
+    # Override table camera — zoom in to match strike view
+    table_cam: CameraCfg = CameraCfg(
+        prim_path="{ENV_REGEX_NS}/table_cam",
+        update_period=0.0,
+        height=384,
+        width=384,
+        data_types=["rgb"],
+        spawn=sim_utils.PinholeCameraCfg(
+            focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)
+        ),
+        offset=CameraCfg.OffsetCfg(
+            pos=(1.6, 0.0, 0.90), rot=(0.33900, -0.62054, -0.62054, 0.33900), convention="ros"
+        ),
+    )
+
     # Visual target zone — blue disc, r=6cm (= success threshold)
     target_marker = AssetBaseCfg(
         prim_path="{ENV_REGEX_NS}/TargetMarker",
@@ -72,7 +88,7 @@ class PushActionsCfg:
         asset_name="robot",
         joint_names=["panda_joint.*"],
         body_name="panda_hand",
-        controller=DifferentialIKControllerCfg(command_type="pose", use_relative_mode=True, ik_method="dls"),
+        controller=DifferentialIKControllerCfg(command_type="position", use_relative_mode=True, ik_method="dls"),
         scale=0.5,
         body_offset=DifferentialInverseKinematicsActionCfg.OffsetCfg(pos=[0.0, 0.0, 0.107]),
     )
@@ -175,8 +191,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("object"),
-            "static_friction_range": (0.2, 0.8),
-            "dynamic_friction_range": (0.2, 0.8),
+            "static_friction_range": (0.05, 1.5),
+            "dynamic_friction_range": (0.05, 1.5),
             "restitution_range": (0.0, 0.0),
             "num_buckets": 16,
             "make_consistent": True,
@@ -189,8 +205,8 @@ class EventCfg:
         mode="reset",
         params={
             "asset_cfg": SceneEntityCfg("surface"),
-            "static_friction_range": (0.1, 0.9),
-            "dynamic_friction_range": (0.1, 0.9),
+            "static_friction_range": (0.05, 1.5),
+            "dynamic_friction_range": (0.05, 1.5),
             "restitution_range": (0.0, 0.0),
             "num_buckets": 16,
             "make_consistent": True,

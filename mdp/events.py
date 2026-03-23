@@ -76,6 +76,61 @@ def randomize_object_visual_color(
                 color_attr.Set(Gf.Vec3f(*color_rgb))
 
 
+def randomize_rigid_body_damping(
+    env: ManagerBasedEnv,
+    env_ids: torch.Tensor | None,
+    asset_cfg: SceneEntityCfg = SceneEntityCfg("object"),
+    linear_damping_range: tuple[float, float] = (3.0, 8.0),
+    angular_damping_ratio: float = 0.5,
+):
+    """Randomize linear/angular damping of a rigid body via USD API.
+
+    Args:
+        asset_cfg: Asset to randomize.
+        linear_damping_range: Uniform range for linear_damping.
+        angular_damping_ratio: angular_damping = linear_damping * this ratio.
+    """
+    import omni.usd
+    from pxr import UsdPhysics
+
+    if env_ids is None:
+        env_ids = torch.arange(env.scene.num_envs, device=env.device)
+
+    stage = omni.usd.get_context().get_stage()
+    lo, hi = linear_damping_range
+
+    for env_id in env_ids.cpu().tolist():
+        lin_damp = random.uniform(lo, hi)
+        ang_damp = lin_damp * angular_damping_ratio
+
+        # Find the rigid body prim under the asset
+        asset_path = asset_cfg.name
+        env_prim_path = f"/World/envs/env_{env_id}/{asset_path.capitalize()}"
+        prim = stage.GetPrimAtPath(env_prim_path)
+        if not prim.IsValid():
+            # Try alternative path patterns
+            for child in stage.GetPrimAtPath(f"/World/envs/env_{env_id}").GetChildren():
+                if asset_path.lower() in child.GetName().lower():
+                    prim = child
+                    break
+
+        if not prim.IsValid():
+            continue
+
+        # Find rigid body API on prim or children
+        for p in [prim] + list(prim.GetAllChildren()):
+            rb_api = UsdPhysics.RigidBodyAPI(p)
+            if rb_api:
+                # Set damping via PhysxRigidBodyAPI
+                from pxr import PhysxSchema
+                physx_rb = PhysxSchema.PhysxRigidBodyAPI(p)
+                if not physx_rb:
+                    physx_rb = PhysxSchema.PhysxRigidBodyAPI.Apply(p)
+                physx_rb.GetLinearDampingAttr().Set(lin_damp)
+                physx_rb.GetAngularDampingAttr().Set(ang_damp)
+                break
+
+
 def teleport_object_to_ee(
     env: ManagerBasedEnv,
     env_ids: torch.Tensor | None,

@@ -29,6 +29,8 @@ from isaaclab.managers import TerminationTermCfg as DoneTerm
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sensors import FrameTransformerCfg
 from isaaclab.sensors.frame_transformer.frame_transformer_cfg import OffsetCfg
+from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
+from isaaclab.envs.mdp.actions.actions_cfg import DifferentialInverseKinematicsActionCfg
 from isaaclab.sim.schemas.schemas_cfg import RigidBodyPropertiesCfg
 from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdFileCfg
 from isaaclab.utils import configclass
@@ -36,10 +38,17 @@ from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 
 # MDP imports -- reuse existing lift MDP functions (object_ee_distance, object_goal_distance, etc.)
 from isaaclab_tasks.manager_based.manipulation.lift import mdp
+# Import custom observation/event functions
+from physrepa_tasks.mdp.observations import object_friction_obs, surface_friction_obs, object_mass_obs
+from physrepa_tasks.mdp.events import randomize_rigid_body_damping
+mdp.object_friction_obs = object_friction_obs
+mdp.surface_friction_obs = surface_friction_obs
+mdp.object_mass_obs = object_mass_obs
+mdp.randomize_rigid_body_damping = randomize_rigid_body_damping
 
 # Pre-defined configs
 from isaaclab.markers.config import FRAME_MARKER_CFG  # isort: skip
-from isaaclab_assets.robots.franka import FRANKA_PANDA_CFG  # isort: skip
+from isaaclab_assets.robots.franka import FRANKA_PANDA_HIGH_PD_CFG  # isort: skip
 
 
 ##
@@ -143,7 +152,7 @@ class CommandsCfg:
         asset_name="robot",
         body_name="panda_hand",
         resampling_time_range=(12.0, 12.0),
-        debug_vis=True,
+        debug_vis=False,
         ranges=mdp.UniformPoseCommandCfg.Ranges(
             pos_x=(0.35, 0.65),
             pos_y=(-0.15, 0.15),
@@ -159,7 +168,7 @@ class CommandsCfg:
 class ActionsCfg:
     """Action specifications: joint position control for arm + gripper always closed (fist)."""
 
-    arm_action: mdp.JointPositionActionCfg = MISSING
+    arm_action: DifferentialInverseKinematicsActionCfg = MISSING
     gripper_action: mdp.BinaryJointPositionActionCfg = MISSING
 
 
@@ -177,6 +186,10 @@ class ObservationsCfg:
         target_object_position = ObsTerm(func=mdp.generated_commands, params={"command_name": "object_pose"})
         ee_position = ObsTerm(func=mdp.ee_position_in_robot_root_frame)
         actions = ObsTerm(func=mdp.last_action)
+        # Physics-aware observations
+        object_friction = ObsTerm(func=mdp.object_friction_obs)
+        surface_friction = ObsTerm(func=mdp.surface_friction_obs)
+        object_mass = ObsTerm(func=mdp.object_mass_obs)
 
         def __post_init__(self):
             self.enable_corruption = True
@@ -227,6 +240,17 @@ class EventCfg:
         },
     )
 
+    # Ball damping randomization
+    randomize_ball_damping = EventTerm(
+        func=mdp.randomize_rigid_body_damping,
+        mode="reset",
+        params={
+            "asset_cfg": SceneEntityCfg("object"),
+            "linear_damping_range": (3.0, 8.0),
+            "angular_damping_ratio": 0.5,
+        },
+    )
+
     # Surface friction randomization
     randomize_surface_friction = EventTerm(
         func=mdp.randomize_rigid_body_material,
@@ -242,36 +266,85 @@ class EventCfg:
     )
 
 
+def ball_velocity_reward(
+    env, object_cfg: SceneEntityCfg = SceneEntityCfg("object"),
+) -> torch.Tensor:
+    """Reward ball moving (any direction). Encourages the robot to actually hit the ball."""
+    obj = env.scene[object_cfg.name]
+    speed = torch.norm(obj.data.root_lin_vel_w[:, :2], dim=1)
+    # Saturating reward: tanh so it doesn't grow unbounded
+    return torch.tanh(speed * 5.0)  # speed 0.2 m/s → reward ~0.76
+
+
+def ball_toward_target_velocity(
+    env, command_name: str = "object_pose",
+    object_cfg: SceneEntityCfg = SceneEntityCfg("object"),
+) -> torch.Tensor:
+    """Reward ball velocity component toward target direction."""
+    obj = env.scene[object_cfg.name]
+    command = env.command_manager.get_command(command_name)
+    target_pos = command[:, :3]
+
+    # Compute direction from ball to target
+    ball_pos = obj.data.root_pos_w[:, :3]
+    direction = target_pos - ball_pos
+    direction[:, 2] = 0  # XY only
+    dist = torch.norm(direction[:, :2], dim=1, keepdim=True).clamp(min=1e-6)
+    direction[:, :2] = direction[:, :2] / dist
+
+    # Project ball velocity onto target direction
+    ball_vel = obj.data.root_lin_vel_w[:, :2]
+    toward_vel = (ball_vel * direction[:, :2]).sum(dim=1)
+    return torch.clamp(toward_vel, min=0.0)  # only reward positive (toward target)
+
+
 @configclass
 class RewardsCfg:
-    """Reward terms for strike RL."""
+    """Reward terms for strike RL.
 
-    # 1. EE approaches ball (tanh kernel)
+    Strike = impulse hit (golf swing), NOT sustained push.
+    Key: reward ball moving + ball reaching target.
+    """
+
+    # Phase 1: EE approaches ball (needed to initiate contact)
     approach_ball = RewTerm(
         func=mdp.object_ee_distance,
         params={"std": 0.1},
-        weight=1.0,
+        weight=0.5,  # lowered — don't let this dominate
     )
 
-    # 2. Ball toward target (coarse)
-    ball_toward_target = RewTerm(
-        func=mdp.object_goal_distance,
-        params={"std": 0.1, "minimal_height": 0.0, "command_name": "object_pose"},
+    # CRITICAL: Reward ball moving at all (breaks the "just stand near ball" local optimum)
+    ball_moving = RewTerm(
+        func=ball_velocity_reward,
         weight=5.0,
     )
 
-    # 3. Ball at target (fine precision bonus)
-    ball_at_target = RewTerm(
-        func=mdp.object_goal_distance,
-        params={"std": 0.03, "minimal_height": 0.0, "command_name": "object_pose"},
+    # Reward ball velocity component toward target
+    ball_toward_target_vel = RewTerm(
+        func=ball_toward_target_velocity,
+        params={"command_name": "object_pose"},
         weight=10.0,
     )
 
-    # Penalties
-    action_rate = RewTerm(func=mdp.action_rate_l2, weight=-1e-4)
+    # Ball-target distance (coarse)
+    ball_toward_target = RewTerm(
+        func=mdp.object_goal_distance,
+        params={"std": 0.15, "minimal_height": 0.0, "command_name": "object_pose"},
+        weight=8.0,
+    )
+
+    # Ball at target (fine precision — big bonus)
+    ball_at_target = RewTerm(
+        func=mdp.object_goal_distance,
+        params={"std": 0.04, "minimal_height": 0.0, "command_name": "object_pose"},
+        weight=16.0,
+    )
+
+    # Penalties (light — don't penalize fast swing motion)
+    action_rate = RewTerm(func=mdp.action_rate_l2, weight=-5e-5)
     joint_vel = RewTerm(
         func=mdp.joint_vel_l2,
-        weight=-1e-4,
+        weight=-5e-5,
         params={"asset_cfg": SceneEntityCfg("robot")},
     )
 
@@ -338,19 +411,24 @@ class StrikeRLEnvCfg(ManagerBasedRLEnvCfg):
         self.sim.physx.gpu_total_aggregate_pairs_capacity = 16 * 1024
         self.sim.physx.friction_correlation_distance = 0.00625
 
-        # Set Franka as robot
-        self.scene.robot = FRANKA_PANDA_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+        # Set Franka as robot (HIGH_PD for IK tracking)
+        self.scene.robot = FRANKA_PANDA_HIGH_PD_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
 
-        # Set actions for Franka (joint position control)
-        self.actions.arm_action = mdp.JointPositionActionCfg(
-            asset_name="robot", joint_names=["panda_joint.*"], scale=0.5, use_default_offset=True
+        # IK Relative control — 6D delta EE pose
+        self.actions.arm_action = DifferentialInverseKinematicsActionCfg(
+            asset_name="robot",
+            joint_names=["panda_joint.*"],
+            body_name="panda_hand",
+            controller=DifferentialIKControllerCfg(command_type="pose", use_relative_mode=True, ik_method="dls"),
+            scale=0.2,  # smaller scale to prevent divergence
+            body_offset=DifferentialInverseKinematicsActionCfg.OffsetCfg(pos=[0.0, 0.0, 0.107]),
         )
-        # Gripper always closed (fist) for striking
+        # Gripper always closed (fist)
         self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
             asset_name="robot",
             joint_names=["panda_finger.*"],
             open_command_expr={"panda_finger_.*": 0.01},
-            close_command_expr={"panda_finger_.*": 0.01},  # Always closed fist
+            close_command_expr={"panda_finger_.*": 0.01},
         )
 
         # Ball (sphere, r=0.04m, red)
@@ -360,12 +438,14 @@ class StrikeRLEnvCfg(ManagerBasedRLEnvCfg):
             spawn=sim_utils.SphereCfg(
                 radius=0.04,
                 rigid_props=RigidBodyPropertiesCfg(
-                    solver_position_iteration_count=16,
+                    solver_position_iteration_count=64,
                     solver_velocity_iteration_count=1,
                     max_angular_velocity=1000.0,
                     max_linear_velocity=1000.0,
                     max_depenetration_velocity=5.0,
                     disable_gravity=False,
+                    linear_damping=6.0,
+                    angular_damping=3.0,
                 ),
                 mass_props=sim_utils.MassPropertiesCfg(mass=0.1),
                 collision_props=sim_utils.CollisionPropertiesCfg(),
