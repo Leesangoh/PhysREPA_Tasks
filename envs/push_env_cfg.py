@@ -10,7 +10,7 @@ from isaaclab.envs.mdp.actions.actions_cfg import (
     DifferentialInverseKinematicsActionCfg,
 )
 from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
-from isaaclab.sensors import CameraCfg
+from isaaclab.sensors import CameraCfg, ContactSensorCfg
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
 from isaaclab.managers import ObservationTermCfg as ObsTerm
@@ -61,6 +61,17 @@ class PhysREPAPushSceneCfg(PhysREPALiftSceneCfg):
         offset=CameraCfg.OffsetCfg(
             pos=(1.6, 0.0, 0.90), rot=(0.33900, -0.62054, -0.62054, 0.33900), convention="ros"
         ),
+    )
+
+    # Pair-specific contact: object ↔ surface
+    object_surface_contact: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Object",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=False,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Surface"],
     )
 
     # Visual target zone — blue disc, r=6cm (= success threshold)

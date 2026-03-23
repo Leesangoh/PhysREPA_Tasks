@@ -226,8 +226,23 @@ def read_physics_params(env, task_name: str) -> dict:
         params["object_1_color"] = "blue"
         params["object_1_type"] = "cube"
     elif task_name == "drawer":
-        # Drawer task: cabinet physics
         params["task_type"] = "drawer"
+        try:
+            cabinet = env.scene["cabinet"]
+            joint_idx = cabinet.find_joints("drawer_top_joint")[0]
+            # Joint damping
+            dampings = cabinet.root_physx_view.get_dof_dampings()
+            params["drawer_joint_damping"] = round(dampings[0, joint_idx[0]].item(), 4)
+            # Handle body mass
+            handle_body_idx = cabinet.body_names.index("drawer_handle_top")
+            masses = cabinet.root_physx_view.get_masses()
+            params["drawer_handle_mass"] = round(masses[0, handle_body_idx].item(), 4)
+            # Handle friction
+            mat = cabinet.root_physx_view.get_material_properties()
+            params["handle_static_friction"] = round(mat[0, handle_body_idx, 0].item(), 4)
+            params["handle_dynamic_friction"] = round(mat[0, handle_body_idx, 1].item(), 4)
+        except Exception:
+            pass  # RL env may not have all APIs
     elif task_name == "reach":
         # Reach task: no objects
         params["task_type"] = "reach"
@@ -449,59 +464,67 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     all_episode_stats = {"observation.state": [], "action": [], "timestamp": []}
 
     # Physics GT column names — task-specific
-    # RL envs (is_drawer_rl covers push/strike/drawer RL) don't have physics_gt obs
-    if is_drawer_rl:
-        physics_gt_keys = []
-    elif task_name == "reach":
-        physics_gt_keys = [
-            "physics_gt.ee_position",
-            "physics_gt.ee_orientation",
-            "physics_gt.ee_velocity",
-            "physics_gt.ee_angular_velocity",
-            "physics_gt.ee_acceleration",
+    # Common EE columns for all tasks
+    _common_ee_keys = [
+        "physics_gt.ee_position",
+        "physics_gt.ee_orientation",
+        "physics_gt.ee_velocity",
+        "physics_gt.ee_angular_velocity",
+        "physics_gt.ee_acceleration",
+    ]
+
+    if task_name == "reach":
+        physics_gt_keys = _common_ee_keys + [
             "physics_gt.target_position",
             "physics_gt.phase",
         ]
     elif task_name == "peg_insert":
-        physics_gt_keys = [
-            "physics_gt.ee_position",
-            "physics_gt.ee_orientation",
-            "physics_gt.ee_velocity",
-            "physics_gt.ee_angular_velocity",
-            "physics_gt.ee_acceleration",
+        physics_gt_keys = _common_ee_keys + [
             "physics_gt.peg_position",
             "physics_gt.peg_orientation",
             "physics_gt.peg_velocity",
+            "physics_gt.peg_angular_velocity",
             "physics_gt.hole_position",
             "physics_gt.contact_flag",
             "physics_gt.contact_force",
             "physics_gt.contact_point",
+            # Pair-specific contacts
+            "physics_gt.contact_finger_l_peg_flag",
+            "physics_gt.contact_finger_l_peg_force",
+            "physics_gt.contact_finger_r_peg_flag",
+            "physics_gt.contact_finger_r_peg_force",
+            "physics_gt.contact_peg_socket_flag",
+            "physics_gt.contact_peg_socket_force",
+            # Task-specific raw
+            "physics_gt.insertion_depth",
+            "physics_gt.peg_hole_lateral_error",
             "physics_gt.phase",
         ]
     elif task_name == "nut_thread":
-        physics_gt_keys = [
-            "physics_gt.ee_position",
-            "physics_gt.ee_orientation",
-            "physics_gt.ee_velocity",
-            "physics_gt.ee_angular_velocity",
-            "physics_gt.ee_acceleration",
+        physics_gt_keys = _common_ee_keys + [
             "physics_gt.nut_position",
             "physics_gt.nut_orientation",
             "physics_gt.nut_velocity",
+            "physics_gt.nut_angular_velocity",
             "physics_gt.bolt_position",
             "physics_gt.bolt_orientation",
             "physics_gt.contact_flag",
             "physics_gt.contact_force",
             "physics_gt.contact_point",
+            # Pair-specific contacts
+            "physics_gt.contact_finger_l_nut_flag",
+            "physics_gt.contact_finger_l_nut_force",
+            "physics_gt.contact_finger_r_nut_flag",
+            "physics_gt.contact_finger_r_nut_force",
+            "physics_gt.contact_nut_bolt_flag",
+            "physics_gt.contact_nut_bolt_force",
+            # Task-specific raw
+            "physics_gt.axial_progress",
+            "physics_gt.nut_bolt_relative_angle",
             "physics_gt.phase",
         ]
     elif task_name == "drawer":
-        physics_gt_keys = [
-            "physics_gt.ee_position",
-            "physics_gt.ee_orientation",
-            "physics_gt.ee_velocity",
-            "physics_gt.ee_angular_velocity",
-            "physics_gt.ee_acceleration",
+        physics_gt_keys = _common_ee_keys + [
             "physics_gt.drawer_joint_pos",
             "physics_gt.drawer_joint_vel",
             "physics_gt.handle_position",
@@ -509,15 +532,16 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             "physics_gt.contact_flag",
             "physics_gt.contact_force",
             "physics_gt.contact_point",
+            # Pair-specific: EE ↔ handle (uses existing contact_sensor)
+            "physics_gt.contact_ee_handle_flag",
+            "physics_gt.contact_ee_handle_force",
+            # Task-specific raw
+            "physics_gt.drawer_opening_extent",
             "physics_gt.phase",
         ]
     else:
-        physics_gt_keys = [
-            "physics_gt.ee_position",
-            "physics_gt.ee_orientation",
-            "physics_gt.ee_velocity",
-            "physics_gt.ee_angular_velocity",
-            "physics_gt.ee_acceleration",
+        # Push, Strike, Lift, PickPlace, Stack
+        physics_gt_keys = _common_ee_keys + [
             "physics_gt.object_position",
             "physics_gt.object_orientation",
             "physics_gt.object_velocity",
@@ -528,12 +552,26 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             "physics_gt.contact_force",
             "physics_gt.object_on_surface",
             "physics_gt.contact_point",
+            # Pair-specific: EE ↔ object (uses existing contact_sensor)
+            "physics_gt.contact_ee_object_flag",
+            "physics_gt.contact_ee_object_force",
             "physics_gt.phase",
         ]
 
-        # Add target_position for pick_place and push (Critical fix #2)
-        if task_name in ("pick_place", "push", "strike"):
+        if task_name in ("push", "strike"):
+            physics_gt_keys += [
+                "physics_gt.target_position",
+                # Pair-specific: object ↔ surface
+                "physics_gt.contact_object_surface_flag",
+                "physics_gt.contact_object_surface_force",
+                # Task-specific raw
+                "physics_gt.object_to_target_distance",
+            ]
+        elif task_name in ("pick_place",):
             physics_gt_keys.append("physics_gt.target_position")
+
+        if task_name == "strike":
+            physics_gt_keys.append("physics_gt.ball_rolling_distance")
 
         # Additional keys for stack task
         if task_name == "stack":
@@ -653,6 +691,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         prev_ee_vel = None
         prev_obj_vel = None
         prev_obj1_vel = None  # for stack task cube_b
+        prev_ball_pos = None  # for strike ball_rolling_distance
+        ball_rolling_dist = 0.0
 
         for step in range(max_steps):
             # Generate action
@@ -682,26 +722,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     if action_dim == 7:
                         action[0, 6] = 1.0 if step < max_steps // 2 else -1.0
 
-            # Record pre-step data (skip physics_gt for RL envs without it)
+            # RL env (is_drawer_rl): step first, then read physics_gt from env.scene
             if is_drawer_rl and not is_factory:
-                # RL env rollout: no physics_gt, just record state/action/cameras
-                ee_pos_b_np, ee_quat_b_np = get_ee_pose_in_base_frame(env)
-                gripper_val = robot.data.joint_pos[0, finger_ids].mean().item() / 0.04 if finger_ids is not None else 0.0
-                state_8d = ee_state_to_8d(ee_pos_b_np, ee_quat_b_np, gripper_val)
-                ep_states.append(state_8d)
-                raw_action = action[0].cpu().numpy().astype(np.float32)
-                action_7d = np.zeros(7, dtype=np.float32)
-                action_7d[:min(6, len(raw_action))] = raw_action[:6]
-                if len(raw_action) > 7:
-                    action_7d[6] = 0.0 if raw_action[7] < 0 else 1.0
-                elif len(raw_action) > 6:
-                    action_7d[6] = 0.0 if raw_action[6] < 0 else 1.0
-                ep_actions.append(action_7d)
-                ep_timestamps.append(np.float32(step / fps))
-                # Phase
-                ep_physics_gt["physics_gt.phase"] = []  # not used
-
-                # Camera frames from sensors
+                # Camera frames BEFORE step (pre-step observation)
                 if "table_cam" in env.scene.sensors:
                     t_rgb = env.scene.sensors["table_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
                     ep_frames_table.append(t_rgb)
@@ -720,8 +743,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_rewards.append(reward[0].item() if hasattr(reward, '__getitem__') else reward)
                 if step % 100 == 0:
                     print(f"  Step {step}/{max_steps}, reward={ep_rewards[-1]:.4f}")
-                continue
 
+            # Build physics GT dict
             if is_factory:
                 phys = env.get_physics_data()
                 # Build a fake gt dict for uniform access below
@@ -732,13 +755,22 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     "ee_angular_velocity": phys["ee_angular_velocity"],
                     "peg_position": phys["held_position"],
                     "peg_orientation": phys["held_orientation"],
-                    "peg_velocity": torch.zeros(1, 3, device=env.device),  # not tracked in Factory
+                    "peg_velocity": phys["held_velocity"],
+                    "peg_angular_velocity": phys["held_angular_velocity"],
                     "hole_position": phys["fixed_position"],
                     "nut_position": phys["held_position"],
                     "nut_orientation": phys["held_orientation"],
-                    "nut_velocity": torch.zeros(1, 3, device=env.device),
+                    "nut_velocity": phys["held_velocity"],
+                    "nut_angular_velocity": phys["held_angular_velocity"],
                     "bolt_position": phys["fixed_position"],
                     "bolt_orientation": phys["fixed_orientation"],
+                    # Pair-specific contacts
+                    "finger_l_contact_flag": phys["finger_l_contact_flag"],
+                    "finger_l_contact_force": phys["finger_l_contact_force"],
+                    "finger_r_contact_flag": phys["finger_r_contact_flag"],
+                    "finger_r_contact_force": phys["finger_r_contact_force"],
+                    "held_fixed_contact_flag": phys["held_fixed_contact_flag"],
+                    "held_fixed_contact_force": phys["held_fixed_contact_force"],
                     "contact_flag": phys["contact_flag"],
                     "contact_force": phys["contact_force"],
                 }
@@ -761,20 +793,36 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     "contact_flag": torch.zeros(1, 1, device=env.device),
                     "contact_force": torch.zeros(1, 3, device=env.device),
                 }
-                if task_name == "drawer":
+                if task_name in ("push", "strike"):
+                    # Push/Strike RL fallback: read object state from env.scene
+                    _obj = env.scene["object"]
+                    _obj_pos = _obj.data.root_pos_w[0] - env.scene.env_origins[0]
+                    _obj_quat = _obj.data.root_quat_w[0]
+                    _obj_vel = _obj.data.root_lin_vel_w[0]
+                    _obj_angvel = _obj.data.root_ang_vel_w[0]
+                    gt["object_position"] = _obj_pos.unsqueeze(0)
+                    gt["object_orientation"] = _obj_quat.unsqueeze(0)
+                    gt["object_velocity"] = _obj_vel.unsqueeze(0)
+                    gt["object_angular_velocity"] = _obj_angvel.unsqueeze(0)
+                    gt["ee_to_object_distance"] = torch.norm(_ee_pos - _obj_pos).unsqueeze(0).unsqueeze(0)
+                    # Target position from command manager
+                    if hasattr(env, "command_manager"):
+                        _target = env.command_manager.get_command("object_pose")[0, :3]
+                        gt["target_position"] = _target.unsqueeze(0)
+                elif task_name == "drawer":
                     _cabinet = env.scene["cabinet"]
                     _jpos = _cabinet.data.joint_pos[0, _cabinet.find_joints("drawer_top_joint")[0]].unsqueeze(0)
                     _jvel = _cabinet.data.joint_vel[0, _cabinet.find_joints("drawer_top_joint")[0]].unsqueeze(0)
                     gt["drawer_joint_pos"] = _jpos.unsqueeze(0)
                     gt["drawer_joint_vel"] = _jvel.unsqueeze(0)
                     # Handle world position from cabinet_frame sensor
-                    _cab_frame = env.scene.sensors["cabinet_frame"]
-                    _handle_pos = _cab_frame.data.target_pos_w[0, 0, :] - env.scene.env_origins[0]
-                    gt["handle_position"] = _handle_pos.unsqueeze(0)
-                    # Handle velocity: finite diff of cabinet body
-                    _handle_body_idx = _cabinet.body_names.index("drawer_handle_top")
-                    _handle_vel = _cabinet.data.body_lin_vel_w[0, _handle_body_idx]
-                    gt["handle_velocity"] = _handle_vel.unsqueeze(0)
+                    if "cabinet_frame" in env.scene.sensors:
+                        _cab_frame = env.scene.sensors["cabinet_frame"]
+                        _handle_pos = _cab_frame.data.target_pos_w[0, 0, :] - env.scene.env_origins[0]
+                        gt["handle_position"] = _handle_pos.unsqueeze(0)
+                        _handle_body_idx = _cabinet.body_names.index("drawer_handle_top")
+                        _handle_vel = _cabinet.data.body_lin_vel_w[0, _handle_body_idx]
+                        gt["handle_velocity"] = _handle_vel.unsqueeze(0)
 
             # EE state: convert to BridgeData 8D format [x,y,z,roll,pitch,yaw,pad,gripper]
             if is_factory:
@@ -849,26 +897,79 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.target_position"].append(target_pos.astype(np.float32))
 
             elif task_name == "peg_insert":
-                # PegInsert: peg + hole positions
-                ep_physics_gt["physics_gt.peg_position"].append(gt["peg_position"][0].cpu().numpy())
+                peg_pos = gt["peg_position"][0].cpu().numpy()
+                hole_pos = gt["hole_position"][0].cpu().numpy()
+                ep_physics_gt["physics_gt.peg_position"].append(peg_pos)
                 ep_physics_gt["physics_gt.peg_orientation"].append(gt["peg_orientation"][0].cpu().numpy())
                 ep_physics_gt["physics_gt.peg_velocity"].append(gt["peg_velocity"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.hole_position"].append(gt["hole_position"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.peg_angular_velocity"].append(gt["peg_angular_velocity"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.hole_position"].append(hole_pos)
+                # Pair-specific contacts
+                ep_physics_gt["physics_gt.contact_finger_l_peg_flag"].append(gt["finger_l_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_l_peg_force"].append(gt["finger_l_contact_force"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_r_peg_flag"].append(gt["finger_r_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_r_peg_force"].append(gt["finger_r_contact_force"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_peg_socket_flag"].append(gt["held_fixed_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_peg_socket_force"].append(gt["held_fixed_contact_force"][0].cpu().numpy())
+                # Task-specific raw
+                insertion_depth = float(hole_pos[2] - peg_pos[2])
+                lateral_error = float(np.linalg.norm(peg_pos[:2] - hole_pos[:2]))
+                ep_physics_gt["physics_gt.insertion_depth"].append(np.array([insertion_depth], dtype=np.float32))
+                ep_physics_gt["physics_gt.peg_hole_lateral_error"].append(np.array([lateral_error], dtype=np.float32))
 
             elif task_name == "nut_thread":
-                # NutThread: nut + bolt positions
-                ep_physics_gt["physics_gt.nut_position"].append(gt["nut_position"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.nut_orientation"].append(gt["nut_orientation"][0].cpu().numpy())
+                nut_pos = gt["nut_position"][0].cpu().numpy()
+                nut_quat = gt["nut_orientation"][0].cpu().numpy()
+                bolt_pos = gt["bolt_position"][0].cpu().numpy()
+                bolt_quat = gt["bolt_orientation"][0].cpu().numpy()
+                ep_physics_gt["physics_gt.nut_position"].append(nut_pos)
+                ep_physics_gt["physics_gt.nut_orientation"].append(nut_quat)
                 ep_physics_gt["physics_gt.nut_velocity"].append(gt["nut_velocity"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.bolt_position"].append(gt["bolt_position"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.bolt_orientation"].append(gt["bolt_orientation"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.nut_angular_velocity"].append(gt["nut_angular_velocity"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.bolt_position"].append(bolt_pos)
+                ep_physics_gt["physics_gt.bolt_orientation"].append(bolt_quat)
+                # Pair-specific contacts
+                ep_physics_gt["physics_gt.contact_finger_l_nut_flag"].append(gt["finger_l_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_l_nut_force"].append(gt["finger_l_contact_force"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_r_nut_flag"].append(gt["finger_r_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_finger_r_nut_force"].append(gt["finger_r_contact_force"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_nut_bolt_flag"].append(gt["held_fixed_contact_flag"][0].cpu().numpy())
+                ep_physics_gt["physics_gt.contact_nut_bolt_force"].append(gt["held_fixed_contact_force"][0].cpu().numpy())
+                # Task-specific raw
+                axial_progress = float(nut_pos[2] - bolt_pos[2])
+                ep_physics_gt["physics_gt.axial_progress"].append(np.array([axial_progress], dtype=np.float32))
+                # Nut-bolt relative angle: project onto bolt z-axis
+                from scipy.spatial.transform import Rotation
+                nut_r = Rotation.from_quat([nut_quat[1], nut_quat[2], nut_quat[3], nut_quat[0]])
+                bolt_r = Rotation.from_quat([bolt_quat[1], bolt_quat[2], bolt_quat[3], bolt_quat[0]])
+                rel_r = bolt_r.inv() * nut_r
+                rel_angle = float(rel_r.as_rotvec()[2])  # z-axis component
+                ep_physics_gt["physics_gt.nut_bolt_relative_angle"].append(np.array([rel_angle], dtype=np.float32))
 
             elif task_name == "drawer":
-                # Drawer: cabinet joint + handle position/velocity
-                ep_physics_gt["physics_gt.drawer_joint_pos"].append(gt["drawer_joint_pos"][0].cpu().numpy())
+                jpos = gt["drawer_joint_pos"][0].cpu().numpy()
+                ep_physics_gt["physics_gt.drawer_joint_pos"].append(jpos)
                 ep_physics_gt["physics_gt.drawer_joint_vel"].append(gt["drawer_joint_vel"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.handle_position"].append(gt["handle_position"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.handle_velocity"].append(gt["handle_velocity"][0].cpu().numpy())
+                if "handle_position" in gt:
+                    ep_physics_gt["physics_gt.handle_position"].append(gt["handle_position"][0].cpu().numpy())
+                    ep_physics_gt["physics_gt.handle_velocity"].append(gt["handle_velocity"][0].cpu().numpy())
+                else:
+                    ep_physics_gt["physics_gt.handle_position"].append(np.zeros(3, dtype=np.float32))
+                    ep_physics_gt["physics_gt.handle_velocity"].append(np.zeros(3, dtype=np.float32))
+                # Pair-specific: EE ↔ handle (from existing contact_sensor)
+                if "contact_sensor" in env.scene.sensors:
+                    sensor = env.scene.sensors["contact_sensor"]
+                    ee_handle_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_handle_flag = 1.0 if np.linalg.norm(ee_handle_force) > 0.5 else 0.0
+                    ep_physics_gt["physics_gt.contact_ee_handle_flag"].append(np.array([ee_handle_flag], dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_ee_handle_force"].append(ee_handle_force.astype(np.float32))
+                else:
+                    ep_physics_gt["physics_gt.contact_ee_handle_flag"].append(np.zeros(1, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_ee_handle_force"].append(np.zeros(3, dtype=np.float32))
+                # Task-specific: drawer opening extent (normalized 0~1, max ~0.39m)
+                drawer_max = 0.39
+                opening_extent = float(np.clip(jpos[0] / drawer_max, 0.0, 1.0))
+                ep_physics_gt["physics_gt.drawer_opening_extent"].append(np.array([opening_extent], dtype=np.float32))
 
             elif "object_position" in gt:
                 obj_pos_np = gt["object_position"][0].cpu().numpy()
@@ -891,6 +992,42 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 obj_half = BALL_RADIUS if task_name == "strike" else CUBE_HALF_SIZE
                 on_surface = 1.0 if obj_z < (TABLE_SURFACE_Z + obj_half + ON_SURFACE_MARGIN) else 0.0
                 ep_physics_gt["physics_gt.object_on_surface"].append(np.array([on_surface], dtype=np.float32))
+
+                # Pair-specific: EE ↔ object (existing contact_sensor = leftfinger → Object)
+                if "contact_sensor" in env.scene.sensors:
+                    sensor = env.scene.sensors["contact_sensor"]
+                    ee_obj_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_obj_flag = 1.0 if np.linalg.norm(ee_obj_force) > 0.5 else 0.0
+                else:
+                    ee_obj_force = np.zeros(3, dtype=np.float32)
+                    ee_obj_flag = 0.0
+                ep_physics_gt["physics_gt.contact_ee_object_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
+                ep_physics_gt["physics_gt.contact_ee_object_force"].append(ee_obj_force.astype(np.float32))
+
+                # Pair-specific: object ↔ surface (push/strike only)
+                if task_name in ("push", "strike") and "object_surface_contact" in env.scene.sensors:
+                    surf_sensor = env.scene.sensors["object_surface_contact"]
+                    obj_surf_force = surf_sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    obj_surf_flag = 1.0 if np.linalg.norm(obj_surf_force) > 0.5 else 0.0
+                    ep_physics_gt["physics_gt.contact_object_surface_flag"].append(np.array([obj_surf_flag], dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_object_surface_force"].append(obj_surf_force.astype(np.float32))
+                elif task_name in ("push", "strike"):
+                    ep_physics_gt["physics_gt.contact_object_surface_flag"].append(np.zeros(1, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_object_surface_force"].append(np.zeros(3, dtype=np.float32))
+
+                # Task-specific: object_to_target_distance (push/strike)
+                if task_name in ("push", "strike") and "target_position" in gt:
+                    target_np = gt["target_position"][0, :3].cpu().numpy()
+                    obj_target_dist = float(np.linalg.norm(obj_pos_np[:2] - target_np[:2]))
+                    ep_physics_gt["physics_gt.object_to_target_distance"].append(np.array([obj_target_dist], dtype=np.float32))
+
+                # Task-specific: ball_rolling_distance (strike — cumulative)
+                if task_name == "strike":
+                    if prev_ball_pos is None:
+                        prev_ball_pos = obj_pos_np.copy()
+                    ball_rolling_dist += float(np.linalg.norm(obj_pos_np[:2] - prev_ball_pos[:2]))
+                    prev_ball_pos = obj_pos_np.copy()
+                    ep_physics_gt["physics_gt.ball_rolling_distance"].append(np.array([ball_rolling_dist], dtype=np.float32))
 
             elif "cube_a_position" in gt:
                 # Stack task: cube_a = object_0
@@ -1068,11 +1205,31 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             print(f"  Saved wrist_cam video: {video_path_wrist} ({os.path.getsize(video_path_wrist) / 1024:.1f} KB)")
 
         # 3. Episode metadata (with physics params)
+        # Task-specific success判定
+        success = False
+        try:
+            if task_name in ("push", "strike") and "physics_gt.object_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
+                final_obj = np.array(ep_physics_gt["physics_gt.object_position"][-1])
+                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
+                success = float(np.linalg.norm(final_obj[:2] - final_target[:2])) < 0.06
+            elif task_name == "peg_insert" and "physics_gt.insertion_depth" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) > 0.01
+            elif task_name == "nut_thread" and "physics_gt.axial_progress" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.axial_progress"][-1][0]) < -0.005
+            elif task_name == "drawer" and "physics_gt.drawer_joint_pos" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.drawer_joint_pos"][-1][0]) > 0.3
+            elif task_name == "reach" and "physics_gt.ee_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
+                final_ee = np.array(ep_physics_gt["physics_gt.ee_position"][-1])
+                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
+                success = float(np.linalg.norm(final_ee - final_target)) < 0.02
+        except (IndexError, KeyError):
+            success = False
+
         ep_meta = {
             "episode_index": ep_idx,
             "tasks": [task_description],
             "length": ep_length,
-            "success": False,  # random actions, no success
+            "success": bool(success),
         }
         ep_meta.update(physics_params)
         episodes_meta.append(ep_meta)
@@ -1094,36 +1251,73 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
     # Build physics GT shapes dict — must match physics_gt_keys
     _shape_map = {
+        # Common EE
         "physics_gt.ee_position": [3],
         "physics_gt.ee_orientation": [4],
         "physics_gt.ee_velocity": [3],
         "physics_gt.ee_angular_velocity": [3],
         "physics_gt.ee_acceleration": [3],
+        # Object (push/strike/lift/pick_place/stack)
         "physics_gt.object_position": [3],
         "physics_gt.object_orientation": [4],
         "physics_gt.object_velocity": [3],
         "physics_gt.object_angular_velocity": [3],
         "physics_gt.object_acceleration": [3],
         "physics_gt.ee_to_object_distance": [1],
+        "physics_gt.object_on_surface": [1],
+        # Legacy single contact
         "physics_gt.contact_flag": [1],
         "physics_gt.contact_force": [3],
-        "physics_gt.object_on_surface": [1],
         "physics_gt.contact_point": [3],
         "physics_gt.phase": [1],
         "physics_gt.target_position": [3],
+        # Pair-specific: EE ↔ object (push/strike/lift/pick_place/stack)
+        "physics_gt.contact_ee_object_flag": [1],
+        "physics_gt.contact_ee_object_force": [3],
+        # Pair-specific: object ↔ surface (push/strike)
+        "physics_gt.contact_object_surface_flag": [1],
+        "physics_gt.contact_object_surface_force": [3],
+        # Task-specific: push/strike
+        "physics_gt.object_to_target_distance": [1],
+        "physics_gt.ball_rolling_distance": [1],
+        # Drawer
         "physics_gt.drawer_joint_pos": [1],
         "physics_gt.drawer_joint_vel": [1],
         "physics_gt.handle_position": [3],
         "physics_gt.handle_velocity": [3],
+        "physics_gt.contact_ee_handle_flag": [1],
+        "physics_gt.contact_ee_handle_force": [3],
+        "physics_gt.drawer_opening_extent": [1],
+        # Peg insert
         "physics_gt.peg_position": [3],
         "physics_gt.peg_orientation": [4],
         "physics_gt.peg_velocity": [3],
+        "physics_gt.peg_angular_velocity": [3],
         "physics_gt.hole_position": [3],
+        "physics_gt.contact_finger_l_peg_flag": [1],
+        "physics_gt.contact_finger_l_peg_force": [3],
+        "physics_gt.contact_finger_r_peg_flag": [1],
+        "physics_gt.contact_finger_r_peg_force": [3],
+        "physics_gt.contact_peg_socket_flag": [1],
+        "physics_gt.contact_peg_socket_force": [3],
+        "physics_gt.insertion_depth": [1],
+        "physics_gt.peg_hole_lateral_error": [1],
+        # Nut thread
         "physics_gt.nut_position": [3],
         "physics_gt.nut_orientation": [4],
         "physics_gt.nut_velocity": [3],
+        "physics_gt.nut_angular_velocity": [3],
         "physics_gt.bolt_position": [3],
         "physics_gt.bolt_orientation": [4],
+        "physics_gt.contact_finger_l_nut_flag": [1],
+        "physics_gt.contact_finger_l_nut_force": [3],
+        "physics_gt.contact_finger_r_nut_flag": [1],
+        "physics_gt.contact_finger_r_nut_force": [3],
+        "physics_gt.contact_nut_bolt_flag": [1],
+        "physics_gt.contact_nut_bolt_force": [3],
+        "physics_gt.axial_progress": [1],
+        "physics_gt.nut_bolt_relative_angle": [1],
+        # Stack
         "physics_gt.object_1_position": [3],
         "physics_gt.object_1_orientation": [4],
         "physics_gt.object_1_velocity": [3],

@@ -104,6 +104,17 @@ class StrikeSceneCfg(InteractiveSceneCfg):
         ),
     )
 
+    # Pair-specific contact: ball ↔ surface
+    object_surface_contact: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Object",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=False,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Surface"],
+    )
+
     # Target zone — blue disc, r=8cm
     target_marker = AssetBaseCfg(
         prim_path="{ENV_REGEX_NS}/TargetMarker",

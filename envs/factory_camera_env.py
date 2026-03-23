@@ -172,16 +172,36 @@ class FactoryCameraEnv(FactoryEnv):
         return table_rgb, wrist_rgb
 
     def get_physics_data(self):
-        """Get physics ground truth for data collection, including contact forces."""
-        # Contact force on held asset (peg or nut)
-        # get_net_contact_forces returns (num_envs, num_bodies, 3)
+        """Get physics ground truth for data collection, including pair-specific contact forces."""
+        # --- Held asset (peg/nut) net contact force ---
         held_contact = self._held_asset.root_physx_view.get_net_contact_forces(
             dt=self.physics_dt
         )
-        # Sum over all bodies of held asset → (num_envs, 3)
-        held_contact_total = held_contact.sum(dim=1)
+        held_contact_total = held_contact.sum(dim=1)  # (num_envs, 3)
         contact_mag = torch.norm(held_contact_total, dim=-1)
         contact_flag = (contact_mag > 0.5).float().unsqueeze(-1)
+
+        # --- Finger contact forces (left/right) ---
+        left_idx = self._robot.body_names.index("panda_leftfinger")
+        right_idx = self._robot.body_names.index("panda_rightfinger")
+        robot_contact = self._robot.root_physx_view.get_net_contact_forces(
+            dt=self.physics_dt
+        )
+        finger_l_force = robot_contact[:, left_idx, :]   # (num_envs, 3)
+        finger_r_force = robot_contact[:, right_idx, :]   # (num_envs, 3)
+        finger_l_flag = (torch.norm(finger_l_force, dim=-1) > 0.5).float().unsqueeze(-1)
+        finger_r_flag = (torch.norm(finger_r_force, dim=-1) > 0.5).float().unsqueeze(-1)
+
+        # --- Fixed asset (hole/bolt) net contact force = held-fixed interaction ---
+        fixed_contact = self._fixed_asset.root_physx_view.get_net_contact_forces(
+            dt=self.physics_dt
+        )
+        fixed_contact_total = fixed_contact.sum(dim=1)  # (num_envs, 3)
+        fixed_flag = (torch.norm(fixed_contact_total, dim=-1) > 0.5).float().unsqueeze(-1)
+
+        # --- Held asset velocity (actual, not zeros) ---
+        held_vel = self._held_asset.data.root_lin_vel_w
+        held_angvel = self._held_asset.data.root_ang_vel_w
 
         return {
             "ee_position": self.fingertip_midpoint_pos.clone(),
@@ -190,10 +210,21 @@ class FactoryCameraEnv(FactoryEnv):
             "ee_angular_velocity": self.ee_angvel_fd.clone(),
             "held_position": self.held_pos.clone(),
             "held_orientation": self.held_quat.clone(),
+            "held_velocity": held_vel.clone(),
+            "held_angular_velocity": held_angvel.clone(),
             "fixed_position": self.fixed_pos.clone(),
             "fixed_orientation": self.fixed_quat.clone(),
             "joint_pos": self.joint_pos[:, :7].clone(),
             "joint_vel": self.joint_vel[:, :7].clone(),
+            # Legacy total contact
             "contact_flag": contact_flag,
             "contact_force": held_contact_total,
+            # Pair-specific: finger L/R ↔ held asset
+            "finger_l_contact_flag": finger_l_flag,
+            "finger_l_contact_force": finger_l_force,
+            "finger_r_contact_flag": finger_r_flag,
+            "finger_r_contact_force": finger_r_force,
+            # Pair-specific: held ↔ fixed (peg↔socket, nut↔bolt)
+            "held_fixed_contact_flag": fixed_flag,
+            "held_fixed_contact_force": fixed_contact_total,
         }
