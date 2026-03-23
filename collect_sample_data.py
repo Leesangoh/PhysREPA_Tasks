@@ -32,6 +32,7 @@ parser.add_argument("--task", type=str, required=True, choices=["lift", "pick_pl
 parser.add_argument("--num_episodes", type=int, default=5)
 parser.add_argument("--use_oracle", action="store_true", help="Use scripted oracle policy instead of random actions")
 parser.add_argument("--step0", action="store_true", help="Use Step 0 scripted policy (no target, random direction)")
+parser.add_argument("--filter_success", action="store_true", help="Only save successful episodes (retry on failure)")
 parser.add_argument("--rl_checkpoint", type=str, default=None, help="Path to RL checkpoint (.pt for RSL-RL, .pth for RL-Games)")
 parser.add_argument("--output_dir", type=str, default="/mnt/md1/solee/data/isaac_physrepa")
 AppLauncher.add_app_launcher_args(parser)
@@ -293,7 +294,7 @@ def read_physics_params(env, task_name: str) -> dict:
 
 
 def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle: bool = False,
-                  rl_checkpoint: str | None = None, step0: bool = False):
+                  rl_checkpoint: str | None = None, step0: bool = False, filter_success: bool = False):
     """Collect episodes for a single task and save in LeRobot V2 format."""
     is_factory = task_name in ("peg_insert", "nut_thread")
     is_rl_wrapped = False
@@ -611,8 +612,14 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
     all_episodes_physics_gt = []
 
-    for ep_idx in range(num_episodes):
-        print(f"\n--- Episode {ep_idx} ---")
+    saved_episodes = 0
+    attempted_episodes = 0
+    max_attempts = num_episodes * 5 if filter_success else num_episodes  # cap retries
+
+    while saved_episodes < num_episodes and attempted_episodes < max_attempts:
+        ep_idx = saved_episodes
+        attempted_episodes += 1
+        print(f"\n--- Episode {ep_idx} (attempt {attempted_episodes}) ---")
 
         # Reset with overlap check for pick_place/push
         # Ensure object and target are at least 0.1m apart
@@ -1228,6 +1235,30 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 f"physics_gt key length mismatch: {k} has {actual} entries, expected {ep_length}"
             )
 
+        # --- Success判定 (before save) ---
+        success = False
+        try:
+            if task_name in ("push", "strike") and "physics_gt.object_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
+                final_obj = np.array(ep_physics_gt["physics_gt.object_position"][-1])
+                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
+                success = float(np.linalg.norm(final_obj[:2] - final_target[:2])) < 0.06
+            elif task_name == "peg_insert" and "physics_gt.insertion_depth" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) < 0.005
+            elif task_name == "nut_thread" and "physics_gt.axial_progress" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.axial_progress"][-1][0]) < -0.005
+            elif task_name == "drawer" and "physics_gt.drawer_joint_pos" in ep_physics_gt:
+                success = float(ep_physics_gt["physics_gt.drawer_joint_pos"][-1][0]) > 0.3
+            elif task_name == "reach" and "physics_gt.ee_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
+                final_ee = np.array(ep_physics_gt["physics_gt.ee_position"][-1])
+                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
+                success = float(np.linalg.norm(final_ee - final_target)) < 0.02
+        except (IndexError, KeyError):
+            success = False
+
+        if filter_success and not success:
+            print(f"  Episode FAILED — skipping (filter_success=True)")
+            continue
+
         # --- Save episode data ---
         chunk_idx = ep_idx // CHUNKS_SIZE
         chunk_dir = f"chunk-{chunk_idx:03d}"
@@ -1271,27 +1302,6 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             print(f"  Saved wrist_cam video: {video_path_wrist} ({os.path.getsize(video_path_wrist) / 1024:.1f} KB)")
 
         # 3. Episode metadata (with physics params)
-        # Task-specific success判定
-        success = False
-        try:
-            if task_name in ("push", "strike") and "physics_gt.object_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
-                final_obj = np.array(ep_physics_gt["physics_gt.object_position"][-1])
-                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
-                success = float(np.linalg.norm(final_obj[:2] - final_target[:2])) < 0.06
-            elif task_name == "peg_insert" and "physics_gt.insertion_depth" in ep_physics_gt:
-                # insertion_depth: peg_z - hole_z. Inserted when near zero or negative.
-                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) < 0.005
-            elif task_name == "nut_thread" and "physics_gt.axial_progress" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.axial_progress"][-1][0]) < -0.005
-            elif task_name == "drawer" and "physics_gt.drawer_joint_pos" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.drawer_joint_pos"][-1][0]) > 0.3
-            elif task_name == "reach" and "physics_gt.ee_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
-                final_ee = np.array(ep_physics_gt["physics_gt.ee_position"][-1])
-                final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
-                success = float(np.linalg.norm(final_ee - final_target)) < 0.02
-        except (IndexError, KeyError):
-            success = False
-
         ep_meta = {
             "episode_index": ep_idx,
             "tasks": [task_description],
@@ -1308,6 +1318,10 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         all_episodes_physics_gt.append({k: list(v) for k, v in ep_physics_gt.items()})
 
         global_index += ep_length
+        saved_episodes += 1
+
+    if filter_success:
+        print(f"\nSuccess filter: {saved_episodes}/{attempted_episodes} episodes saved ({saved_episodes/max(attempted_episodes,1)*100:.0f}% success rate)")
 
     # --- Save metadata ---
     meta_dir = os.path.join(output_dir, "meta")
@@ -1550,7 +1564,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
     print(f"\n{'='*60}")
     print(f"Data collection complete for task: {task_name}")
-    print(f"  Episodes: {num_episodes}")
+    print(f"  Episodes: {saved_episodes}/{num_episodes} (attempted: {attempted_episodes})")
     print(f"  Total frames: {total_frames}")
     print(f"  Output: {output_dir}")
     print(f"{'='*60}")
@@ -1562,7 +1576,7 @@ def main():
     output_dir = os.path.join(args_cli.output_dir, args_cli.task)
     collect_task(args_cli.task, args_cli.num_episodes, output_dir,
                  use_oracle=args_cli.use_oracle, rl_checkpoint=args_cli.rl_checkpoint,
-                 step0=args_cli.step0)
+                 step0=args_cli.step0, filter_success=args_cli.filter_success)
     simulation_app.close()
 
 
