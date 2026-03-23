@@ -124,13 +124,24 @@ class DrawerSceneCfg(InteractiveSceneCfg):
         ],
     )
 
-    # Contact sensor — EE ↔ drawer handle
+    # Contact sensor — left finger ↔ drawer handle
     contact_sensor: ContactSensorCfg = ContactSensorCfg(
         prim_path="{ENV_REGEX_NS}/Robot/panda_leftfinger",
         update_period=0.0,
         history_length=1,
         track_air_time=True,
         track_contact_points=True,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
+    )
+
+    # Contact sensor — right finger ↔ drawer handle
+    contact_sensor_r: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Robot/panda_rightfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=False,
         force_threshold=0.5,
         filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
     )

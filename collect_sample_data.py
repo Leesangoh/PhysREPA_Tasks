@@ -296,7 +296,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                   rl_checkpoint: str | None = None, step0: bool = False):
     """Collect episodes for a single task and save in LeRobot V2 format."""
     is_factory = task_name in ("peg_insert", "nut_thread")
-    is_drawer_rl = False
+    is_rl_wrapped = False
     rl_policy = None
     _drawer_env_wrapped = None
 
@@ -365,7 +365,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
         # Use unwrapped for scene access, wrapped for stepping
         env = env.unwrapped
-        is_drawer_rl = True
+        is_rl_wrapped = True
         print(f"  Loaded RSL-RL Drawer checkpoint: {rl_checkpoint}")
     elif rl_checkpoint is not None and task_name in ("push", "strike"):
         # Push/Strike: use RL env (IK relative) with cameras added
@@ -432,7 +432,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         ppo_runner.load(rl_checkpoint)
         rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
         env = env.unwrapped
-        is_drawer_rl = True  # reuse same stepping logic as drawer
+        is_rl_wrapped = True  # reuse same stepping logic as drawer
         print(f"  Loaded RSL-RL {task_name} checkpoint: {rl_checkpoint}")
     else:
         cfg_cls = TASK_CONFIGS[task_name]
@@ -550,9 +550,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             "physics_gt.contact_flag",
             "physics_gt.contact_force",
             "physics_gt.contact_point",
-            # Pair-specific: EE ↔ handle (uses existing contact_sensor)
+            # Pair-specific: finger L/R ↔ handle
             "physics_gt.contact_finger_l_handle_flag",
             "physics_gt.contact_finger_l_handle_force",
+            "physics_gt.contact_finger_r_handle_flag",
+            "physics_gt.contact_finger_r_handle_force",
             # Task-specific raw
             "physics_gt.drawer_opening_extent",
             "physics_gt.phase",
@@ -615,7 +617,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         # Reset with overlap check for pick_place/push
         # Ensure object and target are at least 0.1m apart
         for _reset_attempt in range(10):
-            if is_drawer_rl:
+            if is_rl_wrapped:
                 obs_w, info = _drawer_env_wrapped.get_observations()
                 obs = {"policy": obs_w}
                 # Trigger reset by getting observations after env auto-resets
@@ -700,7 +702,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             action_dim = 7
         warmup_steps = int(0.5 / dt)
         for _ in range(warmup_steps):
-            if is_drawer_rl:
+            if is_rl_wrapped:
                 obs_w, _, _, _ = _drawer_env_wrapped.step(torch.zeros(1, action_dim, device=env.device))
                 obs = {"policy": obs_w}
             else:
@@ -995,6 +997,16 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 else:
                     ep_physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.zeros(1, dtype=np.float32))
                     ep_physics_gt["physics_gt.contact_finger_l_handle_force"].append(np.zeros(3, dtype=np.float32))
+                # Right finger ↔ handle
+                if "contact_sensor_r" in env.scene.sensors:
+                    sensor_r = env.scene.sensors["contact_sensor_r"]
+                    r_force = sensor_r.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    r_flag = 1.0 if np.linalg.norm(r_force) > 0.5 else 0.0
+                    ep_physics_gt["physics_gt.contact_finger_r_handle_flag"].append(np.array([r_flag], dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_r_handle_force"].append(r_force.astype(np.float32))
+                else:
+                    ep_physics_gt["physics_gt.contact_finger_r_handle_flag"].append(np.zeros(1, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_r_handle_force"].append(np.zeros(3, dtype=np.float32))
                 # Task-specific: drawer opening extent (normalized 0~1, max ~0.39m)
                 drawer_max = 0.39
                 opening_extent = float(np.clip(jpos[0] / drawer_max, 0.0, 1.0))
@@ -1045,9 +1057,16 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     ep_physics_gt["physics_gt.contact_object_surface_force"].append(np.zeros(3, dtype=np.float32))
 
                 # Task-specific: object_to_target_distance (push/strike)
-                if task_name in ("push", "strike") and "target_position" in gt:
-                    target_np = gt["target_position"][0, :3].cpu().numpy()
-                    obj_target_dist = float(np.linalg.norm(obj_pos_np[:2] - target_np[:2]))
+                if task_name in ("push", "strike"):
+                    if "target_position" in gt:
+                        target_np = gt["target_position"][0, :3].cpu().numpy()
+                        # Check if target is valid (not zeros fallback)
+                        if np.linalg.norm(target_np) > 0.01:
+                            obj_target_dist = float(np.linalg.norm(obj_pos_np[:2] - target_np[:2]))
+                        else:
+                            obj_target_dist = float("nan")
+                    else:
+                        obj_target_dist = float("nan")
                     ep_physics_gt["physics_gt.object_to_target_distance"].append(np.array([obj_target_dist], dtype=np.float32))
 
                 # Task-specific: ball_planar_travel_distance (strike — cumulative)
@@ -1181,7 +1200,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                         ep_frames_wrist.append(policy_obs["wrist_cam"][0].cpu().numpy())
 
             # Step environment
-            if is_drawer_rl:
+            if is_rl_wrapped:
                 # Drawer RL: step through wrapped env for policy obs
                 obs_wrapped, rew_wrapped, dones, infos = _drawer_env_wrapped.step(action)
                 obs = {"policy": obs_wrapped}  # wrap for compatibility
@@ -1336,6 +1355,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         "physics_gt.handle_velocity": [3],
         "physics_gt.contact_finger_l_handle_flag": [1],
         "physics_gt.contact_finger_l_handle_force": [3],
+        "physics_gt.contact_finger_r_handle_flag": [1],
+        "physics_gt.contact_finger_r_handle_force": [3],
         "physics_gt.drawer_opening_extent": [1],
         # Peg insert
         "physics_gt.peg_position": [3],
