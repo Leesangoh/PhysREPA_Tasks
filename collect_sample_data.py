@@ -384,13 +384,13 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             cfg = env_cfg_entry()
         cfg.scene.num_envs = 1
         cfg.observations.policy.enable_corruption = False
-        # Add cameras
-        from isaaclab.sensors import CameraCfg
+        # Add cameras + contact sensors for physics GT
+        from isaaclab.sensors import CameraCfg, ContactSensorCfg
         cfg.scene.table_cam = CameraCfg(
             prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
             data_types=["rgb"],
             spawn=sim_utils.PinholeCameraCfg(
-                focal_length=19.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)),
+                focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)),
             offset=CameraCfg.OffsetCfg(
                 pos=(1.6, 0.0, 0.90), rot=(0.33900, -0.62054, -0.62054, 0.33900), convention="ros"),
         )
@@ -402,6 +402,23 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             offset=CameraCfg.OffsetCfg(
                 pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
         )
+        # Contact sensor: finger ↔ object
+        cfg.scene.contact_sensor = ContactSensorCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_leftfinger",
+            update_period=0.0, history_length=1,
+            track_air_time=False, track_contact_points=True,
+            force_threshold=0.5,
+            filter_prim_paths_expr=["{ENV_REGEX_NS}/Object"],
+        )
+        # Contact sensor: object ↔ surface (push/strike have Surface)
+        if hasattr(cfg.scene, "surface"):
+            cfg.scene.object_surface_contact = ContactSensorCfg(
+                prim_path="{ENV_REGEX_NS}/Object",
+                update_period=0.0, history_length=1,
+                track_air_time=False, track_contact_points=False,
+                force_threshold=0.5,
+                filter_prim_paths_expr=["{ENV_REGEX_NS}/Surface"],
+            )
         env = gym.make(gym_id, cfg=cfg)
         # Load RSL-RL policy
         from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
@@ -605,10 +622,21 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 env.reset()
             else:
                 obs, info = env.reset()
-            if task_name in ("pick_place", "push", "strike") and not is_drawer_rl:
-                gt = obs["physics_gt"]
-                obj_pos = gt["object_position"][0, :2].cpu()
-                target_pos = gt["target_position"][0, :2].cpu()
+            if task_name in ("pick_place", "push", "strike") and not is_factory:
+                # Read object/target positions (from obs or env.scene for RL)
+                if "physics_gt" in obs:
+                    gt = obs["physics_gt"]
+                    obj_pos = gt["object_position"][0, :2].cpu()
+                    target_pos = gt["target_position"][0, :2].cpu()
+                else:
+                    # RL env: read from scene directly
+                    _obj = env.scene["object"]
+                    obj_pos = (_obj.data.root_pos_w[0, :2] - env.scene.env_origins[0, :2]).cpu()
+                    try:
+                        _cmd = env.command_manager.get_command("object_pose")[0, :2]
+                        target_pos = _cmd.cpu()
+                    except Exception:
+                        break  # can't check overlap, just proceed
                 dist = torch.norm(obj_pos - target_pos).item()
                 if dist >= 0.15:
                     break
@@ -793,10 +821,19 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     gt["object_velocity"] = _obj_vel.unsqueeze(0)
                     gt["object_angular_velocity"] = _obj_angvel.unsqueeze(0)
                     gt["ee_to_object_distance"] = torch.norm(_ee_pos - _obj_pos).unsqueeze(0).unsqueeze(0)
-                    # Target position from command manager
-                    if hasattr(env, "command_manager"):
-                        _target = env.command_manager.get_command("object_pose")[0, :3]
-                        gt["target_position"] = _target.unsqueeze(0)
+                    # Target position from command manager (base frame → world frame)
+                    try:
+                        _cmd = env.command_manager.get_command("object_pose")[0, :3]
+                        _root_pos = _robot.data.root_pos_w[0]
+                        _root_quat = _robot.data.root_quat_w[0]
+                        from isaaclab.utils.math import combine_frame_transforms
+                        _target_w, _ = combine_frame_transforms(
+                            _root_pos.unsqueeze(0), _root_quat.unsqueeze(0), _cmd.unsqueeze(0)
+                        )
+                        _target_local = _target_w[0] - env.scene.env_origins[0]
+                        gt["target_position"] = _target_local.unsqueeze(0)
+                    except Exception:
+                        gt["target_position"] = torch.zeros(1, 3, device=env.device)
                 elif task_name == "drawer":
                     _cabinet = env.scene["cabinet"]
                     _jpos = _cabinet.data.joint_pos[0, _cabinet.find_joints("drawer_top_joint")[0]].unsqueeze(0)
@@ -902,7 +939,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.contact_peg_socket_flag"].append(gt["held_fixed_contact_flag"][0].cpu().numpy())
                 ep_physics_gt["physics_gt.contact_peg_socket_force"].append(gt["held_fixed_contact_force"][0].cpu().numpy())
                 # Task-specific raw
-                insertion_depth = float(hole_pos[2] - peg_pos[2])
+                # insertion_depth: positive = peg above hole, zero/negative = inserted
+                # peg descends from above, so peg_z > hole_z before insertion
+                insertion_depth = float(peg_pos[2] - hole_pos[2])
                 lateral_error = float(np.linalg.norm(peg_pos[:2] - hole_pos[:2]))
                 ep_physics_gt["physics_gt.insertion_depth"].append(np.array([insertion_depth], dtype=np.float32))
                 ep_physics_gt["physics_gt.peg_hole_lateral_error"].append(np.array([lateral_error], dtype=np.float32))
@@ -1221,7 +1260,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
                 success = float(np.linalg.norm(final_obj[:2] - final_target[:2])) < 0.06
             elif task_name == "peg_insert" and "physics_gt.insertion_depth" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) > 0.01
+                # insertion_depth: peg_z - hole_z. Inserted when near zero or negative.
+                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) < 0.005
             elif task_name == "nut_thread" and "physics_gt.axial_progress" in ep_physics_gt:
                 success = float(ep_physics_gt["physics_gt.axial_progress"][-1][0]) < -0.005
             elif task_name == "drawer" and "physics_gt.drawer_joint_pos" in ep_physics_gt:
