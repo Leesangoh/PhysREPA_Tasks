@@ -241,8 +241,8 @@ def read_physics_params(env, task_name: str) -> dict:
             mat = cabinet.root_physx_view.get_material_properties()
             params["handle_static_friction"] = round(mat[0, handle_body_idx, 0].item(), 4)
             params["handle_dynamic_friction"] = round(mat[0, handle_body_idx, 1].item(), 4)
-        except Exception:
-            pass  # RL env may not have all APIs
+        except Exception as e:
+            print(f"  [WARN] failed to read drawer physics params: {e}")
     elif task_name == "reach":
         # Reach task: no objects
         params["task_type"] = "reach"
@@ -476,6 +476,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     if task_name == "reach":
         physics_gt_keys = _common_ee_keys + [
             "physics_gt.target_position",
+            "physics_gt.ee_to_target_distance",
             "physics_gt.phase",
         ]
     elif task_name == "peg_insert":
@@ -533,8 +534,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             "physics_gt.contact_force",
             "physics_gt.contact_point",
             # Pair-specific: EE ↔ handle (uses existing contact_sensor)
-            "physics_gt.contact_ee_handle_flag",
-            "physics_gt.contact_ee_handle_force",
+            "physics_gt.contact_finger_l_handle_flag",
+            "physics_gt.contact_finger_l_handle_force",
             # Task-specific raw
             "physics_gt.drawer_opening_extent",
             "physics_gt.phase",
@@ -553,8 +554,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             "physics_gt.object_on_surface",
             "physics_gt.contact_point",
             # Pair-specific: EE ↔ object (uses existing contact_sensor)
-            "physics_gt.contact_ee_object_flag",
-            "physics_gt.contact_ee_object_force",
+            "physics_gt.contact_finger_l_object_flag",
+            "physics_gt.contact_finger_l_object_force",
             "physics_gt.phase",
         ]
 
@@ -571,7 +572,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             physics_gt_keys.append("physics_gt.target_position")
 
         if task_name == "strike":
-            physics_gt_keys.append("physics_gt.ball_rolling_distance")
+            physics_gt_keys.append("physics_gt.ball_planar_travel_distance")
 
         # Additional keys for stack task
         if task_name == "stack":
@@ -691,7 +692,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         prev_ee_vel = None
         prev_obj_vel = None
         prev_obj1_vel = None  # for stack task cube_b
-        prev_ball_pos = None  # for strike ball_rolling_distance
+        prev_ball_pos = None  # for strike ball_planar_travel_distance
         ball_rolling_dist = 0.0
 
         for step in range(max_steps):
@@ -722,29 +723,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     if action_dim == 7:
                         action[0, 6] = 1.0 if step < max_steps // 2 else -1.0
 
-            # RL env (is_drawer_rl): step first, then read physics_gt from env.scene
-            if is_drawer_rl and not is_factory:
-                # Camera frames BEFORE step (pre-step observation)
-                if "table_cam" in env.scene.sensors:
-                    t_rgb = env.scene.sensors["table_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
-                    ep_frames_table.append(t_rgb)
-                if "wrist_cam" in env.scene.sensors:
-                    w_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][0, ..., :3].cpu().numpy().astype(np.uint8)
-                    ep_frames_wrist.append(w_rgb)
-
-                # Step
-                if _drawer_env_wrapped is not None:
-                    obs_wrapped, rew_wrapped, dones, infos = _drawer_env_wrapped.step(action)
-                    obs = {"policy": obs_wrapped}
-                    reward = rew_wrapped
-                else:
-                    obs, reward, _, _, _ = env.step(action)
-
-                ep_rewards.append(reward[0].item() if hasattr(reward, '__getitem__') else reward)
-                if step % 100 == 0:
-                    print(f"  Step {step}/{max_steps}, reward={ep_rewards[-1]:.4f}")
-
-            # Build physics GT dict
+            # Build physics GT dict (BEFORE step — reads current state)
             if is_factory:
                 phys = env.get_physics_data()
                 # Build a fake gt dict for uniform access below
@@ -785,13 +764,22 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 _ee_quat = _robot.data.body_quat_w[0, _hand_idx]
                 _ee_vel = _robot.data.body_lin_vel_w[0, _hand_idx]
                 _ee_angvel = _robot.data.body_ang_vel_w[0, _hand_idx]
+                # Read contact from contact_sensor if available, otherwise zeros
+                if "contact_sensor" in env.scene.sensors:
+                    _csensor = env.scene.sensors["contact_sensor"]
+                    _cflag_t = _csensor.data.net_forces_w[0, 0, :]
+                    _cflag_val = (torch.norm(_cflag_t) > 0.5).float()
+                    _cforce = _cflag_t
+                else:
+                    _cflag_val = torch.tensor(0.0, device=env.device)
+                    _cforce = torch.zeros(3, device=env.device)
                 gt = {
                     "ee_position": _ee_pos.unsqueeze(0),
                     "ee_orientation": _ee_quat.unsqueeze(0),
                     "ee_velocity": _ee_vel.unsqueeze(0),
                     "ee_angular_velocity": _ee_angvel.unsqueeze(0),
-                    "contact_flag": torch.zeros(1, 1, device=env.device),
-                    "contact_force": torch.zeros(1, 3, device=env.device),
+                    "contact_flag": _cflag_val.unsqueeze(0).unsqueeze(0),
+                    "contact_force": _cforce.unsqueeze(0),
                 }
                 if task_name in ("push", "strike"):
                     # Push/Strike RL fallback: read object state from env.scene
@@ -895,6 +883,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Reach: no object, no contact — only EE + target
                 target_pos = gt["target_position"][0, :3].cpu().numpy()
                 ep_physics_gt["physics_gt.target_position"].append(target_pos.astype(np.float32))
+                ee_target_dist = float(np.linalg.norm(ee_pos_np - target_pos))
+                ep_physics_gt["physics_gt.ee_to_target_distance"].append(np.array([ee_target_dist], dtype=np.float32))
 
             elif task_name == "peg_insert":
                 peg_pos = gt["peg_position"][0].cpu().numpy()
@@ -961,11 +951,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     sensor = env.scene.sensors["contact_sensor"]
                     ee_handle_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
                     ee_handle_flag = 1.0 if np.linalg.norm(ee_handle_force) > 0.5 else 0.0
-                    ep_physics_gt["physics_gt.contact_ee_handle_flag"].append(np.array([ee_handle_flag], dtype=np.float32))
-                    ep_physics_gt["physics_gt.contact_ee_handle_force"].append(ee_handle_force.astype(np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.array([ee_handle_flag], dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_l_handle_force"].append(ee_handle_force.astype(np.float32))
                 else:
-                    ep_physics_gt["physics_gt.contact_ee_handle_flag"].append(np.zeros(1, dtype=np.float32))
-                    ep_physics_gt["physics_gt.contact_ee_handle_force"].append(np.zeros(3, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.zeros(1, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_finger_l_handle_force"].append(np.zeros(3, dtype=np.float32))
                 # Task-specific: drawer opening extent (normalized 0~1, max ~0.39m)
                 drawer_max = 0.39
                 opening_extent = float(np.clip(jpos[0] / drawer_max, 0.0, 1.0))
@@ -1001,8 +991,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 else:
                     ee_obj_force = np.zeros(3, dtype=np.float32)
                     ee_obj_flag = 0.0
-                ep_physics_gt["physics_gt.contact_ee_object_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
-                ep_physics_gt["physics_gt.contact_ee_object_force"].append(ee_obj_force.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_l_object_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
+                ep_physics_gt["physics_gt.contact_finger_l_object_force"].append(ee_obj_force.astype(np.float32))
 
                 # Pair-specific: object ↔ surface (push/strike only)
                 if task_name in ("push", "strike") and "object_surface_contact" in env.scene.sensors:
@@ -1021,13 +1011,13 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     obj_target_dist = float(np.linalg.norm(obj_pos_np[:2] - target_np[:2]))
                     ep_physics_gt["physics_gt.object_to_target_distance"].append(np.array([obj_target_dist], dtype=np.float32))
 
-                # Task-specific: ball_rolling_distance (strike — cumulative)
+                # Task-specific: ball_planar_travel_distance (strike — cumulative)
                 if task_name == "strike":
                     if prev_ball_pos is None:
                         prev_ball_pos = obj_pos_np.copy()
                     ball_rolling_dist += float(np.linalg.norm(obj_pos_np[:2] - prev_ball_pos[:2]))
                     prev_ball_pos = obj_pos_np.copy()
-                    ep_physics_gt["physics_gt.ball_rolling_distance"].append(np.array([ball_rolling_dist], dtype=np.float32))
+                    ep_physics_gt["physics_gt.ball_planar_travel_distance"].append(np.array([ball_rolling_dist], dtype=np.float32))
 
             elif "cube_a_position" in gt:
                 # Stack task: cube_a = object_0
@@ -1050,6 +1040,17 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 cube_a_z = cube_a_pos_np[2]
                 on_surface_a = 1.0 if cube_a_z < (TABLE_SURFACE_Z + CUBE_A_HALF_SIZE + ON_SURFACE_MARGIN) else 0.0
                 ep_physics_gt["physics_gt.object_on_surface"].append(np.array([on_surface_a], dtype=np.float32))
+
+                # Pair-specific: finger_l ↔ object (stack uses same contact_sensor)
+                if "contact_sensor" in env.scene.sensors:
+                    sensor = env.scene.sensors["contact_sensor"]
+                    ee_obj_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_obj_flag = 1.0 if np.linalg.norm(ee_obj_force) > 0.5 else 0.0
+                else:
+                    ee_obj_force = np.zeros(3, dtype=np.float32)
+                    ee_obj_flag = 0.0
+                ep_physics_gt["physics_gt.contact_finger_l_object_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
+                ep_physics_gt["physics_gt.contact_finger_l_object_force"].append(ee_obj_force.astype(np.float32))
 
                 # Cube B = object_1
                 cube_b_pos_np = gt["cube_b_position"][0].cpu().numpy()
@@ -1162,6 +1163,13 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         ep_length = len(ep_states)
         print(f"  Episode {ep_idx} complete: {ep_length} steps")
 
+        # Validate physics GT lengths match ep_length
+        for k in physics_gt_keys:
+            actual = len(ep_physics_gt[k])
+            assert actual == ep_length, (
+                f"physics_gt key length mismatch: {k} has {actual} entries, expected {ep_length}"
+            )
+
         # --- Save episode data ---
         chunk_idx = ep_idx // CHUNKS_SIZE
         chunk_dir = f"chunk-{chunk_idx:03d}"
@@ -1271,22 +1279,23 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         "physics_gt.contact_point": [3],
         "physics_gt.phase": [1],
         "physics_gt.target_position": [3],
+        "physics_gt.ee_to_target_distance": [1],
         # Pair-specific: EE ↔ object (push/strike/lift/pick_place/stack)
-        "physics_gt.contact_ee_object_flag": [1],
-        "physics_gt.contact_ee_object_force": [3],
+        "physics_gt.contact_finger_l_object_flag": [1],
+        "physics_gt.contact_finger_l_object_force": [3],
         # Pair-specific: object ↔ surface (push/strike)
         "physics_gt.contact_object_surface_flag": [1],
         "physics_gt.contact_object_surface_force": [3],
         # Task-specific: push/strike
         "physics_gt.object_to_target_distance": [1],
-        "physics_gt.ball_rolling_distance": [1],
+        "physics_gt.ball_planar_travel_distance": [1],
         # Drawer
         "physics_gt.drawer_joint_pos": [1],
         "physics_gt.drawer_joint_vel": [1],
         "physics_gt.handle_position": [3],
         "physics_gt.handle_velocity": [3],
-        "physics_gt.contact_ee_handle_flag": [1],
-        "physics_gt.contact_ee_handle_force": [3],
+        "physics_gt.contact_finger_l_handle_flag": [1],
+        "physics_gt.contact_finger_l_handle_force": [3],
         "physics_gt.drawer_opening_extent": [1],
         # Peg insert
         "physics_gt.peg_position": [3],
