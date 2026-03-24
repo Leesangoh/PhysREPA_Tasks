@@ -63,9 +63,15 @@ class RlGamesPolicy:
         self.mu.eval()
         self.layer_norm.eval()
 
-    def reset(self):
-        """Reset LSTM hidden state."""
-        self.hidden = None
+    def reset(self, env_ids=None):
+        """Reset LSTM hidden state for specific envs, or all if env_ids=None."""
+        if env_ids is None or self.hidden is None:
+            self.hidden = None
+        else:
+            # Zero out hidden state for specific envs
+            for idx in env_ids:
+                self.hidden[0][:, idx, :] = 0.0
+                self.hidden[1][:, idx, :] = 0.0
 
     def __call__(self, obs: torch.Tensor) -> torch.Tensor:
         """Run inference. obs: (1, obs_dim) → action: (1, 6)"""

@@ -33,6 +33,7 @@ parser.add_argument("--num_episodes", type=int, default=5)
 parser.add_argument("--use_oracle", action="store_true", help="Use scripted oracle policy instead of random actions")
 parser.add_argument("--step0", action="store_true", help="Use Step 0 scripted policy (no target, random direction)")
 parser.add_argument("--filter_success", action="store_true", help="Only save successful episodes (retry on failure)")
+parser.add_argument("--num_envs", type=int, default=1, help="Number of parallel envs (>1 uses parallel collection)")
 parser.add_argument("--rl_checkpoint", type=str, default=None, help="Path to RL checkpoint (.pt for RSL-RL, .pth for RL-Games)")
 parser.add_argument("--output_dir", type=str, default="/mnt/md1/solee/data/isaac_physrepa")
 AppLauncher.add_app_launcher_args(parser)
@@ -1575,11 +1576,360 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
     env.close()
 
 
+def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, output_dir: str,
+                           rl_checkpoint: str | None = None, filter_success: bool = False):
+    """Parallel data collection using multiple envs. Designed for Factory tasks (peg_insert/nut_thread)."""
+    import json
+    from collections import defaultdict
+    from scipy.spatial.transform import Rotation
+
+    is_factory = task_name in ("peg_insert", "nut_thread")
+
+    # --- Setup env ---
+    if is_factory:
+        from physrepa_tasks.envs.factory_camera_env import (
+            FactoryCameraEnv, PegInsertCameraCfg, NutThreadCameraCfg,
+        )
+        cfg = PegInsertCameraCfg() if task_name == "peg_insert" else NutThreadCameraCfg()
+        cfg.scene.num_envs = num_envs
+        env = FactoryCameraEnv(cfg=cfg)
+    else:
+        raise ValueError(f"Parallel collection only supports Factory tasks, got {task_name}")
+
+    # Load RL policy
+    if rl_checkpoint is not None:
+        from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
+        rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
+        print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+    else:
+        rl_policy = None
+
+    dt = cfg.sim.dt * cfg.decimation
+    fps = int(1.0 / dt)
+    max_steps = int(cfg.episode_length_s / dt)
+
+    print(f"\n{'='*60}")
+    print(f"Parallel collecting {num_episodes} episodes for task: {task_name}")
+    print(f"  num_envs={num_envs}, max_steps={max_steps}, dt={dt:.4f}, fps={fps}")
+    print(f"{'='*60}")
+
+    os.makedirs(output_dir, exist_ok=True)
+    CHUNKS_SIZE = 1000
+
+    # --- Per-env episode buffers ---
+    class EpBuffer:
+        def __init__(self):
+            self.reset()
+
+        def reset(self):
+            self.states = []
+            self.actions = []
+            self.rewards = []
+            self.timestamps = []
+            self.frames_table = []
+            self.frames_wrist = []
+            self.physics_gt = defaultdict(list)
+            self.step_count = 0
+            self.physics_params = {}
+
+    buffers = [EpBuffer() for _ in range(num_envs)]
+
+    # --- Task metadata ---
+    task_desc = TASK_INSTRUCTION_TEMPLATES[task_name]
+    saved_count = 0
+    attempted_count = 0
+    global_index = 0
+    episodes_meta = []
+    all_episode_stats = {"observation.state": [], "action": [], "timestamp": []}
+    all_episodes_physics_gt = []
+
+    # --- Reset all envs ---
+    obs, info = env.reset()
+
+    # Randomize physics for all envs
+    if hasattr(env, 'randomize_physics'):
+        env.randomize_physics()
+
+    # Reset RL policy
+    if rl_policy is not None:
+        rl_policy.reset()
+
+    # Read initial physics params (same for all envs in this batch — simplified)
+    physics_params = read_physics_params(env, task_name)
+
+    for i in range(num_envs):
+        buffers[i].physics_params = dict(physics_params)
+
+    print(f"  Physics params: {physics_params}")
+
+    step = 0
+    while saved_count < num_episodes:
+        # --- Generate actions ---
+        if rl_policy is not None:
+            with torch.inference_mode():
+                flat_obs = obs["policy"] if isinstance(obs, dict) else obs
+                action = rl_policy(flat_obs)  # (num_envs, 6)
+                if action.dim() == 1:
+                    action = action.unsqueeze(0)
+        else:
+            action = torch.zeros(num_envs, 6, device=env.device)
+
+        # --- Record pre-step data for all envs ---
+        phys = env.get_physics_data()
+        table_rgb, wrist_rgb = env.get_camera_data()
+
+        for i in range(num_envs):
+            buf = buffers[i]
+            if buf.step_count >= max_steps:
+                continue  # this env's episode is done, waiting for save
+
+            # EE state → 8D
+            ee_pos = phys["ee_position"][i].cpu().numpy()
+            ee_quat = phys["ee_orientation"][i].cpu().numpy()
+            from scipy.spatial.transform import Rotation as R
+            quat_xyzw = np.array([ee_quat[1], ee_quat[2], ee_quat[3], ee_quat[0]])
+            rpy = R.from_quat(quat_xyzw).as_euler("xyz")
+            gripper_val = env.joint_pos[i, -1].item() / 0.04
+            state_8d = np.array([ee_pos[0], ee_pos[1], ee_pos[2], rpy[0], rpy[1], rpy[2], 0.0, gripper_val], dtype=np.float32)
+            buf.states.append(state_8d)
+
+            # Action → 7D
+            raw_action = action[i].cpu().numpy().astype(np.float32)
+            action_7d = np.zeros(7, dtype=np.float32)
+            action_7d[:6] = raw_action[:6]
+            buf.actions.append(action_7d)
+
+            # Timestamp
+            buf.timestamps.append(np.float32(buf.step_count / fps))
+
+            # Camera frames
+            buf.frames_table.append(table_rgb[i].cpu().numpy().astype(np.uint8))
+            buf.frames_wrist.append(wrist_rgb[i].cpu().numpy().astype(np.uint8))
+
+            # Physics GT: EE
+            ee_vel = phys["ee_velocity"][i].cpu().numpy()
+            buf.physics_gt["physics_gt.ee_position"].append(ee_pos)
+            buf.physics_gt["physics_gt.ee_orientation"].append(ee_quat)
+            buf.physics_gt["physics_gt.ee_velocity"].append(ee_vel)
+            buf.physics_gt["physics_gt.ee_angular_velocity"].append(phys["ee_angular_velocity"][i].cpu().numpy())
+
+            # EE acceleration
+            if len(buf.physics_gt["physics_gt.ee_velocity"]) < 2:
+                buf.physics_gt["physics_gt.ee_acceleration"].append(np.zeros(3, dtype=np.float32))
+            else:
+                prev_vel = buf.physics_gt["physics_gt.ee_velocity"][-2]
+                buf.physics_gt["physics_gt.ee_acceleration"].append(((ee_vel - prev_vel) / dt).astype(np.float32))
+
+            # Task-specific GT
+            if task_name == "peg_insert":
+                peg_pos = phys["held_position"][i].cpu().numpy()
+                hole_pos = phys["fixed_position"][i].cpu().numpy()
+                buf.physics_gt["physics_gt.peg_position"].append(peg_pos)
+                buf.physics_gt["physics_gt.peg_orientation"].append(phys["held_orientation"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.peg_velocity"].append(phys["held_velocity"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.peg_angular_velocity"].append(phys["held_angular_velocity"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.hole_position"].append(hole_pos)
+                # Contacts (zeros — ArticulationView limitation)
+                buf.physics_gt["physics_gt.contact_flag"].append(phys["contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_force"].append(phys["contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_peg_flag"].append(phys["finger_l_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_l_peg_force"].append(phys["finger_l_contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_r_peg_flag"].append(phys["finger_r_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_r_peg_force"].append(phys["finger_r_contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_peg_socket_flag"].append(phys["held_fixed_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_peg_socket_force"].append(phys["held_fixed_contact_force"][i].cpu().numpy())
+                # Task-specific raw
+                insertion_depth = float(peg_pos[2] - hole_pos[2])
+                lateral_error = float(np.linalg.norm(peg_pos[:2] - hole_pos[:2]))
+                buf.physics_gt["physics_gt.insertion_depth"].append(np.array([insertion_depth], dtype=np.float32))
+                buf.physics_gt["physics_gt.peg_hole_lateral_error"].append(np.array([lateral_error], dtype=np.float32))
+            elif task_name == "nut_thread":
+                nut_pos = phys["held_position"][i].cpu().numpy()
+                nut_quat = phys["held_orientation"][i].cpu().numpy()
+                bolt_pos = phys["fixed_position"][i].cpu().numpy()
+                bolt_quat = phys["fixed_orientation"][i].cpu().numpy()
+                buf.physics_gt["physics_gt.nut_position"].append(nut_pos)
+                buf.physics_gt["physics_gt.nut_orientation"].append(nut_quat)
+                buf.physics_gt["physics_gt.nut_velocity"].append(phys["held_velocity"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.nut_angular_velocity"].append(phys["held_angular_velocity"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.bolt_position"].append(bolt_pos)
+                buf.physics_gt["physics_gt.bolt_orientation"].append(bolt_quat)
+                buf.physics_gt["physics_gt.contact_flag"].append(phys["contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_force"].append(phys["contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_nut_flag"].append(phys["finger_l_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_l_nut_force"].append(phys["finger_l_contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_r_nut_flag"].append(phys["finger_r_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_finger_r_nut_force"].append(phys["finger_r_contact_force"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_nut_bolt_flag"].append(phys["held_fixed_contact_flag"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.contact_nut_bolt_force"].append(phys["held_fixed_contact_force"][i].cpu().numpy())
+                axial_progress = float(nut_pos[2] - bolt_pos[2])
+                buf.physics_gt["physics_gt.axial_progress"].append(np.array([axial_progress], dtype=np.float32))
+                nut_r = Rotation.from_quat([nut_quat[1], nut_quat[2], nut_quat[3], nut_quat[0]])
+                bolt_r = Rotation.from_quat([bolt_quat[1], bolt_quat[2], bolt_quat[3], bolt_quat[0]])
+                rel_angle = float((bolt_r.inv() * nut_r).as_rotvec()[2])
+                buf.physics_gt["physics_gt.nut_bolt_relative_angle"].append(np.array([rel_angle], dtype=np.float32))
+
+            # Phase (RL = idle)
+            buf.physics_gt["physics_gt.phase"].append(np.array([7], dtype=np.float32))
+            buf.step_count += 1
+
+        # --- Step all envs ---
+        obs, reward, terminated, truncated, info = env.step(action)
+
+        # Record rewards
+        for i in range(num_envs):
+            if buffers[i].step_count <= max_steps:
+                buffers[i].rewards.append(reward[i].item())
+
+        # --- Check for completed episodes ---
+        dones = terminated | truncated  # (num_envs,)
+        done_envs = []
+        for i in range(num_envs):
+            if buffers[i].step_count >= max_steps or (dones[i] if dones.dim() > 0 else dones.item()):
+                done_envs.append(i)
+
+        for i in done_envs:
+            buf = buffers[i]
+            ep_length = len(buf.states)
+            if ep_length == 0:
+                buf.reset()
+                continue
+
+            attempted_count += 1
+
+            # Success check
+            max_reward = max(buf.rewards) if buf.rewards else 0.0
+            success = max_reward > 1.0
+
+            if filter_success and not success:
+                print(f"  Env {i}: Episode FAILED (max_rew={max_reward:.2f}) — skipping")
+                buf.reset()
+                if rl_policy is not None:
+                    rl_policy.reset(env_ids=[i])
+                continue
+
+            ep_idx = saved_count
+            print(f"  Env {i}: Episode {ep_idx} complete: {ep_length} steps (max_rew={max_reward:.2f})")
+
+            # --- Save parquet ---
+            chunk_idx = ep_idx // CHUNKS_SIZE
+            chunk_dir = f"chunk-{chunk_idx:03d}"
+            parquet_dir = os.path.join(output_dir, "data", chunk_dir)
+            os.makedirs(parquet_dir, exist_ok=True)
+
+            physics_gt_keys = list(buf.physics_gt.keys())
+            df_data = {
+                "observation.state": [s.tolist() for s in buf.states],
+                "action": [a.tolist() for a in buf.actions],
+                "timestamp": buf.timestamps,
+                "frame_index": list(range(ep_length)),
+                "episode_index": [ep_idx] * ep_length,
+                "index": list(range(global_index, global_index + ep_length)),
+                "task_index": [0] * ep_length,
+                "next.done": [False] * (ep_length - 1) + [True],
+                "next.reward": buf.rewards[:ep_length],
+            }
+            for gt_key in physics_gt_keys:
+                df_data[gt_key] = [v.tolist() for v in buf.physics_gt[gt_key]]
+
+            df = pd.DataFrame(df_data)
+            parquet_path = os.path.join(parquet_dir, f"episode_{ep_idx:06d}.parquet")
+            df.to_parquet(parquet_path, index=False)
+
+            # --- Save videos ---
+            if buf.frames_table:
+                video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_0")
+                encode_video(buf.frames_table, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
+            if buf.frames_wrist:
+                video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_1")
+                encode_video(buf.frames_wrist, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
+
+            # --- Episode meta ---
+            ep_meta = {
+                "episode_index": ep_idx,
+                "tasks": [task_desc],
+                "length": ep_length,
+                "success": bool(success),
+            }
+            ep_meta.update(buf.physics_params)
+            episodes_meta.append(ep_meta)
+
+            all_episode_stats["observation.state"].extend(buf.states)
+            all_episode_stats["action"].extend(buf.actions)
+            all_episode_stats["timestamp"].extend(buf.timestamps)
+            all_episodes_physics_gt.append({k: list(v) for k, v in buf.physics_gt.items()})
+
+            global_index += ep_length
+            saved_count += 1
+
+            if saved_count % 10 == 0:
+                print(f"  >>> {saved_count}/{num_episodes} episodes saved ({attempted_count} attempted)")
+
+            # Reset this env's buffer
+            buf.reset()
+            if rl_policy is not None:
+                rl_policy.reset(env_ids=[i])
+
+            # Re-randomize physics
+            if hasattr(env, 'randomize_physics'):
+                env.randomize_physics()
+                buffers[i].physics_params = read_physics_params(env, task_name)
+
+            if saved_count >= num_episodes:
+                break
+
+        step += 1
+
+    # --- Save metadata ---
+    meta_dir = os.path.join(output_dir, "meta")
+    os.makedirs(meta_dir, exist_ok=True)
+
+    info_dict = {
+        "codebase_version": "v2.0",
+        "robot_type": "franka",
+        "total_episodes": saved_count,
+        "total_frames": global_index,
+        "total_tasks": 1,
+        "total_videos": 2,
+        "total_chunks": (saved_count // CHUNKS_SIZE) + 1,
+        "chunks_size": CHUNKS_SIZE,
+        "fps": fps,
+        "splits": {"train": f"0:{saved_count}"},
+        "data_path": "data/chunk-{episode_chunk:03d}/episode_{episode_index:06d}.parquet",
+        "video_path": "videos/chunk-{episode_chunk:03d}/{video_key}/episode_{episode_index:06d}.mp4",
+    }
+    with open(os.path.join(meta_dir, "info.json"), "w") as f:
+        json.dump(info_dict, f, indent=2)
+
+    with open(os.path.join(meta_dir, "episodes.jsonl"), "w") as f:
+        for ep in episodes_meta:
+            f.write(json.dumps(ep) + "\n")
+
+    with open(os.path.join(meta_dir, "tasks.jsonl"), "w") as f:
+        f.write(json.dumps({"task_index": 0, "task": task_desc}) + "\n")
+
+    print(f"\n{'='*60}")
+    print(f"Parallel collection complete for task: {task_name}")
+    print(f"  Episodes: {saved_count}/{num_episodes} (attempted: {attempted_count})")
+    print(f"  Total frames: {global_index}")
+    print(f"  num_envs: {num_envs}")
+    print(f"  Output: {output_dir}")
+    print(f"{'='*60}")
+
+    env.close()
+
+
 def main():
     output_dir = os.path.join(args_cli.output_dir, args_cli.task)
-    collect_task(args_cli.task, args_cli.num_episodes, output_dir,
-                 use_oracle=args_cli.use_oracle, rl_checkpoint=args_cli.rl_checkpoint,
-                 step0=args_cli.step0, filter_success=args_cli.filter_success)
+    if args_cli.num_envs > 1:
+        collect_task_parallel(args_cli.task, args_cli.num_episodes, args_cli.num_envs, output_dir,
+                              rl_checkpoint=args_cli.rl_checkpoint, filter_success=args_cli.filter_success)
+    else:
+        collect_task(args_cli.task, args_cli.num_episodes, output_dir,
+                     use_oracle=args_cli.use_oracle, rl_checkpoint=args_cli.rl_checkpoint,
+                     step0=args_cli.step0, filter_success=args_cli.filter_success)
     simulation_app.close()
 
 
