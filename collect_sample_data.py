@@ -1596,6 +1596,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         cfg = PegInsertCameraCfg() if task_name == "peg_insert" else NutThreadCameraCfg()
         cfg.scene.num_envs = num_envs
         cfg.scene.env_spacing = 20.0  # large spacing so cameras don't see neighboring envs
+        if task_name == "nut_thread":
+            cfg.episode_length_s = 10.0  # override 30s → 10s (sufficient for threading)
         env = FactoryCameraEnv(cfg=cfg)
     else:
         raise ValueError(f"Parallel collection only supports Factory tasks, got {task_name}")
