@@ -341,7 +341,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
             data_types=["rgb"],
             spawn=sim_utils.PinholeCameraCfg(
-                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 5.0)),
+                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)),
             offset=CameraCfg.OffsetCfg(
                 pos=(-0.2, 0.9, 0.8), rot=(0.16560, -0.23780, 0.78541, -0.54695), convention="ros"),
         )
@@ -1598,7 +1598,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         )
         cfg = PegInsertCameraCfg() if task_name == "peg_insert" else NutThreadCameraCfg()
         cfg.scene.num_envs = num_envs
-        cfg.scene.env_spacing = 20.0  # large spacing so cameras don't see neighboring envs
+        cfg.scene.env_spacing = 5.0  # large spacing so cameras don't see neighboring envs
         if task_name == "nut_thread":
             cfg.episode_length_s = 10.0  # override 30s → 10s (sufficient for threading)
         env = FactoryCameraEnv(cfg=cfg)
@@ -1623,7 +1623,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         else:
             cfg = env_cfg_entry()
         cfg.scene.num_envs = num_envs
-        cfg.scene.env_spacing = 20.0
+        cfg.scene.env_spacing = 5.0
         cfg.observations.policy.enable_corruption = False
         if hasattr(cfg.scene, 'cabinet_frame'):
             cfg.scene.cabinet_frame.debug_vis = False
@@ -1633,7 +1633,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
             data_types=["rgb"],
             spawn=sim_utils.PinholeCameraCfg(
-                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 5.0)),
+                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 4.0)),
             offset=CameraCfg.OffsetCfg(
                 pos=(-0.2, 0.9, 0.8), rot=(0.16560, -0.23780, 0.78541, -0.54695), convention="ros"),
         )
