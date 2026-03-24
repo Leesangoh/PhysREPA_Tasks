@@ -1717,8 +1717,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     if hasattr(env, 'randomize_physics'):
         env.randomize_physics()
 
-    # Reset RL policy
-    if rl_policy is not None:
+    # Reset RL policy (only if it has reset method — RSL-RL inference policy is a plain function)
+    if rl_policy is not None and hasattr(rl_policy, 'reset'):
         rl_policy.reset()
 
     # Read initial physics params (same for all envs in this batch — simplified)
@@ -1944,7 +1944,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 continue
 
             ep_idx = saved_count
-            print(f"  Env {i}: Episode {ep_idx} complete: {ep_length} steps (max_rew={max_reward:.2f})")
+            _max_rew = max(buf.rewards) if buf.rewards else 0.0
+            print(f"  Env {i}: Episode {ep_idx} complete: {ep_length} steps (max_rew={_max_rew:.2f})")
 
             # --- Save parquet ---
             chunk_idx = ep_idx // CHUNKS_SIZE
