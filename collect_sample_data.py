@@ -1659,12 +1659,29 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
         env = env.unwrapped
         print(f"  Loaded RSL-RL Drawer checkpoint: {rl_checkpoint}")
+    elif task_name in ("push", "strike"):
+        # Push/Strike: manager-based env with Step0 scripted policy
+        cfg_cls = TASK_CONFIGS[task_name]
+        cfg = cfg_cls()
+        cfg.scene.num_envs = num_envs
+        cfg.scene.env_spacing = 5.0
+        # Step0: hide target marker
+        if hasattr(cfg.scene, 'target_marker'):
+            cfg.scene.target_marker = None
+        env = ManagerBasedRLEnv(cfg=cfg)
+        # Scripted policy
+        from physrepa_tasks.policies.scripted_policy import Step0PushPolicy, Step0StrikePolicy
+        step0_cls = Step0PushPolicy if task_name == "push" else Step0StrikePolicy
+        oracle_policy = step0_cls(num_envs=num_envs, device=env.device)
+        print(f"  Using Step0 policy: {step0_cls.__name__} ({num_envs} envs)")
     else:
-        raise ValueError(f"Parallel collection supports Factory and Drawer tasks, got {task_name}")
+        raise ValueError(f"Parallel collection not supported for task: {task_name}")
 
+    is_step0 = task_name in ("push", "strike")
     dt = cfg.sim.dt * cfg.decimation
     fps = int(1.0 / dt)
-    max_steps = int(cfg.episode_length_s / dt)
+    episode_s = 5.0 if is_step0 else cfg.episode_length_s
+    max_steps = int(episode_s / dt)
 
     print(f"\n{'='*60}")
     print(f"Parallel collecting {num_episodes} episodes for task: {task_name}")
@@ -1709,6 +1726,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         env.reset()
     else:
         obs, info = env.reset()
+    if is_step0:
+        oracle_policy.reset()
 
     # Render warmup (flush stale camera frames without consuming episode budget)
     for _ in range(3):
@@ -1733,7 +1752,9 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     step = 0
     while saved_count < num_episodes:
         # --- Generate actions ---
-        if rl_policy is not None:
+        if is_step0:
+            action = oracle_policy.get_action(obs)  # (num_envs, 4) for position-only IK
+        elif rl_policy is not None:
             with torch.inference_mode():
                 if is_drawer:
                     flat_obs = obs["policy"] if isinstance(obs, dict) else obs
@@ -1750,10 +1771,24 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             action = torch.zeros(num_envs, action_dim, device=env.device)
 
         # --- Record pre-step data for all envs ---
-        if is_factory:
-            phys = env.get_physics_data()
-            table_rgb, wrist_rgb = env.get_camera_data()
-        elif is_drawer:
+        if is_step0:
+            # Push/Strike: read from obs["physics_gt"] + scene sensors
+            gt = obs.get("physics_gt", {})
+            _robot = env.scene["robot"]
+            _hand_idx = _robot.body_names.index("panda_hand")
+            phys = {
+                "ee_position": gt.get("ee_position_b", env.scene["ee_frame"].data.target_pos_w[:, 0, :] - env.scene.env_origins),
+                "ee_orientation": _robot.data.body_quat_w[:, _hand_idx],
+                "ee_velocity": gt.get("ee_velocity", _robot.data.body_lin_vel_w[:, _hand_idx]),
+                "ee_angular_velocity": _robot.data.body_ang_vel_w[:, _hand_idx],
+                "object_position": gt.get("object_position", env.scene["object"].data.root_pos_w - env.scene.env_origins),
+                "object_orientation": env.scene["object"].data.root_quat_w,
+                "object_velocity": env.scene["object"].data.root_lin_vel_w,
+                "object_angular_velocity": env.scene["object"].data.root_ang_vel_w,
+            }
+            table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
+            wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
+        elif is_factory:
             # Read from env.scene for drawer
             _robot = env.scene["robot"]
             _hand_idx = _robot.body_names.index("panda_hand")
@@ -1801,7 +1836,12 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             # Action → 7D
             raw_action = action[i].cpu().numpy().astype(np.float32)
             action_7d = np.zeros(7, dtype=np.float32)
-            action_7d[:6] = raw_action[:6]
+            if is_step0:
+                # 4D (position-only IK + gripper) → 7D
+                action_7d[:3] = raw_action[:3]
+                action_7d[6] = 0.0 if raw_action[3] < 0 else 1.0
+            else:
+                action_7d[:min(6, len(raw_action))] = raw_action[:6]
             buf.actions.append(action_7d)
 
             # Timestamp
@@ -1826,7 +1866,46 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 buf.physics_gt["physics_gt.ee_acceleration"].append(((ee_vel - prev_vel) / dt).astype(np.float32))
 
             # Task-specific GT
-            if task_name == "peg_insert":
+            if task_name in ("push", "strike"):
+                obj_pos = phys["object_position"][i].cpu().numpy()
+                obj_vel = phys["object_velocity"][i].cpu().numpy()
+                buf.physics_gt["physics_gt.object_position"].append(obj_pos)
+                buf.physics_gt["physics_gt.object_orientation"].append(phys["object_orientation"][i].cpu().numpy())
+                buf.physics_gt["physics_gt.object_velocity"].append(obj_vel)
+                buf.physics_gt["physics_gt.object_angular_velocity"].append(phys["object_angular_velocity"][i].cpu().numpy())
+                # Object acceleration
+                if len(buf.physics_gt["physics_gt.object_velocity"]) < 2:
+                    buf.physics_gt["physics_gt.object_acceleration"].append(np.zeros(3, dtype=np.float32))
+                else:
+                    prev_obj_vel = buf.physics_gt["physics_gt.object_velocity"][-2]
+                    buf.physics_gt["physics_gt.object_acceleration"].append(((obj_vel - prev_obj_vel) / dt).astype(np.float32))
+                # EE to object distance
+                ee_to_obj = float(np.linalg.norm(ee_pos - obj_pos))
+                buf.physics_gt["physics_gt.ee_to_object_distance"].append(np.array([ee_to_obj], dtype=np.float32))
+                # Object on surface
+                obj_half = 0.025 if task_name == "strike" else 0.03
+                on_surface = 1.0 if obj_pos[2] < (obj_half + 0.005) else 0.0
+                buf.physics_gt["physics_gt.object_on_surface"].append(np.array([on_surface], dtype=np.float32))
+                # Contact (zeros — parallel env doesn't have per-env contact sensor readout easily)
+                buf.physics_gt["physics_gt.contact_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_object_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_object_force"].append(np.zeros(3, dtype=np.float32))
+                # Target (Step0 has no target — use zeros)
+                buf.physics_gt["physics_gt.target_position"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_object_surface_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_object_surface_force"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.object_to_target_distance"].append(np.array([float("nan")], dtype=np.float32))
+                if task_name == "strike":
+                    # Ball planar travel distance (cumulative)
+                    if "_prev_ball_pos" not in buf.__dict__:
+                        buf._prev_ball_pos = obj_pos.copy()
+                        buf._rolling_dist = 0.0
+                    buf._rolling_dist += float(np.linalg.norm(obj_pos[:2] - buf._prev_ball_pos[:2]))
+                    buf._prev_ball_pos = obj_pos.copy()
+                    buf.physics_gt["physics_gt.ball_planar_travel_distance"].append(np.array([buf._rolling_dist], dtype=np.float32))
+            elif task_name == "peg_insert":
                 peg_pos = phys["held_position"][i].cpu().numpy()
                 hole_pos = phys["fixed_position"][i].cpu().numpy()
                 buf.physics_gt["physics_gt.peg_position"].append(peg_pos)
@@ -1931,8 +2010,9 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             attempted_count += 1
 
             # Success check
-            if is_drawer:
-                # Drawer: check if drawer opened > 10cm
+            if is_step0:
+                success = True  # Step0 has no target, all episodes are valid
+            elif is_drawer:
                 if "physics_gt.drawer_joint_pos" in buf.physics_gt and buf.physics_gt["physics_gt.drawer_joint_pos"]:
                     final_jpos = buf.physics_gt["physics_gt.drawer_joint_pos"][-1]
                     success = float(final_jpos[0] if hasattr(final_jpos, '__len__') else final_jpos) > 0.1
@@ -2007,10 +2087,15 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             if saved_count % 10 == 0:
                 print(f"  >>> {saved_count}/{num_episodes} episodes saved ({attempted_count} attempted)")
 
-            # Reset this env's buffer
+            # Reset this env's buffer + policy state
             buf.reset()
+            if hasattr(buf, '_prev_ball_pos'):
+                del buf._prev_ball_pos
+                del buf._rolling_dist
             if is_factory and rl_policy is not None and hasattr(rl_policy, 'reset'):
                 rl_policy.reset(env_ids=[i])
+            if is_step0:
+                oracle_policy.reset(env_ids=torch.tensor([i], device=env.device))
 
             # Re-randomize physics
             if hasattr(env, 'randomize_physics'):
