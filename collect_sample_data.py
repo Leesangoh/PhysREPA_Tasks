@@ -1789,7 +1789,9 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
             wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
         elif is_factory:
-            # Read from env.scene for drawer
+            phys = env.get_physics_data()
+            table_rgb, wrist_rgb = env.get_camera_data()
+        elif is_drawer:
             _robot = env.scene["robot"]
             _hand_idx = _robot.body_names.index("panda_hand")
             _ee_frame = env.scene["ee_frame"]
@@ -1799,12 +1801,10 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 "ee_velocity": _robot.data.body_lin_vel_w[:, _hand_idx],
                 "ee_angular_velocity": _robot.data.body_ang_vel_w[:, _hand_idx],
             }
-            # Drawer joint
             _cabinet = env.scene["cabinet"]
             _jidx = _cabinet.find_joints("drawer_top_joint")[0]
             phys["drawer_joint_pos"] = _cabinet.data.joint_pos[:, _jidx]
             phys["drawer_joint_vel"] = _cabinet.data.joint_vel[:, _jidx]
-            # Camera
             table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
             wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
 
