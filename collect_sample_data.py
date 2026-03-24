@@ -1587,6 +1587,9 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     from scipy.spatial.transform import Rotation
 
     is_factory = task_name in ("peg_insert", "nut_thread")
+    is_drawer = task_name == "drawer"
+    _drawer_env_wrapped = None
+    rl_policy = None
 
     # --- Setup env ---
     if is_factory:
@@ -1599,16 +1602,65 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         if task_name == "nut_thread":
             cfg.episode_length_s = 10.0  # override 30s → 10s (sufficient for threading)
         env = FactoryCameraEnv(cfg=cfg)
-    else:
-        raise ValueError(f"Parallel collection only supports Factory tasks, got {task_name}")
 
-    # Load RL policy
-    if rl_checkpoint is not None:
-        from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
-        rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
-        print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+        if rl_checkpoint is not None:
+            from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
+            rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
+            print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+
+    elif is_drawer:
+        import gymnasium as gym
+        import isaaclab.sim as sim_utils
+        import isaaclab_tasks
+        import importlib
+        gym_id = "Isaac-Open-Drawer-Franka-v0"
+        spec = gym.spec(gym_id)
+        env_cfg_entry = spec.kwargs["env_cfg_entry_point"]
+        if isinstance(env_cfg_entry, str):
+            mod_path, cls_name = env_cfg_entry.rsplit(":", 1)
+            mod = importlib.import_module(mod_path)
+            cfg = getattr(mod, cls_name)()
+        else:
+            cfg = env_cfg_entry()
+        cfg.scene.num_envs = num_envs
+        cfg.scene.env_spacing = 20.0
+        cfg.observations.policy.enable_corruption = False
+        if hasattr(cfg.scene, 'cabinet_frame'):
+            cfg.scene.cabinet_frame.debug_vis = False
+        # Add cameras
+        from isaaclab.sensors import CameraCfg
+        cfg.scene.table_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=18.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 5.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(-0.2, 0.9, 0.8), rot=(0.16560, -0.23780, 0.78541, -0.54695), convention="ros"),
+        )
+        cfg.scene.wrist_cam = CameraCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_hand/wrist_cam", update_period=0.0, height=384, width=384,
+            data_types=["rgb"],
+            spawn=sim_utils.PinholeCameraCfg(
+                focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 2.0)),
+            offset=CameraCfg.OffsetCfg(
+                pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
+        )
+        env = gym.make(gym_id, cfg=cfg)
+        # Load RSL-RL policy
+        from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
+        from rsl_rl.runners import OnPolicyRunner
+        agent_cfg_entry = spec.kwargs["rsl_rl_cfg_entry_point"]
+        mod_path, cls_name = agent_cfg_entry.rsplit(":", 1)
+        mod = importlib.import_module(mod_path)
+        agent_cfg = getattr(mod, cls_name)()
+        _drawer_env_wrapped = RslRlVecEnvWrapper(env, clip_actions=agent_cfg.clip_actions)
+        ppo_runner = OnPolicyRunner(_drawer_env_wrapped, agent_cfg.to_dict(), log_dir=None, device=env.unwrapped.device)
+        ppo_runner.load(rl_checkpoint)
+        rl_policy = ppo_runner.get_inference_policy(device=env.unwrapped.device)
+        env = env.unwrapped
+        print(f"  Loaded RSL-RL Drawer checkpoint: {rl_checkpoint}")
     else:
-        rl_policy = None
+        raise ValueError(f"Parallel collection supports Factory and Drawer tasks, got {task_name}")
 
     dt = cfg.sim.dt * cfg.decimation
     fps = int(1.0 / dt)
@@ -1650,7 +1702,12 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     all_episodes_physics_gt = []
 
     # --- Reset all envs ---
-    obs, info = env.reset()
+    if is_drawer:
+        obs_w, info = _drawer_env_wrapped.get_observations()
+        obs = {"policy": obs_w}
+        env.reset()
+    else:
+        obs, info = env.reset()
 
     # Render warmup (flush stale camera frames without consuming episode budget)
     for _ in range(3):
@@ -1677,16 +1734,43 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         # --- Generate actions ---
         if rl_policy is not None:
             with torch.inference_mode():
-                flat_obs = obs["policy"] if isinstance(obs, dict) else obs
-                action = rl_policy(flat_obs)  # (num_envs, 6)
+                if is_drawer:
+                    flat_obs = obs["policy"] if isinstance(obs, dict) else obs
+                    if isinstance(flat_obs, dict):
+                        flat_obs = torch.cat([v.flatten(start_dim=1) for v in flat_obs.values()], dim=-1)
+                    action = rl_policy(flat_obs)
+                else:
+                    flat_obs = obs["policy"] if isinstance(obs, dict) else obs
+                    action = rl_policy(flat_obs)  # (num_envs, 6)
                 if action.dim() == 1:
                     action = action.unsqueeze(0)
         else:
-            action = torch.zeros(num_envs, 6, device=env.device)
+            action_dim = 8 if is_drawer else 6
+            action = torch.zeros(num_envs, action_dim, device=env.device)
 
         # --- Record pre-step data for all envs ---
-        phys = env.get_physics_data()
-        table_rgb, wrist_rgb = env.get_camera_data()
+        if is_factory:
+            phys = env.get_physics_data()
+            table_rgb, wrist_rgb = env.get_camera_data()
+        elif is_drawer:
+            # Read from env.scene for drawer
+            _robot = env.scene["robot"]
+            _hand_idx = _robot.body_names.index("panda_hand")
+            _ee_frame = env.scene["ee_frame"]
+            phys = {
+                "ee_position": _ee_frame.data.target_pos_w[:, 0, :] - env.scene.env_origins,
+                "ee_orientation": _robot.data.body_quat_w[:, _hand_idx],
+                "ee_velocity": _robot.data.body_lin_vel_w[:, _hand_idx],
+                "ee_angular_velocity": _robot.data.body_ang_vel_w[:, _hand_idx],
+            }
+            # Drawer joint
+            _cabinet = env.scene["cabinet"]
+            _jidx = _cabinet.find_joints("drawer_top_joint")[0]
+            phys["drawer_joint_pos"] = _cabinet.data.joint_pos[:, _jidx]
+            phys["drawer_joint_vel"] = _cabinet.data.joint_vel[:, _jidx]
+            # Camera
+            table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
+            wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
 
         for i in range(num_envs):
             buf = buffers[i]
@@ -1699,7 +1783,12 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             from scipy.spatial.transform import Rotation as R
             quat_xyzw = np.array([ee_quat[1], ee_quat[2], ee_quat[3], ee_quat[0]])
             rpy = R.from_quat(quat_xyzw).as_euler("xyz")
-            gripper_val = env.joint_pos[i, -1].item() / 0.04
+            if is_factory:
+                gripper_val = env.joint_pos[i, -1].item() / 0.04
+            else:
+                _robot = env.scene["robot"]
+                _finger_ids = _robot.find_joints("panda_finger.*")[0]
+                gripper_val = _robot.data.joint_pos[i, _finger_ids].mean().item() / 0.04
             state_8d = np.array([ee_pos[0], ee_pos[1], ee_pos[2], rpy[0], rpy[1], rpy[2], 0.0, gripper_val], dtype=np.float32)
             buf.states.append(state_8d)
 
@@ -1781,12 +1870,38 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 rel_angle = float((bolt_r.inv() * nut_r).as_rotvec()[2])
                 buf.physics_gt["physics_gt.nut_bolt_relative_angle"].append(np.array([rel_angle], dtype=np.float32))
 
+            elif task_name == "drawer":
+                jpos = phys["drawer_joint_pos"][i].cpu().numpy()
+                jvel = phys["drawer_joint_vel"][i].cpu().numpy()
+                buf.physics_gt["physics_gt.drawer_joint_pos"].append(jpos)
+                buf.physics_gt["physics_gt.drawer_joint_vel"].append(jvel)
+                buf.physics_gt["physics_gt.contact_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_handle_force"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_handle_flag"].append(np.zeros(1, dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_handle_force"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.handle_position"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.handle_velocity"].append(np.zeros(3, dtype=np.float32))
+                drawer_max = 0.39
+                opening_extent = float(np.clip(jpos[0] / drawer_max, 0.0, 1.0)) if jpos.size > 0 else 0.0
+                buf.physics_gt["physics_gt.drawer_opening_extent"].append(np.array([opening_extent], dtype=np.float32))
+
             # Phase (RL = idle)
             buf.physics_gt["physics_gt.phase"].append(np.array([7], dtype=np.float32))
             buf.step_count += 1
 
         # --- Step all envs ---
-        obs, reward, terminated, truncated, info = env.step(action)
+        if is_drawer:
+            obs_wrapped, rew_wrapped, dones_w, infos = _drawer_env_wrapped.step(action)
+            obs = {"policy": obs_wrapped}
+            reward = rew_wrapped
+            # Construct terminated/truncated from dones
+            terminated = dones_w
+            truncated = dones_w
+        else:
+            obs, reward, terminated, truncated, info = env.step(action)
 
         # Record rewards
         for i in range(num_envs):
@@ -1810,13 +1925,21 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             attempted_count += 1
 
             # Success check
-            max_reward = max(buf.rewards) if buf.rewards else 0.0
-            success = max_reward > 1.0
+            if is_drawer:
+                # Drawer: check if drawer opened > 10cm
+                if "physics_gt.drawer_joint_pos" in buf.physics_gt and buf.physics_gt["physics_gt.drawer_joint_pos"]:
+                    final_jpos = buf.physics_gt["physics_gt.drawer_joint_pos"][-1]
+                    success = float(final_jpos[0] if hasattr(final_jpos, '__len__') else final_jpos) > 0.1
+                else:
+                    success = False
+            else:
+                max_reward = max(buf.rewards) if buf.rewards else 0.0
+                success = max_reward > 1.0
 
             if filter_success and not success:
-                print(f"  Env {i}: Episode FAILED (max_rew={max_reward:.2f}) — skipping")
+                print(f"  Env {i}: Episode FAILED — skipping")
                 buf.reset()
-                if rl_policy is not None:
+                if is_factory and rl_policy is not None and hasattr(rl_policy, 'reset'):
                     rl_policy.reset(env_ids=[i])
                 continue
 
@@ -1879,7 +2002,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
 
             # Reset this env's buffer
             buf.reset()
-            if rl_policy is not None:
+            if is_factory and rl_policy is not None and hasattr(rl_policy, 'reset'):
                 rl_policy.reset(env_ids=[i])
 
             # Re-randomize physics
