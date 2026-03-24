@@ -708,8 +708,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             action_dim = 4  # position-only IK (3D) + gripper (1D)
         else:
             action_dim = 7
-        # Warmup: skip for Factory envs (they have internal episode length that would be consumed)
-        if not is_factory:
+        if is_factory:
+            # Factory: render-only warmup (no physics step, no episode budget consumed)
+            for _ in range(3):
+                env.sim.render()
+        else:
             warmup_steps = int(0.5 / dt)
             for _ in range(warmup_steps):
                 if is_rl_wrapped:
@@ -1645,6 +1648,10 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
 
     # --- Reset all envs ---
     obs, info = env.reset()
+
+    # Render warmup (flush stale camera frames without consuming episode budget)
+    for _ in range(3):
+        env.sim.render()
 
     # Randomize physics for all envs
     if hasattr(env, 'randomize_physics'):
