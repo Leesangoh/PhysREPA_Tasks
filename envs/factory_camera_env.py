@@ -133,8 +133,8 @@ class FactoryCameraEnv(FactoryEnv):
         self.scene.sensors["table_cam"] = self._table_cam
         self.scene.sensors["wrist_cam"] = self._wrist_cam
 
-        # Store default masses for scaling
-        self._held_default_masses = self._held_asset.root_physx_view.get_masses().clone()
+        # Default masses stored lazily (root_physx_view not ready at scene setup time)
+        self._held_default_masses = None
 
     def randomize_physics(self):
         """Randomize friction and mass per episode for PEZ probing.
@@ -152,6 +152,8 @@ class FactoryCameraEnv(FactoryEnv):
         factory_utils.set_friction(self._fixed_asset, fixed_friction, self.num_envs)
 
         # Randomize held asset mass (scale from default)
+        if self._held_default_masses is None:
+            self._held_default_masses = self._held_asset.root_physx_view.get_masses().clone()
         lo, hi = self.cfg.held_mass_scale_range
         mass_scale = lo + (hi - lo) * torch.rand(1).item()
         new_masses = self._held_default_masses * mass_scale
@@ -172,32 +174,15 @@ class FactoryCameraEnv(FactoryEnv):
         return table_rgb, wrist_rgb
 
     def get_physics_data(self):
-        """Get physics ground truth for data collection, including pair-specific contact forces."""
-        # --- Held asset (peg/nut) net contact force ---
-        held_contact = self._held_asset.root_physx_view.get_net_contact_forces(
-            dt=self.physics_dt
-        )
-        held_contact_total = held_contact.sum(dim=1)  # (num_envs, 3)
-        contact_mag = torch.norm(held_contact_total, dim=-1)
-        contact_flag = (contact_mag > 0.5).float().unsqueeze(-1)
+        """Get physics ground truth for data collection, including contact forces.
 
-        # --- Finger contact forces (left/right) ---
-        left_idx = self._robot.body_names.index("panda_leftfinger")
-        right_idx = self._robot.body_names.index("panda_rightfinger")
-        robot_contact = self._robot.root_physx_view.get_net_contact_forces(
-            dt=self.physics_dt
-        )
-        finger_l_force = robot_contact[:, left_idx, :]   # (num_envs, 3)
-        finger_r_force = robot_contact[:, right_idx, :]   # (num_envs, 3)
-        finger_l_flag = (torch.norm(finger_l_force, dim=-1) > 0.5).float().unsqueeze(-1)
-        finger_r_flag = (torch.norm(finger_r_force, dim=-1) > 0.5).float().unsqueeze(-1)
-
-        # --- Fixed asset (hole/bolt) net contact force = held-fixed interaction ---
-        fixed_contact = self._fixed_asset.root_physx_view.get_net_contact_forces(
-            dt=self.physics_dt
-        )
-        fixed_contact_total = fixed_contact.sum(dim=1)  # (num_envs, 3)
-        fixed_flag = (torch.norm(fixed_contact_total, dim=-1) > 0.5).float().unsqueeze(-1)
+        Note: Factory assets are Articulations, not RigidObjects, so
+        root_physx_view is ArticulationView (no get_net_contact_forces).
+        Contact forces are zeros for now — pair-specific contact requires
+        adding ContactSensor to Factory scene (future work).
+        """
+        _zeros1 = torch.zeros(self.num_envs, 1, device=self.device)
+        _zeros3 = torch.zeros(self.num_envs, 3, device=self.device)
 
         # --- Held asset velocity (actual, not zeros) ---
         held_vel = self._held_asset.data.root_lin_vel_w
@@ -216,15 +201,13 @@ class FactoryCameraEnv(FactoryEnv):
             "fixed_orientation": self.fixed_quat.clone(),
             "joint_pos": self.joint_pos[:, :7].clone(),
             "joint_vel": self.joint_vel[:, :7].clone(),
-            # Legacy total contact
-            "contact_flag": contact_flag,
-            "contact_force": held_contact_total,
-            # Pair-specific: finger L/R ↔ held asset
-            "finger_l_contact_flag": finger_l_flag,
-            "finger_l_contact_force": finger_l_force,
-            "finger_r_contact_flag": finger_r_flag,
-            "finger_r_contact_force": finger_r_force,
-            # Pair-specific: held ↔ fixed (peg↔socket, nut↔bolt)
-            "held_fixed_contact_flag": fixed_flag,
-            "held_fixed_contact_force": fixed_contact_total,
+            # Contact forces — zeros placeholder (ArticulationView has no get_net_contact_forces)
+            "contact_flag": _zeros1,
+            "contact_force": _zeros3,
+            "finger_l_contact_flag": _zeros1,
+            "finger_l_contact_force": _zeros3,
+            "finger_r_contact_flag": _zeros1,
+            "finger_r_contact_force": _zeros3,
+            "held_fixed_contact_flag": _zeros1,
+            "held_fixed_contact_force": _zeros3,
         }

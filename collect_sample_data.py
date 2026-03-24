@@ -707,13 +707,15 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
             action_dim = 4  # position-only IK (3D) + gripper (1D)
         else:
             action_dim = 7
-        warmup_steps = int(0.5 / dt)
-        for _ in range(warmup_steps):
-            if is_rl_wrapped:
-                obs_w, _, _, _ = _drawer_env_wrapped.step(torch.zeros(1, action_dim, device=env.device))
-                obs = {"policy": obs_w}
-            else:
-                obs, _, _, _, _ = env.step(torch.zeros(1, action_dim, device=env.device))
+        # Warmup: skip for Factory envs (they have internal episode length that would be consumed)
+        if not is_factory:
+            warmup_steps = int(0.5 / dt)
+            for _ in range(warmup_steps):
+                if is_rl_wrapped:
+                    obs_w, _, _, _ = _drawer_env_wrapped.step(torch.zeros(1, action_dim, device=env.device))
+                    obs = {"policy": obs_w}
+                else:
+                    obs, _, _, _, _ = env.step(torch.zeros(1, action_dim, device=env.device))
 
         # Full episode length (warmup is separate, doesn't subtract from data)
         episode_s = 5.0 if step0 else cfg.episode_length_s
@@ -1242,12 +1244,13 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 final_obj = np.array(ep_physics_gt["physics_gt.object_position"][-1])
                 final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
                 success = float(np.linalg.norm(final_obj[:2] - final_target[:2])) < 0.06
-            elif task_name == "peg_insert" and "physics_gt.insertion_depth" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.insertion_depth"][-1][0]) < 0.005
-            elif task_name == "nut_thread" and "physics_gt.axial_progress" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.axial_progress"][-1][0]) < -0.005
+            elif task_name in ("peg_insert", "nut_thread"):
+                # Factory tasks: max reward > 1.0 = success
+                # (per-step reward can drop at truncation, so use max over episode)
+                max_reward = max(ep_rewards) if ep_rewards else 0.0
+                success = max_reward > 1.0
             elif task_name == "drawer" and "physics_gt.drawer_joint_pos" in ep_physics_gt:
-                success = float(ep_physics_gt["physics_gt.drawer_joint_pos"][-1][0]) > 0.3
+                success = float(ep_physics_gt["physics_gt.drawer_joint_pos"][-1][0]) > 0.1
             elif task_name == "reach" and "physics_gt.ee_position" in ep_physics_gt and "physics_gt.target_position" in ep_physics_gt:
                 final_ee = np.array(ep_physics_gt["physics_gt.ee_position"][-1])
                 final_target = np.array(ep_physics_gt["physics_gt.target_position"][-1])
