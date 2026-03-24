@@ -1688,6 +1688,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             self.frames_wrist = []
             self.physics_gt = defaultdict(list)
             self.step_count = 0
+            self.skip_frames = 5  # skip first N frames after reset (stale camera)
             self.physics_params = {}
 
     buffers = [EpBuffer() for _ in range(num_envs)]
@@ -1776,6 +1777,11 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             buf = buffers[i]
             if buf.step_count >= max_steps:
                 continue  # this env's episode is done, waiting for save
+            # Skip first N frames after reset (camera shows stale previous env)
+            if buf.skip_frames > 0:
+                buf.skip_frames -= 1
+                buf.step_count += 1
+                continue
 
             # EE state → 8D
             ee_pos = phys["ee_position"][i].cpu().numpy()
@@ -1903,9 +1909,9 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         else:
             obs, reward, terminated, truncated, info = env.step(action)
 
-        # Record rewards
+        # Record rewards (only for frames that are actually recorded, not skipped)
         for i in range(num_envs):
-            if buffers[i].step_count <= max_steps:
+            if buffers[i].step_count <= max_steps and buffers[i].skip_frames <= 0:
                 buffers[i].rewards.append(reward[i].item())
 
         # --- Check for completed episodes ---
