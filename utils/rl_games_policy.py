@@ -68,10 +68,12 @@ class RlGamesPolicy:
         if env_ids is None or self.hidden is None:
             self.hidden = None
         else:
-            # Zero out hidden state for specific envs
+            # Clone to avoid inplace update on inference tensors
+            h, c = self.hidden[0].clone(), self.hidden[1].clone()
             for idx in env_ids:
-                self.hidden[0][:, idx, :] = 0.0
-                self.hidden[1][:, idx, :] = 0.0
+                h[:, idx, :] = 0.0
+                c[:, idx, :] = 0.0
+            self.hidden = (h, c)
 
     def __call__(self, obs: torch.Tensor) -> torch.Tensor:
         """Run inference. obs: (1, obs_dim) → action: (1, 6)"""
