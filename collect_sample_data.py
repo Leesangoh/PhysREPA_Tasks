@@ -294,6 +294,89 @@ def read_physics_params(env, task_name: str) -> dict:
     return params
 
 
+def read_physics_params_for_env(env, task_name: str, env_idx: int) -> dict:
+    """Read physics params for a specific env index (for parallel collection)."""
+    params = {}
+
+    if task_name == "stack":
+        cube_a = env.scene["cube_a"]
+        mass_a = cube_a.root_physx_view.get_masses()[env_idx, 0].item()
+        mat_a = cube_a.root_physx_view.get_material_properties()
+        params["object_0_mass"] = round(mass_a, 4)
+        params["object_0_static_friction"] = round(mat_a[env_idx, 0, 0].item(), 4)
+        params["object_0_dynamic_friction"] = round(mat_a[env_idx, 0, 1].item(), 4)
+        params["object_0_color"] = "red"
+        params["object_0_type"] = "cube"
+        cube_b = env.scene["cube_b"]
+        mass_b = cube_b.root_physx_view.get_masses()[env_idx, 0].item()
+        mat_b = cube_b.root_physx_view.get_material_properties()
+        params["object_1_mass"] = round(mass_b, 4)
+        params["object_1_static_friction"] = round(mat_b[env_idx, 0, 0].item(), 4)
+        params["object_1_dynamic_friction"] = round(mat_b[env_idx, 0, 1].item(), 4)
+        params["object_1_color"] = "blue"
+        params["object_1_type"] = "cube"
+    elif task_name == "drawer":
+        params["task_type"] = "drawer"
+        try:
+            cabinet = env.scene["cabinet"]
+            joint_idx = cabinet.find_joints("drawer_top_joint")[0]
+            dampings = cabinet.root_physx_view.get_dof_dampings()
+            params["drawer_joint_damping"] = round(dampings[env_idx, joint_idx[0]].item(), 4)
+            handle_body_idx = cabinet.body_names.index("drawer_handle_top")
+            masses = cabinet.root_physx_view.get_masses()
+            params["drawer_handle_mass"] = round(masses[env_idx, handle_body_idx].item(), 4)
+            mat = cabinet.root_physx_view.get_material_properties()
+            params["handle_static_friction"] = round(mat[env_idx, handle_body_idx, 0].item(), 4)
+            params["handle_dynamic_friction"] = round(mat[env_idx, handle_body_idx, 1].item(), 4)
+        except Exception as e:
+            print(f"  [WARN] failed to read drawer physics params for env {env_idx}: {e}")
+    elif task_name == "reach":
+        params["task_type"] = "reach"
+    elif task_name == "peg_insert":
+        held = env._held_asset if hasattr(env, '_held_asset') else env.scene["peg"]
+        fixed = env._fixed_asset if hasattr(env, '_fixed_asset') else env.scene["hole"]
+        mat_held = held.root_physx_view.get_material_properties()
+        mat_fixed = fixed.root_physx_view.get_material_properties()
+        params["peg_static_friction"] = round(mat_held[env_idx, 0, 0].item(), 4)
+        params["peg_dynamic_friction"] = round(mat_held[env_idx, 0, 1].item(), 4)
+        params["peg_mass"] = round(held.root_physx_view.get_masses()[env_idx, 0].item(), 6)
+        params["hole_static_friction"] = round(mat_fixed[env_idx, 0, 0].item(), 4)
+        params["hole_dynamic_friction"] = round(mat_fixed[env_idx, 0, 1].item(), 4)
+        params["task_type"] = "peg_insert"
+    elif task_name == "nut_thread":
+        held = env._held_asset if hasattr(env, '_held_asset') else env.scene["nut"]
+        fixed = env._fixed_asset if hasattr(env, '_fixed_asset') else env.scene["bolt"]
+        mat_held = held.root_physx_view.get_material_properties()
+        mat_fixed = fixed.root_physx_view.get_material_properties()
+        params["nut_static_friction"] = round(mat_held[env_idx, 0, 0].item(), 4)
+        params["nut_dynamic_friction"] = round(mat_held[env_idx, 0, 1].item(), 4)
+        params["nut_mass"] = round(held.root_physx_view.get_masses()[env_idx, 0].item(), 6)
+        params["bolt_static_friction"] = round(mat_fixed[env_idx, 0, 0].item(), 4)
+        params["bolt_dynamic_friction"] = round(mat_fixed[env_idx, 0, 1].item(), 4)
+        params["task_type"] = "nut_thread"
+    else:
+        # push, strike, lift, pick_place
+        obj = env.scene["object"]
+        mass = obj.root_physx_view.get_masses()[env_idx, 0].item()
+        mat_props = obj.root_physx_view.get_material_properties()
+        params["object_0_mass"] = round(mass, 4)
+        params["object_0_static_friction"] = round(mat_props[env_idx, 0, 0].item(), 4)
+        params["object_0_dynamic_friction"] = round(mat_props[env_idx, 0, 1].item(), 4)
+        params["object_0_color"] = "red"
+        params["object_0_type"] = "ball" if task_name == "strike" else "cube"
+
+    if task_name in ("push", "strike"):
+        surface = env.scene["surface"]
+        surface_mat = surface.root_physx_view.get_material_properties()
+        params["surface_static_friction"] = round(surface_mat[env_idx, 0, 0].item(), 4)
+        params["surface_dynamic_friction"] = round(surface_mat[env_idx, 0, 1].item(), 4)
+    if task_name == "strike":
+        mat_props = env.scene["object"].root_physx_view.get_material_properties()
+        params["object_0_restitution"] = round(mat_props[env_idx, 0, 2].item(), 4)
+
+    return params
+
+
 def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle: bool = False,
                   rl_checkpoint: str | None = None, step0: bool = False, filter_success: bool = False):
     """Collect episodes for a single task and save in LeRobot V2 format."""
@@ -1741,13 +1824,13 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     if rl_policy is not None and hasattr(rl_policy, 'reset'):
         rl_policy.reset()
 
-    # Read initial physics params (same for all envs in this batch — simplified)
-    physics_params = read_physics_params(env, task_name)
-
+    # Read initial physics params PER ENV (each env has independently randomized physics)
     for i in range(num_envs):
-        buffers[i].physics_params = dict(physics_params)
+        buffers[i].physics_params = read_physics_params_for_env(env, task_name, env_idx=i)
 
-    print(f"  Physics params: {physics_params}")
+    print(f"  Physics params (env 0): {buffers[0].physics_params}")
+    if num_envs > 1:
+        print(f"  Physics params (env 1): {buffers[1].physics_params}")
 
     step = 0
     while saved_count < num_episodes:
@@ -2097,10 +2180,11 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             if is_step0:
                 oracle_policy.reset(env_ids=torch.tensor([i], device=env.device))
 
-            # Re-randomize physics
-            if hasattr(env, 'randomize_physics'):
-                env.randomize_physics()
-                buffers[i].physics_params = read_physics_params(env, task_name)
+            # Re-read physics params for this env after auto-reset
+            # (Isaac Lab's _reset_idx already applied EventCfg randomization events)
+            if is_factory and hasattr(env, 'randomize_physics'):
+                env.randomize_physics()  # Factory: explicit randomization
+            buffers[i].physics_params = read_physics_params_for_env(env, task_name, env_idx=i)
 
             if saved_count >= num_episodes:
                 break
