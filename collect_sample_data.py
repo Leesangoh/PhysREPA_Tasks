@@ -1710,6 +1710,27 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         cfg.observations.policy.enable_corruption = False
         if hasattr(cfg.scene, 'cabinet_frame'):
             cfg.scene.cabinet_frame.debug_vis = False
+        # Override randomization: startup → reset AND add damping/mass randomization
+        from isaaclab.managers import EventTermCfg as EventTerm
+        from isaaclab.managers import SceneEntityCfg
+        import isaaclab.envs.mdp as mdp_events
+        if hasattr(cfg.events, 'robot_physics_material'):
+            cfg.events.robot_physics_material.mode = "reset"
+        if hasattr(cfg.events, 'cabinet_physics_material'):
+            cfg.events.cabinet_physics_material.mode = "reset"
+            cfg.events.cabinet_physics_material.params["static_friction_range"] = (0.2, 1.5)
+            cfg.events.cabinet_physics_material.params["dynamic_friction_range"] = (0.2, 1.5)
+        # Add drawer damping randomization
+        cfg.events.randomize_drawer_damping = EventTerm(
+            func=mdp_events.randomize_actuator_gains,
+            mode="reset",
+            params={
+                "asset_cfg": SceneEntityCfg("cabinet", joint_names=["drawer_top_joint"]),
+                "stiffness_distribution_params": (5.0, 20.0),
+                "damping_distribution_params": (0.5, 5.0),
+                "operation": "abs",
+            },
+        )
         # Add cameras
         from isaaclab.sensors import CameraCfg
         cfg.scene.table_cam = CameraCfg(
