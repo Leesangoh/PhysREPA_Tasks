@@ -1,0 +1,25 @@
+{
+  "model": "large",
+  "solver": "ridge",
+  "probing_level": "window",
+  "vector_mode": "xyz",
+  "lr_grid": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.005
+  ],
+  "wd_grid": [
+    0.01,
+    0.1,
+    0.4,
+    0.8
+  ],
+  "cv_splits": 5,
+  "cv_seed": 42,
+  "max_epochs": 400,
+  "patience": 40,
+  "grouping": "episode_id (window-level) or one-per-episode (episode-level)",
+  "note": "v3 extends v2 with PEZ-faithful window-level + multi-dim vector support"
+}
