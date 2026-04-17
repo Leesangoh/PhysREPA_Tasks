@@ -1,0 +1,25 @@
+{
+  "model": "large",
+  "solver": "ridge",
+  "lr_grid": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.005
+  ],
+  "wd_grid": [
+    0.01,
+    0.1,
+    0.4,
+    0.8
+  ],
+  "cv_splits": 5,
+  "cv_seed": 42,
+  "max_epochs": 400,
+  "patience": 40,
+  "grouping": "episode_per_group (KFold)",
+  "feature_aggregation": "mean-pool across all windows per episode",
+  "gt_aggregation": "mean across all frames per episode (scalar + vector_norm)",
+  "note": "Transplanted from PEZ step3_probe.py:fit_trainable_probe_batched"
+}

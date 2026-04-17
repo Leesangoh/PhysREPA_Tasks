@@ -1731,6 +1731,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 "operation": "abs",
             },
         )
+        # Shorten episode length: 10s → 5s (sufficient for drawer opening)
+        cfg.episode_length_s = 5.0
         # Add cameras
         from isaaclab.sensors import CameraCfg
         cfg.scene.table_cam = CameraCfg(
