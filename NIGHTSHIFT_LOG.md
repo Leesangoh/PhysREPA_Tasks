@@ -646,3 +646,76 @@ Next action decisions:
 2. Declare Scenario A partial reproduction
 3. Proceed to Phase 3 (event-aligned force probe) per protocol
 4. Optional: sincos variant on ee_speed / ee_accel (though scalar variant was fine)
+
+## [2026-04-18 18:34 UTC] [CONSENSUS] Phase 3 blocked, pivot to attentive Push + Reach generality
+
+Decision:
+- Phase 3 force/contact probe remains blocked by all-zero public labels.
+- Next best use of the night shift:
+  1. Push attentive probe on existing token-patch cache
+  2. Reach token-patch extraction and PEZ-analog probe
+
+Rationale:
+- object_direction_sincos still fails under linear flatten (`peak=0.084 @ L23`)
+- PEZ Figure 8 showed attentive readout can recover structure hidden from linear pooling
+- Reach provides a clean generality test for arm-side kinematic PEZ without contact confounds
+
+## [2026-04-18 18:41 UTC] [LAUNCHING LONG RUN: push_attentive_pilot_l13]
+
+Started attentive diagnostic pilot on Push using existing token-patch cache.
+
+Config:
+- cache: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/push`
+- task: `push`
+- model: `large`
+- target layers: `13` only
+- targets:
+  - `ee_direction_sincos`
+  - `object_direction_sincos`
+  - `ee_speed`
+
+Reason for restricted scope:
+- a wider attentive sweep was too expensive for same-night turnaround
+- the scientific question is narrow: does attentive readout rescue the failed object-direction signal around the known ee-side PEZ layer?
+
+## [2026-04-18 19:07 UTC] [LAUNCHING LONG RUN: reach_token_extract_escalated]
+
+The first attempt to write Reach token-patch cache hit the sandbox filesystem boundary on `/mnt/md1/solee`.
+Relaunched with escalated filesystem access using the same PEZ-aligned extraction recipe:
+- `resid_post`
+- `temporal_last_patch`
+- output root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach`
+
+## [2026-04-18 20:11 UTC] [PHASE 2c-C] Reach extraction complete; launching probe next
+
+Reach token-patch extraction finished successfully:
+- task: `reach`
+- episodes: `600 / 600`
+- cache root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach`
+
+Probe plan:
+- task: `reach`
+- model: `large`
+- feature type: `token_patch`
+- targets:
+  - `ee_direction_sincos`
+  - `ee_speed`
+  - `ee_accel_magnitude`
+  - `fake_mod5` (negative-control fallback in place of nonexistent Reach mass randomization)
+
+## [2026-04-18 20:24 UTC] [LAUNCHING LONG RUN: reach_phase2c_probe]
+
+Started Reach token-patch probe on a separate GPU from the attentive Push pilot.
+
+Current expectation:
+- `ee_direction_sincos` should show the same manipulation-domain PEZ-like mid-depth structure observed on Push ee-side
+- `ee_speed` should be shallow/high from early layers
+- `fake_mod5` should stay near chance / non-decodable
+
+## [2026-04-18 20:31 UTC] [STATUS]
+
+Live jobs:
+- Push attentive pilot (`layer 13`, three targets) is still active on GPU 0
+- Reach token-patch probe is actively loading features and has begun ingesting episode caches
+
+No attentive or Reach result CSV has landed yet at this timestamp.
