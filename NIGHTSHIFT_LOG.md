@@ -449,6 +449,61 @@ Decision:
   - test whether attentive readout rescues weak object-side direction
   - keep Priority 1 alive without burning the entire night on an oversized sweep
 
+## [2026-04-18 18:14 UTC] [LAUNCHING LONG RUN: attentive_pilot_l13]
+
+Attentive pilot:
+- task: `push`
+- model: `large`
+- layer: `13`
+- targets:
+  - `ee_direction_sincos`
+  - `object_direction_sincos`
+  - `ee_speed`
+- session id: `12734`
+
+## [2026-04-18 18:14 UTC] [LAUNCHING LONG RUN: reach_token_extract]
+
+Reach token extraction:
+- task: `reach`
+- model: `large`
+- recipe: `resid_post + temporal_last_patch`
+- output root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach`
+- session id: `45442`
+
+## [2026-04-18 18:17 UTC] [BLOCKED] Reach extract hit sandbox filesystem boundary
+
+Observed:
+- sandboxed invocation could read data but failed to create `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach`
+- error: `OSError: [Errno 30] Read-only file system`
+
+Decision:
+- Relaunch Reach extraction with escalation so the cache can be written to `/mnt`
+
+## [2026-04-18 18:18 UTC] [LAUNCHING LONG RUN: reach_token_extract_escalated]
+
+Reach token extraction relaunched successfully with writable `/mnt`.
+- session id: `35540`
+
+## [2026-04-18 19:05 UTC] [PHASE 2c-C] Reach extraction complete; launching probe next
+
+Observed:
+- Reach token extraction completed successfully
+- final progress: `600 / 600`
+- cache path: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach`
+
+Attentive pilot status:
+- Push attentive pilot is alive on GPU 0
+- it completed single-layer token loading and entered training for `ee_direction_sincos`
+
+Decision:
+- Add Reach kinematic targets to `probe_physprobe.py`
+- launch Reach token-patch probe immediately on a separate GPU
+- targets:
+  - `ee_direction_sincos`
+  - `ee_speed`
+  - `ee_accel_magnitude`
+  - `fake_mod5` (negative-control fallback in place of static physics)
+
 ## [2026-04-18 15:21 UTC] [CSV landed] Object-side kinematics are weaker than arm-side kinematics
 
 File:
