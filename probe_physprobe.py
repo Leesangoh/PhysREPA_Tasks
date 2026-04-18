@@ -71,6 +71,28 @@ TARGET_SPECS = {
         "ee_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.ee_acceleration", "output_dim": 3},
         "object_velocity": {"kind": "dynamic_vector", "source": "physics_gt.object_velocity", "output_dim": 3},
         "object_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.object_acceleration", "output_dim": 3},
+        "ee_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.ee_velocity", "output_dim": 1},
+        "ee_accel_magnitude": {
+            "kind": "dynamic_vector_norm",
+            "source": "physics_gt.ee_acceleration",
+            "output_dim": 1,
+        },
+        "ee_direction": {
+            "kind": "dynamic_vector_angle_xy",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 1,
+        },
+        "object_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.object_velocity", "output_dim": 1},
+        "object_accel_magnitude": {
+            "kind": "dynamic_vector_norm",
+            "source": "physics_gt.object_acceleration",
+            "output_dim": 1,
+        },
+        "object_direction": {
+            "kind": "dynamic_vector_angle_xy",
+            "source": "physics_gt.object_velocity",
+            "output_dim": 1,
+        },
         "ee_to_object_distance": {"kind": "dynamic_scalar", "source": "physics_gt.ee_to_object_distance", "output_dim": 1},
         "object_to_target_distance": {"kind": "dynamic_scalar", "source": "physics_gt.object_to_target_distance", "output_dim": 1},
     },
@@ -422,6 +444,22 @@ def load_targets(task: str, episode_indices: list[int], requested_targets: list[
                         arr = stack_series(df[spec["source"]].values)
                         vec = np.nanmean(arr, axis=0)
                         targets[target].append(np.asarray(vec, dtype=np.float64))
+                elif spec["kind"] == "dynamic_vector_norm":
+                    if spec["source"] not in df.columns:
+                        targets[target].append(np.nan)
+                    else:
+                        arr = stack_series(df[spec["source"]].values)
+                        norms = np.linalg.norm(arr, axis=1)
+                        targets[target].append(float(np.nanmean(norms)))
+                elif spec["kind"] == "dynamic_vector_angle_xy":
+                    if spec["source"] not in df.columns:
+                        targets[target].append(np.nan)
+                    else:
+                        arr = stack_series(df[spec["source"]].values)
+                        angles = np.arctan2(arr[:, 1], arr[:, 0])
+                        mean_sin = np.nanmean(np.sin(angles))
+                        mean_cos = np.nanmean(np.cos(angles))
+                        targets[target].append(float(np.arctan2(mean_sin, mean_cos)))
 
     for target in requested_targets:
         spec = task_specs[target]
