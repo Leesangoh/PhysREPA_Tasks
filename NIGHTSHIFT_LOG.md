@@ -760,6 +760,84 @@ After Reach:
 - next high-value question is whether attentive readout rescues failed object-side direction on Push
 - if attentive still fails, the next task should be `strike`, not `huge-on-push`
 
+## [2026-04-18 21:22 UTC] [PHASE 2c-D] Push vs Reach verdict committed
+
+Committed and pushed:
+- Reach result files
+- comparative report: `artifacts/results/EXPERIMENT_RESULTS_phase2_push_vs_reach.md`
+
+High-level comparison:
+- Push `ee_direction_sincos`: PEZ-like
+- Reach `ee_direction_sincos`: not PEZ-like
+- Reach `ee_accel_magnitude`: classifier-positive PEZ-like / mid-depth refinement
+- Reach `fake_mod5`: negative at all layers (pipeline integrity passed)
+
+Implication:
+- PEZ-aligned kinematic emergence is not universal across manipulation tasks
+- interaction-rich Push remains the strongest positive case
+
+## [2026-04-18 21:24 UTC] [DECISION POINT]
+
+Attentive pilot remains active with no landed outputs, but is still consuming CPU/GPU and therefore is not treated as hung.
+
+GPUs 1-3 are idle. To use the remaining night-shift window efficiently, the next task is:
+- launch `strike` token-patch extraction with the same PEZ-aligned recipe
+
+Rationale:
+- `strike` is the best next candidate for object-side dynamics because it is more contact-dominant than `push`
+- `huge-on-push` is lower priority until the attentive rescue question is resolved
+
+## [2026-04-18 21:28 UTC] [LAUNCH ATTEMPT] strike_token_extract
+
+First Strike extraction launch failed immediately because `extract_token_features.py` does not expose `--capture` / `--pooling` as CLI flags.
+
+Resolution:
+- confirmed from source that the script already hard-codes the intended PEZ recipe:
+  - `resid_post`
+  - `temporal_last_patch`
+- relaunched with only the supported arguments
+
+## [2026-04-18 21:29 UTC] [LAUNCHING LONG RUN: strike_token_extract]
+
+Started Strike token-patch extraction:
+- task: `strike`
+- model: `large`
+- output root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch`
+- recipe: script-internal `resid_post + temporal_last_patch`
+
+This uses an idle GPU in parallel with the still-running Push attentive pilot.
+
+## [2026-04-18 21:36 UTC] [CONSENSUS] Kill Push attentive pilot
+
+Decision:
+- terminate the long-running Push attentive pilot
+
+Reasoning:
+- the pilot was restricted to a single diagnostic layer (`13`) yet still exceeded ~3h wall time
+- existing Push linear token-patch results already answer the main scientific question:
+  - `ee_direction_sincos` shows a PEZ-like curve
+  - `object_direction_sincos` fails under the baseline readout
+- attentive rescue of object-direction would be nice-to-have, not necessary for the current night-shift objective
+- keeping the pilot alive risks wasting CPU time and slowing the newly launched `strike` extraction
+
+Action:
+- free resources for higher-value next steps (`strike`, later possibly `huge`)
+
+## [2026-04-18 21:40 UTC] [ACTION CONFIRMED] attentive pilot terminated
+
+Follow-up:
+- the first `pkill -f probe_physprobe_attentive.py` attempt did not match the wrapper command line
+- by the time the direct PID kill was attempted, the attentive pilot processes were already gone
+- process table check confirmed no surviving `probe_physprobe_attentive` / `attentive_pilot_l13` processes
+
+Resource state after termination:
+- GPU 0 is now idle
+- `strike` token extraction continues on GPU 1
+
+Operational conclusion:
+- attentive object-direction rescue is dropped from the current night-shift scope
+- the night shift now focuses on completing `strike` extraction and the next contact-heavy linear probe
+
 ## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
 
 First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`
