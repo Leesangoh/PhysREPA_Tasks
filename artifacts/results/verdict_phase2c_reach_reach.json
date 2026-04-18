@@ -1,0 +1,62 @@
+{
+  "task": "reach",
+  "model": "large",
+  "targets": [
+    {
+      "task": "reach",
+      "model": "large",
+      "target": "ee_direction_sincos",
+      "output_dim": 2,
+      "L0": 0.302298001492968,
+      "L8": 0.3532343171965781,
+      "peak_r2": 0.3961217488043516,
+      "peak_layer": 20,
+      "last": 0.3951196097018646,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_reach_ee_direction_sincos_large_token_patch_phase2c_reach.png"
+    },
+    {
+      "task": "reach",
+      "model": "large",
+      "target": "ee_speed",
+      "output_dim": 1,
+      "L0": 0.5981109993494143,
+      "L8": 0.8134353884817054,
+      "peak_r2": 0.8253053163988497,
+      "peak_layer": 17,
+      "last": 0.796605493040105,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_reach_ee_speed_large_token_patch_phase2c_reach.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_reach_ee_speed_large_token_patch_phase2c_reach.png"
+    },
+    {
+      "task": "reach",
+      "model": "large",
+      "target": "ee_accel_magnitude",
+      "output_dim": 1,
+      "L0": 0.7167507430178733,
+      "L8": 0.8544713255529779,
+      "peak_r2": 0.8733618370821412,
+      "peak_layer": 10,
+      "last": 0.8348643570265619,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_reach_ee_accel_magnitude_large_token_patch_phase2c_reach.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_reach_ee_accel_magnitude_large_token_patch_phase2c_reach.png"
+    },
+    {
+      "task": "reach",
+      "model": "large",
+      "target": "fake_mod5",
+      "output_dim": 1,
+      "L0": -0.5646576455552594,
+      "L8": -0.6726249569320778,
+      "peak_r2": -0.4103424652308908,
+      "peak_layer": 3,
+      "last": -0.46963770407633876,
+      "classification": "never-linear",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_reach_fake_mod5_large_token_patch_phase2c_reach.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_reach_fake_mod5_large_token_patch_phase2c_reach.png"
+    }
+  ]
+}

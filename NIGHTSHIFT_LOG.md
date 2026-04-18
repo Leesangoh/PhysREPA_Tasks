@@ -719,3 +719,75 @@ Live jobs:
 - Reach token-patch probe is actively loading features and has begun ingesting episode caches
 
 No attentive or Reach result CSV has landed yet at this timestamp.
+
+## [2026-04-18 21:07 UTC] [VERDICT: Reach probe complete]
+
+Reach Phase 2c token-patch probe finished and wrote all expected outputs:
+- `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`
+- `probe_reach_ee_speed_large_token_patch_phase2c_reach.csv`
+- `probe_reach_ee_accel_magnitude_large_token_patch_phase2c_reach.csv`
+- `probe_reach_fake_mod5_large_token_patch_phase2c_reach.csv`
+- `verdict_phase2c_reach_reach.json`
+- `EXPERIMENT_RESULTS_phase2c_reach_reach.md`
+
+Key numbers:
+- `ee_direction_sincos`: `L0=0.302`, `L8=0.353`, `peak=0.396 @ L20` -> not PEZ-like
+- `ee_speed`: `L0=0.598`, `L8=0.813`, `peak=0.825 @ L17` -> strongly decodable but not strict-H1
+- `ee_accel_magnitude`: `L0=0.717`, `L8=0.854`, `peak=0.873 @ L10` -> classifier-positive PEZ-like / mid-depth refinement
+- `fake_mod5`: negative at every layer -> integrity check passed
+
+Interpretation:
+- Push ee-side PEZ does **not** trivially generalize to Reach direction
+- Reach confirms the token-patch probe is scientifically sane because the fake target remains non-decodable
+- The strongest next discriminator is still the Push attentive pilot, not another linear re-run
+
+## [2026-04-18 21:10 UTC] [STATUS] attentive pilot health check
+
+Push attentive pilot has now been running for >2h, but it is not obviously hung:
+- python process still active
+- CPU usage ~`980%`
+- GPU 0 at ~`100%` utilization and ~`7.7 GiB` memory used
+- no output CSV has landed yet
+
+Conclusion:
+- do **not** kill yet
+- wait for first attentive result before starting a new overlapping high-cost probe
+
+## [2026-04-18 21:12 UTC] [CONSENSUS]
+
+After Reach:
+- the linear token-patch story is now clear enough to stop re-running linear variants
+- next high-value question is whether attentive readout rescues failed object-side direction on Push
+- if attentive still fails, the next task should be `strike`, not `huge-on-push`
+
+## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
+
+First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`
+
+Comparison:
+| Metric | Push | Reach |
+|---|---|---|
+| L0 | 0.555 | 0.302 |
+| L8 | 0.789 | 0.353 |
+| Peak | 0.807 @ L13 (54% depth) | 0.396 @ L20 (83%) |
+| L23 | 0.797 | 0.395 |
+
+Observations:
+- Reach peak 0.396 is less than half of Push's 0.807
+- Reach peak at 83% depth, not mid-layer — unlike Push
+- Reach has no object interaction, so direction variance is much lower (robot goes toward target)
+- Reach has 600 ep vs Push 1500 — less training data
+
+Interpretation:
+- NOT a clean PEZ reproduction on Reach
+- BUT direction signal is present (L0 not zero)
+- Suggests task complexity matters: PEZ-like emergence needs complex kinematics to be learnable in mid-layers
+- This is expected behavior given Reach's simplicity
+
+Still pending:
+- Reach ee_speed, ee_accel_magnitude, fake_mod5
+- Push attentive pilot L13 results
+
+Decision on next steps:
+- Wait for more Reach CSVs to complete the generality assessment
+- Once both Reach + attentive done → decide on Strike task (contact-heavy, between Push and Reach complexity)

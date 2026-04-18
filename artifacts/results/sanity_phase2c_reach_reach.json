@@ -1,0 +1,48 @@
+{
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl_tokenpatch/reach",
+  "feature_type": "token_patch",
+  "run_tag": "phase2c_reach",
+  "n_episodes": 600,
+  "num_layers": 24,
+  "feature_dim_layer0": 262144,
+  "window_count_mode": 59,
+  "missing_feature_keys": 0,
+  "patch_shape": [
+    256,
+    1024
+  ],
+  "groupkfold_overlap_zero": true,
+  "gt_distribution_plot": "/home/solee/physrepa_tasks/artifacts/figures/gt_distribution_reach.png",
+  "control_targets_l0_ge_0_8": false,
+  "gt_summary": {
+    "ee_direction_sincos": {
+      "shape": [
+        600,
+        2
+      ],
+      "var": 0.06826723811493109,
+      "finite": true
+    },
+    "ee_speed": {
+      "shape": [
+        600
+      ],
+      "var": 0.0017990203700788833,
+      "finite": true
+    },
+    "ee_accel_magnitude": {
+      "shape": [
+        600
+      ],
+      "var": 2.271594815793992,
+      "finite": true
+    },
+    "fake_mod5": {
+      "shape": [
+        600
+      ],
+      "var": 2.0,
+      "finite": true
+    }
+  }
+}
