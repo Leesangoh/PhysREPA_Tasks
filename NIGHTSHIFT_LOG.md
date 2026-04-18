@@ -376,6 +376,46 @@ Notes:
 - Same solver, folds, normalization, and selection metric.
 - Only changed factor: direction target parameterization (`angle` -> `sin/cos`).
 
+## [2026-04-18 17:21 UTC] [CONSENSUS] Watcher and run results agree on ee-side PEZ rescue
+
+Consensus:
+- `ee_direction_sincos` is the first clear manipulation-domain PEZ analog found in Push.
+- Scalar-angle was the wrong parameterization for this domain because of circular wrap.
+- `ee_direction_sincos` should be counted as an `H2`-style emergence target, not as an `H1` control.
+- `ee_pos` remains the primary `H1` control (`L0 = 0.9440`).
+
+Recorded outcome:
+- `Scenario A partial`
+- success scope: `ee-side`
+- failure scope: `object-side direction`, `static physics`
+
+## [2026-04-18 17:31 UTC] [PHASE3 BLOCKED] Contact labels appear to be absent in public PhysProbe
+
+Motivation:
+- After the Phase 2 partial success, the planned next step was an event-aligned force/contact probe.
+
+Audit results:
+- `push` full scan, `physics_gt.contact_flag`: `1500 / 1500` episodes checked, `0` non-zero episodes, `max mean = 0.0`
+- `push` sampled contact channels:
+  - `contact_flag = 0`
+  - `contact_force = 0`
+  - `contact_finger_l_object_flag = 0`
+  - `contact_finger_l_object_force = 0`
+  - `contact_object_surface_flag = 0`
+  - `contact_object_surface_force = 0`
+  - `contact_point = 0`
+- sampled `strike`, `peg_insert`, `nut_thread`, `drawer` episodes also showed all-zero `contact_flag` and `contact_point`
+
+Decision:
+- Do **not** launch a force/contact probe on all-zero labels.
+- Treat Phase 3 as dataset-blocked for the currently available public PhysProbe release.
+
+Implication:
+- The next meaningful path is not force probing on these labels.
+- Future follow-up should either:
+  1. obtain a PhysProbe release with populated contact labels, or
+  2. define an alternative event target from non-zero kinematic/object-state channels.
+
 ## [2026-04-18 15:21 UTC] [CSV landed] Object-side kinematics are weaker than arm-side kinematics
 
 File:
