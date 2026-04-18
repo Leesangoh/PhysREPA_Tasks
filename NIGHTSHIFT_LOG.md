@@ -416,6 +416,39 @@ Implication:
   1. obtain a PhysProbe release with populated contact labels, or
   2. define an alternative event target from non-zero kinematic/object-state channels.
 
+## [2026-04-18 17:52 UTC] [PHASE 2c-A] Attentive probe driver added
+
+Added:
+- `probe_physprobe_attentive.py`
+
+Design:
+- reuses PhysProbe token-patch cache
+- reuses `load_targets()` from `probe_physprobe.py`
+- attentive readout = `AttentivePooler(depth=4, num_heads=16) + linear regression head`
+- same CV protocol:
+  - 5-fold `GroupKFold` by episode id
+  - z-score normalization
+  - LR x WD sweep over the same 20 HP grid
+
+## [2026-04-18 18:10 UTC] [PHASE 2c-B] Full attentive sweep deemed too expensive; switching to targeted pilot
+
+Observed runtime:
+- `ee_direction_sincos`
+- 3 layers only: `{0, 8, 13}`
+- elapsed wall time before first layer completed: `13m51s`
+
+Interpretation:
+- A full attentive sweep over `24 layers x 3 targets x 20 HP x 5 folds` is not a good use of the remaining night budget.
+
+Decision:
+- Stop the broad dry-run.
+- Replace it with a targeted attentive pilot on the most diagnostic layer first:
+  - `layer 13`
+  - targets: `ee_direction_sincos`, `object_direction_sincos`, `ee_speed`
+- Purpose:
+  - test whether attentive readout rescues weak object-side direction
+  - keep Priority 1 alive without burning the entire night on an oversized sweep
+
 ## [2026-04-18 15:21 UTC] [CSV landed] Object-side kinematics are weaker than arm-side kinematics
 
 File:
