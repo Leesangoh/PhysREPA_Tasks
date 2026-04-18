@@ -1,0 +1,50 @@
+{
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl/push",
+  "n_episodes": 1500,
+  "num_layers": 24,
+  "feature_dim": 1024,
+  "window_count_mode": 58,
+  "missing_feature_keys": 0,
+  "groupkfold_overlap_zero": true,
+  "gt_distribution_plot": "/home/solee/physrepa_tasks/artifacts/figures/gt_distribution_push.png",
+  "control_targets_l0_ge_0_8": false,
+  "gt_summary": {
+    "mass": {
+      "shape": [
+        1500
+      ],
+      "var": 0.32154708209430666,
+      "finite": true
+    },
+    "obj_friction": {
+      "shape": [
+        1500
+      ],
+      "var": 0.14813523933536,
+      "finite": true
+    },
+    "surface_friction": {
+      "shape": [
+        1500
+      ],
+      "var": 0.22424630656730665,
+      "finite": true
+    },
+    "ee_pos": {
+      "shape": [
+        1500,
+        3
+      ],
+      "var": 0.06354377776806364,
+      "finite": true
+    },
+    "object_pos": {
+      "shape": [
+        1500,
+        3
+      ],
+      "var": 20.965989116026588,
+      "finite": true
+    }
+  }
+}
