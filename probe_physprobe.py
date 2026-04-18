@@ -9,11 +9,11 @@ Phase 1 design:
 - z-score normalization
 
 Outputs:
-- artifacts/results/probe_{task}_{target}_{model}.csv
-- artifacts/figures/curve_{task}_{target}_{model}.png
-- artifacts/results/verdict_phase1_{task}.json
-- artifacts/results/sanity_phase1_{task}.json
-- artifacts/results/EXPERIMENT_RESULTS_phase1_{task}.md
+- artifacts/results/probe_{task}_{target}_{model}[_{feature_type}][_{run_tag}].csv
+- artifacts/figures/curve_{task}_{target}_{model}[_{feature_type}][_{run_tag}].png
+- artifacts/results/verdict_{run_tag}_{task}.json
+- artifacts/results/sanity_{run_tag}_{task}.json
+- artifacts/results/EXPERIMENT_RESULTS_{run_tag}_{task}.md
 """
 
 from __future__ import annotations
@@ -320,9 +320,15 @@ def classify_curve(r2_per_layer):
     return "intermediate"
 
 
-def resolve_feature_root(task: str, model: str) -> str:
+def resolve_feature_root(task: str, model: str, feature_type: str = "mean", feature_root: str | None = None) -> str:
+    if feature_root is not None:
+        return os.path.join(feature_root, task)
     model_tag = MODEL_CONFIGS[model]["tag"]
-    return os.path.join(FEATURE_BASE, f"physprobe_{model_tag}", task)
+    if feature_type == "mean":
+        return os.path.join(FEATURE_BASE, f"physprobe_{model_tag}", task)
+    if feature_type == "token_patch":
+        return os.path.join(FEATURE_BASE, f"physprobe_{model_tag}_tokenpatch", task)
+    raise ValueError(f"Unknown feature_type: {feature_type}")
 
 
 def list_feature_episodes(feature_root: str) -> list[int]:
@@ -438,23 +444,42 @@ def load_targets(task: str, episode_indices: list[int], requested_targets: list[
     return targets
 
 
-def load_episode_mean_features(task: str, model: str, episode_indices: list[int]):
-    cfg = MODEL_CONFIGS[model]
-    feature_root = resolve_feature_root(task, model)
-    num_layers = cfg["num_layers"]
-    dim = cfg["dim"]
+def build_output_stem(task: str, target: str, model: str, feature_type: str, run_tag: str) -> str:
+    stem = f"{task}_{sanitize_target_name(target)}_{model}"
+    if feature_type != "mean":
+        stem += f"_{feature_type}"
+    if run_tag != "phase1":
+        stem += f"_{run_tag}"
+    return stem
 
-    X_all = {layer: np.empty((len(episode_indices), dim), dtype=np.float32) for layer in range(num_layers)}
+
+def load_episode_features(
+    task: str,
+    model: str,
+    episode_indices: list[int],
+    feature_type: str = "mean",
+    feature_root_override: str | None = None,
+):
+    cfg = MODEL_CONFIGS[model]
+    feature_root = resolve_feature_root(task, model, feature_type=feature_type, feature_root=feature_root_override)
+    num_layers = cfg["num_layers"]
+    base_dim = cfg["dim"]
+    feature_dims = None
+
     shape_info = {
         "feature_root": feature_root,
+        "feature_type": feature_type,
         "num_layers": num_layers,
-        "dim": dim,
+        "base_dim": base_dim,
         "episodes": len(episode_indices),
         "window_counts": [],
         "missing_keys": [],
+        "patch_shape": None,
     }
 
-    for row_index, ep_idx in enumerate(tqdm(episode_indices, desc=f"Load features [{task}/{model}]")):
+    X_all = None
+
+    for row_index, ep_idx in enumerate(tqdm(episode_indices, desc=f"Load features [{task}/{model}/{feature_type}]")):
         feat_path = os.path.join(feature_root, f"{ep_idx:06d}.safetensors")
         with safe_open(feat_path, framework="numpy") as f:
             keys = set(f.keys())
@@ -471,8 +496,32 @@ def load_episode_mean_features(task: str, model: str, episode_indices: list[int]
                         shape_info["missing_keys"].append(key)
                         raise ValueError(f"Missing {key} in {feat_path}")
                     vecs.append(f.get_tensor(key))
-                X_all[layer][row_index] = np.mean(vecs, axis=0)
+                episode_feat = np.mean(vecs, axis=0)
+                if feature_type == "mean":
+                    flat_feat = np.asarray(episode_feat, dtype=np.float32)
+                elif feature_type == "token_patch":
+                    if episode_feat.ndim != 2:
+                        raise ValueError(
+                            f"Expected token-patch feature to be rank-2, got {episode_feat.shape} in {feat_path}"
+                        )
+                    if shape_info["patch_shape"] is None:
+                        shape_info["patch_shape"] = list(episode_feat.shape)
+                    flat_feat = np.asarray(episode_feat.reshape(-1), dtype=np.float32)
+                else:
+                    raise ValueError(f"Unknown feature_type: {feature_type}")
 
+                if X_all is None:
+                    feature_dims = {layer_index: int(flat_feat.shape[0]) for layer_index in range(num_layers)}
+                    feature_dims[layer] = int(flat_feat.shape[0])
+                    X_all = {
+                        layer_index: np.empty((len(episode_indices), feature_dims[layer_index]), dtype=np.float32)
+                        for layer_index in range(num_layers)
+                    }
+                X_all[layer][row_index] = flat_feat
+
+    if X_all is None:
+        raise ValueError(f"No features loaded from {feature_root}")
+    shape_info["feature_dims"] = {int(k): int(v.shape[1]) for k, v in X_all.items()}
     return X_all, shape_info
 
 
@@ -532,8 +581,8 @@ def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zsc
     }
 
 
-def save_curve_plot(task, target, model, results_df):
-    out_path = os.path.join(FIGURES_DIR, f"curve_{task}_{sanitize_target_name(target)}_{model}.png")
+def save_curve_plot(task, target, model, results_df, feature_type="mean", run_tag="phase1"):
+    out_path = os.path.join(FIGURES_DIR, f"curve_{build_output_stem(task, target, model, feature_type, run_tag)}.png")
     fig, ax = plt.subplots(figsize=(7, 4))
     df = results_df.sort_values("layer")
     ax.plot(df["layer"], df["r2_mean"], marker="o", linewidth=2)
@@ -581,8 +630,8 @@ def save_gt_distribution_plot(task, target_arrays):
     return out_path
 
 
-def write_phase_report(task, model, summary_rows, sanity):
-    path = os.path.join(RESULTS_DIR, f"EXPERIMENT_RESULTS_phase1_{task}.md")
+def write_phase_report(task, model, summary_rows, sanity, run_tag="phase1"):
+    path = os.path.join(RESULTS_DIR, f"EXPERIMENT_RESULTS_{run_tag}_{task}.md")
     lines = []
     lines.append(f"# Phase 1 Results: {task} / {model}")
     lines.append("")
@@ -633,6 +682,9 @@ def main():
     parser.add_argument("--cv-splits", type=int, default=5)
     parser.add_argument("--norm", choices=["zscore", "center", "none"], default="zscore")
     parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--feature-type", choices=["mean", "token_patch"], default="mean")
+    parser.add_argument("--feature-root", default=None)
+    parser.add_argument("--run-tag", default="phase1")
     args = parser.parse_args()
 
     ensure_dirs()
@@ -652,22 +704,36 @@ def main():
         raise ValueError(f"Unknown targets for {args.task}: {unknown}")
 
     device = args.device if torch.cuda.is_available() else "cpu"
-    feature_root = resolve_feature_root(args.task, args.model)
+    feature_root = resolve_feature_root(
+        args.task,
+        args.model,
+        feature_type=args.feature_type,
+        feature_root=args.feature_root,
+    )
     episode_indices = list_feature_episodes(feature_root)
     if not episode_indices:
         raise ValueError(f"No safetensors found in {feature_root}")
 
-    features_by_layer, feature_shape_info = load_episode_mean_features(args.task, args.model, episode_indices)
+    features_by_layer, feature_shape_info = load_episode_features(
+        args.task,
+        args.model,
+        episode_indices,
+        feature_type=args.feature_type,
+        feature_root_override=args.feature_root,
+    )
     groups = np.asarray(episode_indices, dtype=np.int64)
     targets = load_targets(args.task, episode_indices, requested_targets)
 
     sanity = {
         "feature_root": feature_root,
+        "feature_type": args.feature_type,
+        "run_tag": args.run_tag,
         "n_episodes": len(episode_indices),
         "num_layers": MODEL_CONFIGS[args.model]["num_layers"],
-        "feature_dim": MODEL_CONFIGS[args.model]["dim"],
+        "feature_dim_layer0": int(features_by_layer[0].shape[1]),
         "window_count_mode": Counter(feature_shape_info["window_counts"]).most_common(1)[0][0],
         "missing_feature_keys": len(feature_shape_info["missing_keys"]),
+        "patch_shape": feature_shape_info.get("patch_shape"),
     }
 
     split_check = GroupKFold(n_splits=CV_SPLITS)
@@ -723,9 +789,19 @@ def main():
             layer_rows.append(row)
 
         results_df = pd.DataFrame(layer_rows)
-        csv_path = os.path.join(RESULTS_DIR, f"probe_{args.task}_{sanitize_target_name(target_name)}_{args.model}.csv")
+        csv_path = os.path.join(
+            RESULTS_DIR,
+            f"probe_{build_output_stem(args.task, target_name, args.model, args.feature_type, args.run_tag)}.csv",
+        )
         results_df.to_csv(csv_path, index=False)
-        fig_path = save_curve_plot(args.task, target_name, args.model, results_df)
+        fig_path = save_curve_plot(
+            args.task,
+            target_name,
+            args.model,
+            results_df,
+            feature_type=args.feature_type,
+            run_tag=args.run_tag,
+        )
 
         r2_curve = results_df.sort_values("layer")["r2_mean"].to_numpy(dtype=np.float64)
         peak_layer = int(np.argmax(r2_curve))
@@ -750,15 +826,15 @@ def main():
     sanity["control_targets_l0_ge_0_8"] = bool(control_rows and all(r["L0"] >= 0.8 for r in control_rows))
     sanity["gt_summary"] = gt_summary
 
-    verdict_path = os.path.join(RESULTS_DIR, f"verdict_phase1_{args.task}.json")
+    verdict_path = os.path.join(RESULTS_DIR, f"verdict_{args.run_tag}_{args.task}.json")
     with open(verdict_path, "w") as f:
         json.dump({"task": args.task, "model": args.model, "targets": summary_rows}, f, indent=2)
 
-    sanity_path = os.path.join(RESULTS_DIR, f"sanity_phase1_{args.task}.json")
+    sanity_path = os.path.join(RESULTS_DIR, f"sanity_{args.run_tag}_{args.task}.json")
     with open(sanity_path, "w") as f:
         json.dump(sanity, f, indent=2)
 
-    report_path = write_phase_report(args.task, args.model, summary_rows, sanity)
+    report_path = write_phase_report(args.task, args.model, summary_rows, sanity, run_tag=args.run_tag)
 
     print(f"Wrote verdict: {verdict_path}")
     print(f"Wrote sanity: {sanity_path}")
