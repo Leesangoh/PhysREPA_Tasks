@@ -1,0 +1,90 @@
+{
+  "task": "push",
+  "model": "large",
+  "targets": [
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_speed",
+      "output_dim": 1,
+      "L0": 0.6710519008023265,
+      "L8": 0.9283803792899761,
+      "peak_r2": 0.9311851956745073,
+      "peak_layer": 13,
+      "last": 0.9201351375788113,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_speed_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_speed_large_token_patch_phase2_kinematic.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_accel_magnitude",
+      "output_dim": 1,
+      "L0": 0.3468435037291499,
+      "L8": 0.6733608191423734,
+      "peak_r2": 0.6942768117337406,
+      "peak_layer": 14,
+      "last": 0.6878612823411867,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_accel_magnitude_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_accel_magnitude_large_token_patch_phase2_kinematic.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_direction",
+      "output_dim": 1,
+      "L0": 0.06584748458444996,
+      "L8": 0.3816481543637473,
+      "peak_r2": 0.4382693673751941,
+      "peak_layer": 23,
+      "last": 0.4382693673751941,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_direction_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_direction_large_token_patch_phase2_kinematic.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "object_speed",
+      "output_dim": 1,
+      "L0": -0.2682415482468547,
+      "L8": 0.3300882887984319,
+      "peak_r2": 0.39775133421606146,
+      "peak_layer": 12,
+      "last": 0.3814447437682708,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_object_speed_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_object_speed_large_token_patch_phase2_kinematic.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "object_accel_magnitude",
+      "output_dim": 1,
+      "L0": 0.19954979411324864,
+      "L8": 0.500084838634626,
+      "peak_r2": 0.5224016840141303,
+      "peak_layer": 20,
+      "last": 0.5123864096299016,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_object_accel_magnitude_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_object_accel_magnitude_large_token_patch_phase2_kinematic.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "object_direction",
+      "output_dim": 1,
+      "L0": -0.40505554178419556,
+      "L8": -0.033132299829282896,
+      "peak_r2": 0.028673426091578257,
+      "peak_layer": 23,
+      "last": 0.028673426091578257,
+      "classification": "never-linear",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_object_direction_large_token_patch_phase2_kinematic.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_object_direction_large_token_patch_phase2_kinematic.png"
+    }
+  ]
+}

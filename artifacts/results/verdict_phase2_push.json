@@ -1,0 +1,149 @@
+{
+  "task": "push",
+  "model": "large",
+  "phase": "phase2",
+  "feature_type": "token_patch",
+  "capture": "resid_post",
+  "pooling": "temporal_last_patch",
+  "norm": "zscore",
+  "solver": "trainable_20hp",
+  "verdict": "Scenario A partial",
+  "h1_control_pass": true,
+  "h2_partial_pass": true,
+  "notes": [
+    "ee_pos satisfies the control criterion with L0 = 0.9440",
+    "ee_direction only succeeds under sincos parameterization; scalar angle fails",
+    "object-side direction fails under both angle and sincos",
+    "static physics targets remain never-linear"
+  ],
+  "best_pez_like_target": {
+    "target": "ee_direction_sincos",
+    "L0": 0.5553793970828459,
+    "L8": 0.7894256550815492,
+    "peak_r2": 0.8068165248747057,
+    "peak_layer": 13,
+    "last": 0.7969085966318623
+  },
+  "rows": [
+    {
+      "group": "static",
+      "target": "mass",
+      "L0": -0.1451054545245472,
+      "L8": 0.02386733119721225,
+      "peak_r2": 0.09907698470989686,
+      "peak_layer": 14,
+      "last": 0.07283231288221081,
+      "classification": "never-linear"
+    },
+    {
+      "group": "static",
+      "target": "obj_friction",
+      "L0": -0.2647468101202833,
+      "L8": -0.13053187150241072,
+      "peak_r2": -0.062607355628348,
+      "peak_layer": 3,
+      "last": -0.13888276455567924,
+      "classification": "never-linear"
+    },
+    {
+      "group": "static",
+      "target": "surface_friction",
+      "L0": -0.2269686733086726,
+      "L8": -0.08949245853819761,
+      "peak_r2": -0.03871793661043914,
+      "peak_layer": 22,
+      "last": -0.04220869687935804,
+      "classification": "never-linear"
+    },
+    {
+      "group": "control",
+      "target": "ee_pos",
+      "L0": 0.9440112396790659,
+      "L8": 0.959263864399165,
+      "peak_r2": 0.9625371629696089,
+      "peak_layer": 12,
+      "last": 0.9508328309436189,
+      "classification": "always-linear"
+    },
+    {
+      "group": "control",
+      "target": "ee_speed",
+      "L0": 0.6710519008023265,
+      "L8": 0.9283803792899761,
+      "peak_r2": 0.9311851956745073,
+      "peak_layer": 13,
+      "last": 0.9201351375788113,
+      "classification": "always-linear"
+    },
+    {
+      "group": "kinematic",
+      "target": "ee_accel_magnitude",
+      "L0": 0.3468435037291499,
+      "L8": 0.6733608191423734,
+      "peak_r2": 0.6942768117337406,
+      "peak_layer": 14,
+      "last": 0.6878612823411867,
+      "classification": "intermediate"
+    },
+    {
+      "group": "kinematic",
+      "target": "ee_direction_angle",
+      "L0": 0.06584748458444996,
+      "L8": 0.3816481543637473,
+      "peak_r2": 0.4382693673751941,
+      "peak_layer": 23,
+      "last": 0.4382693673751941,
+      "classification": "fail"
+    },
+    {
+      "group": "kinematic",
+      "target": "ee_direction_sincos",
+      "L0": 0.5553793970828459,
+      "L8": 0.7894256550815492,
+      "peak_r2": 0.8068165248747057,
+      "peak_layer": 13,
+      "last": 0.7969085966318623,
+      "classification": "PEZ-like"
+    },
+    {
+      "group": "kinematic",
+      "target": "object_speed",
+      "L0": -0.2682415482468547,
+      "L8": 0.3300882887984319,
+      "peak_r2": 0.39775133421606146,
+      "peak_layer": 12,
+      "last": 0.3814447437682708,
+      "classification": "intermediate"
+    },
+    {
+      "group": "kinematic",
+      "target": "object_accel_magnitude",
+      "L0": 0.19954979411324864,
+      "L8": 0.500084838634626,
+      "peak_r2": 0.5224016840141303,
+      "peak_layer": 20,
+      "last": 0.5123864096299016,
+      "classification": "intermediate"
+    },
+    {
+      "group": "kinematic",
+      "target": "object_direction_angle",
+      "L0": -0.40505554178419556,
+      "L8": -0.033132299829282896,
+      "peak_r2": 0.028673426091578257,
+      "peak_layer": 23,
+      "last": 0.028673426091578257,
+      "classification": "fail"
+    },
+    {
+      "group": "kinematic",
+      "target": "object_direction_sincos",
+      "L0": -0.22022200963033875,
+      "L8": 0.048253576789112886,
+      "peak_r2": 0.08406010881753101,
+      "peak_layer": 23,
+      "last": 0.08406010881753101,
+      "classification": "fail"
+    }
+  ]
+}

@@ -82,6 +82,11 @@ TARGET_SPECS = {
             "source": "physics_gt.ee_velocity",
             "output_dim": 1,
         },
+        "ee_direction_sincos": {
+            "kind": "dynamic_vector_angle_xy_sincos",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 2,
+        },
         "object_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.object_velocity", "output_dim": 1},
         "object_accel_magnitude": {
             "kind": "dynamic_vector_norm",
@@ -92,6 +97,11 @@ TARGET_SPECS = {
             "kind": "dynamic_vector_angle_xy",
             "source": "physics_gt.object_velocity",
             "output_dim": 1,
+        },
+        "object_direction_sincos": {
+            "kind": "dynamic_vector_angle_xy_sincos",
+            "source": "physics_gt.object_velocity",
+            "output_dim": 2,
         },
         "ee_to_object_distance": {"kind": "dynamic_scalar", "source": "physics_gt.ee_to_object_distance", "output_dim": 1},
         "object_to_target_distance": {"kind": "dynamic_scalar", "source": "physics_gt.object_to_target_distance", "output_dim": 1},
@@ -460,6 +470,15 @@ def load_targets(task: str, episode_indices: list[int], requested_targets: list[
                         mean_sin = np.nanmean(np.sin(angles))
                         mean_cos = np.nanmean(np.cos(angles))
                         targets[target].append(float(np.arctan2(mean_sin, mean_cos)))
+                elif spec["kind"] == "dynamic_vector_angle_xy_sincos":
+                    if spec["source"] not in df.columns:
+                        targets[target].append(np.full((2,), np.nan))
+                    else:
+                        arr = stack_series(df[spec["source"]].values)
+                        angles = np.arctan2(arr[:, 1], arr[:, 0])
+                        mean_sin = np.nanmean(np.sin(angles))
+                        mean_cos = np.nanmean(np.cos(angles))
+                        targets[target].append(np.asarray([mean_sin, mean_cos], dtype=np.float64))
 
     for target in requested_targets:
         spec = task_specs[target]

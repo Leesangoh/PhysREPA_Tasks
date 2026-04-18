@@ -1,0 +1,34 @@
+{
+  "task": "push",
+  "model": "large",
+  "targets": [
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_direction_sincos",
+      "output_dim": 2,
+      "L0": 0.5553793970828459,
+      "L8": 0.7894256550815492,
+      "peak_r2": 0.8068165248747057,
+      "peak_layer": 13,
+      "last": 0.7969085966318623,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_direction_sincos_large_token_patch_phase2_kinematic_sincos.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_direction_sincos_large_token_patch_phase2_kinematic_sincos.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "object_direction_sincos",
+      "output_dim": 2,
+      "L0": -0.22022200963033875,
+      "L8": 0.048253576789112886,
+      "peak_r2": 0.08406010881753101,
+      "peak_layer": 23,
+      "last": 0.08406010881753101,
+      "classification": "never-linear",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_object_direction_sincos_large_token_patch_phase2_kinematic_sincos.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_object_direction_sincos_large_token_patch_phase2_kinematic_sincos.png"
+    }
+  ]
+}
