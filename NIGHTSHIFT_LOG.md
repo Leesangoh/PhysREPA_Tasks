@@ -1025,6 +1025,49 @@ Code change:
 - added `dynamic_vector_direction_3d` target kind to `probe_physprobe.py`
 - added 3D direction specs to Push / Reach / Strike target tables
 
+## [2026-04-19 03:05 UTC] [VERDICT: Reach/Strike 3D direction complete]
+
+The first two 3D direction reruns completed successfully.
+
+### Reach
+- `ee_direction_3d`
+  - `L0=0.435`
+  - `L8=0.536`
+  - `peak=0.553 @ L11`
+  - `last=0.502`
+  - `classification=PEZ-like`
+
+Comparison to 2D:
+- 2D `ee_direction_sincos` had only `peak=0.396 @ L20`
+- so 3D materially improves both magnitude and peak location
+
+### Strike
+- `ee_direction_3d`
+  - `L0=0.623`
+  - `L8=0.818`
+  - `peak=0.849 @ L22`
+  - `classification=intermediate`
+- `object_direction_3d`
+  - `L0=0.521`
+  - `L8=0.774`
+  - `peak=0.813 @ L12`
+  - `classification=PEZ-like`
+
+Comparison to 2D:
+- 2D `ee_direction_sincos` stayed slightly better for PEZ-shape on Strike ee-side
+- but 3D completely rescued Strike object-direction:
+  - from `peak=0.084 @ L23`
+  - to `peak=0.813 @ L12`
+
+Interpretation:
+- 3D is the scientifically correct default for manipulation direction
+- 2D was suppressing real 3D motion structure, especially on the object side
+
+Next action:
+- delete Reach token cache (results now committed or about to be committed)
+- use the recovered ~`415G` to re-extract Push token cache
+- then run final Push 3D direction probes
+
 ## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
 
 First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`

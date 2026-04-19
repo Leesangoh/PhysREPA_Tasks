@@ -1,0 +1,20 @@
+{
+  "task": "reach",
+  "model": "large",
+  "targets": [
+    {
+      "task": "reach",
+      "model": "large",
+      "target": "ee_direction_3d",
+      "output_dim": 3,
+      "L0": 0.4351329807915902,
+      "L8": 0.5360342825930431,
+      "peak_r2": 0.5531321262638527,
+      "peak_layer": 11,
+      "last": 0.5018083445559625,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_reach_ee_direction_3d_large_token_patch_phase2d_direction3d.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_reach_ee_direction_3d_large_token_patch_phase2d_direction3d.png"
+    }
+  ]
+}
