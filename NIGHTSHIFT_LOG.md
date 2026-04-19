@@ -1068,6 +1068,72 @@ Next action:
 - use the recovered ~`415G` to re-extract Push token cache
 - then run final Push 3D direction probes
 
+## [2026-04-19 03:18 UTC] [ACTION CONFIRMED] Reach cache deleted, Push re-extract started
+
+Cache management:
+- deleted Reach token-patch cache after 3D results were committed
+- current `/mnt` free space after deletion: ~`1.2T`
+
+Current cache state:
+- `push`: `0` old files before relaunch, now being rebuilt
+- `reach`: `0` (fully removed)
+- `strike`: `2895` valid token-patch episodes retained
+
+## [2026-04-19 03:20 UTC] [LAUNCHING LONG RUN: push_token_extract_rebuild]
+
+Started Push token-patch re-extraction for the final 3D direction rerun.
+
+Config:
+- task: `push`
+- model: `large`
+- recipe: `resid_post + temporal_last_patch`
+- output root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch`
+
+Initial status:
+- extraction has started successfully
+- first progress observed: `1 / 1500`
+
+Next planned action after extraction:
+- run `push` 3D direction probe on:
+  - `ee_direction_3d`
+  - `object_direction_3d`
+- then write the final 2D-vs-3D overall verdict
+
+## [2026-04-19 04:35 UTC] [VERDICT: Push 3D direction complete]
+
+Push 3D rerun finished successfully.
+
+Results:
+- `ee_direction_3d`
+  - `L0=0.652`
+  - `L8=0.806`
+  - `peak=0.817 @ L11`
+  - `last=0.813`
+  - `classification=PEZ-like`
+- `object_direction_3d`
+  - `L0=-0.160`
+  - `L8=0.097`
+  - `peak=0.136 @ L23`
+  - `classification=never-linear`
+
+Interpretation:
+- 3D strengthens the arm-side Push result and keeps it PEZ-like
+- Push object-direction remains weak even in 3D, unlike Strike
+- this supports a task-structure hypothesis rather than a universal object-motion rule
+
+## [2026-04-19 04:38 UTC] [PHASE 2d COMPLETE]
+
+Final 2D-vs-3D synthesis:
+- `push / ee_direction`: both 2D and 3D work; 3D slightly stronger
+- `push / object_direction`: both fail; 3D only slightly better
+- `reach / ee_direction`: 3D clearly better and changes the scientific verdict
+- `strike / ee_direction`: 2D cleaner PEZ shape, 3D still strong but later-peaking
+- `strike / object_direction`: 3D completely rescues the signal
+
+Consensus:
+- 3D direction is the correct default target for manipulation PEZ experiments
+- 2D direction remains useful only as a Kubric-paper analog, not as the final scientific target
+
 ## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
 
 First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`
