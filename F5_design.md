@@ -16,6 +16,17 @@ This design applies to the strongest existing positive targets:
 
 The baseline results already exist in committed Phase 2d artifacts.
 
+## [NEURIPS MODE]
+
+This round is designed not only to detect a difference, but to support or refute a paper-quality claim under reviewer scrutiny.
+
+Mandatory standards for this round:
+
+- multi-seed shuffling, not single-seed only
+- effect-size reporting, not just curve plots
+- explicit alternative-hypothesis handling
+- paired statistical comparison where feasible
+
 ## Evidence Base
 
 Evidence-based:
@@ -53,10 +64,13 @@ This destroys temporal causality while preserving:
 
 ### Deterministic seed
 
-Use:
+Use the seed set:
 
-- global seed: `42`
-- derived per-window seed: hash of `(task, episode_id, window_start, 42)`
+- `42`
+- `123`
+- `2024`
+
+For each seed, derive a deterministic per-window seed from `(global_seed, episode_id, window_start)`.
 
 This guarantees:
 
@@ -77,9 +91,9 @@ Keep the current best-performing token recipe fixed:
 ### Output roots
 
 - Push shuffled cache:
-  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled/push`
+  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled_seed{seed}/push`
 - Strike shuffled cache:
-  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled/strike`
+  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled_seed{seed}/strike`
 
 ## Probe Settings
 
@@ -184,6 +198,69 @@ Observation-based interpretation will follow:
 
 These thresholds are for interpretation only; raw numbers will be reported directly.
 
+## Statistical Comparison Plan
+
+### Primary effect sizes
+
+For each target and seed:
+
+- `delta_peak = peak(original) - peak(shuffled)`
+- `delta_Lpez = R^2_original(L_pez) - R^2_shuffled(L_pez)`
+- `delta_L0 = R^2_original(L0) - R^2_shuffled(L0)`
+- `delta_peak_layer = peak_layer(shuffled) - peak_layer(original)`
+
+Where `L_pez` is task/target specific:
+
+- Push `ee_direction_3d`: use `L11`
+- Push `ee_speed`: use original peak layer
+- Strike `ee_direction_3d`: use `L22`
+- Strike `object_direction_3d`: use `L12`
+
+### Uncertainty
+
+If fold-level scores are available:
+
+- use paired bootstrap over folds
+- report bootstrap CI for `delta_peak` and `delta_Lpez`
+
+If only per-seed summaries are available:
+
+- aggregate across the 3 shuffle seeds
+- treat seed as the uncertainty axis
+- report mean +/- std across seeds
+
+### Decision rule
+
+The round supports a temporal-causality claim only if:
+
+- the shuffled degradation is consistent across seeds, and
+- the effect is material in magnitude, not just statistically non-zero
+
+## Reviewer Attack Model
+
+Primary reviewer attack:
+
+- "This is not PEZ; deeper layers simply contain more information, and shuffle does not matter."
+
+Counter-experiment in this round:
+
+- multi-seed frame shuffle with exact same token-patch probe
+
+Interpretation rule:
+
+- if shuffle does not materially degrade the curve, the default interpretation is static/framewise correlation
+- if shuffle degrades the curve strongly and consistently, temporal causality is supported
+
+## Story Update Goal
+
+If Round 1 succeeds, the evidence chain becomes:
+
+1. token-patch probing reveals PEZ-like direction emergence
+2. fake targets remain negative
+3. frame shuffle degrades the same targets materially
+
+That would move the claim from "representation contains information" to "representation depends on temporal ordering."
+
 ## Storage Plan
 
 Storage is the main operational risk.
@@ -209,10 +286,11 @@ Before deleting any raw cache needed for later CKA:
 
 Round 1 execution plan under this constraint:
 
-1. run Push shuffled extraction/probe
-2. delete temporary shuffled Push cache after verdict
-3. run Strike shuffled extraction/probe
-4. preserve only the final verdict artifacts, not all intermediate raw caches
+1. run one seed at a time
+2. probe immediately after extraction for that seed
+3. keep compact CSV/statistical outputs
+4. delete temporary shuffled cache before the next seed
+5. preserve only final verdict artifacts, not all intermediate raw caches
 
 If further storage pressure appears:
 
@@ -222,11 +300,11 @@ If further storage pressure appears:
 ## Open Review Questions for Claude
 
 1. Is window-level shuffle sufficient, or should there also be a control with a fixed reversed order?
-2. For F5 verdict, is absolute peak drop the right primary metric, or should area-under-curve difference be added?
-3. Given storage pressure, is it acceptable to treat the already committed original probe curves as the baseline rather than preserving all original raw caches through Round 1?
+2. Should `delta_peak` or `delta_Lpez` be the primary headline statistic?
+3. Is 3 seeds enough given the storage ceiling, or is a fourth seed necessary for reviewer confidence?
 
 ## Codex Response to Anticipated Critique
 
 1. Reversed-order is weaker than random shuffle because it preserves monotonicity; random shuffle is the stronger causality test.
-2. Peak drop and layer shift are easier to interpret and map directly to PEZ claims; AUC can be added later if needed.
-3. Yes. The scientific comparison is against the committed original Phase 2d curves, not against raw cache bytes.
+2. `delta_Lpez` maps directly onto the PEZ claim, while `delta_peak` captures total degradation; both should be reported.
+3. Given the current `95%` disk usage, 3 seeds run sequentially with cache recycling is the highest-rigor feasible design without stalling the whole nightshift.

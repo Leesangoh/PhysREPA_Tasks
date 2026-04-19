@@ -19,7 +19,6 @@ import subprocess
 import sys
 from glob import glob
 from pathlib import Path
-
 import numpy as np
 from safetensors.torch import save_file
 import torch
@@ -106,6 +105,15 @@ def build_transform(img_size: int):
             transforms.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
         ]
     )
+
+
+def derive_shuffle_seed(global_seed: int, episode_idx: int, window_start: int) -> int:
+    """Deterministic per-window seed without relying on Python's randomized hash."""
+    return (
+        (global_seed * 1000003)
+        + (episode_idx * 9176)
+        + (window_start * 1315423911)
+    ) & 0xFFFFFFFF
 
 
 def load_model(model_name: str, device: str):
@@ -216,6 +224,10 @@ def extract_episode_features(
     img_size: int,
     device: str,
     batch_size: int,
+    episode_idx: int,
+    shuffle_frames: bool = False,
+    shuffle_seed: int = 42,
+    debug_print_permutation: bool = False,
 ):
     if clip_frames.shape[0] < N_FRAMES:
         pad = N_FRAMES - clip_frames.shape[0]
@@ -230,13 +242,26 @@ def extract_episode_features(
 
     outputs = {"window_starts": torch.tensor(window_starts, dtype=torch.int32)}
     spatial_grid = img_size // 16
+    first_perm_logged = False
 
     for batch_start in range(0, len(window_starts), batch_size):
         batch_end = min(batch_start + batch_size, len(window_starts))
         clips = []
         for w_idx in range(batch_start, batch_end):
             start = window_starts[w_idx]
-            clip = transformed[start : start + N_FRAMES].permute(1, 0, 2, 3)
+            clip_window = transformed[start : start + N_FRAMES]
+            if shuffle_frames:
+                local_seed = derive_shuffle_seed(shuffle_seed, episode_idx, start)
+                permutation = np.random.default_rng(local_seed).permutation(N_FRAMES)
+                if debug_print_permutation and not first_perm_logged:
+                    print(
+                        f"[shuffle-debug] episode={episode_idx:06d} window_start={start} "
+                        f"seed={local_seed} permutation={permutation.tolist()}",
+                        flush=True,
+                    )
+                    first_perm_logged = True
+                clip_window = clip_window[torch.as_tensor(permutation, dtype=torch.long)]
+            clip = clip_window.permute(1, 0, 2, 3)
             clips.append(clip)
         batch = torch.stack(clips, dim=0).to(device)
         with torch.no_grad(), torch.amp.autocast("cuda", enabled=device.startswith("cuda")):
@@ -263,6 +288,9 @@ def main():
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--episode-limit", type=int, default=None)
     parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--shuffle-frames", action="store_true")
+    parser.add_argument("--shuffle-seed", type=int, default=42)
+    parser.add_argument("--debug-print-permutation", action="store_true")
     args = parser.parse_args()
 
     device = args.device if torch.cuda.is_available() else "cpu"
@@ -292,6 +320,10 @@ def main():
             img_size=cfg["img_size"],
             device=device,
             batch_size=args.batch_size,
+            episode_idx=ep_idx,
+            shuffle_frames=args.shuffle_frames,
+            shuffle_seed=args.shuffle_seed,
+            debug_print_permutation=args.debug_print_permutation,
         )
         save_file(episode_features, str(out_path))
 

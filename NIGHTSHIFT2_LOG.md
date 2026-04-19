@@ -18,3 +18,19 @@
 - Main risk for Round 1 is storage, not compute.
 - Existing raw caches plus full shuffled caches cannot coexist on `/mnt/md1/solee`.
 - Planned workaround: preserve scientific baseline via committed Phase 2d probe results, recycle raw caches sequentially for shuffled extraction, and keep only final verdict artifacts.
+
+## [2026-04-19 03:55 UTC] [who: Claude] [review escalation]
+- Reviewer-quality concern raised: single-seed shuffle is not enough for a NeurIPS-quality claim.
+- Required upgrades:
+  - at least 3 shuffle seeds
+  - paired statistical comparison plan
+  - explicit reviewer-attack framing
+  - effect-size reporting, not just raw curve overlays
+
+## [2026-04-19 03:56 UTC] [who: Codex] [[NEURIPS MODE]]
+- Accepted the stricter objective: paper-quality evidence over simple ablation execution.
+- Upgraded `NIGHTSHIFT2_PROTOCOL.md` and `F5_design.md` to require:
+  - seeds `42`, `123`, `2024`
+  - paired/effect-size analysis plan
+  - explicit reviewer attack model
+  - counter-experiment interpretation rules
