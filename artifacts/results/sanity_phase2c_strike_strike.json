@@ -1,0 +1,48 @@
+{
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl_tokenpatch/strike",
+  "feature_type": "token_patch",
+  "run_tag": "phase2c_strike",
+  "n_episodes": 2895,
+  "num_layers": 24,
+  "feature_dim_layer0": 262144,
+  "window_count_mode": 58,
+  "missing_feature_keys": 0,
+  "patch_shape": [
+    256,
+    1024
+  ],
+  "groupkfold_overlap_zero": true,
+  "gt_distribution_plot": "/home/solee/physrepa_tasks/artifacts/figures/gt_distribution_strike.png",
+  "control_targets_l0_ge_0_8": false,
+  "gt_summary": {
+    "ee_direction_sincos": {
+      "shape": [
+        2895,
+        2
+      ],
+      "var": 0.05700854434204595,
+      "finite": true
+    },
+    "ee_speed": {
+      "shape": [
+        2895
+      ],
+      "var": 0.007827433056543546,
+      "finite": true
+    },
+    "ee_accel_magnitude": {
+      "shape": [
+        2895
+      ],
+      "var": 0.16442947580164646,
+      "finite": true
+    },
+    "fake_mod5": {
+      "shape": [
+        2895
+      ],
+      "var": 2.0,
+      "finite": true
+    }
+  }
+}

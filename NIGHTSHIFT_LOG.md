@@ -838,6 +838,141 @@ Operational conclusion:
 - attentive object-direction rescue is dropped from the current night-shift scope
 - the night shift now focuses on completing `strike` extraction and the next contact-heavy linear probe
 
+## [2026-04-18 21:48 UTC] [BLOCKED-RESOLVED] strike extraction ended with partial cache
+
+Strike token extraction did not reach `3000 / 3000`.
+
+Observed failure:
+- extraction stopped at `2895 / 3000`
+- traceback ended in `safetensors_rust.SafetensorError: No space left on device`
+- cache audit shows `2896` completed `.safetensors` episode files under:
+  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/strike`
+
+Decision:
+- do **not** attempt to recover the missing `104` episodes tonight
+- proceed directly to probing on the available `2896` cached episodes
+
+Rationale:
+- statistical power remains high
+- `probe_physprobe.py` enumerates episodes from existing safetensors, so partial caches are handled naturally
+- time is better spent extracting the scientific verdict than repairing the tail of the cache
+
+## [2026-04-18 21:50 UTC] [LAUNCHING LONG RUN: strike_phase2c_probe]
+
+Started Strike token-patch probe on the partial `2896`-episode cache.
+
+Config:
+- task: `strike`
+- model: `large`
+- feature type: `token_patch`
+- targets:
+  - `ee_direction_sincos`
+  - `ee_speed`
+  - `ee_accel_magnitude`
+  - `fake_mod5`
+- CV: `5-fold GroupKFold by episode_id`
+- solver: `trainable 20-HP`
+- norm: `zscore`
+
+Goal:
+- test whether the Push ee-side PEZ analog transfers to a more contact-heavy manipulation task
+- use `fake_mod5` again as an integrity guardrail
+
+## [2026-04-18 21:58 UTC] [BLOCKED-RESOLVED] first Strike probe launch failed on target spec
+
+The first Strike probe attempt exited immediately with:
+- `ValueError: Unknown targets for strike: ['ee_direction_sincos', 'ee_speed', 'ee_accel_magnitude', 'fake_mod5']`
+
+Cause:
+- `probe_physprobe.py` had these kinematic targets added for `push` and `reach`, but not yet for `strike`
+
+Resolution:
+- added minimal Strike target support for:
+  - `ee_speed`
+  - `ee_accel_magnitude`
+  - `ee_direction_sincos`
+  - `fake_mod5`
+- kept scope intentionally narrow to preserve the preregistered comparison with Push/Reach
+
+## [2026-04-18 22:00 UTC] [LAUNCHING LONG RUN: strike_phase2c_probe_retry]
+
+Relaunched Strike probe after target-spec fix.
+
+Observed early status:
+- feature loader started successfully on the partial `2896`-episode cache
+- initial throughput ~`2.2 s / episode` during feature ingestion
+- GPU 0 active again for probe compute
+
+## [2026-04-19 00:05 UTC] [BLOCKED-RESOLVED] Strike probe crash root cause identified
+
+The retried Strike probe died during feature loading.
+
+Observed traceback:
+- `SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered`
+
+Audit result:
+- scanned all `2896` Strike safetensors
+- exactly **one** corrupted file was found:
+  - `002895.safetensors`
+- corruption pattern is consistent with the earlier disk-full extraction crash
+
+Decision:
+- quarantine the single bad file instead of re-extracting the whole tail
+
+Action taken:
+- moved:
+  - `002895.safetensors`
+  - -> `002895.safetensors.corrupt`
+- valid cache count becomes `2895`
+
+## [2026-04-19 00:08 UTC] [LAUNCHING LONG RUN: strike_phase2c_probe_clean2895]
+
+Relaunched Strike token-patch probe on the cleaned `2895`-episode cache.
+
+Initial status check:
+- feature loader restarted successfully
+- early throughput again ~`2.25 s / episode`
+- GPU 0 active for probe compute
+
+Interpretation:
+- this was a cache-integrity failure, not a methodological failure
+- if the run now completes, the Strike result can be treated as statistically valid despite missing `105` episodes
+
+## [2026-04-19 02:10 UTC] [VERDICT: Strike probe complete]
+
+Strike Phase 2c finished successfully on the cleaned `2895`-episode cache.
+
+Key results:
+- `ee_direction_sincos`
+  - `L0=0.697`
+  - `L8=0.871`
+  - `peak=0.885 @ L11`
+  - `last=0.877`
+  - `classification=PEZ-like`
+- `ee_speed`
+  - `L0=0.883`
+  - `L8=0.957`
+  - `peak=0.963 @ L11`
+  - `classification=always-linear`
+- `ee_accel_magnitude`
+  - `L0=0.664`
+  - `L8=0.876`
+  - `peak=0.896 @ L12`
+  - `classification=PEZ-like`
+- `fake_mod5`
+  - negative at all layers
+  - integrity check passed
+
+Scientific conclusion:
+- `strike` is the strongest positive PEZ transfer case observed in PhysProbe so far
+- contact-rich interaction appears to help, not hurt, the emergence signal on end-effector kinematics
+
+Operational conclusion:
+- the night shift now has a complete three-task comparison:
+  - `push`: partial positive
+  - `reach`: integrity/generalization check
+  - `strike`: strongest positive
+
 ## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
 
 First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`

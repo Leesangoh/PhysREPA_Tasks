@@ -1,0 +1,62 @@
+{
+  "task": "strike",
+  "model": "large",
+  "targets": [
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "ee_direction_sincos",
+      "output_dim": 2,
+      "L0": 0.6973536096462131,
+      "L8": 0.8707198455156664,
+      "peak_r2": 0.8854776436628693,
+      "peak_layer": 11,
+      "last": 0.8772925072226595,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_ee_direction_sincos_large_token_patch_phase2c_strike.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_ee_direction_sincos_large_token_patch_phase2c_strike.png"
+    },
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "ee_speed",
+      "output_dim": 1,
+      "L0": 0.8831847469907433,
+      "L8": 0.9571966800981464,
+      "peak_r2": 0.9630377631066471,
+      "peak_layer": 11,
+      "last": 0.9512567543705097,
+      "classification": "always-linear",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_ee_speed_large_token_patch_phase2c_strike.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_ee_speed_large_token_patch_phase2c_strike.png"
+    },
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "ee_accel_magnitude",
+      "output_dim": 1,
+      "L0": 0.6638149492895506,
+      "L8": 0.8758650473529798,
+      "peak_r2": 0.8962538301623335,
+      "peak_layer": 12,
+      "last": 0.8783288722690947,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_ee_accel_magnitude_large_token_patch_phase2c_strike.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_ee_accel_magnitude_large_token_patch_phase2c_strike.png"
+    },
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "fake_mod5",
+      "output_dim": 1,
+      "L0": -0.4616609977254086,
+      "L8": -0.3494368614174605,
+      "peak_r2": -0.2896392783086215,
+      "peak_layer": 12,
+      "last": -0.30617484030505715,
+      "classification": "never-linear",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_fake_mod5_large_token_patch_phase2c_strike.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_fake_mod5_large_token_patch_phase2c_strike.png"
+    }
+  ]
+}

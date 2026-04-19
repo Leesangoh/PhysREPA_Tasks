@@ -116,8 +116,17 @@ TARGET_SPECS = {
         "ee_pos": {"kind": "dynamic_vector", "source": "physics_gt.ee_position", "output_dim": 3},
         "object_pos": {"kind": "dynamic_vector", "source": "physics_gt.object_position", "output_dim": 3},
         "ee_velocity": {"kind": "dynamic_vector", "source": "physics_gt.ee_velocity", "output_dim": 3},
+        "ee_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.ee_acceleration", "output_dim": 3},
         "object_velocity": {"kind": "dynamic_vector", "source": "physics_gt.object_velocity", "output_dim": 3},
         "object_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.object_acceleration", "output_dim": 3},
+        "ee_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.ee_velocity", "output_dim": 1},
+        "ee_accel_magnitude": {"kind": "dynamic_vector_norm", "source": "physics_gt.ee_acceleration", "output_dim": 1},
+        "ee_direction_sincos": {
+            "kind": "dynamic_vector_angle_xy_sincos",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 2,
+        },
+        "fake_mod5": {"kind": "synthetic", "source": "episode_index_mod_5", "output_dim": 1},
         "ball_planar_travel_distance": {
             "kind": "dynamic_scalar",
             "source": "physics_gt.ball_planar_travel_distance",
