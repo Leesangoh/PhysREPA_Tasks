@@ -973,6 +973,58 @@ Operational conclusion:
   - `reach`: integrity/generalization check
   - `strike`: strongest positive
 
+## [2026-04-19 02:22 UTC] [DECISION POINT] 2D direction is not the right final target
+
+User-side critique accepted:
+- Kubric PEZ used 2D direction because the setup is overhead planar motion
+- manipulation should use a true 3D direction target
+
+New target definition:
+- `direction_3d = velocity / ||velocity||`
+- episode target = mean of per-frame unit vectors
+
+Immediate consequence:
+- rerun direction probes in 3D, not 2D:
+  - `push`: `ee_direction_3d`, `object_direction_3d`
+  - `reach`: `ee_direction_3d`
+  - `strike`: `ee_direction_3d`, `object_direction_3d`
+
+## [2026-04-19 02:24 UTC] [BLOCKED] push token cache no longer exists
+
+While preparing the 3D rerun, cache audit showed:
+- `push` token-patch cache count = `0`
+- this is because the Push cache was intentionally deleted earlier to recover `/mnt` capacity during the Strike disk-full incident
+
+Current cache state:
+- `push`: missing
+- `reach`: `600` episodes present
+- `strike`: `2895` valid episodes present
+
+Resolution plan:
+1. run `reach` and `strike` 3D probes immediately on the existing caches
+2. if those complete successfully, delete `reach` cache (results committed) to free ~`415G`
+3. re-extract `push` token cache and run the final 3D push probe
+
+## [2026-04-19 02:26 UTC] [LAUNCHING LONG RUN: phase2d_direction3d]
+
+Started 3D direction reruns:
+
+- GPU 0:
+  - `reach`
+  - target: `ee_direction_3d`
+  - run tag: `phase2d_direction3d`
+
+- GPU 1:
+  - `strike`
+  - targets:
+    - `ee_direction_3d`
+    - `object_direction_3d`
+  - run tag: `phase2d_direction3d`
+
+Code change:
+- added `dynamic_vector_direction_3d` target kind to `probe_physprobe.py`
+- added 3D direction specs to Push / Reach / Strike target tables
+
 ## [2026-04-18 ~20:30 UTC] [CLAUDE AUDIT] Reach direction much weaker than Push
 
 First Reach CSV landed: `probe_reach_ee_direction_sincos_large_token_patch_phase2c_reach.csv`

@@ -87,6 +87,11 @@ TARGET_SPECS = {
             "source": "physics_gt.ee_velocity",
             "output_dim": 2,
         },
+        "ee_direction_3d": {
+            "kind": "dynamic_vector_direction_3d",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 3,
+        },
         "object_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.object_velocity", "output_dim": 1},
         "object_accel_magnitude": {
             "kind": "dynamic_vector_norm",
@@ -102,6 +107,11 @@ TARGET_SPECS = {
             "kind": "dynamic_vector_angle_xy_sincos",
             "source": "physics_gt.object_velocity",
             "output_dim": 2,
+        },
+        "object_direction_3d": {
+            "kind": "dynamic_vector_direction_3d",
+            "source": "physics_gt.object_velocity",
+            "output_dim": 3,
         },
         "ee_to_object_distance": {"kind": "dynamic_scalar", "source": "physics_gt.ee_to_object_distance", "output_dim": 1},
         "object_to_target_distance": {"kind": "dynamic_scalar", "source": "physics_gt.object_to_target_distance", "output_dim": 1},
@@ -119,12 +129,22 @@ TARGET_SPECS = {
         "ee_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.ee_acceleration", "output_dim": 3},
         "object_velocity": {"kind": "dynamic_vector", "source": "physics_gt.object_velocity", "output_dim": 3},
         "object_acceleration": {"kind": "dynamic_vector", "source": "physics_gt.object_acceleration", "output_dim": 3},
+        "object_direction_3d": {
+            "kind": "dynamic_vector_direction_3d",
+            "source": "physics_gt.object_velocity",
+            "output_dim": 3,
+        },
         "ee_speed": {"kind": "dynamic_vector_norm", "source": "physics_gt.ee_velocity", "output_dim": 1},
         "ee_accel_magnitude": {"kind": "dynamic_vector_norm", "source": "physics_gt.ee_acceleration", "output_dim": 1},
         "ee_direction_sincos": {
             "kind": "dynamic_vector_angle_xy_sincos",
             "source": "physics_gt.ee_velocity",
             "output_dim": 2,
+        },
+        "ee_direction_3d": {
+            "kind": "dynamic_vector_direction_3d",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 3,
         },
         "fake_mod5": {"kind": "synthetic", "source": "episode_index_mod_5", "output_dim": 1},
         "ball_planar_travel_distance": {
@@ -196,6 +216,11 @@ TARGET_SPECS = {
             "kind": "dynamic_vector_angle_xy_sincos",
             "source": "physics_gt.ee_velocity",
             "output_dim": 2,
+        },
+        "ee_direction_3d": {
+            "kind": "dynamic_vector_direction_3d",
+            "source": "physics_gt.ee_velocity",
+            "output_dim": 3,
         },
         "ee_to_target_distance": {
             "kind": "dynamic_scalar",
@@ -500,6 +525,15 @@ def load_targets(task: str, episode_indices: list[int], requested_targets: list[
                         mean_sin = np.nanmean(np.sin(angles))
                         mean_cos = np.nanmean(np.cos(angles))
                         targets[target].append(np.asarray([mean_sin, mean_cos], dtype=np.float64))
+                elif spec["kind"] == "dynamic_vector_direction_3d":
+                    if spec["source"] not in df.columns:
+                        targets[target].append(np.full((3,), np.nan))
+                    else:
+                        arr = stack_series(df[spec["source"]].values)
+                        norms = np.linalg.norm(arr, axis=1, keepdims=True)
+                        safe = np.where(norms > 1e-12, arr / norms, np.nan)
+                        vec = np.nanmean(safe, axis=0)
+                        targets[target].append(np.asarray(vec, dtype=np.float64))
 
     for target in requested_targets:
         spec = task_specs[target]
