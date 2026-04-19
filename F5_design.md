@@ -27,6 +27,43 @@ Mandatory standards for this round:
 - explicit alternative-hypothesis handling
 - paired statistical comparison where feasible
 
+## [ORAL MODE]
+
+### Main claim for Round 1
+
+If frame shuffle materially degrades the strongest manipulation direction curves, then the current PhysProbe PEZ-analog signals depend on temporal ordering rather than only static appearance.
+
+### Killer evidence chain
+
+To support that claim, Round 1 needs all of the following:
+
+1. **Reproducible degradation across shuffle seeds**
+   - not a one-seed accident
+2. **Material effect size**
+   - not just a tiny but statistically non-zero difference
+3. **Target specificity**
+   - stronger degradation for direction-like targets than for trivial/static correlates
+
+### Counter-evidence scenarios
+
+1. Shuffled curves stay near original
+   - interpretation: static/framewise correlate dominates
+2. Only one target degrades while others do not
+   - interpretation: claim becomes target-specific, not a broad manipulation PEZ claim
+3. Results are highly unstable across seeds
+   - interpretation: current evidence is too brittle for an oral-level story
+
+### Reviewer attack to answer
+
+Reviewer attack:
+
+- "This is just deeper-is-better. Your model has more information in later layers, and your direction curves are not proof of temporal encoding."
+
+Round-1 answer if successful:
+
+- shuffle preserves per-frame appearance while destroying temporal order
+- if the same probe recipe collapses under shuffle, then later-layer success cannot be explained by static appearance alone
+
 ## Evidence Base
 
 Evidence-based:
@@ -236,6 +273,24 @@ The round supports a temporal-causality claim only if:
 - the shuffled degradation is consistent across seeds, and
 - the effect is material in magnitude, not just statistically non-zero
 
+### Oral-mode threshold interpretation
+
+- `>= 30%` degradation from original at the key PEZ layer or peak:
+  - strong causal temporal evidence
+- `10% or less` degradation:
+  - strong evidence for static/framewise contribution
+- `15-25%` degradation:
+  - mixed temporal+static interpretation
+
+### Multiple-comparison plan
+
+If layer-wise significance testing is performed:
+
+- control family-wise error with Bonferroni over 24 layers, or
+- report FDR-adjusted `q` values as a secondary analysis
+
+Primary narrative will still rely on effect sizes and CIs, not only `p` values.
+
 ## Reviewer Attack Model
 
 Primary reviewer attack:
@@ -260,6 +315,12 @@ If Round 1 succeeds, the evidence chain becomes:
 3. frame shuffle degrades the same targets materially
 
 That would move the claim from "representation contains information" to "representation depends on temporal ordering."
+
+If Round 1 is only mixed:
+
+- the story remains publishable, but the claim becomes:
+  - "manipulation PEZ-like signals combine temporal and static cues"
+  - not a pure causal temporal mechanism
 
 ## Storage Plan
 

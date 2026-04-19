@@ -182,3 +182,62 @@ If a positive curve survives only under one parameterization:
 
 - default interpretation is **parameterization-sensitive**
 - not yet robust enough for a broad claim
+
+## [ORAL RIGOR UPGRADE]
+
+Goal escalation beyond "paper-quality":
+
+- target is now **oral-level evidence**
+- not just "we observed X"
+- but "X happens because of mechanism Z, and A/B/C jointly rule out alternatives"
+
+### Required structure for each round
+
+Every design/verdict document must include:
+
+1. **Main claim**
+2. **Killer evidence chain**
+   - at least 3 evidence items needed to support the claim
+3. **Counter-evidence scenarios**
+   - what outcome would weaken or kill the claim
+4. **Reviewer attack response**
+   - what to say if the reviewer claims "this is just deeper-is-better"
+
+### Round 1 F5 oral-standard requirements
+
+Round 1 must include:
+
+- at least 3 shuffle seeds
+- effect sizes:
+  - `delta_peak`
+  - `delta_Lpez`
+  - Cohen's `d` where feasible
+- uncertainty:
+  - bootstrap CI or fold-level CI
+  - seed variance
+- multiple-comparison control plan over layer-wise tests
+- thresholded interpretation:
+  - `>= 30%` degradation -> strong causal temporal evidence
+  - `10% or less` degradation -> strong static/framewise evidence
+  - `15-25%` degradation -> mixed temporal+static interpretation
+
+### Round 4 (new): Random-init baseline
+
+After Round 1, launch a null baseline with random-init V-JEPA 2 if feasible.
+
+Goal:
+
+- test whether positive PhysProbe PEZ curves depend on pretrained representations
+
+Interpretation:
+
+- if random-init also gives strong curves, the role of V-JEPA 2 pretraining is weakened
+- if random-init collapses, this becomes strong evidence that pretraining created the useful representation
+
+### Additional oral-grade experiments to keep in view
+
+- multiple seeds on original probes
+- full 24-layer panels across all tasks
+- inter-layer transfer matrix
+
+These are not all mandatory tonight, but every verdict must state whether they are still needed.
