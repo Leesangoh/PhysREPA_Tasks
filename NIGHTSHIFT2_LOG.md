@@ -116,6 +116,28 @@
   - train and validation `R^2` logging
   - single-frame/static-only control only if shuffle evidence lands in the mixed zone or remains reviewer-vulnerable
 
+## [2026-04-19 17:04 UTC] [who: Codex] [execution constraint check]
+- `probe_physprobe.py` was updated to support:
+  - `--probe-seed`
+  - train `R^2` logging
+  - fold-level train/val score serialization
+- `py_compile` sanity passed for:
+  - `probe_physprobe.py`
+  - `extract_token_features.py`
+  - `prepare_cka_snapshot.py`
+- Storage check before launch:
+  - original Push raw cache size: `1006G`
+  - free space on `/mnt/md1/solee`: `189G`
+- Consequence:
+  - full original-baseline probe reruns can start immediately
+  - full shuffled Push extraction **cannot** start in parallel with the intact raw Push cache
+  - the scientific workaround is:
+    1. finish original baseline reruns
+    2. keep the compact CKA snapshot
+    3. recycle the raw Push cache
+    4. launch shuffled extraction seed `42`
+- This is an operational constraint, not a change in scientific design.
+
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
 Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해결 안 된 지점 flag.

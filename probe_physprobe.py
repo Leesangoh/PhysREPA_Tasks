@@ -281,6 +281,7 @@ def fit_trainable_batched(
     max_epochs=MAX_EPOCHS,
     patience_limit=PATIENCE,
     norm_mode="zscore",
+    probe_seed=CV_RANDOM_SEED,
 ):
     configs = list(itertools.product(lr_grid, wd_grid))
     n_configs = len(configs)
@@ -305,9 +306,9 @@ def fit_trainable_batched(
     input_dim = X_tr.shape[1]
     output_dim = int(output_dim)
 
-    torch.manual_seed(CV_RANDOM_SEED)
+    torch.manual_seed(probe_seed)
     if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(CV_RANDOM_SEED)
+        torch.cuda.manual_seed_all(probe_seed)
     template = torch.nn.Linear(input_dim, output_dim, bias=True)
     W = template.weight.data.T.contiguous().unsqueeze(0).expand(n_configs, input_dim, output_dim)
     b = template.bias.data.clone().unsqueeze(0).expand(n_configs, output_dim)
@@ -374,12 +375,21 @@ def fit_trainable_batched(
                 break
 
     with torch.no_grad():
+        pred_tr_best = torch.einsum("nd,cdo->cno", X_tr, best_W) + best_b.unsqueeze(1)
         pred_va_best = torch.einsum("nd,cdo->cno", X_va, best_W) + best_b.unsqueeze(1)
+    pred_tr_unscaled = pred_tr_best.cpu().numpy() * y_std[None, :, :] + y_mean[None, :, :]
     pred_va_unscaled = pred_va_best.cpu().numpy() * y_std[None, :, :] + y_mean[None, :, :]
 
     results = []
     for cfg_index, (lr, wd) in enumerate(configs):
-        results.append((float(lr), float(wd), compute_r2(y_val, pred_va_unscaled[cfg_index])))
+        results.append(
+            (
+                float(lr),
+                float(wd),
+                compute_r2(y_val, pred_va_unscaled[cfg_index]),
+                compute_r2(y_train, pred_tr_unscaled[cfg_index]),
+            )
+        )
     return results
 
 
@@ -637,7 +647,7 @@ def load_episode_features(
     return X_all, shape_info
 
 
-def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zscore"):
+def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zscore", probe_seed=CV_RANDOM_SEED):
     n_unique = int(np.unique(groups).size)
     n_splits = min(CV_SPLITS, n_unique)
     if n_splits < 2:
@@ -645,6 +655,7 @@ def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zsc
 
     splitter = GroupKFold(n_splits=n_splits)
     fold_scores = []
+    fold_train_scores = []
     fold_best_lrs = []
     fold_best_wds = []
 
@@ -658,12 +669,14 @@ def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zsc
         if np.asarray(y_train).ndim == 1:
             if float(np.std(y_train)) < 1e-10 or float(np.std(y_val)) < 1e-10:
                 fold_scores.append(0.0)
+                fold_train_scores.append(0.0)
                 fold_best_lrs.append(LR_GRID[0])
                 fold_best_wds.append(WD_GRID[0])
                 continue
         else:
             if float(np.std(y_train)) < 1e-10 or float(np.std(y_val)) < 1e-10:
                 fold_scores.append(0.0)
+                fold_train_scores.append(0.0)
                 fold_best_lrs.append(LR_GRID[0])
                 fold_best_wds.append(WD_GRID[0])
                 continue
@@ -678,18 +691,24 @@ def evaluate_layer(features, targets, groups, output_dim, device, norm_mode="zsc
             wd_grid=WD_GRID,
             device=device,
             norm_mode=norm_mode,
+            probe_seed=probe_seed,
         )
-        best_lr, best_wd, best_r2 = max(cfg_results, key=lambda item: item[2])
+        best_lr, best_wd, best_r2, best_train_r2 = max(cfg_results, key=lambda item: item[2])
         fold_scores.append(float(best_r2))
+        fold_train_scores.append(float(best_train_r2))
         fold_best_lrs.append(float(best_lr))
         fold_best_wds.append(float(best_wd))
 
     return {
         "r2_mean": float(np.mean(fold_scores)),
         "r2_std": float(np.std(fold_scores)),
+        "train_r2_mean": float(np.mean(fold_train_scores)),
+        "train_r2_std": float(np.std(fold_train_scores)),
         "best_lr_mode": float(Counter(fold_best_lrs).most_common(1)[0][0]),
         "best_wd_mode": float(Counter(fold_best_wds).most_common(1)[0][0]),
         "n_folds": int(n_splits),
+        "fold_val_r2s": [float(x) for x in fold_scores],
+        "fold_train_r2s": [float(x) for x in fold_train_scores],
     }
 
 
@@ -797,6 +816,7 @@ def main():
     parser.add_argument("--feature-type", choices=["mean", "token_patch"], default="mean")
     parser.add_argument("--feature-root", default=None)
     parser.add_argument("--run-tag", default="phase1")
+    parser.add_argument("--probe-seed", type=int, default=CV_RANDOM_SEED)
     args = parser.parse_args()
 
     ensure_dirs()
@@ -885,16 +905,22 @@ def main():
                 output_dim=output_dim,
                 device=device,
                 norm_mode=args.norm,
+                probe_seed=args.probe_seed,
             )
             row = {
                 "task": args.task,
                 "model": args.model,
                 "target": target_name,
                 "layer": layer,
+                "probe_seed": int(args.probe_seed),
                 "r2_mean": result["r2_mean"],
                 "r2_std": result["r2_std"],
+                "train_r2_mean": result["train_r2_mean"],
+                "train_r2_std": result["train_r2_std"],
                 "best_lr": result["best_lr_mode"],
                 "best_wd": result["best_wd_mode"],
+                "fold_val_r2s": json.dumps(result["fold_val_r2s"]),
+                "fold_train_r2s": json.dumps(result["fold_train_r2s"]),
                 "output_dim": output_dim,
                 "n_samples": len(groups),
             }
@@ -922,12 +948,15 @@ def main():
                 "task": args.task,
                 "model": args.model,
                 "target": target_name,
+                "probe_seed": int(args.probe_seed),
                 "output_dim": output_dim,
                 "L0": float(r2_curve[0]),
                 "L8": float(r2_curve[8]) if len(r2_curve) > 8 else float(r2_curve[-1]),
                 "peak_r2": float(np.max(r2_curve)),
                 "peak_layer": peak_layer,
                 "last": float(r2_curve[-1]),
+                "train_L0": float(results_df.sort_values("layer")["train_r2_mean"].to_numpy(dtype=np.float64)[0]),
+                "train_peak_r2": float(np.max(results_df["train_r2_mean"].to_numpy(dtype=np.float64))),
                 "classification": classify_curve(r2_curve),
                 "csv": csv_path,
                 "figure": fig_path,
