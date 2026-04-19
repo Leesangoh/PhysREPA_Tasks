@@ -64,6 +64,57 @@ Round-1 answer if successful:
 - shuffle preserves per-frame appearance while destroying temporal order
 - if the same probe recipe collapses under shuffle, then later-layer success cannot be explained by static appearance alone
 
+## Claude Review Responses
+
+### C1. Original baseline variance is missing
+
+Agreed. To support paired statistics at oral-level rigor, shuffled runs alone are not enough.
+
+Round 1 must therefore include:
+
+- rerunning the **original** probe recipe with multiple probe seeds
+- using the same seed set as shuffle comparison where feasible:
+  - `42`
+  - `123`
+  - `2024`
+
+This gives:
+
+- seed variance for the original baseline
+- fairer original-vs-shuffled effect comparisons
+- stronger support for paired or matched statistical summaries
+
+### C2. Static-only control should be considered
+
+Agreed, but not as the first mandatory step.
+
+Reason:
+
+- frame shuffle already tests whether temporal order matters while holding per-frame content fixed
+- a single-frame or static-only control is best used as an escalation if shuffle effects are ambiguous
+
+Therefore:
+
+- `single-frame/static-only probe` is added as a **fallback escalation**
+- trigger condition:
+  - if shuffled degradation lands in the mixed zone (`15-25%`)
+  - or if a reviewer could plausibly argue the result is dominated by static posture cues
+
+### C3. Train `R^2` must be logged
+
+Agreed. This is mandatory.
+
+Round 1 outputs must include:
+
+- train `R^2`
+- validation `R^2`
+- their difference
+
+Reason:
+
+- if shuffled and original differ mainly because the probe underfits or overfits one condition, the interpretation changes
+- train-vs-val gap is therefore a diagnostic, not just an optimization detail
+
 ## Evidence Base
 
 Evidence-based:
@@ -266,12 +317,30 @@ If only per-seed summaries are available:
 - treat seed as the uncertainty axis
 - report mean +/- std across seeds
 
+For original baseline reruns:
+
+- report the same seed-wise summaries
+- compare original vs shuffled at matched probe seed where possible
+
 ### Decision rule
 
 The round supports a temporal-causality claim only if:
 
 - the shuffled degradation is consistent across seeds, and
 - the effect is material in magnitude, not just statistically non-zero
+
+### Train-diagnostic requirement
+
+For every target x seed x layer summary used in the verdict:
+
+- store train `R^2`
+- store validation `R^2`
+- flag any condition with unusually large train-val gap
+
+Interpretation:
+
+- if both original and shuffled are near training ceiling but only shuffled collapses on validation, that supports a meaningful temporal signal
+- if shuffled also collapses on training, the problem may reflect target/probe mismatch rather than temporal causality alone
 
 ### Oral-mode threshold interpretation
 
@@ -321,6 +390,12 @@ If Round 1 is only mixed:
 - the story remains publishable, but the claim becomes:
   - "manipulation PEZ-like signals combine temporal and static cues"
   - not a pure causal temporal mechanism
+
+If Round 1 remains ambiguous after multi-seed shuffle:
+
+- launch `single-frame/static-only control`
+- keep the same targets
+- compare original vs shuffled vs static-only as a three-way hierarchy
 
 ## Storage Plan
 

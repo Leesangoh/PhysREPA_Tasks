@@ -207,6 +207,7 @@ Every design/verdict document must include:
 
 Round 1 must include:
 
+- original baseline reruns with multiple probe seeds
 - at least 3 shuffle seeds
 - effect sizes:
   - `delta_peak`
@@ -215,11 +216,16 @@ Round 1 must include:
 - uncertainty:
   - bootstrap CI or fold-level CI
   - seed variance
+- train-vs-validation diagnostics
 - multiple-comparison control plan over layer-wise tests
 - thresholded interpretation:
   - `>= 30%` degradation -> strong causal temporal evidence
   - `10% or less` degradation -> strong static/framewise evidence
   - `15-25%` degradation -> mixed temporal+static interpretation
+
+If Round 1 is mixed or reviewer-vulnerable:
+
+- escalate to a `single-frame/static-only` control before making a strong causal claim
 
 ### Round 4 (new): Random-init baseline
 
