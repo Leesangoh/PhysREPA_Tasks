@@ -1,0 +1,19 @@
+task,proxy,score,evidence,episodes_analyzed,contact_gt_max_nonzero_fraction
+push,direct_acceleration_magnitude,30853.398785421272,highest if exported acceleration contains impulse spikes,1500,0.0
+push,finite_diff_velocity_acceleration_magnitude,30853.398149367396,usable when direct acceleration is absent or zero-filled,1500,0.0
+push,second_diff_position_acceleration_magnitude,3808.413985915,fallback when velocity is unreliable,1500,0.0
+push,velocity_direction_jump,2.574934525632004,high values indicate collision-induced reorientation/reversal,1500,0.0
+strike,direct_acceleration_magnitude,14161.662448704217,highest if exported acceleration contains impulse spikes,3000,0.0
+strike,finite_diff_velocity_acceleration_magnitude,14161.662356486042,usable when direct acceleration is absent or zero-filled,3000,0.0
+strike,second_diff_position_acceleration_magnitude,8483.482790374013,fallback when velocity is unreliable,3000,0.0
+strike,velocity_direction_jump,1.5392973407516979,high values indicate collision-induced reorientation/reversal,3000,0.0
+peg_insert,second_diff_position_acceleration_magnitude,215.47184067441913,fallback when velocity is unreliable,2500,0.0
+peg_insert,finite_diff_velocity_acceleration_magnitude,19.920634581858625,usable when direct acceleration is absent or zero-filled,2500,0.0
+peg_insert,velocity_direction_jump,2.8076127860520277,high values indicate collision-induced reorientation/reversal,2500,0.0
+peg_insert,insertion_depth_delta,0.004275355488061905,task-specific progress/contact surrogate,2500,0.0
+nut_thread,second_diff_position_acceleration_magnitude,70.46289796296895,fallback when velocity is unreliable,2500,0.0
+nut_thread,finite_diff_velocity_acceleration_magnitude,6.719651748888165,usable when direct acceleration is absent or zero-filled,2500,0.0
+nut_thread,velocity_direction_jump,2.9300794177645715,high values indicate collision-induced reorientation/reversal,2500,0.0
+nut_thread,nut_bolt_relative_angle_delta,0.008125901222229004,task-specific progress/contact surrogate,2500,0.0
+drawer,drawer_opening_extent_delta,0.041453346610069275,task-specific progress/contact surrogate,2000,0.0
+drawer,drawer_joint_pos_delta,0.016166802495718002,task-specific progress/contact surrogate,2000,0.0

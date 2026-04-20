@@ -1,0 +1,668 @@
+[
+  {
+    "task": "push",
+    "episodes_analyzed": 1500,
+    "contact_gt_nonzero_fraction": {
+      "physics_gt.contact_finger_l_object_flag": 0.0,
+      "physics_gt.contact_finger_l_object_force": 0.0,
+      "physics_gt.contact_flag": 0.0,
+      "physics_gt.contact_force": 0.0,
+      "physics_gt.contact_object_surface_flag": 0.0,
+      "physics_gt.contact_object_surface_force": 0.0,
+      "physics_gt.contact_point": 0.0
+    },
+    "entity_zero_position_episodes": 0,
+    "entity_zero_velocity_episodes": 0,
+    "direct_acceleration": {
+      "max": {
+        "mean": 14.67166509814783,
+        "median": 12.54436604712322,
+        "p95": 27.782810485681672,
+        "max": 231.2601001632455
+      },
+      "baseline_median": {
+        "mean": 0.04105213077119531,
+        "median": 0.00040657971377372644,
+        "p95": 0.25671546677359713,
+        "max": 1.8946943076019347
+      },
+      "proxy_score": 30853.398785421272
+    },
+    "finite_diff_acceleration": {
+      "max": {
+        "mean": 0.293433295104531,
+        "median": 0.25088731191525315,
+        "p95": 0.5556561959862383,
+        "max": 4.625201923647731
+      },
+      "baseline_median": {
+        "mean": 0.0008210425984327925,
+        "median": 8.131594150526244e-06,
+        "p95": 0.005134309336769357,
+        "max": 0.037893884963827174
+      },
+      "proxy_score": 30853.398149367396
+    },
+    "position_second_diff": {
+      "max": {
+        "mean": 0.004464567168347911,
+        "median": 0.003808413985915,
+        "p95": 0.007494492897095255,
+        "max": 0.0919662358234762
+      },
+      "baseline_median": {
+        "mean": 4.492952440812392e-06,
+        "median": 1.1920928955078125e-07,
+        "p95": 3.133198794548391e-05,
+        "max": 0.0001706402767605807
+      },
+      "proxy_score": 3808.413985915
+    },
+    "direction_jump": {
+      "max": {
+        "mean": 2.4624480518945564,
+        "median": 2.574934525632004,
+        "p95": 3.0948409342733707,
+        "max": 3.1407775664178144
+      },
+      "p95": {
+        "mean": 0.5365018821117006,
+        "median": 0.2002889747343013,
+        "p95": 2.0474266090954463,
+        "max": 2.799179127247156
+      }
+    },
+    "distance_derivative": {
+      "min": {
+        "mean": -0.005275407305694215,
+        "median": -0.005062479426160227,
+        "p95": -0.0020741126573146757,
+        "max": 0.0005983899135477699
+      },
+      "p05": {
+        "mean": -0.0032146308894885085,
+        "median": -0.003249535472562593,
+        "p95": -0.0006180742013249281,
+        "max": 0.001317127281599939
+      }
+    },
+    "aux_derivatives": {
+      "ee_to_object_distance": {
+        "max_abs": {
+          "mean": 0.006404295285542806,
+          "median": 0.005842447280883789,
+          "p95": 0.009542620182037354,
+          "max": 0.07953166961669922
+        },
+        "p95_abs": {
+          "mean": 0.0043709139108657835,
+          "median": 0.004138743877410889,
+          "p95": 0.005917860269546509,
+          "max": 0.07693610191345214
+        }
+      }
+    },
+    "recommended_proxies": [
+      {
+        "proxy": "direct_acceleration_magnitude",
+        "score": 30853.398785421272,
+        "evidence": "highest if exported acceleration contains impulse spikes"
+      },
+      {
+        "proxy": "finite_diff_velocity_acceleration_magnitude",
+        "score": 30853.398149367396,
+        "evidence": "usable when direct acceleration is absent or zero-filled"
+      },
+      {
+        "proxy": "second_diff_position_acceleration_magnitude",
+        "score": 3808.413985915,
+        "evidence": "fallback when velocity is unreliable"
+      },
+      {
+        "proxy": "velocity_direction_jump",
+        "score": 2.574934525632004,
+        "evidence": "high values indicate collision-induced reorientation/reversal"
+      }
+    ]
+  },
+  {
+    "task": "strike",
+    "episodes_analyzed": 3000,
+    "contact_gt_nonzero_fraction": {
+      "physics_gt.contact_finger_l_object_flag": 0.0,
+      "physics_gt.contact_finger_l_object_force": 0.0,
+      "physics_gt.contact_flag": 0.0,
+      "physics_gt.contact_force": 0.0,
+      "physics_gt.contact_object_surface_flag": 0.0,
+      "physics_gt.contact_object_surface_force": 0.0,
+      "physics_gt.contact_point": 0.0
+    },
+    "entity_zero_position_episodes": 0,
+    "entity_zero_velocity_episodes": 0,
+    "direct_acceleration": {
+      "max": {
+        "mean": 26.73705786531449,
+        "median": 28.057988127862743,
+        "p95": 44.725932369923164,
+        "max": 279.3505334874598
+      },
+      "baseline_median": {
+        "mean": 0.047598870342847745,
+        "median": 0.0019812637272984875,
+        "p95": 0.30608289816148415,
+        "max": 0.9102858058235004
+      },
+      "proxy_score": 14161.662448704217
+    },
+    "finite_diff_acceleration": {
+      "max": {
+        "mean": 0.5347411448180515,
+        "median": 0.5611597589030843,
+        "p95": 0.8945186149137447,
+        "max": 5.587010478041924
+      },
+      "baseline_median": {
+        "mean": 0.0009519773886587419,
+        "median": 3.962527454596975e-05,
+        "p95": 0.006121657740440722,
+        "max": 0.018205715549247783
+      },
+      "proxy_score": 14161.662356486042
+    },
+    "position_second_diff": {
+      "max": {
+        "mean": 0.008823081810926786,
+        "median": 0.008483482790374013,
+        "p95": 0.01392199705854119,
+        "max": 0.08981654704914525
+      },
+      "baseline_median": {
+        "mean": 1.3774259058313515e-05,
+        "median": 9.830249847454215e-07,
+        "p95": 8.935887314149218e-05,
+        "max": 0.00027047212786425283
+      },
+      "proxy_score": 8483.482790374013
+    },
+    "direction_jump": {
+      "max": {
+        "mean": 1.6612572073805592,
+        "median": 1.5392973407516979,
+        "p95": 2.664507440919062,
+        "max": 3.0246446751502014
+      },
+      "p95": {
+        "mean": 0.1803110298015042,
+        "median": 0.05104912308470444,
+        "p95": 0.9875121804324875,
+        "max": 2.618051633135612
+      }
+    },
+    "distance_derivative": {
+      "min": {
+        "mean": -0.008109536650795156,
+        "median": -0.007867367906819744,
+        "p95": -0.003534724074325293,
+        "max": 0.0020100218608760656
+      },
+      "p05": {
+        "mean": -0.0044415333882836935,
+        "median": -0.004258997993990943,
+        "p95": -0.0012685635294541475,
+        "max": 0.0020878319668302227
+      }
+    },
+    "aux_derivatives": {
+      "ee_to_object_distance": {
+        "max_abs": {
+          "mean": 0.009438859780629475,
+          "median": 0.009453058242797852,
+          "p95": 0.013550305366516113,
+          "max": 0.0733327865600586
+        },
+        "p95_abs": {
+          "mean": 0.006000923101107279,
+          "median": 0.005715161561965942,
+          "p95": 0.009419578313827512,
+          "max": 0.053152990341186514
+        }
+      }
+    },
+    "recommended_proxies": [
+      {
+        "proxy": "direct_acceleration_magnitude",
+        "score": 14161.662448704217,
+        "evidence": "highest if exported acceleration contains impulse spikes"
+      },
+      {
+        "proxy": "finite_diff_velocity_acceleration_magnitude",
+        "score": 14161.662356486042,
+        "evidence": "usable when direct acceleration is absent or zero-filled"
+      },
+      {
+        "proxy": "second_diff_position_acceleration_magnitude",
+        "score": 8483.482790374013,
+        "evidence": "fallback when velocity is unreliable"
+      },
+      {
+        "proxy": "velocity_direction_jump",
+        "score": 1.5392973407516979,
+        "evidence": "high values indicate collision-induced reorientation/reversal"
+      }
+    ]
+  },
+  {
+    "task": "peg_insert",
+    "episodes_analyzed": 2500,
+    "contact_gt_nonzero_fraction": {
+      "physics_gt.contact_finger_l_peg_flag": 0.0,
+      "physics_gt.contact_finger_l_peg_force": 0.0,
+      "physics_gt.contact_finger_r_peg_flag": 0.0,
+      "physics_gt.contact_finger_r_peg_force": 0.0,
+      "physics_gt.contact_flag": 0.0,
+      "physics_gt.contact_force": 0.0,
+      "physics_gt.contact_peg_socket_flag": 0.0,
+      "physics_gt.contact_peg_socket_force": 0.0,
+      "physics_gt.contact_point": 0.0
+    },
+    "entity_zero_position_episodes": 0,
+    "entity_zero_velocity_episodes": 0,
+    "direct_acceleration": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "baseline_median": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_score": 0.0
+    },
+    "finite_diff_acceleration": {
+      "max": {
+        "mean": 0.08731184226900872,
+        "median": 0.06922764590284591,
+        "p95": 0.19326346277604,
+        "max": 0.6596347264990984
+      },
+      "baseline_median": {
+        "mean": 0.0037136172333310413,
+        "median": 0.003475172721951856,
+        "p95": 0.006162340257673687,
+        "max": 0.009672800396539397
+      },
+      "proxy_score": 19.920634581858625
+    },
+    "position_second_diff": {
+      "max": {
+        "mean": 0.0035788083443928707,
+        "median": 0.0036008076077215494,
+        "p95": 0.004440823843342606,
+        "max": 0.005139828705119833
+      },
+      "baseline_median": {
+        "mean": 2.0654488402907417e-05,
+        "median": 1.6711267683290545e-05,
+        "p95": 3.676172648538256e-05,
+        "max": 0.0004288557649343951
+      },
+      "proxy_score": 215.47184067441913
+    },
+    "direction_jump": {
+      "max": {
+        "mean": 2.7537066179285468,
+        "median": 2.8076127860520277,
+        "p95": 3.0584871495334602,
+        "max": 3.1381036925036376
+      },
+      "p95": {
+        "mean": 2.0219237039796263,
+        "median": 2.0727219657755684,
+        "p95": 2.516040161111214,
+        "max": 2.8278256675209006
+      }
+    },
+    "distance_derivative": {
+      "min": {
+        "mean": -0.0005604933452452572,
+        "median": -0.0005048236597085757,
+        "p95": -0.00026476920274902616,
+        "max": -2.3566190989851576e-05
+      },
+      "p05": {
+        "mean": -6.202503017463208e-06,
+        "median": -5.856358905186043e-06,
+        "p95": -3.4116409403312483e-06,
+        "max": -2.197752451711665e-06
+      }
+    },
+    "aux_derivatives": {
+      "insertion_depth": {
+        "max_abs": {
+          "mean": 0.004267573149502277,
+          "median": 0.004275355488061905,
+          "p95": 0.004635459557175636,
+          "max": 0.00531347468495369
+        },
+        "p95_abs": {
+          "mean": 0.0024460418964549918,
+          "median": 0.0024931997060775772,
+          "p95": 0.0031647490337491056,
+          "max": 0.0038328245282173165
+        }
+      },
+      "peg_hole_lateral_error": {
+        "max_abs": {
+          "mean": 0.0021540627323076477,
+          "median": 0.0022517743054777384,
+          "p95": 0.0033196167554706336,
+          "max": 0.004276072606444359
+        },
+        "p95_abs": {
+          "mean": 0.00048136910593726557,
+          "median": 0.00033715311001287807,
+          "p95": 0.0012218756607035182,
+          "max": 0.003405406512320042
+        }
+      }
+    },
+    "recommended_proxies": [
+      {
+        "proxy": "second_diff_position_acceleration_magnitude",
+        "score": 215.47184067441913,
+        "evidence": "fallback when velocity is unreliable"
+      },
+      {
+        "proxy": "finite_diff_velocity_acceleration_magnitude",
+        "score": 19.920634581858625,
+        "evidence": "usable when direct acceleration is absent or zero-filled"
+      },
+      {
+        "proxy": "velocity_direction_jump",
+        "score": 2.8076127860520277,
+        "evidence": "high values indicate collision-induced reorientation/reversal"
+      },
+      {
+        "proxy": "insertion_depth_delta",
+        "score": 0.004275355488061905,
+        "evidence": "task-specific progress/contact surrogate"
+      }
+    ]
+  },
+  {
+    "task": "nut_thread",
+    "episodes_analyzed": 2500,
+    "contact_gt_nonzero_fraction": {
+      "physics_gt.contact_finger_l_nut_flag": 0.0,
+      "physics_gt.contact_finger_l_nut_force": 0.0,
+      "physics_gt.contact_finger_r_nut_flag": 0.0,
+      "physics_gt.contact_finger_r_nut_force": 0.0,
+      "physics_gt.contact_flag": 0.0,
+      "physics_gt.contact_force": 0.0,
+      "physics_gt.contact_nut_bolt_flag": 0.0,
+      "physics_gt.contact_nut_bolt_force": 0.0,
+      "physics_gt.contact_point": 0.0
+    },
+    "entity_zero_position_episodes": 0,
+    "entity_zero_velocity_episodes": 0,
+    "direct_acceleration": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "baseline_median": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_score": 0.0
+    },
+    "finite_diff_acceleration": {
+      "max": {
+        "mean": 0.06065788959129717,
+        "median": 0.05734855939334478,
+        "p95": 0.0925658362756748,
+        "max": 0.22407993940272447
+      },
+      "baseline_median": {
+        "mean": 0.008731205239369889,
+        "median": 0.008534454096201294,
+        "p95": 0.013432711364840772,
+        "max": 0.022394552221646314
+      },
+      "proxy_score": 6.719651748888165
+    },
+    "position_second_diff": {
+      "max": {
+        "mean": 0.002895733932597975,
+        "median": 0.002931543655014799,
+        "p95": 0.003767961880817113,
+        "max": 0.005125275960597269
+      },
+      "baseline_median": {
+        "mean": 4.187054425838174e-05,
+        "median": 4.160407448123183e-05,
+        "p95": 5.861982038930151e-05,
+        "max": 0.0002017945646070166
+      },
+      "proxy_score": 70.46289796296895
+    },
+    "direction_jump": {
+      "max": {
+        "mean": 2.898160487191604,
+        "median": 2.9300794177645715,
+        "p95": 3.0861726835955148,
+        "max": 3.1393734057600478
+      },
+      "p95": {
+        "mean": 2.434823213148483,
+        "median": 2.477050195827192,
+        "p95": 2.714780527327517,
+        "max": 2.8497173262735367
+      }
+    },
+    "distance_derivative": {
+      "min": {
+        "mean": -0.00026923960090079007,
+        "median": -0.0002420350310545702,
+        "p95": -4.888268823408019e-05,
+        "max": -1.181290665543469e-05
+      },
+      "p05": {
+        "mean": -1.1434640887672451e-05,
+        "median": -1.0906733452580812e-05,
+        "p95": -7.447671399748233e-06,
+        "max": -3.947821114157895e-06
+      }
+    },
+    "aux_derivatives": {
+      "axial_progress": {
+        "max_abs": {
+          "mean": 0.0029310372799634934,
+          "median": 0.003019072115421295,
+          "p95": 0.003710174467414617,
+          "max": 0.004158478230237961
+        },
+        "p95_abs": {
+          "mean": 0.0006194360579550278,
+          "median": 0.0004806537181139001,
+          "p95": 0.0016964795812964462,
+          "max": 0.002273098379373552
+        }
+      },
+      "nut_bolt_relative_angle": {
+        "max_abs": {
+          "mean": 2.5252254617214205,
+          "median": 0.008125901222229004,
+          "p95": 6.276694095134735,
+          "max": 6.278446435928345
+        },
+        "p95_abs": {
+          "mean": 0.007203223571777343,
+          "median": 0.007139778137207032,
+          "p95": 0.00761978805065155,
+          "max": 0.009672594070434571
+        }
+      }
+    },
+    "recommended_proxies": [
+      {
+        "proxy": "second_diff_position_acceleration_magnitude",
+        "score": 70.46289796296895,
+        "evidence": "fallback when velocity is unreliable"
+      },
+      {
+        "proxy": "finite_diff_velocity_acceleration_magnitude",
+        "score": 6.719651748888165,
+        "evidence": "usable when direct acceleration is absent or zero-filled"
+      },
+      {
+        "proxy": "velocity_direction_jump",
+        "score": 2.9300794177645715,
+        "evidence": "high values indicate collision-induced reorientation/reversal"
+      },
+      {
+        "proxy": "nut_bolt_relative_angle_delta",
+        "score": 0.008125901222229004,
+        "evidence": "task-specific progress/contact surrogate"
+      }
+    ]
+  },
+  {
+    "task": "drawer",
+    "episodes_analyzed": 2000,
+    "contact_gt_nonzero_fraction": {
+      "physics_gt.contact_finger_l_handle_flag": 0.0,
+      "physics_gt.contact_finger_l_handle_force": 0.0,
+      "physics_gt.contact_finger_r_handle_flag": 0.0,
+      "physics_gt.contact_finger_r_handle_force": 0.0,
+      "physics_gt.contact_flag": 0.0,
+      "physics_gt.contact_force": 0.0,
+      "physics_gt.contact_point": 0.0
+    },
+    "entity_zero_position_episodes": 2000,
+    "entity_zero_velocity_episodes": 2000,
+    "direct_acceleration": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "baseline_median": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_score": 0.0
+    },
+    "finite_diff_acceleration": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "baseline_median": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_score": 0.0
+    },
+    "position_second_diff": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "baseline_median": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "proxy_score": 0.0
+    },
+    "direction_jump": {
+      "max": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "p95": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      }
+    },
+    "distance_derivative": {
+      "min": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "p05": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      }
+    },
+    "aux_derivatives": {
+      "drawer_joint_pos": {
+        "max_abs": {
+          "mean": 0.016066953820409253,
+          "median": 0.016166802495718002,
+          "p95": 0.01710913439746946,
+          "max": 0.01891493983566761
+        },
+        "p95_abs": {
+          "mean": 0.01126872126429805,
+          "median": 0.01120368763804435,
+          "p95": 0.013843491944717227,
+          "max": 0.014596328139305113
+        }
+      },
+      "drawer_opening_extent": {
+        "max_abs": {
+          "mean": 0.04119731737999246,
+          "median": 0.041453346610069275,
+          "p95": 0.04386953627690673,
+          "max": 0.04849984496831894
+        },
+        "p95_abs": {
+          "mean": 0.028894156540866182,
+          "median": 0.028727393597364412,
+          "p95": 0.03549613664392378,
+          "max": 0.03742647692561149
+        }
+      }
+    },
+    "recommended_proxies": [
+      {
+        "proxy": "drawer_opening_extent_delta",
+        "score": 0.041453346610069275,
+        "evidence": "task-specific progress/contact surrogate"
+      },
+      {
+        "proxy": "drawer_joint_pos_delta",
+        "score": 0.016166802495718002,
+        "evidence": "task-specific progress/contact surrogate"
+      }
+    ]
+  }
+]

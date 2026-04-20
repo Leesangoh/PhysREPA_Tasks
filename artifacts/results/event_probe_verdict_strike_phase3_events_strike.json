@@ -1,0 +1,31 @@
+{
+  "task": "strike",
+  "model": "large",
+  "run_tag": "phase3_events_strike",
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl_tokenpatch/strike",
+  "patch_shape": [
+    256,
+    1024
+  ],
+  "n_event_class_samples": 5776,
+  "n_event_reg_samples": 2888,
+  "positive_rate": 0.5,
+  "contact_happening": {
+    "L0": 0.9400074183616269,
+    "L8": 0.9972522789359021,
+    "peak_auc": 0.9987364692361071,
+    "peak_layer": 14,
+    "last": 0.9983248693596212,
+    "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_events_strike_contact_happening_large_phase3_events_strike.csv",
+    "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_events_strike_contact_happening_large_phase3_events_strike.png"
+  },
+  "contact_force_proxy": {
+    "L0": 0.08715112508069904,
+    "L8": 0.1953932164865192,
+    "peak_r2": 0.2203511992138476,
+    "peak_layer": 20,
+    "last": 0.21475336718746346,
+    "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_events_strike_contact_force_proxy_large_phase3_events_strike.csv",
+    "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_events_strike_contact_force_proxy_large_phase3_events_strike.png"
+  }
+}

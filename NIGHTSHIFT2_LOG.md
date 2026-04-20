@@ -567,3 +567,26 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Current status at first health check:
   - full run is deriving surrogate windows over `2895` valid Strike episodes
   - throughput is roughly `100--140` episodes/sec during label derivation
+
+## [2026-04-20 05:05 UTC] [who: Codex] [Phase 3 verdict]
+- Full Strike surrogate-contact probe completed.
+- Final full-run sample counts:
+  - binary event windows: `5776`
+  - regression event windows: `2888`
+- Main results:
+  - `contact_happening`
+    - `L0 AUC = 0.940`
+    - `L8 AUC = 0.997`
+    - peak `AUC = 0.999 @ L14`
+  - `contact_force_proxy`
+    - `L0 R^2 = 0.087`
+    - `L8 R^2 = 0.195`
+    - peak `R^2 = 0.220 @ L20`
+- Interpretation:
+  - `contact_happening` is near-saturated and should be treated as a surrogate-label sanity upper bound
+  - `contact_force_proxy` is the scientifically meaningful result:
+    weak but real interaction-magnitude decoding that emerges later than direction
+- Paper action:
+  - replace the `contact_dynamics` event TODO with a real subsection and table
+  - add one line to abstract/introduction
+  - update discussion to distinguish event occurrence from force magnitude
