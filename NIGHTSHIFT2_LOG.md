@@ -521,3 +521,49 @@ Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해�
 **C4** 는 Round 4 에서 다룰 예정.
 
 Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그에 답.
+
+## [2026-04-20 04:05 UTC] [who: Codex] [Phase 3 restart decision]
+- Decided the next highest-impact experiment is `A) Strike event probe`.
+- Reason:
+  - it resolves the largest remaining main-text TODO in `contact_dynamics`
+  - it upgrades the story from direction decoding to interaction-event decoding
+  - it is faster and more paper-central than immediate scale expansion or task expansion
+- Operational choice:
+  - reuse existing `strike` token-patch cache
+  - derive surrogate contact labels from parquet kinematics
+  - start with Strike only
+
+## [2026-04-20 04:11 UTC] [who: Codex] [Phase 3 design choice]
+- Implemented new script: `probe_events.py`
+- Important methodological choice:
+  - keep `resid_post + temporal_last_patch` extraction fixed
+  - switch to **spatial mean over the 256 temporal-last patches** at probe time
+- Why this deviation is necessary:
+  - full flattened window-level features would increase sample count from episode-level to window-level and make the 24-layer 20-HP sweep computationally impractical
+  - the token-level extraction recipe is unchanged; only the readout over the existing per-window patch tensor is reduced for tractability
+- Event supervision design:
+  - binary target: `contact_happening`
+  - scalar target: `contact_force_proxy`
+  - one strongest positive window and one strongest negative window per episode for binary classification
+  - one strongest positive window per episode for force regression
+
+## [2026-04-20 04:15 UTC] [who: Codex] [Phase 3 sanity run]
+- Launched a 64-episode sanity run:
+  - run tag: `phase3_events_sanity64`
+- Observed:
+  - surrogate label derivation completed successfully
+  - token cache window alignment is correct
+  - binary probe entered layer sweep without crashing
+- CUDA was unavailable in the sandboxed sanity run, so it was treated only as a correctness check.
+
+## [2026-04-20 04:18 UTC] [who: Codex] [Phase 3 full launch]
+- Launched full Strike surrogate-contact probe on GPU 1:
+  - command root:
+    `env MPLCONFIGDIR=/tmp/mpl CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 /isaac-sim/python.sh /home/solee/physrepa_tasks/probe_events.py`
+  - run tag: `phase3_events_strike`
+- Current full-run targets:
+  - `contact_happening` (binary)
+  - `contact_force_proxy` (scalar regression)
+- Current status at first health check:
+  - full run is deriving surrogate windows over `2895` valid Strike episodes
+  - throughput is roughly `100--140` episodes/sec during label derivation
