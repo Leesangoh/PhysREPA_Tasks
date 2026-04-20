@@ -379,6 +379,31 @@
     curves depend on learned V-JEPA 2 structure at all
   - split-by-value is now secondary until that null is tested
 
+## [2026-04-20 02:02 UTC] [who: Codex] [Round 4 design]
+- Wrote `R4_random_init_design.md`.
+- Round 4 scope:
+  - Push only
+  - targets: `ee_direction_3d`, `ee_speed`
+  - same extractor/probe recipe as the learned model
+  - null change = random V-JEPA 2 Large weights
+- Fixed choices:
+  - model seed `0`
+  - probe seeds `42`, `123`, `2024`
+- Main reviewer question:
+  - do the current Push curves require learned V-JEPA 2 structure, or are they
+    architecture-only?
+
+## [2026-04-20 02:03 UTC] [who: Codex] [Round 4 operational decision]
+- Storage is again the immediate blocker:
+  - `/mnt/md1/solee` free space only `184G`
+  - committed F5 intermediate cache still occupies:
+    - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled_seed123/push`
+    - size `1006G`
+- Decision:
+  - delete the `seed123` shuffled raw cache
+  - keep compact snapshots and committed verdict artifacts
+  - then launch Push random-init extraction
+
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
 Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해결 안 된 지점 flag.

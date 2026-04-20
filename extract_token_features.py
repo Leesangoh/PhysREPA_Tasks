@@ -116,12 +116,16 @@ def derive_shuffle_seed(global_seed: int, episode_idx: int, window_start: int) -
     ) & 0xFFFFFFFF
 
 
-def load_model(model_name: str, device: str):
+def load_model(model_name: str, device: str, random_init: bool = False, model_seed: int = 0):
     sys.path.insert(0, VJEPA2_ROOT)
     sys.path.insert(0, VJEPA2_SRC)
     import models.vision_transformer as vit_module
 
     cfg = MODEL_CONFIGS[model_name]
+    torch.manual_seed(model_seed)
+    np.random.seed(model_seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(model_seed)
     vit_factory = getattr(vit_module, cfg["factory"])
     model = vit_factory(
         patch_size=16,
@@ -135,13 +139,14 @@ def load_model(model_name: str, device: str):
         uniform_power=False,
         use_rope=True,
     )
-    checkpoint = torch.load(cfg["checkpoint"], map_location="cpu", weights_only=True)
-    state = checkpoint.get("target_encoder", checkpoint)
-    cleaned = {
-        key.replace("module.", "").replace("backbone.", ""): value
-        for key, value in state.items()
-    }
-    model.load_state_dict(cleaned, strict=True)
+    if not random_init:
+        checkpoint = torch.load(cfg["checkpoint"], map_location="cpu", weights_only=True)
+        state = checkpoint.get("target_encoder", checkpoint)
+        cleaned = {
+            key.replace("module.", "").replace("backbone.", ""): value
+            for key, value in state.items()
+        }
+        model.load_state_dict(cleaned, strict=True)
     model.__class__.forward = forward_resid_post
     return model.to(device).eval(), cfg
 
@@ -291,10 +296,17 @@ def main():
     parser.add_argument("--shuffle-frames", action="store_true")
     parser.add_argument("--shuffle-seed", type=int, default=42)
     parser.add_argument("--debug-print-permutation", action="store_true")
+    parser.add_argument("--random-init", action="store_true")
+    parser.add_argument("--model-seed", type=int, default=0)
     args = parser.parse_args()
 
     device = args.device if torch.cuda.is_available() else "cpu"
-    model, cfg = load_model(args.model, device=device)
+    model, cfg = load_model(
+        args.model,
+        device=device,
+        random_init=args.random_init,
+        model_seed=args.model_seed,
+    )
     transform = build_transform(cfg["img_size"])
 
     episode_indices = iter_episode_indices(args.task)
