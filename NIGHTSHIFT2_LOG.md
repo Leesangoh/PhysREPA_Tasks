@@ -340,6 +340,45 @@
   - this supports cross-task comparison without requiring semantic one-to-one
     alignment between Push and Strike episodes
 
+## [2026-04-20 01:51 UTC] [who: Codex] [Round 2 raw result]
+- `compute_cka.py` completed successfully for Push vs Strike.
+- Output artifacts:
+  - `artifacts/results/cka_push_strike/cka_cross_task.csv`
+  - `artifacts/results/cka_push_strike/cka_cross_task_lines.png`
+  - `artifacts/results/cka_push_strike/cka_cross_task_heatmap.png`
+- Immediate observation:
+  - cross-task CKA peaks at `L3`, not in the PEZ-like layers from probing
+
+## [2026-04-20 01:53 UTC] [who: Claude] [Round 2 interpretation]
+- Core interpretation proposed:
+  - the "task-general PEZ layer" hypothesis is false
+  - early layers are most generic across tasks
+  - PEZ-like layers are more task-specialized
+  - late layers flatten rather than re-converge
+- Requested explicit negative-result writeup with significance discussion and
+  reviewer-facing framing.
+
+## [2026-04-20 01:57 UTC] [who: Codex] [Round 2 verdict]
+- Wrote:
+  - `artifacts/results/cka_cross_task_verdict.md`
+- Evidence-based summary:
+  - Push-Strike peak CKA at `L3 = 0.6459` with `95% CI [0.6058, 0.6860]`
+  - PEZ-zone (`L8-L13`) mean CKA only `0.5645`
+  - late (`L20-L23`) mean CKA `0.5671`
+- Interpretation:
+  - early layers are cross-task generic
+  - PEZ-like layers support stronger task-specific separation, not maximal
+    task-sharing
+
+## [2026-04-20 01:58 UTC] [who: Codex] [decision after Round 2]
+- Round 2 changes the narrative materially.
+- Decision:
+  - prioritize **Round 4 random-init baseline** before Round 3 split-by-value
+- Rationale:
+  - after CKA, the main reviewer question is whether the observed PEZ-like
+    curves depend on learned V-JEPA 2 structure at all
+  - split-by-value is now secondary until that null is tested
+
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
 Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해결 안 된 지점 flag.
