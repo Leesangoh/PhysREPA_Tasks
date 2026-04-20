@@ -118,6 +118,35 @@
 
 ## [2026-04-19 17:04 UTC] [who: Codex] [execution constraint check]
 - `probe_physprobe.py` was updated to support:
+## [2026-04-20 00:00 UTC] [who: Codex] [Round 4 extraction completed]
+- Random-init Push token-patch extraction completed successfully.
+- Output root:
+  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_randominit_seed0/push`
+- Completed episodes:
+  - `1500 / 1500`
+- Cache size:
+  - `1006G`
+
+## [2026-04-20 00:02 UTC] [who: Codex] [Round 4 probe launch]
+- Launched 3 random-init probe reruns with the exact same recipe used for the trained Push baseline:
+  - task: `push`
+  - model: `V-JEPA 2 Large`
+  - feature type: `token_patch`
+  - feature root: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_randominit_seed0`
+  - targets: `ee_direction_3d`, `ee_speed`
+  - probe: `trainable 20-HP sweep`
+  - CV: `5-fold GroupKFold by episode_id`
+  - norm: `zscore`
+- Probe seeds and run tags:
+  - `42` -> `r4_randominit_seed42`
+  - `123` -> `r4_randominit_seed123`
+  - `2024` -> `r4_randominit_seed2024`
+- Sessions:
+  - `35062`
+  - `88445`
+  - `86392`
+- Planned next step:
+  - aggregate the 3 random-init runs into a Round 4 verdict and update the paper's contact-dynamics section with the learned-vs-random-init comparison.
   - `--probe-seed`
   - train `R^2` logging
   - fold-level train/val score serialization
@@ -403,6 +432,50 @@
   - delete the `seed123` shuffled raw cache
   - keep compact snapshots and committed verdict artifacts
   - then launch Push random-init extraction
+
+## [2026-04-20 02:12 UTC] [who: Codex] [Round 4 launch]
+- Began deleting the committed F5 intermediate raw cache:
+  - `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled_seed123/push`
+- Disk recovery proceeded normally:
+  - free space rose from `184G` to `1.1T`
+- Launched Push random-init extraction as soon as enough space was available:
+  - output root:
+    `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_randominit_seed0/push`
+  - model:
+    V-JEPA 2 Large architecture, random init, `model_seed=0`
+  - extractor recipe unchanged:
+    `resid_post + temporal_last_patch + resize`
+- This preserves the exact learned-model recipe while changing only the weight
+  initialization, which is the intended Round 4 null test.
+
+## [2026-04-20 03:34 UTC] [who: Codex] [Round 4 verdict]
+- All three random-init Push probes completed:
+  - targets: `ee_direction_3d`, `ee_speed`
+  - probe seeds: `42`, `123`, `2024`
+- Aggregated pretrained vs. random-init comparison:
+  - `ee_direction_3d`
+    - pretrained: `L0 = 0.648 ± 0.007`, `L8 = 0.804 ± 0.002`,
+      `peak = 0.816 ± 0.001 @ L11.7 ± 0.9`
+    - random-init: `L0 = 0.537 ± 0.009`, `L8 = 0.559 ± 0.014`,
+      `peak = 0.570 ± 0.010 @ L18.7 ± 2.1`
+    - delta: `-30.2%` peak, `+7.0` layers later
+  - `ee_speed`
+    - pretrained: `L0 = 0.707 ± 0.027`, `L8 = 0.930 ± 0.003`,
+      `peak = 0.934 ± 0.003 @ L11.0 ± 1.6`
+    - random-init: `L0 = 0.582 ± 0.019`, `L8 = 0.610 ± 0.017`,
+      `peak = 0.631 ± 0.013 @ L13.0 ± 5.7`
+    - delta: `-32.4%` peak, `+2.0` layers
+- The null still fits train folds strongly:
+  - direction train peak `= 0.994 ± 0.001`
+  - speed train peak `= 0.990 ± 0.005`
+- Consensus:
+  - the strongest Push kinematic regime is learned rather than architecture-only
+  - architecture plus probe capacity can fit train folds, but does not recover
+    the pretrained validation regime
+- Follow-up actions:
+  - wrote `artifacts/results/random_init_verdict.md`
+  - updated paper `abstract`, `contact_dynamics`, `discussion`, and `appendix`
+    with learned-vs-random-init evidence
 
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
