@@ -43,6 +43,13 @@ MODEL_CONFIGS = {
         "depth": 24,
         "img_size": 256,
     },
+    "huge": {
+        "factory": "vit_huge",
+        "checkpoint": os.path.join(CHECKPOINT_DIR, "vith.pt"),
+        "embed_dim": 1280,
+        "depth": 32,
+        "img_size": 256,
+    },
     "giant": {
         "factory": "vit_giant_xformers",
         "checkpoint": os.path.join(CHECKPOINT_DIR, "vitg.pt"),

@@ -41,6 +41,7 @@ from tqdm import tqdm
 TASKS = ["push", "strike", "peg_insert", "nut_thread", "drawer", "reach"]
 MODEL_CONFIGS = {
     "large": {"tag": "vitl", "num_layers": 24, "dim": 1024},
+    "huge": {"tag": "vith", "num_layers": 32, "dim": 1280},
     "giant": {"tag": "vitg", "num_layers": 40, "dim": 1408},
 }
 
