@@ -319,6 +319,27 @@
   2. create a balanced Strike snapshot at the matching output root
   3. implement and run linear CKA with bootstrap CIs
 
+## [2026-04-20 01:12 UTC] [who: Codex] [Round 2 launch]
+- Pushed the Round 2 design commit:
+  - `af8eea6` `[NIGHTSHIFT2] Start Round 2 CKA design after F5 verdict`
+- Relaunched the Strike balanced snapshot with escalated `/mnt` write access:
+  - input: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch/strike`
+  - output: `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_cka_bal600/strike`
+  - limit: `600`
+- Early runtime check:
+  - snapshot progressing normally at roughly `1.1-2.0s/episode`
+  - no corruption or read errors observed
+
+## [2026-04-20 01:16 UTC] [who: Codex] [Round 2 implementation]
+- Added `compute_cka.py`.
+- Implementation choice:
+  - feature-space linear CKA using centered Gram equivalents
+  - bootstrap confidence intervals over independently resampled episode sets
+  - pairwise line plot + task-pair heatmap output
+- Rationale:
+  - this supports cross-task comparison without requiring semantic one-to-one
+    alignment between Push and Strike episodes
+
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
 Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해결 안 된 지점 flag.
