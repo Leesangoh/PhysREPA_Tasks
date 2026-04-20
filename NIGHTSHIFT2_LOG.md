@@ -692,3 +692,18 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - model: `huge`
   - output root: `/mnt/md1/solee/features/physprobe_vith_tokenpatch`
   - early runtime signal: first episode written at ~`9.9s / episode`
+
+## 2026-04-20 Huge verdict and final scale-law interpretation
+
+- `Huge` extraction completed on full Push (`1500 / 1500` episodes).
+- Launched representative `seed42` probe on `Huge`.
+- Final Huge results:
+  - `ee_direction_3d`: `L0 = 0.5586`, `L8 = 0.8025`, `peak = 0.8168 @ L15`, `last = 0.7950`
+  - `ee_speed`: `L0 = 0.5278`, `L8 = 0.9180`, `peak = 0.9241 @ L16`, `last = 0.9041`
+- Final scale-law interpretation:
+  - peak magnitude is effectively preserved across `Large / Giant / Huge`
+  - peak depth is **not** monotonic
+  - `Large` and `Huge` peak near half depth, while `Giant` peaks substantially later
+- Conclusion:
+  - the Push PEZ-like regime is robust across model scale in strength
+  - its layer location is architecture-sensitive rather than governed by a naive deeper-is-bigger rule
