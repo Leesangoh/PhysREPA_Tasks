@@ -1,0 +1,40 @@
+{
+  "task": "push",
+  "model": "large",
+  "targets": [
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_direction_3d",
+      "probe_seed": 2024,
+      "output_dim": 3,
+      "L0": 0.637707290104846,
+      "L8": 0.8011882333639495,
+      "peak_r2": 0.8158027340408929,
+      "peak_layer": 11,
+      "last": 0.8088006810839492,
+      "train_L0": 0.9998794513989979,
+      "train_peak_r2": 0.9999044000181083,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_direction_3d_large_token_patch_f5_orig_seed2024.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_direction_3d_large_token_patch_f5_orig_seed2024.png"
+    },
+    {
+      "task": "push",
+      "model": "large",
+      "target": "ee_speed",
+      "probe_seed": 2024,
+      "output_dim": 1,
+      "L0": 0.7127882439917661,
+      "L8": 0.9274907694634653,
+      "peak_r2": 0.9320294794673798,
+      "peak_layer": 11,
+      "last": 0.914730478707462,
+      "train_L0": 0.9936745705077312,
+      "train_peak_r2": 0.999994832488672,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_push_ee_speed_large_token_patch_f5_orig_seed2024.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_push_ee_speed_large_token_patch_f5_orig_seed2024.png"
+    }
+  ]
+}

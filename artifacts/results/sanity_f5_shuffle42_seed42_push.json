@@ -1,0 +1,34 @@
+{
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl_tokenpatch_shuffled_seed42/push",
+  "feature_type": "token_patch",
+  "run_tag": "f5_shuffle42_seed42",
+  "n_episodes": 1500,
+  "num_layers": 24,
+  "feature_dim_layer0": 262144,
+  "window_count_mode": 58,
+  "missing_feature_keys": 0,
+  "patch_shape": [
+    256,
+    1024
+  ],
+  "groupkfold_overlap_zero": true,
+  "gt_distribution_plot": "/home/solee/physrepa_tasks/artifacts/figures/gt_distribution_push.png",
+  "control_targets_l0_ge_0_8": false,
+  "gt_summary": {
+    "ee_direction_3d": {
+      "shape": [
+        1500,
+        3
+      ],
+      "var": 0.031199700141461905,
+      "finite": true
+    },
+    "ee_speed": {
+      "shape": [
+        1500
+      ],
+      "var": 0.0017155153710907913,
+      "finite": true
+    }
+  }
+}
