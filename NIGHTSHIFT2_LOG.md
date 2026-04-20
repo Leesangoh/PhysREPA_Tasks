@@ -626,3 +626,69 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - recipe: `resid_post + temporal_last_patch`
   - output root: `/mnt/md1/solee/features/physprobe_vitg_tokenpatch`
   - runtime signal: extraction started normally, first episode written at ~`10s/episode`
+
+## 2026-04-20 Giant probe launch
+
+- Giant extraction completed on full Push (`1500 / 1500` episodes).
+- Launched paired 3-seed probe runs to match the Large baseline:
+  - `scale_giant_seed42` on `GPU 1`
+  - `scale_giant_seed123` on `GPU 2`
+  - `scale_giant_seed2024` on `GPU 3`
+- Target set:
+  - `ee_direction_3d`
+  - `ee_speed`
+- Feature root:
+  - `/mnt/md1/solee/features/physprobe_vitg_tokenpatch`
+- Early runtime check:
+  - all three runs entered `Load features [push/giant/token_patch]`
+  - observed throughput ~`5.4-5.7s / episode` during initial cache load
+
+## 2026-04-20 Giant probe failure diagnosis and rerun plan
+
+- Two of the original three Giant probe runs died before writing CSVs.
+- Root cause: `torch.OutOfMemoryError` at the first Giant layer fit, not extraction failure.
+- Observed failure signature:
+  - both failed runs loaded the full feature cache and parquet targets
+  - both crashed at `Probe [ee_direction_3d]: 0/40`
+  - error occurred inside `fit_trainable_batched(...)`
+- Cause interpretation:
+  - the dead runs were launched on GPUs that were already effectively full
+  - the remaining live run on the less-loaded GPU continued normally into the layer sweep
+- Decision:
+  - keep the surviving `seed42` run alive
+  - do not use the previously overloaded GPUs for Giant probing
+  - rerun the missing seeds sequentially on safer GPUs
+- Immediate action:
+  - relaunched `seed123` as `scale_giant_seed123_rerun` on `GPU 0`
+  - `seed2024` will be relaunched after either `seed42` or `seed123` completes
+
+## 2026-04-20 Giant seed42 completion and Nightshift3 decision
+
+- `scale_giant_seed42` completed successfully.
+- Result files landed:
+  - `probe_push_ee_direction_3d_giant_token_patch_scale_giant_seed42.csv`
+  - `probe_push_ee_speed_giant_token_patch_scale_giant_seed42.csv`
+- `scale_giant_seed123_rerun` is still loading features and remains active.
+- Nightshift3 decision:
+  - do **not** launch `seed2024`
+  - use `seed42 + seed123` as the Giant evidence band
+  - prioritize advancing to `Huge` after `seed123` completes
+- Rationale:
+  - `Large` already showed extremely low seed variance
+  - the paper value now comes more from completing `L/G/H` coverage than from adding a third Giant seed
+
+## 2026-04-20 Giant summary complete, Huge launched
+
+- `scale_giant_seed123_rerun` completed successfully after the OOM-safe rerun.
+- Wrote `artifacts/results/scale_giant_verdict.md`.
+- Giant aggregate summary:
+  - `ee_direction_3d`: `peak = 0.8183 ± 0.0030 @ L27.0 ± 3.0`
+  - `ee_speed`: `peak = 0.9347 ± 0.0043 @ L25.0 ± 0.0`
+- Interpretation:
+  - Giant preserves the same overall peak magnitude as Large while shifting the best-decoding layer substantially deeper.
+- Started deleting `/mnt/md1/solee/features/physprobe_vitg_tokenpatch`.
+- Once free space reached ~`1.6T`, launched `Huge` extraction on `GPU 0`:
+  - task: `push`
+  - model: `huge`
+  - output root: `/mnt/md1/solee/features/physprobe_vith_tokenpatch`
+  - early runtime signal: first episode written at ~`9.9s / episode`
