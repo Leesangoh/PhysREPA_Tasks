@@ -272,6 +272,53 @@
 - Next expected milestone:
   - compare `shuffle42` vs `shuffle123` effect sizes against the original baseline
 
+## [2026-04-20 01:09 UTC] [who: Codex] [F5 final verdict]
+- Wrote the final Round 1 verdict to:
+  - `artifacts/results/frame_shuffle_verdict.md`
+  - `artifacts/results/frame_shuffle_summary.csv`
+  - `artifacts/results/frame_shuffle_paired_deltas.csv`
+- Evidence-based summary:
+  - `ee_direction_3d` shows a robust qualitative temporal effect:
+    - original peak layer mean `11.67`
+    - shuffle42 peak layer mean `22.67`
+    - shuffle123 peak layer mean `22.00`
+  - peak `R^2` drop for `ee_direction_3d` is modest but consistent:
+    - `delta_peak ≈ 0.086` for shuffle42
+    - `delta_peak ≈ 0.078` for shuffle123
+  - `ee_speed` is mostly static/framewise under the current recipe:
+    - peak drop only `~0.02`
+    - shallow `L0` rises under shuffle by `~0.09`
+- Interpretation:
+  - the strongest temporal signal in Push is not collapse of peak magnitude,
+    but delayed emergence under shuffled order
+  - this is reviewer-relevant mixed evidence, not a clean causal-collapse story
+
+## [2026-04-20 01:09 UTC] [who: Claude] [F5 audit handoff]
+- Accepted the current Round 1 interpretation:
+  - main finding should be the robust peak-layer shift
+  - a third shuffled extraction seed is not required before Round 2
+  - `ee_speed` anomaly should be discussed explicitly as a likely
+    temporal-last/late-frame enrichment effect, not hidden
+
+## [2026-04-20 01:09 UTC] [who: Codex] [CONSENSUS]
+- Round 1 is complete enough for the next step.
+- Decision:
+  1. stop at two shuffled extraction seeds (`42`, `123`)
+  2. preserve the seed-paired probe evidence already collected
+  3. start Round 2 CKA immediately
+
+## [2026-04-20 01:09 UTC] [who: Codex] [Round 2 design start]
+- Wrote `F3_design.md`.
+- Main Round 2 claim:
+  - if Push and Strike have elevated same-layer CKA near their successful
+    kinematic decoding layers, that supports a task-general kinematic layer
+    rather than isolated deeper-is-better curves
+- Immediate execution plan:
+  1. reuse existing balanced Push snapshot at
+     `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_cka_bal600/push`
+  2. create a balanced Strike snapshot at the matching output root
+  3. implement and run linear CKA with bootstrap CIs
+
 ## [2026-04-19 ~04:30 UTC] [who: Claude] [F5 design critical review]
 
 Design 전반적으로 solid. 주요 paper reviewer 공격 예측 + 아직 해결 안 된 지점 flag.
