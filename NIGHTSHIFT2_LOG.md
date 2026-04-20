@@ -590,3 +590,39 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - replace the `contact_dynamics` event TODO with a real subsection and table
   - add one line to abstract/introduction
   - update discussion to distinguish event occurrence from force magnitude
+## 2026-04-20 Scale-law pre-review audit
+
+- Objective: plan a `Large -> Giant -> Huge` model-scale PEZ run on `Push / ee_direction_3d`.
+- Extractor audit:
+  - `extract_token_features.py` supports `large` and `giant`.
+  - `huge` is not yet wired in, but local `vjepa2` exposes `vit_huge` with `depth=32`, `embed_dim=1280`.
+- Probe audit:
+  - `probe_physprobe.py` supports `large` and `giant`.
+  - `huge` needs a new `MODEL_CONFIGS` entry only.
+- Storage audit:
+  - `/mnt/md1/solee` free space is about `184G`.
+  - current large caches: random-init Push `~1006G`, Strike token-patch `~1.5T`.
+  - conclusion: scale law must use a sequential extract/probe/delete loop; parallel raw caches are not viable.
+- Action:
+  - wrote `SCALE_PLAN.md`
+  - waiting for Claude review before touching code or storage
+
+## 2026-04-20 Scale-law approved and launched
+
+- Claude approved the sequential `G -> H` plan.
+- Implemented `huge` support:
+  - `extract_token_features.py`: added `vit_huge`, `vith.pt`, `depth=32`, `embed_dim=1280`
+  - `probe_physprobe.py`: added `huge -> tag=vith, num_layers=32, dim=1280`
+- Committed code support as:
+  - `34bda42` `[SCALE] Add Huge model support for extraction and probing`
+- Freed disk by deleting:
+  - `physprobe_vitl_tokenpatch_randominit_seed0/push`
+  - `physprobe_vitl_tokenpatch/strike`
+- Disk state after cleanup:
+  - `/mnt/md1/solee` free space recovered to about `2.7T`
+- Launched Giant extraction:
+  - task: `push`
+  - model: `giant`
+  - recipe: `resid_post + temporal_last_patch`
+  - output root: `/mnt/md1/solee/features/physprobe_vitg_tokenpatch`
+  - runtime signal: extraction started normally, first episode written at ~`10s/episode`
