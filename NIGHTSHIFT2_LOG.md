@@ -738,3 +738,26 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   2. `VideoMAE-L` Strike
   3. `DINOv2-L` Push
   4. `DINOv2-L` Strike
+
+## 2026-04-21 VideoMAE-L setup validation
+
+- Hugging Face download completed successfully:
+  - local checkpoint root: `/mnt/md1/solee/checkpoints/cross_model/videomae-large`
+  - on-disk size after download: `2.0G`
+- Verified local load under `/isaac-sim/python.sh`:
+  - `hidden_size = 1024`
+  - `num_hidden_layers = 24`
+  - `num_frames = 16`
+  - `image_size = 224`
+  - `patch_size = 16`
+  - `tubelet_size = 2`
+- Added Stage 1 integration files:
+  - `extract_cross_model_features.py`
+  - `probe_physprobe.py` model aliases for `videomae_large` and `dinov2_large`
+- Completed a one-episode Push sanity extraction:
+  - windows: `58`
+  - per-layer patch tensor shape: `(196, 1024)`
+  - output file size: `534M`
+- Conclusion:
+  - the VideoMAE-L checkpoint is ready for full Push extraction
+  - the saved tensor format matches the existing token-patch probe contract
