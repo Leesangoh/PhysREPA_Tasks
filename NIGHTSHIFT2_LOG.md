@@ -947,3 +947,68 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - parquet target loading
   - `Probe layers -> Load layer 0`
 - This confirms that the minimum-disruption fix is working: the run is no longer dying before the actual layer sweep begins.
+
+[2026-04-21 16:45 UTC] DINOv2 Strike runtime decision:
+- By 5h elapsed, the repaired full-data run had advanced to roughly `layer 16 / 24`.
+- The run was healthy, not hung, but the wall-clock cost was too high for the remaining value of a confirmatory DINO Strike baseline.
+- Following the pre-agreed fallback, the full run was interrupted and the plan switched to a `1000`-episode subset probe using the same recipe.
+- This preserves the cross-model comparison while keeping the remaining runtime bounded.
+
+[2026-04-21 16:52 UTC] Oral-tier strategy decision:
+- Honest assessment: the paper is now strong on Tier-A kinematics and representational timing, but still not clearly Oral on the original scientific question of implicit force/dynamics understanding.
+- Highest-leverage next experiment selected:
+  - `Strike / contact_force_proxy` cross-model comparison
+  - start with `VideoMAE-L`, then `DINOv2-L`
+- Rationale:
+  - this directly upgrades the paper from observable kinematics to a Tier-B-style interaction-magnitude target
+  - it tests whether objective-specificity survives beyond direction/speed
+  - it reuses existing Strike token caches, so it is storage-safe and fast
+
+[2026-04-21 16:58 UTC] Force-story execution adjustment:
+- `VideoMAE-L Strike` token cache is no longer present on disk; it was removed during earlier storage rotation.
+- Therefore the storage-safe execution order is:
+  1. run `DINOv2-L / Strike / contact_force_proxy` now using the existing DINO Strike cache
+  2. if the Tier-B cross-model split looks real, re-extract `VideoMAE-L Strike` next and complete the full `V-JEPA / VideoMAE / DINO` force panel
+- This preserves the highest-value scientific direction while respecting the current disk/cache state.
+
+[2026-04-21 17:07 UTC] DINOv2 Strike force-proxy probe status:
+- The Tier-B event run is now the primary active experiment; the slower DINO kinematic subset run is secondary.
+- `phase3_events_dino_strike` progressed through:
+  - surrogate window derivation
+  - class-event feature loading (`1996` windows)
+  - regression-event feature loading (`998` windows)
+  - start of the layer sweep for `contact_happening`
+- Latest observed progress reached `Probe [contact_happening]: 2 / 24 layers`.
+- This confirms that the event-probe path is materially lighter than the token-flattened kinematic probe and is the right route for strengthening the paper on implicit interaction dynamics.
+
+[2026-04-21 17:18 UTC] Tier-B cross-model result landed:
+- `DINOv2-Large / Strike / phase3_events_dino_strike` completed.
+- Peak metrics:
+  - `contact_happening`: `AUC 0.9879 @ L16`
+  - `contact_force_proxy`: `R^2 0.1537 @ L18`
+- Comparison against the existing `V-JEPA 2 Large` baseline:
+  - `contact_happening`: `0.9987 @ L14`
+  - `contact_force_proxy`: `0.2204 @ L20`
+- The informative split is on the Tier-B proxy, not on the near-saturated binary contact target.
+- This is the first cross-model evidence that predictive video pretraining encodes interaction magnitude better than a static-image baseline.
+
+[2026-04-21 17:22 UTC] Force-panel execution choice:
+- The outstanding `DINOv2` strike kinematic subset probe was interrupted; it is confirmatory, while the new Tier-B force result is paper-critical.
+- `VideoMAE-Large / Strike` will be re-extracted on a matched `1000`-episode subset rather than full `3000` episodes.
+- Reason:
+  1. it matches the already-landed `DINOv2` Tier-B sample regime
+  2. it fits within the current `~593G` free-space budget
+  3. it gets to the three-way force panel faster than another full-cache extraction
+
+[2026-04-21 18:26 UTC] VideoMAE-L Strike subset force panel landed:
+- `VideoMAE-Large / Strike / phase3_events_videomae_strike` completed on the matched `1000`-episode subset.
+- Peak metrics:
+  - `contact_happening`: `AUC 0.9965 @ L23`
+  - `contact_force_proxy`: `R^2 0.1980 @ L19`
+- The resulting three-way Tier-B ordering is:
+  - `V-JEPA 2 Large`: `0.2204 @ L20`
+  - `VideoMAE-Large`: `0.1980 @ L19`
+  - `DINOv2-Large`: `0.1537 @ L18`
+- This extends the objective-specificity story beyond Tier-A kinematics:
+  predictive video pretraining is strongest not only on manipulation timing but
+  also on implicit interaction-magnitude decoding.
