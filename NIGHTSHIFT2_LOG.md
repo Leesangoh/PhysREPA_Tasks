@@ -707,3 +707,34 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Conclusion:
   - the Push PEZ-like regime is robust across model scale in strength
   - its layer location is architecture-sensitive rather than governed by a naive deeper-is-bigger rule
+
+## 2026-04-21 Cross-model benchmark planning and Stage 1 launch
+
+- Wrote `CROSS_MODEL_PLAN.md` to define the next oral-tier experiment.
+- Decided to run `VideoMAE-L` first, then `DINOv2-L`, with optional `Hiera-L` after the first two baselines.
+- Fairness rule fixed in writing:
+  - video models receive full `16`-frame windows
+  - image models receive only the last frame and are treated as static controls
+- Stage 0 storage action:
+  - delete `/mnt/md1/solee/features/physprobe_vith_tokenpatch` after preserving the committed Huge verdict
+- Stage 1 launch target:
+  - download and validate `MCG-NJU/videomae-large`
+  - local checkpoint root: `/mnt/md1/solee/checkpoints/cross_model/videomae-large`
+  - runtime environment: `/isaac-sim/python.sh`
+
+## 2026-04-21 Cross-model Stage 0/1 runtime status
+
+- Confirmed Huge raw cache size before deletion: `1.7T`.
+- Started deleting `/mnt/md1/solee/features/physprobe_vith_tokenpatch` to free space for cross-model baselines.
+- During deletion, free space increased from roughly `1.1T` to `1.4T`, which was enough to proceed with Stage 1 setup.
+- Created:
+  - `/mnt/md1/solee/checkpoints/cross_model`
+  - `/mnt/md1/solee/hf_cache`
+- Started `VideoMAE-L` download via Hugging Face under `/isaac-sim/python.sh`:
+  - repo id: `MCG-NJU/videomae-large`
+  - destination: `/mnt/md1/solee/checkpoints/cross_model/videomae-large`
+- Cross-model execution order remains:
+  1. `VideoMAE-L` Push
+  2. `VideoMAE-L` Strike
+  3. `DINOv2-L` Push
+  4. `DINOv2-L` Strike
