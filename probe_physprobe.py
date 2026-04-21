@@ -426,6 +426,12 @@ def list_feature_episodes(feature_root: str) -> list[int]:
     episodes = []
     for path in sorted(glob(os.path.join(feature_root, "*.safetensors"))):
         name = os.path.basename(path).split(".")[0]
+        try:
+            with safe_open(path, framework="numpy") as f:
+                _ = f.keys()
+        except Exception as exc:
+            print(f"[warn] skipping unreadable feature file: {path} ({exc})")
+            continue
         episodes.append(int(name))
     return episodes
 
@@ -576,6 +582,111 @@ def build_output_stem(task: str, target: str, model: str, feature_type: str, run
     if run_tag != "phase1":
         stem += f"_{run_tag}"
     return stem
+
+
+def inspect_feature_files(
+    task: str,
+    model: str,
+    episode_indices: list[int],
+    feature_type: str = "mean",
+    feature_root_override: str | None = None,
+):
+    cfg = MODEL_CONFIGS[model]
+    feature_root = resolve_feature_root(task, model, feature_type=feature_type, feature_root=feature_root_override)
+    num_layers = cfg["num_layers"]
+    base_dim = cfg["dim"]
+
+    shape_info = {
+        "feature_root": feature_root,
+        "feature_type": feature_type,
+        "num_layers": num_layers,
+        "base_dim": base_dim,
+        "episodes": len(episode_indices),
+        "window_counts": [],
+        "missing_feature_keys": 0,
+        "patch_shape": None,
+        "feature_dims": {},
+    }
+
+    first_path = os.path.join(feature_root, f"{episode_indices[0]:06d}.safetensors")
+    with safe_open(first_path, framework="numpy") as f:
+        keys = set(f.keys())
+        if "window_starts" not in keys:
+            raise ValueError(f"window_starts missing in {first_path}")
+        key = "layer_0_window_0"
+        if key not in keys:
+            raise ValueError(f"Missing {key} in {first_path}")
+        feat0 = f.get_tensor(key)
+        if feature_type == "mean":
+            flat_dim = int(np.asarray(feat0).reshape(-1).shape[0])
+        elif feature_type == "token_patch":
+            if feat0.ndim != 2:
+                raise ValueError(f"Expected token-patch feature to be rank-2, got {feat0.shape} in {first_path}")
+            shape_info["patch_shape"] = list(feat0.shape)
+            flat_dim = int(np.asarray(feat0).reshape(-1).shape[0])
+        else:
+            raise ValueError(f"Unknown feature_type: {feature_type}")
+        shape_info["feature_dims"] = {layer_idx: flat_dim for layer_idx in range(num_layers)}
+
+    for ep_idx in tqdm(episode_indices, desc=f"Inspect features [{task}/{model}/{feature_type}]"):
+        feat_path = os.path.join(feature_root, f"{ep_idx:06d}.safetensors")
+        with safe_open(feat_path, framework="numpy") as f:
+            keys = set(f.keys())
+            if "window_starts" not in keys:
+                raise ValueError(f"window_starts missing in {feat_path}")
+            window_starts = f.get_tensor("window_starts").astype(np.int64)
+            shape_info["window_counts"].append(int(len(window_starts)))
+
+    return shape_info
+
+
+def load_single_layer_features(
+    task: str,
+    model: str,
+    episode_indices: list[int],
+    layer: int,
+    feature_type: str = "mean",
+    feature_root_override: str | None = None,
+):
+    feature_root = resolve_feature_root(task, model, feature_type=feature_type, feature_root=feature_root_override)
+    X_layer = None
+
+    for row_index, ep_idx in enumerate(
+        tqdm(episode_indices, desc=f"Load layer {layer} [{task}/{model}/{feature_type}]")
+    ):
+        feat_path = os.path.join(feature_root, f"{ep_idx:06d}.safetensors")
+        with safe_open(feat_path, framework="numpy") as f:
+            keys = set(f.keys())
+            if "window_starts" not in keys:
+                raise ValueError(f"window_starts missing in {feat_path}")
+            window_starts = f.get_tensor("window_starts").astype(np.int64)
+            n_w = len(window_starts)
+            vecs = []
+            for w in range(n_w):
+                key = f"layer_{layer}_window_{w}"
+                if key not in keys:
+                    raise ValueError(f"Missing {key} in {feat_path}")
+                vecs.append(f.get_tensor(key))
+            episode_feat = np.mean(vecs, axis=0)
+
+            if feature_type == "mean":
+                flat_feat = np.asarray(episode_feat, dtype=np.float32)
+            elif feature_type == "token_patch":
+                if episode_feat.ndim != 2:
+                    raise ValueError(
+                        f"Expected token-patch feature to be rank-2, got {episode_feat.shape} in {feat_path}"
+                    )
+                flat_feat = np.asarray(episode_feat.reshape(-1), dtype=np.float32)
+            else:
+                raise ValueError(f"Unknown feature_type: {feature_type}")
+
+            if X_layer is None:
+                X_layer = np.empty((len(episode_indices), int(flat_feat.shape[0])), dtype=np.float32)
+            X_layer[row_index] = flat_feat
+
+    if X_layer is None:
+        raise ValueError(f"No features loaded for layer {layer}")
+    return X_layer
 
 
 def load_episode_features(
@@ -849,13 +960,24 @@ def main():
     if not episode_indices:
         raise ValueError(f"No safetensors found in {feature_root}")
 
-    features_by_layer, feature_shape_info = load_episode_features(
-        args.task,
-        args.model,
-        episode_indices,
-        feature_type=args.feature_type,
-        feature_root_override=args.feature_root,
-    )
+    stream_layers = args.feature_type == "token_patch"
+    if stream_layers:
+        feature_shape_info = inspect_feature_files(
+            args.task,
+            args.model,
+            episode_indices,
+            feature_type=args.feature_type,
+            feature_root_override=args.feature_root,
+        )
+        features_by_layer = None
+    else:
+        features_by_layer, feature_shape_info = load_episode_features(
+            args.task,
+            args.model,
+            episode_indices,
+            feature_type=args.feature_type,
+            feature_root_override=args.feature_root,
+        )
     groups = np.asarray(episode_indices, dtype=np.int64)
     targets = load_targets(args.task, episode_indices, requested_targets)
 
@@ -893,14 +1015,25 @@ def main():
     gt_plot_path = save_gt_distribution_plot(args.task, targets)
     sanity["gt_distribution_plot"] = gt_plot_path
 
-    summary_rows = []
-    for target_name in requested_targets:
-        output_dim = int(task_specs[target_name]["output_dim"])
-        layer_rows = []
-        for layer in tqdm(range(MODEL_CONFIGS[args.model]["num_layers"]), desc=f"Probe [{target_name}]"):
+    layer_rows_by_target = {target_name: [] for target_name in requested_targets}
+    for layer in tqdm(range(MODEL_CONFIGS[args.model]["num_layers"]), desc="Probe layers"):
+        if stream_layers:
+            features = load_single_layer_features(
+                args.task,
+                args.model,
+                episode_indices,
+                layer=layer,
+                feature_type=args.feature_type,
+                feature_root_override=args.feature_root,
+            )
+        else:
             features = features_by_layer[layer]
-            if not np.all(np.isfinite(features)):
-                raise ValueError(f"NaN/Inf in features at layer {layer}")
+
+        if not np.all(np.isfinite(features)):
+            raise ValueError(f"NaN/Inf in features at layer {layer}")
+
+        for target_name in requested_targets:
+            output_dim = int(task_specs[target_name]["output_dim"])
             result = evaluate_layer(
                 features,
                 np.asarray(targets[target_name]),
@@ -927,8 +1060,12 @@ def main():
                 "output_dim": output_dim,
                 "n_samples": len(groups),
             }
-            layer_rows.append(row)
+            layer_rows_by_target[target_name].append(row)
 
+    summary_rows = []
+    for target_name in requested_targets:
+        output_dim = int(task_specs[target_name]["output_dim"])
+        layer_rows = layer_rows_by_target[target_name]
         results_df = pd.DataFrame(layer_rows)
         csv_path = os.path.join(
             RESULTS_DIR,

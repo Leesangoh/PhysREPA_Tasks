@@ -910,3 +910,31 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Strongest current Push claim:
   - predictive video pretraining uniquely produces mid-depth accessibility
   - masked-video and static-image pretraining push decoding toward the final layer
+
+## 2026-04-21 DINOv2-L Strike disk recovery and resume
+
+- `/mnt` hit `100%` during DINOv2 Strike extraction.
+- Verified state before recovery:
+  - DINO Push cache: `1006G`
+  - DINO Strike partial cache: `2508` episodes (`1.3T`)
+  - no active Strike extraction process remained alive
+- Deleted the committed DINO Push cache to free space.
+- Once free space reached a safe level, relaunched the same Strike extraction
+  command without `--overwrite`.
+- Resume behavior worked as intended:
+  - extractor jumped directly to `2509 / 3000`
+  - existing Strike cache was reused
+- Current state after recovery check:
+  - Push cache deleted
+  - Strike cache continues from the surviving `2508` episodes
+  - next automatic step is `Strike / object_direction_3d` probe once `3000 / 3000` lands
+[2026-04-21 10:24 UTC] DINOv2 Strike probe root-cause analysis:
+- The probe was not failing because DINO token patches are fundamentally too large for RAM.
+- Two concrete issues were identified:
+  1. `probe_physprobe.py` preallocated all token-patch layers in memory at once.
+  2. `physprobe_dinov2_large_tokenpatch/strike/002507.safetensors` is corrupted (`incomplete metadata, file not fully covered`).
+- Applied minimum-disruption fix:
+  - `probe_physprobe.py` now streams token-patch features layer-by-layer instead of loading all layers simultaneously.
+  - `list_feature_episodes()` now skips unreadable safetensors automatically and logs a warning.
+- Verified the new path on a 2-episode smoke test (`patch_shape=[256,1024]`, `X_shape=(2,262144)`).
+- Relaunched `cross_dinov2_large_seed42_strike` with the new streaming path; current run proceeds over `2999` valid episodes and explicitly skips the single corrupted cache file.
