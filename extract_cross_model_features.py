@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract token-patch PhysProbe features for non-V-JEPA baselines.
 
-Stage 1 supports VideoMAE-L with the same downstream contract used by
+Stage 1 supports VideoMAE-L and DINOv2-L with the same downstream contract used by
 `probe_physprobe.py`:
 
 - one `.safetensors` file per episode
@@ -10,8 +10,9 @@ Stage 1 supports VideoMAE-L with the same downstream contract used by
 
 The extraction recipe follows the cross-model fairness plan:
 - video backbones receive the full 16-frame window
+- image backbones receive only the last frame of each 16-frame window
 - per-block hidden states are used
-- the last temporal slice of patch tokens is preserved
+- patch tokens are preserved
 """
 
 from __future__ import annotations
@@ -26,7 +27,7 @@ from safetensors.torch import save_file
 import torch
 from torchvision import transforms
 from tqdm import tqdm
-from transformers import VideoMAEImageProcessor, VideoMAEModel
+from transformers import AutoImageProcessor, Dinov2Model, VideoMAEImageProcessor, VideoMAEModel
 
 
 N_FRAMES = 16
@@ -35,6 +36,14 @@ DATA_BASE = "/home/solee/data/data/isaac_physrepa_v2/step0"
 FEATURE_HINT_BASE = "/mnt/md1/solee/features/physprobe_vitl"
 
 MODEL_CONFIGS = {
+    "dinov2_large": {
+        "checkpoint": "/mnt/md1/solee/checkpoints/cross_model/dinov2-large",
+        "num_layers": 24,
+        "dim": 1024,
+        "img_size": 224,
+        "patch_size": 14,
+        "mode": "image_last_frame",
+    },
     "videomae_large": {
         "checkpoint": "/mnt/md1/solee/checkpoints/cross_model/videomae-large",
         "num_layers": 24,
@@ -43,14 +52,33 @@ MODEL_CONFIGS = {
         "patch_size": 16,
         "tubelet_size": 2,
         "temporal_slices": 8,
+        "mode": "video_last_patch",
     },
 }
 
 
-def build_transform(processor: VideoMAEImageProcessor, img_size: int):
+def resolve_resize_and_crop(processor, fallback: int) -> tuple[int, int]:
+    resize_size = int(fallback)
+    crop_size = int(fallback)
+    if hasattr(processor, "size") and isinstance(processor.size, dict):
+        for key in ("shortest_edge", "height", "width"):
+            if key in processor.size:
+                resize_size = int(processor.size[key])
+                break
+    if hasattr(processor, "crop_size") and isinstance(processor.crop_size, dict):
+        for key in ("height", "shortest_edge", "width"):
+            if key in processor.crop_size:
+                crop_size = int(processor.crop_size[key])
+                break
+    return resize_size, crop_size
+
+
+def build_transform(processor, img_size: int):
+    resize_size, crop_size = resolve_resize_and_crop(processor, img_size)
     return transforms.Compose(
         [
-            transforms.Resize((img_size, img_size), antialias=True),
+            transforms.Resize(resize_size, antialias=True),
+            transforms.CenterCrop((crop_size, crop_size)),
             transforms.ConvertImageDtype(torch.float32),
             transforms.Normalize(mean=processor.image_mean, std=processor.image_std),
         ]
@@ -58,11 +86,15 @@ def build_transform(processor: VideoMAEImageProcessor, img_size: int):
 
 
 def load_model(model_name: str, device: str):
-    if model_name != "videomae_large":
-        raise ValueError(f"Unsupported cross-model extractor target: {model_name}")
     cfg = MODEL_CONFIGS[model_name]
-    processor = VideoMAEImageProcessor.from_pretrained(cfg["checkpoint"])
-    model = VideoMAEModel.from_pretrained(cfg["checkpoint"]).to(device).eval()
+    if model_name == "videomae_large":
+        processor = VideoMAEImageProcessor.from_pretrained(cfg["checkpoint"])
+        model = VideoMAEModel.from_pretrained(cfg["checkpoint"]).to(device).eval()
+    elif model_name == "dinov2_large":
+        processor = AutoImageProcessor.from_pretrained(cfg["checkpoint"])
+        model = Dinov2Model.from_pretrained(cfg["checkpoint"]).to(device).eval()
+    else:
+        raise ValueError(f"Unsupported cross-model extractor target: {model_name}")
     return model, processor, cfg
 
 
@@ -155,31 +187,44 @@ def extract_episode_features(
     transformed = torch.stack([transform(frame) for frame in clip_frames])
     outputs = {"window_starts": torch.tensor(window_starts, dtype=torch.int32)}
 
-    spatial_grid = cfg["img_size"] // cfg["patch_size"]
-    temporal_slices = cfg["temporal_slices"]
     num_layers = cfg["num_layers"]
+    spatial_grid = cfg["img_size"] // cfg["patch_size"]
 
     for batch_start in range(0, len(window_starts), batch_size):
         batch_end = min(batch_start + batch_size, len(window_starts))
-        clips = []
+        items = []
         for w_idx in range(batch_start, batch_end):
             start = window_starts[w_idx]
             clip_window = transformed[start : start + N_FRAMES]
-            clips.append(clip_window)
-        batch = torch.stack(clips, dim=0).to(device)  # B,T,C,H,W
+            if cfg["mode"] == "video_last_patch":
+                items.append(clip_window)
+            elif cfg["mode"] == "image_last_frame":
+                items.append(clip_window[-1])
+            else:
+                raise ValueError(f"Unknown model mode: {cfg['mode']}")
+        batch = torch.stack(items, dim=0).to(device)
 
         with torch.no_grad(), torch.amp.autocast("cuda", enabled=device.startswith("cuda")):
             outputs_obj = model(batch, output_hidden_states=True)
+
         hidden_states = outputs_obj.hidden_states[1:]
         if len(hidden_states) != num_layers:
             raise ValueError(f"Expected {num_layers} hidden states, got {len(hidden_states)}")
 
         for layer_idx, tokens in enumerate(hidden_states):
-            grid = tokens.view(tokens.shape[0], temporal_slices, spatial_grid, spatial_grid, tokens.shape[-1])
-            last_patch = grid[:, -1].reshape(tokens.shape[0], spatial_grid * spatial_grid, tokens.shape[-1])
-            for local_idx in range(last_patch.shape[0]):
+            if cfg["mode"] == "video_last_patch":
+                temporal_slices = cfg["temporal_slices"]
+                grid = tokens.view(tokens.shape[0], temporal_slices, spatial_grid, spatial_grid, tokens.shape[-1])
+                patch_tokens = grid[:, -1].reshape(tokens.shape[0], spatial_grid * spatial_grid, tokens.shape[-1])
+            else:
+                patch_tokens = tokens[:, 1:, :]
+                if patch_tokens.shape[1] != spatial_grid * spatial_grid:
+                    raise ValueError(
+                        f"Expected {(spatial_grid * spatial_grid)} image patches, got {patch_tokens.shape[1]}"
+                    )
+            for local_idx in range(patch_tokens.shape[0]):
                 outputs[f"layer_{layer_idx}_window_{batch_start + local_idx}"] = (
-                    last_patch[local_idx].contiguous().half().cpu()
+                    patch_tokens[local_idx].contiguous().half().cpu()
                 )
     return outputs
 

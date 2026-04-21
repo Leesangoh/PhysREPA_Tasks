@@ -845,3 +845,28 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Paper consequence:
   - PEZ is now supported as an **objective-specific** phenomenon rather than a
     generic property of strong video encoders
+
+## 2026-04-21 DINOv2-L setup and sanity validation
+
+- Deleted the committed `VideoMAE-L` raw cache:
+  - `/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch`
+- Downloaded `facebook/dinov2-large` to:
+  - `/mnt/md1/solee/checkpoints/cross_model/dinov2-large`
+- Verified local load under `/isaac-sim/python.sh`:
+  - `hidden_size = 1024`
+  - `num_hidden_layers = 24`
+  - resize shortest edge `256`
+  - center crop `224`
+  - `patch_size = 14`
+- Extended `extract_cross_model_features.py` with `dinov2_large` support using:
+  - last frame only from each 16-frame window
+  - per-block hidden states
+  - CLS dropped
+  - patch tokens preserved
+- Completed a one-episode Push sanity extraction:
+  - windows: `58`
+  - per-layer patch tensor shape: `(256, 1024)`
+  - output file size: `697M`
+- Conclusion:
+  - the DINOv2-L static-control path is valid
+  - next step is full Push extraction and then the same Push/Strike probes used for VideoMAE
