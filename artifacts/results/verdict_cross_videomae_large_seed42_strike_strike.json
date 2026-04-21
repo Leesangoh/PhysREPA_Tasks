@@ -1,0 +1,23 @@
+{
+  "task": "strike",
+  "model": "videomae_large",
+  "targets": [
+    {
+      "task": "strike",
+      "model": "videomae_large",
+      "target": "object_direction_3d",
+      "probe_seed": 42,
+      "output_dim": 3,
+      "L0": 0.44975529788306534,
+      "L8": 0.7254636303636027,
+      "peak_r2": 0.787659738505505,
+      "peak_layer": 23,
+      "last": 0.787659738505505,
+      "train_L0": 0.9972493193208465,
+      "train_peak_r2": 0.99812064647022,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_object_direction_3d_videomae_large_token_patch_cross_videomae_large_seed42_strike.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_object_direction_3d_videomae_large_token_patch_cross_videomae_large_seed42_strike.png"
+    }
+  ]
+}

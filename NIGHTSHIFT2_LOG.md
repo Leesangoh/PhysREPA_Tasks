@@ -802,3 +802,46 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - therefore PEZ is best treated as **objective-specific**, not merely `video-model-specific`
 - `Strike` extraction continues in parallel:
   - current partial cache after the Push verdict check: `1425 / 3000`
+
+## 2026-04-21 VideoMAE-L Strike probe launch
+
+- `VideoMAE-L` Strike extraction completed on the full cache:
+  - task: `strike`
+  - completed episodes: `3000 / 3000`
+- Launched representative `seed42` Strike probe:
+  - run tag: `cross_videomae_large_seed42_strike`
+  - target:
+    - `object_direction_3d`
+  - recipe:
+    - `token_patch`
+    - `trainable` 20-HP
+    - 5-fold `GroupKFold`
+    - `zscore`
+- V-JEPA baseline locked for comparison:
+  - `object_direction_3d`: `L0 = 0.5209`, `L8 = 0.7738`, `peak = 0.8132 @ L12`, `last = 0.8125`
+- Early runtime signal:
+  - `Load features [strike/videomae_large/token_patch]` started cleanly
+  - initial load rate: about `1.88s / episode`
+
+## 2026-04-21 VideoMAE-L Strike verdict
+
+- `VideoMAE-L` Strike probe completed for:
+  - `object_direction_3d`
+- Final result:
+  - `L0 = 0.4498`
+  - `L8 = 0.7255`
+  - `peak = 0.7877 @ L23 / 24`
+  - `last = 0.7877`
+- Comparison against the committed V-JEPA baseline:
+  - V-JEPA~2 Large: `0.8132 @ L12 / 24`
+  - VideoMAE-L: `0.7877 @ L23 / 24`
+- Interpretation:
+  - this is the strongest cross-model result so far
+  - on the harder object-side contact-conditioned target, V-JEPA is both
+    earlier and better
+  - the cross-model story is now:
+    - Push: VideoMAE can reach higher final decoding, but only at the last layer
+    - Strike: V-JEPA both peaks earlier and outperforms VideoMAE
+- Paper consequence:
+  - PEZ is now supported as an **objective-specific** phenomenon rather than a
+    generic property of strong video encoders
