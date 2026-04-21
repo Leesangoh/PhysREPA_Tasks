@@ -938,3 +938,12 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - `list_feature_episodes()` now skips unreadable safetensors automatically and logs a warning.
 - Verified the new path on a 2-episode smoke test (`patch_shape=[256,1024]`, `X_shape=(2,262144)`).
 - Relaunched `cross_dinov2_large_seed42_strike` with the new streaming path; current run proceeds over `2999` valid episodes and explicitly skips the single corrupted cache file.
+
+[2026-04-21 10:44 UTC] DINOv2 Strike probe restart notes:
+- First streaming rerun exposed two legacy sanity-path bugs (`features_by_layer[0]` and `missing_keys` assumptions).
+- Both bugs were fixed in `probe_physprobe.py`.
+- Third rerun now progresses past:
+  - feature inspection (`2999` valid episodes)
+  - parquet target loading
+  - `Probe layers -> Load layer 0`
+- This confirms that the minimum-disruption fix is working: the run is no longer dying before the actual layer sweep begins.

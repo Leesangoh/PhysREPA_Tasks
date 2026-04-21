@@ -603,6 +603,7 @@ def inspect_feature_files(
         "base_dim": base_dim,
         "episodes": len(episode_indices),
         "window_counts": [],
+        "missing_keys": [],
         "missing_feature_keys": 0,
         "patch_shape": None,
         "feature_dims": {},
@@ -987,7 +988,11 @@ def main():
         "run_tag": args.run_tag,
         "n_episodes": len(episode_indices),
         "num_layers": MODEL_CONFIGS[args.model]["num_layers"],
-        "feature_dim_layer0": int(features_by_layer[0].shape[1]),
+        "feature_dim_layer0": int(
+            feature_shape_info["feature_dims"][0]
+            if stream_layers
+            else features_by_layer[0].shape[1]
+        ),
         "window_count_mode": Counter(feature_shape_info["window_counts"]).most_common(1)[0][0],
         "missing_feature_keys": len(feature_shape_info["missing_keys"]),
         "patch_shape": feature_shape_info.get("patch_shape"),
