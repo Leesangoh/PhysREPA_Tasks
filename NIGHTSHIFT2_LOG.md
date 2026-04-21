@@ -870,3 +870,43 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Conclusion:
   - the DINOv2-L static-control path is valid
   - next step is full Push extraction and then the same Push/Strike probes used for VideoMAE
+
+## 2026-04-21 DINOv2-L Stage 1/2 launch
+
+- Full `DINOv2-L` Push extraction completed:
+  - task: `push`
+  - output root: `/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch/push`
+  - completed episodes: `1500 / 1500`
+  - cache size: `1006G`
+- Launched representative `seed42` Push probe:
+  - run tag: `cross_dinov2_large_seed42`
+  - targets:
+    - `ee_direction_3d`
+    - `ee_speed`
+  - recipe:
+    - `token_patch`
+    - `trainable` 20-HP
+    - 5-fold `GroupKFold`
+    - `zscore`
+- Launched `Strike` extraction in parallel:
+  - task: `strike`
+  - output root: `/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch/strike`
+- Early runtime signal:
+  - Push probe feature load started cleanly at about `1.6s / episode`
+  - Strike extraction started cleanly at about `2.4`--`3.1s / episode`
+
+## 2026-04-21 DINOv2-L Push verdict
+
+- `DINOv2-L` Push probe completed for:
+  - `ee_direction_3d`
+  - `ee_speed`
+- Final results:
+  - `ee_direction_3d`: `L0 = -1.4554`, `L8 = 0.7005`, `peak = 0.7762 @ L15 / 24`, `last = 0.7651`
+  - `ee_speed`: `L0 = -1.1356`, `L8 = 0.7294`, `peak = 0.8854 @ L23 / 24`, `last = 0.8854`
+- Cross-model interpretation:
+  - `V-JEPA 2` remains the only tested family with a stable mid-depth Push PEZ
+  - `VideoMAE-L` achieves the strongest final Push decoding but only at the last layer
+  - `DINOv2-L` is weaker overall and also late-peaking
+- Strongest current Push claim:
+  - predictive video pretraining uniquely produces mid-depth accessibility
+  - masked-video and static-image pretraining push decoding toward the final layer
