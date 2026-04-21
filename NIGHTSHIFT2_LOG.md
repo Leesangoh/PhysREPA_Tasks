@@ -784,3 +784,21 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - initial load rate: about `1.36s / episode`
 - Next-stage decision:
   - begin `Strike / object_direction_3d` extraction in parallel rather than waiting for the Push CSVs
+
+## 2026-04-21 VideoMAE-L Push verdict
+
+- `VideoMAE-L` Push probe completed for:
+  - `ee_direction_3d`
+  - `ee_speed`
+- Main result:
+  - `ee_direction_3d`: `L0 = 0.6017`, `L8 = 0.8069`, `peak = 0.8441 @ L23 / 24`, `last = 0.8441`
+  - `ee_speed`: `L0 = 0.5137`, `L8 = 0.9195`, `peak = 0.9431 @ L23 / 24`, `last = 0.9431`
+- Cross-model interpretation:
+  - `VideoMAE-L` reaches slightly stronger final decoding than all current `V-JEPA 2` variants on Push
+  - but it does so by monotonic refinement to the last layer rather than an intermediate-depth PEZ-like regime
+- New paper claim supported:
+  - predictive video pretraining is associated with **mid-depth accessibility**
+  - masked-video pretraining can produce high final decoding without a PEZ
+  - therefore PEZ is best treated as **objective-specific**, not merely `video-model-specific`
+- `Strike` extraction continues in parallel:
+  - current partial cache after the Push verdict check: `1425 / 3000`
