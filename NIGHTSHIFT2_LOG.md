@@ -761,3 +761,26 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Conclusion:
   - the VideoMAE-L checkpoint is ready for full Push extraction
   - the saved tensor format matches the existing token-patch probe contract
+
+## 2026-04-21 VideoMAE-L Stage 1/2 launch
+
+- Full `VideoMAE-L` Push extraction completed:
+  - task: `push`
+  - output root: `/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch/push`
+  - completed episodes: `1500 / 1500`
+  - cache size: `771G`
+- Launched representative `seed42` Push probe:
+  - run tag: `cross_videomae_large_seed42`
+  - targets:
+    - `ee_direction_3d`
+    - `ee_speed`
+  - recipe:
+    - `token_patch`
+    - `trainable` 20-HP
+    - 5-fold `GroupKFold`
+    - `zscore`
+- Early probe runtime signal:
+  - `Load features [push/videomae_large/token_patch]` started cleanly
+  - initial load rate: about `1.36s / episode`
+- Next-stage decision:
+  - begin `Strike / object_direction_3d` extraction in parallel rather than waiting for the Push CSVs
