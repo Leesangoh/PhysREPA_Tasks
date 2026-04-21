@@ -1012,3 +1012,26 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - This extends the objective-specificity story beyond Tier-A kinematics:
   predictive video pretraining is strongest not only on manipulation timing but
   also on implicit interaction-magnitude decoding.
+
+[2026-04-21 22:08 UTC] Functional-significance Push action-OOD result landed:
+- New compact-feature pipeline completed for Push:
+  - `V-JEPA 2 Large` layers `11` and `23`
+  - `VideoMAE-Large` layer `23`
+  - `DINOv2-Large` layers `15` and `23`
+- Offline metric:
+  - frozen-backbone action-chunk regression (`next 8 actions`)
+  - physics-OOD split from Push metadata
+  - central-band train/val/IID = `412/88/89` episodes
+  - OOD test = `911` episodes outside the central mass/friction band
+- Main OOD results:
+  - `vjepa_last`: `0.8916 ± 0.0005`
+  - `videomae_best`: `0.8903 ± 0.0004`
+  - `vjepa_pez`: `0.8794 ± 0.0004`
+  - `dino_mid`: `0.7955 ± 0.0041`
+  - `dino_last`: `0.7586 ± 0.0008`
+- Interpretation:
+  - supported: video-pretrained features are more control-relevant than the static-image baseline under hidden-physics shift
+  - not supported: the V-JEPA PEZ layer is not the best control layer; V-JEPA last-layer is slightly better than V-JEPA PEZ on this offline Push metric
+- Paper action:
+  - add a new functional-significance subsection under `contact_dynamics`
+  - update discussion to distinguish PEZ accessibility from control optimality
