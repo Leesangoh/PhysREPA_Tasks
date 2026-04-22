@@ -1,0 +1,41 @@
+{
+  "peg_insert": {
+    "cache_type": "mean",
+    "discovery_seed": 42,
+    "ee_direction_3d": {
+      "seed42_peak_r2": 0.5567985614440267,
+      "seed42_peak_layer": 12,
+      "seed123_peak_r2": 0.5543008036051962,
+      "seed123_peak_layer": 20,
+      "seed2024_peak_r2": 0.5550308165209218,
+      "seed2024_peak_layer": 12,
+      "peak_r2_mean": 0.5553767271900483,
+      "peak_r2_std": 0.0010486305986448844,
+      "l12_mean": 0.5552495593503152,
+      "l12_std": 0.0011855864402674542,
+      "seed123_l20_minus_l12": 0.0003815035191991889,
+      "interpretation": "broad_mid_to_upper_mid_plateau"
+    },
+    "other_targets": {
+      "ee_speed_peak_r2": 0.6853398176420759,
+      "ee_speed_peak_layer": 17,
+      "insertion_depth_peak_r2": 0.9165367983986193,
+      "insertion_depth_peak_layer": 20,
+      "peg_hole_lateral_error_peak_r2": 0.6183657221770708,
+      "peg_hole_lateral_error_peak_layer": 17
+    }
+  },
+  "nut_thread": {
+    "cache_type": "mean",
+    "discovery_seed": 42,
+    "ee_direction_3d_peak_r2": 0.16217584537392077,
+    "ee_direction_3d_peak_layer": 22,
+    "ee_speed_peak_r2": 0.5389940507375173,
+    "ee_speed_peak_layer": 21,
+    "axial_progress_peak_r2": 0.6706143056774453,
+    "axial_progress_peak_layer": 21,
+    "nut_bolt_relative_angle_peak_r2": 0.46021316867183126,
+    "nut_bolt_relative_angle_peak_layer": 22,
+    "interpretation": "late_peaking_not_pez_like"
+  }
+}

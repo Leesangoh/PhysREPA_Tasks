@@ -1,0 +1,23 @@
+{
+  "task": "peg_insert",
+  "model": "large",
+  "targets": [
+    {
+      "task": "peg_insert",
+      "model": "large",
+      "target": "ee_direction_3d",
+      "probe_seed": 2024,
+      "output_dim": 3,
+      "L0": 0.1579095230311319,
+      "L8": 0.4157662949826446,
+      "peak_r2": 0.5550308165209218,
+      "peak_layer": 12,
+      "last": 0.538280047041825,
+      "train_L0": 0.3347801469547462,
+      "train_peak_r2": 0.7050821448208827,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_peg_insert_ee_direction_3d_large_scope_peg_insert_multiseed_seed2024.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_peg_insert_ee_direction_3d_large_scope_peg_insert_multiseed_seed2024.png"
+    }
+  ]
+}

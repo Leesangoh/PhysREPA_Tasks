@@ -1291,3 +1291,77 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Paper consequence:
   - Tier-B claim is no longer surrogate-only
   - native Strike `contact_force` becomes the main implicit-physics result
+
+[2026-04-22 19:31 UTC] Scope-expansion discovery started on constrained-contact tasks using existing V-JEPA-L mean caches.
+- Reason for using mean caches:
+  - existing `peg_insert` / `nut_thread` V-JEPA-L caches were already present at
+    `/mnt/md1/solee/features/physprobe_vitl/{peg_insert,nut_thread}`
+  - these caches are mean-feature windows, not token-patch, but they enable a
+    fast storage-safe discovery pass while `/mnt` headroom is limited
+  - no token-patch cache existed for either task at launch time
+- Probe patch:
+  - extended `probe_physprobe.py` target registry for both tasks with:
+    - `ee_velocity`
+    - `ee_speed`
+    - `ee_direction_3d`
+- Discovery targets:
+  - `peg_insert`: `ee_direction_3d`, `ee_speed`, `insertion_depth`,
+    `peg_hole_lateral_error`
+  - `nut_thread`: `ee_direction_3d`, `ee_speed`, `axial_progress`,
+    `nut_bolt_relative_angle`
+
+[2026-04-22 19:54 UTC] Scope-expansion discovery results: PegInsert shows a constrained-contact PEZ candidate; NutThread does not.
+- `peg_insert` (`2500` eps, mean cache, seed `42`):
+  - `ee_direction_3d`: `0.5568 @ L12/24`, classified `PEZ-like`
+  - `ee_speed`: `0.6853 @ L17/24`, late-intermediate
+  - `insertion_depth`: `0.9165 @ L20/24`, strong but late
+  - `peg_hole_lateral_error`: `0.6184 @ L17/24`, late-intermediate
+- Interpretation:
+  - PegInsert reproduces the core pattern on a constrained insertion task:
+    `ee_direction_3d` becomes most decodable at mid-depth rather than at the
+    final block
+- `nut_thread` (`2500` eps, mean cache, seed `42`):
+  - `ee_direction_3d`: `0.1622 @ L22/24`, `never-linear`
+  - `ee_speed`: `0.5390 @ L21/24`
+  - `axial_progress`: `0.6706 @ L21/24`
+  - `nut_bolt_relative_angle`: `0.4602 @ L22/24`
+- Interpretation:
+  - NutThread does not currently support the PEZ generalization story; its
+    accessible signals are late-peaking and weaker
+- Decision:
+  - tighten only `peg_insert / ee_direction_3d`
+  - skip multiseed on NutThread unless later evidence suggests a stronger task
+    formulation
+
+[2026-04-22 19:56 UTC] PegInsert constrained-contact PEZ tightening launched.
+- Two additional seeds launched on the existing mean cache:
+  - `scope_peg_insert_multiseed_seed123`
+  - `scope_peg_insert_multiseed_seed2024`
+- Target:
+  - `peg_insert / ee_direction_3d`
+- Goal:
+  - confirm that the mid-depth `L12/24` PegInsert peak is stable enough to
+    claim that PEZ-like direction decoding generalizes beyond Push/Strike into
+    insertion-style manipulation
+
+[2026-04-22 20:17 UTC] PegInsert multiseed tightening completed; insertion-side PEZ generalizes, but only selectively.
+- `peg_insert / ee_direction_3d` across seeds `42 / 123 / 2024`:
+  - seed `42`: `0.5568 @ L12/24`
+  - seed `123`: `0.5543 @ L20/24`
+  - seed `2024`: `0.5550 @ L12/24`
+- Stability interpretation:
+  - peak `R^2` is extremely tight: `0.5554 ± 0.0010`
+  - two of three seeds peak exactly at `L12`
+  - the apparent late maximum on seed `123` is not a qualitatively different
+    curve: `L20 - L12 = +0.00038`
+  - the PegInsert direction curve is therefore best described as a broad
+    mid-to-upper-mid plateau from roughly layers 12--20
+- Scope consequence:
+  - constrained-contact PEZ-like direction decoding extends to PegInsert
+  - NutThread remains a negative / late-peaking counterexample under the
+    current cache and target formulation
+- Paper consequence:
+  - the scope objection is now narrower
+  - the strongest honest claim becomes: PEZ generalizes beyond Push/Strike into
+    at least one insertion-style task, but it is task-dependent rather than
+    universal across all six tasks

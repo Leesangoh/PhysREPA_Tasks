@@ -1,0 +1,45 @@
+{
+  "feature_root": "/mnt/md1/solee/features/physprobe_vitl/peg_insert",
+  "feature_type": "mean",
+  "run_tag": "scope_peg_insert_discovery",
+  "n_episodes": 2500,
+  "num_layers": 24,
+  "feature_dim_layer0": 1024,
+  "window_count_mode": 33,
+  "missing_feature_keys": 0,
+  "patch_shape": null,
+  "groupkfold_overlap_zero": true,
+  "gt_distribution_plot": "/home/solee/physrepa_tasks/artifacts/figures/gt_distribution_peg_insert.png",
+  "control_targets_l0_ge_0_8": false,
+  "gt_summary": {
+    "ee_direction_3d": {
+      "shape": [
+        2500,
+        3
+      ],
+      "var": 0.018379380977733572,
+      "finite": true
+    },
+    "ee_speed": {
+      "shape": [
+        2500
+      ],
+      "var": 1.233912777437315e-06,
+      "finite": true
+    },
+    "insertion_depth": {
+      "shape": [
+        2500
+      ],
+      "var": 4.146482459287392e-06,
+      "finite": true
+    },
+    "peg_hole_lateral_error": {
+      "shape": [
+        2500
+      ],
+      "var": 1.778349930945902e-07,
+      "finite": true
+    }
+  }
+}
