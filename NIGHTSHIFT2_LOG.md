@@ -1195,3 +1195,16 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - commit the collector/runtime patch set
   - start a fresh `1000`-episode Step 0 Strike recollection with the fixed
     native force path
+
+[2026-04-22 12:52 UTC] Full native-force Strike recollection launched.
+- Collector patch checkpoint committed:
+  - `75437e8` `[NATIVE_FORCE] Fix Strike native contact-force recollection path`
+- Launch command:
+  - `env PYTHONPATH=/home/solee CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 /isaac-sim/python.sh /home/solee/physrepa_tasks/archive_data_collection/collect_sample_data.py --task strike --num_episodes 1000 --num_envs 2 --step0 --use_oracle --output_dir /mnt/md1/solee/data/isaac_physrepa_native_force_recollect`
+- Tracking:
+  - exec session `19314`
+  - target dataset root `/mnt/md1/solee/data/isaac_physrepa_native_force_recollect/strike`
+- Note:
+  - this is a fresh native-force recollection, not a byte-for-byte replay of the
+    public `1000`-episode subset; the native Tier-B extraction/probe pass will
+    therefore use the new recollected videos/features as its own matched set
