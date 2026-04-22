@@ -436,8 +436,8 @@ def list_feature_episodes(feature_root: str) -> list[int]:
     return episodes
 
 
-def load_static_meta(task: str):
-    meta_path = os.path.join(DATA_BASE, task, "meta", "episodes.jsonl")
+def load_static_meta(task: str, data_base: str = DATA_BASE):
+    meta_path = os.path.join(data_base, task, "meta", "episodes.jsonl")
     episode_meta = {}
     with open(meta_path) as f:
         for line in f:
@@ -446,8 +446,8 @@ def load_static_meta(task: str):
     return episode_meta
 
 
-def find_parquet_files(task: str):
-    task_dir = os.path.join(DATA_BASE, task, "data")
+def find_parquet_files(task: str, data_base: str = DATA_BASE):
+    task_dir = os.path.join(data_base, task, "data")
     ep_to_path = {}
     for chunk_dir in sorted(glob(os.path.join(task_dir, "chunk-*"))):
         for f in sorted(os.listdir(chunk_dir)):
@@ -932,6 +932,7 @@ def main():
     parser.add_argument("--feature-root", default=None)
     parser.add_argument("--run-tag", default="phase1")
     parser.add_argument("--probe-seed", type=int, default=CV_RANDOM_SEED)
+    parser.add_argument("--episode-limit", type=int, default=0)
     args = parser.parse_args()
 
     ensure_dirs()
@@ -960,6 +961,8 @@ def main():
     episode_indices = list_feature_episodes(feature_root)
     if not episode_indices:
         raise ValueError(f"No safetensors found in {feature_root}")
+    if args.episode_limit and args.episode_limit > 0:
+        episode_indices = episode_indices[: args.episode_limit]
 
     stream_layers = args.feature_type == "token_patch"
     if stream_layers:

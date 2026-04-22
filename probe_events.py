@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Window-level event probing with kinematic surrogate labels.
+"""Window-level event probing with surrogate or native labels.
 
 Current implementation is optimized for Strike:
 - existing token-patch cache is reused
-- per-window labels are derived from parquet kinematics
+- per-window labels are derived from parquet kinematics or native contact-force
 - spatial tokens are mean-pooled within each temporal_last_patch window to keep
   the window-level dataset tractable
 
@@ -60,6 +60,8 @@ EVENT_CONFIGS = {
     "strike": {
         "mass_key": "object_0_mass",
         "acc_col": "physics_gt.object_acceleration",
+        "native_force_col": "physics_gt.contact_force",
+        "native_flag_col": "physics_gt.contact_flag",
         "window_len": 16,
     },
 }
@@ -205,10 +207,15 @@ def fit_binary_trainable_batched(
     return results
 
 
-def derive_strike_event_windows(episode_indices: list[int], feature_root: str):
+def derive_strike_event_windows(
+    episode_indices: list[int],
+    feature_root: str,
+    data_base: str = DATA_BASE,
+    label_mode: str = "surrogate",
+):
     cfg = EVENT_CONFIGS["strike"]
-    static_meta = load_static_meta("strike")
-    parquet_map = find_parquet_files("strike")
+    static_meta = load_static_meta("strike", data_base=data_base) if label_mode == "surrogate" else None
+    parquet_map = find_parquet_files("strike", data_base=data_base)
 
     class_samples = []
     reg_samples = []
@@ -220,24 +227,33 @@ def derive_strike_event_windows(episode_indices: list[int], feature_root: str):
         with safe_open(feat_path, framework="numpy") as f:
             window_starts = f.get_tensor("window_starts").astype(np.int64)
 
-        df = pd.read_parquet(parquet_map[ep_idx], columns=[cfg["acc_col"]])
-        acc = np.stack(df[cfg["acc_col"]].values).astype(np.float64)
-        acc_mag = np.linalg.norm(acc, axis=1)
-        med = float(np.median(acc_mag))
-        mad = float(np.median(np.abs(acc_mag - med)))
-        threshold = med + 5.0 * max(mad, 1e-6)
-        pos_frame = acc_mag > threshold
-        mass = float(static_meta[ep_idx][cfg["mass_key"]])
-        force_proxy = mass * acc_mag
+        if label_mode == "surrogate":
+            df = pd.read_parquet(parquet_map[ep_idx], columns=[cfg["acc_col"]])
+            acc = np.stack(df[cfg["acc_col"]].values).astype(np.float64)
+            acc_mag = np.linalg.norm(acc, axis=1)
+            med = float(np.median(acc_mag))
+            mad = float(np.median(np.abs(acc_mag - med)))
+            threshold = med + 5.0 * max(mad, 1e-6)
+            pos_frame = acc_mag > threshold
+            mass = float(static_meta[ep_idx][cfg["mass_key"]])
+            force_signal = mass * acc_mag
+        elif label_mode == "native":
+            df = pd.read_parquet(parquet_map[ep_idx], columns=[cfg["native_force_col"], cfg["native_flag_col"]])
+            native_force = np.linalg.norm(np.stack(df[cfg["native_force_col"]].values).astype(np.float64), axis=1)
+            native_flag = np.stack(df[cfg["native_flag_col"]].values).astype(np.float64).reshape(-1) > 0.0
+            pos_frame = native_flag | (native_force > 1e-8)
+            force_signal = native_force
+        else:
+            raise ValueError(f"Unknown label_mode: {label_mode}")
 
         win_event = []
         win_force = []
-        T = len(acc_mag)
+        T = len(force_signal)
         for start in window_starts:
             s = int(start)
             e = min(s + cfg["window_len"], T)
             event = bool(np.any(pos_frame[s:e]))
-            force = float(np.max(force_proxy[s:e]))
+            force = float(np.max(force_signal[s:e]))
             win_event.append(event)
             win_force.append(force)
 
@@ -366,15 +382,17 @@ def save_curve(df: pd.DataFrame, metric_col: str, metric_std_col: str, ylabel: s
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Window-level surrogate contact probing")
+    parser = argparse.ArgumentParser(description="Window-level surrogate/native contact probing")
     parser.add_argument("--task", choices=["strike"], default="strike")
     parser.add_argument("--model", choices=sorted(MODEL_CONFIGS), default="large")
     parser.add_argument("--feature-root", required=True)
+    parser.add_argument("--data-base", default=DATA_BASE)
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--run-tag", default="phase3_events")
     parser.add_argument("--norm", choices=["zscore", "center", "none"], default="zscore")
     parser.add_argument("--probe-seed", type=int, default=CV_RANDOM_SEED)
     parser.add_argument("--episode-limit", type=int, default=None)
+    parser.add_argument("--label-mode", choices=["surrogate", "native"], default="surrogate")
     args = parser.parse_args()
 
     ensure_dirs()
@@ -386,7 +404,12 @@ def main():
     if args.episode_limit is not None:
         episode_indices = episode_indices[: args.episode_limit]
 
-    class_samples, reg_samples = derive_strike_event_windows(episode_indices, feature_root)
+    class_samples, reg_samples = derive_strike_event_windows(
+        episode_indices,
+        feature_root,
+        data_base=args.data_base,
+        label_mode=args.label_mode,
+    )
     if not class_samples or not reg_samples:
         raise ValueError("No event samples derived")
 
@@ -398,10 +421,13 @@ def main():
     reg_targets = np.asarray([row["force_proxy"] for row in reg_samples], dtype=np.float64)
     reg_groups = np.asarray([row["episode"] for row in reg_samples], dtype=np.int64)
 
+    binary_target = "contact_happening" if args.label_mode == "surrogate" else "contact_happening_native"
+    reg_target = "contact_force_proxy" if args.label_mode == "surrogate" else "contact_force_native"
+
     binary_rows = []
     reg_rows = []
     num_layers = MODEL_CONFIGS[args.model]["num_layers"]
-    for layer in tqdm(range(num_layers), desc="Probe [contact_happening]"):
+    for layer in tqdm(range(num_layers), desc=f"Probe [{binary_target}]"):
         result = evaluate_binary_layer(
             class_features[layer],
             class_labels,
@@ -413,7 +439,7 @@ def main():
         binary_rows.append(
             {
                 "task": args.task,
-                "target": "contact_happening",
+                "target": binary_target,
                 "model": args.model,
                 "probe_seed": int(args.probe_seed),
                 "layer": layer,
@@ -421,7 +447,7 @@ def main():
             }
         )
 
-    for layer in tqdm(range(num_layers), desc="Probe [contact_force_proxy]"):
+    for layer in tqdm(range(num_layers), desc=f"Probe [{reg_target}]"):
         splitter = GroupKFold(n_splits=min(CV_SPLITS, int(np.unique(reg_groups).size)))
         fold_scores = []
         fold_train_scores = []
@@ -448,7 +474,7 @@ def main():
         reg_rows.append(
             {
                 "task": args.task,
-                "target": "contact_force_proxy",
+                "target": reg_target,
                 "model": args.model,
                 "probe_seed": int(args.probe_seed),
                 "layer": layer,
@@ -466,15 +492,15 @@ def main():
     binary_df = pd.DataFrame(binary_rows)
     reg_df = pd.DataFrame(reg_rows)
 
-    binary_csv = os.path.join(RESULTS_DIR, f"probe_events_{args.task}_contact_happening_{args.model}_{args.run_tag}.csv")
-    reg_csv = os.path.join(RESULTS_DIR, f"probe_events_{args.task}_contact_force_proxy_{args.model}_{args.run_tag}.csv")
+    binary_csv = os.path.join(RESULTS_DIR, f"probe_events_{args.task}_{binary_target}_{args.model}_{args.run_tag}.csv")
+    reg_csv = os.path.join(RESULTS_DIR, f"probe_events_{args.task}_{reg_target}_{args.model}_{args.run_tag}.csv")
     binary_df.to_csv(binary_csv, index=False)
     reg_df.to_csv(reg_csv, index=False)
 
-    binary_fig = os.path.join(FIGURES_DIR, f"curve_events_{args.task}_contact_happening_{args.model}_{args.run_tag}.png")
-    reg_fig = os.path.join(FIGURES_DIR, f"curve_events_{args.task}_contact_force_proxy_{args.model}_{args.run_tag}.png")
-    save_curve(binary_df, "auc_mean", "auc_std", "AUC", binary_fig, f"{args.task} / contact_happening / {args.model}")
-    save_curve(reg_df, "r2_mean", "r2_std", "R^2", reg_fig, f"{args.task} / contact_force_proxy / {args.model}")
+    binary_fig = os.path.join(FIGURES_DIR, f"curve_events_{args.task}_{binary_target}_{args.model}_{args.run_tag}.png")
+    reg_fig = os.path.join(FIGURES_DIR, f"curve_events_{args.task}_{reg_target}_{args.model}_{args.run_tag}.png")
+    save_curve(binary_df, "auc_mean", "auc_std", "AUC", binary_fig, f"{args.task} / {binary_target} / {args.model}")
+    save_curve(reg_df, "r2_mean", "r2_std", "R^2", reg_fig, f"{args.task} / {reg_target} / {args.model}")
 
     binary_curve = binary_df.sort_values("layer")["auc_mean"].to_numpy(dtype=np.float64)
     reg_curve = reg_df.sort_values("layer")["r2_mean"].to_numpy(dtype=np.float64)
@@ -482,12 +508,13 @@ def main():
         "task": args.task,
         "model": args.model,
         "run_tag": args.run_tag,
+        "label_mode": args.label_mode,
         "feature_root": feature_root,
         "patch_shape": patch_shape,
         "n_event_class_samples": int(len(class_samples)),
         "n_event_reg_samples": int(len(reg_samples)),
         "positive_rate": float(class_labels.mean()),
-        "contact_happening": {
+        binary_target: {
             "L0": float(binary_curve[0]),
             "L8": float(binary_curve[8]),
             "peak_auc": float(binary_curve.max()),
@@ -496,7 +523,7 @@ def main():
             "csv": binary_csv,
             "figure": binary_fig,
         },
-        "contact_force_proxy": {
+        reg_target: {
             "L0": float(reg_curve[0]),
             "L8": float(reg_curve[8]),
             "peak_r2": float(reg_curve.max()),
@@ -514,12 +541,13 @@ def main():
     report_path = os.path.join(RESULTS_DIR, f"event_probe_report_{args.task}_{args.run_tag}.md")
     with open(report_path, "w") as f:
         f.write(f"# Event Probe Report: {args.task} / {args.model}\n\n")
+        f.write(f"- label_mode: `{args.label_mode}`\n")
         f.write(f"- feature_root: `{feature_root}`\n")
         f.write(f"- patch_shape: `{patch_shape}`\n")
         f.write(f"- n_event_class_samples: `{len(class_samples)}`\n")
         f.write(f"- positive_rate: `{class_labels.mean():.3f}`\n")
-        f.write(f"- contact_happening peak AUC: `{binary_curve.max():.4f} @ L{int(binary_curve.argmax())}`\n")
-        f.write(f"- contact_force_proxy peak R^2: `{reg_curve.max():.4f} @ L{int(reg_curve.argmax())}`\n")
+        f.write(f"- {binary_target} peak AUC: `{binary_curve.max():.4f} @ L{int(binary_curve.argmax())}`\n")
+        f.write(f"- {reg_target} peak R^2: `{reg_curve.max():.4f} @ L{int(reg_curve.argmax())}`\n")
 
     print(f"Wrote verdict: {verdict_path}")
     print(f"Wrote report: {report_path}")

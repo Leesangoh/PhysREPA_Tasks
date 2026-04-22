@@ -1208,3 +1208,34 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - this is a fresh native-force recollection, not a byte-for-byte replay of the
     public `1000`-episode subset; the native Tier-B extraction/probe pass will
     therefore use the new recollected videos/features as its own matched set
+
+[2026-04-22 14:10 UTC] Strike native-force recollection completed and initial native audit started.
+- Recollection status:
+  - `/mnt/md1/solee/data/isaac_physrepa_native_force_recollect/strike`
+  - `1000 / 1000` episodes
+  - dataset size `879M`
+- Initial frame-level audit on the recollected data:
+  - native `contact_force` nonzero episodes: `966 / 1000`
+  - native `contact_force` nonzero frames: `11599`
+  - native `contact_flag` nonzero frames: `11328`
+  - max native `contact_force` magnitude: `192.21`
+  - max surrogate (`mass * ||object_acceleration||`) magnitude: `68.21`
+  - Pearson(surrogate, native) over all frames: `0.218`
+  - Spearman(surrogate, native) over all frames: `0.336`
+  - on native-nonzero frames only, surrogate/native alignment is much weaker
+    (`Pearson 0.081`, `Spearman -0.270`)
+- Interpretation:
+  - the native target is present at scale and is not trivially equivalent to the
+    surrogate force proxy
+  - direct native Tier-B probing is therefore scientifically worthwhile
+- Storage prep:
+  - deleted old committed cross-model caches to free space for the native pass
+  - `/mnt/md1/solee` free space after cleanup: `1.4T`
+- Pipeline patch set in progress:
+  - extractors now accept `--data-base`
+  - `probe_events.py` now supports `--label-mode native`
+  - added `analyze_native_force_multiseed.py` for the matched 3-seed native
+    bootstrap panel
+- Next:
+  - launch `V-JEPA / Strike` token-patch extraction on the recollected native
+    dataset root

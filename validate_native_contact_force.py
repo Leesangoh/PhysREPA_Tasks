@@ -40,8 +40,8 @@ def pearson_corr(x: np.ndarray, y: np.ndarray) -> float | None:
     return float(np.corrcoef(x, y)[0, 1])
 
 
-def find_strike_parquets() -> list[tuple[int, Path]]:
-    root = Path(DATA_BASE) / "strike" / "data"
+def find_strike_parquets(data_base: str = DATA_BASE) -> list[tuple[int, Path]]:
+    root = Path(data_base) / "strike" / "data"
     out: list[tuple[int, Path]] = []
     for path in sorted(root.glob("chunk-*/episode_*.parquet")):
         ep = int(path.stem.split("_")[-1])
@@ -145,6 +145,17 @@ def window_level_validation(
                 }
             )
     df = pd.DataFrame(rows)
+    if df.empty:
+        return {
+            "num_windows": 0,
+            "native_nonzero_windows": 0,
+            "native_flag_nonzero_windows": 0,
+            "surrogate_max": 0.0,
+            "native_max": 0.0,
+            "pearson_surrogate_vs_native": None,
+            "spearman_surrogate_vs_native": None,
+            "top100_overlap_fraction": None,
+        }
     surrogate = df["surrogate_force_proxy"].to_numpy(dtype=np.float64)
     native = df["native_contact_force"].to_numpy(dtype=np.float64)
     rank_consistency = None
@@ -167,17 +178,27 @@ def window_level_validation(
 def render_markdown(summary: dict, out_path: Path) -> None:
     frame = summary["frame_audit"]
     win = summary["window_validation"]
+    native_available = frame["nonzero_episode_counts"]["contact_force"] > 0
     lines = [
         "# Surrogate Validation Verdict",
         "",
         "## Result",
         "",
-        "Native Strike `contact_force` validation is **not possible** with the public Step 0 export.",
+        (
+            "Native Strike `contact_force` validation is **possible** on the recollected export."
+            if native_available
+            else "Native Strike `contact_force` validation is **not possible** with the current export."
+        ),
         "",
-        "The reason is empirical, not inferential: the exported native `contact_force`,",
-        "`contact_finger_l_object_force`, `contact_object_surface_force`, and `contact_flag`",
-        "channels are zero-filled across the audited Strike data, while object-acceleration",
-        "spikes remain large and frequent.",
+        (
+            "The recollected dataset contains nonzero native `contact_force` and `contact_flag` windows, "
+            "so surrogate-vs-native alignment can be measured directly."
+            if native_available
+            else "The reason is empirical, not inferential: the exported native `contact_force`, "
+            "`contact_finger_l_object_force`, `contact_object_surface_force`, and `contact_flag` "
+            "channels are zero-filled across the audited Strike data, while object-acceleration "
+            "spikes remain large and frequent."
+        ),
         "",
         "## Full Strike Audit",
         "",
@@ -201,33 +222,48 @@ def render_markdown(summary: dict, out_path: Path) -> None:
         f"- Spearman surrogate/native correlation: `{win['spearman_surrogate_vs_native']}`",
         f"- top-100 window overlap fraction: `{win['top100_overlap_fraction']}`",
         "",
-        "Because the native target has zero variance, correlation and rank-consistency are",
-        "undefined rather than merely weak.",
-        "",
-        "## Consequence for the Paper",
-        "",
-        "- The current surrogate-contact analysis remains necessary.",
-        "- We cannot run a meaningful native `contact_force` probe ranking with the public Step 0 Strike export.",
-        "- The scientifically correct update is therefore a stronger data audit: native contact channels were rechecked and remain zero-filled, so the Tier-B claim still rests on a surrogate force proxy rather than simulator-native force supervision.",
-        "",
     ]
+    if not native_available:
+        lines += [
+            "Because the native target has zero variance, correlation and rank-consistency are",
+            "undefined rather than merely weak.",
+            "",
+            "## Consequence for the Paper",
+            "",
+            "- The current surrogate-contact analysis remains necessary.",
+            "- We cannot run a meaningful native `contact_force` probe ranking with the public Step 0 Strike export.",
+            "- The scientifically correct update is therefore a stronger data audit: native contact channels were rechecked and remain zero-filled, so the Tier-B claim still rests on a surrogate force proxy rather than simulator-native force supervision.",
+            "",
+        ]
+    else:
+        lines += [
+            "",
+            "## Consequence for the Paper",
+            "",
+            "- Native `contact_force` is present in the recollected Strike export.",
+            "- Surrogate/native alignment can now be measured directly on matched windows.",
+            "- Native-force probing is scientifically valid on this recollected dataset.",
+            "",
+        ]
     out_path.write_text("\n".join(lines))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--data-base", type=str, default=DATA_BASE)
     parser.add_argument("--feature-root", type=Path, default=Path("/mnt/md1/solee/features/physprobe_vitl/strike"))
     parser.add_argument("--episode-limit", type=int, default=1000)
     parser.add_argument("--output-json", type=Path, default=Path("/home/solee/physrepa_tasks/artifacts/results/surrogate_validation_summary.json"))
     parser.add_argument("--output-md", type=Path, default=Path("/home/solee/physrepa_tasks/artifacts/results/surrogate_validation_verdict.md"))
     args = parser.parse_args()
 
-    parquets = find_strike_parquets()
+    parquets = find_strike_parquets(args.data_base)
     frame_audit = frame_mag_stats(parquets)
     window_validation = window_level_validation(parquets, args.feature_root, args.episode_limit)
     summary = {
         "frame_audit": frame_audit,
         "window_validation": window_validation,
+        "data_base": args.data_base,
         "feature_root": str(args.feature_root),
         "episode_limit": args.episode_limit,
     }

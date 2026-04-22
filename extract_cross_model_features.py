@@ -98,8 +98,8 @@ def load_model(model_name: str, device: str):
     return model, processor, cfg
 
 
-def find_video_path(task: str, ep_idx: int, video_key: str = "observation.images.image_0") -> Path | None:
-    video_dir = Path(DATA_BASE) / task / "videos"
+def find_video_path(task: str, ep_idx: int, data_base: str = DATA_BASE, video_key: str = "observation.images.image_0") -> Path | None:
+    video_dir = Path(data_base) / task / "videos"
     ep_filename = f"episode_{ep_idx:06d}.mp4"
     chunk_idx = ep_idx // 1000
     chunk_dir = video_dir / f"chunk-{chunk_idx:03d}"
@@ -160,12 +160,19 @@ def load_video_frames(video_path: Path):
     return torch.from_numpy(frames.copy()).permute(0, 3, 1, 2)
 
 
-def iter_episode_indices(task: str):
-    feature_hint = Path(FEATURE_HINT_BASE) / task
-    paths = sorted(feature_hint.glob("*.safetensors"))
-    if not paths:
-        raise ValueError(f"No reference episodes found in {feature_hint}")
-    return [int(path.stem) for path in paths]
+def iter_episode_indices(task: str, data_base: str = DATA_BASE, video_key: str = "observation.images.image_0"):
+    video_dir = Path(data_base) / task / "videos"
+    patterns = [
+        video_dir / "chunk-*" / video_key / "episode_*.mp4",
+        video_dir / video_key / "episode_*.mp4",
+    ]
+    episodes = set()
+    for pattern in patterns:
+        for path in sorted(video_dir.glob(str(pattern.relative_to(video_dir)))):
+            episodes.add(int(path.stem.split("_")[-1]))
+    if not episodes:
+        raise ValueError(f"No episode videos found in {video_dir}")
+    return sorted(episodes)
 
 
 def extract_episode_features(
@@ -237,6 +244,7 @@ def main():
     parser.add_argument("--device", default="cuda:0")
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--episode-limit", type=int, default=None)
+    parser.add_argument("--data-base", default=DATA_BASE)
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
@@ -244,7 +252,7 @@ def main():
     model, processor, cfg = load_model(args.model, device=device)
     transform = build_transform(processor, cfg["img_size"])
 
-    episode_indices = iter_episode_indices(args.task)
+    episode_indices = iter_episode_indices(args.task, data_base=args.data_base)
     if args.episode_limit is not None:
         episode_indices = episode_indices[: args.episode_limit]
 
@@ -255,7 +263,7 @@ def main():
         out_path = out_dir / f"{ep_idx:06d}.safetensors"
         if out_path.exists() and not args.overwrite:
             continue
-        video_path = find_video_path(args.task, ep_idx)
+        video_path = find_video_path(args.task, ep_idx, data_base=args.data_base)
         if video_path is None:
             raise FileNotFoundError(f"Missing video for task={args.task} ep={ep_idx:06d}")
         frames = load_video_frames(video_path)
