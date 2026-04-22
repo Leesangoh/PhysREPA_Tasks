@@ -1035,3 +1035,32 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Paper action:
   - add a new functional-significance subsection under `contact_dynamics`
   - update discussion to distinguish PEZ accessibility from control optimality
+
+[2026-04-22 00:20 UTC] Functional-significance Drawer damping-OOD result landed:
+- Compact Drawer action-control features were extracted on a matched
+  `0..999`-episode subset for:
+  - `V-JEPA 2 Large` layers `11` and `23`
+  - `VideoMAE-Large` layer `23`
+  - `DINOv2-Large` layer `15`
+- Split:
+  - OOD axis = `drawer_joint_damping`
+  - eligible episodes = `996`
+  - central-band train/val/IID = `487/104/105`
+  - damping-OOD test = `300`
+- Main OOD results:
+  - `videomae_best`: `0.9197 ± 0.0009`
+  - `vjepa_last`: `0.9076 ± 0.0004`
+  - `vjepa_pez`: `0.9059 ± 0.0003`
+  - `dino_best`: `0.8893 ± 0.0007`
+- Interpretation:
+  - supported: video-pretrained features again beat the static-image baseline
+    under hidden-physics shift
+  - not supported: neither the PEZ layer nor V-JEPA is uniformly best on
+    offline action imitation; VideoMAE-L is strongest on Drawer
+  - nuance: all models score slightly higher on the damping-OOD subset than on
+    the central IID subset, so this split is shifted but not intrinsically
+    harder under the current offline metric
+- Paper action:
+  - extend the functional-significance subsection from Push-only to Push+Drawer
+  - frame the result as task-general `video > static`, while explicitly
+    separating PEZ accessibility from best-control-layer behavior

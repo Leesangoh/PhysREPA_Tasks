@@ -67,8 +67,8 @@ def parse_rep(spec: str) -> RepSpec:
     return RepSpec(name=name, model=model, layer=int(layer))
 
 
-def load_push_meta(episode_ids: list[int]):
-    meta_path = os.path.join(DATA_BASE, "push", "meta", "episodes.jsonl")
+def load_task_meta(task: str, episode_ids: list[int]):
+    meta_path = os.path.join(DATA_BASE, task, "meta", "episodes.jsonl")
     meta = {}
     with open(meta_path) as f:
         for line in f:
@@ -79,31 +79,51 @@ def load_push_meta(episode_ids: list[int]):
     return meta
 
 
-def build_physics_split(meta: dict[int, dict], split_seed: int):
-    episode_ids = sorted(meta)
-    mass = np.array([float(meta[ep]["object_0_mass"]) for ep in episode_ids], dtype=np.float64)
-    obj_dyn = np.array([float(meta[ep]["object_0_dynamic_friction"]) for ep in episode_ids], dtype=np.float64)
-    surf_dyn = np.array([float(meta[ep]["surface_dynamic_friction"]) for ep in episode_ids], dtype=np.float64)
+def build_physics_split(task: str, meta: dict[int, dict], split_seed: int):
+    if task == "push":
+        required_keys = ["object_0_mass", "object_0_dynamic_friction", "surface_dynamic_friction"]
+    elif task == "drawer":
+        required_keys = ["drawer_joint_damping"]
+    else:
+        raise ValueError(f"Unsupported task for OOD split: {task}")
 
+    episode_ids = [ep for ep in sorted(meta) if all(k in meta[ep] for k in required_keys)]
     q_lo, q_hi = 0.15, 0.85
-    thresholds = {
-        "mass_lo": float(np.quantile(mass, q_lo)),
-        "mass_hi": float(np.quantile(mass, q_hi)),
-        "obj_dyn_lo": float(np.quantile(obj_dyn, q_lo)),
-        "obj_dyn_hi": float(np.quantile(obj_dyn, q_hi)),
-        "surf_dyn_lo": float(np.quantile(surf_dyn, q_lo)),
-        "surf_dyn_hi": float(np.quantile(surf_dyn, q_hi)),
-    }
+    if task == "push":
+        mass = np.array([float(meta[ep]["object_0_mass"]) for ep in episode_ids], dtype=np.float64)
+        obj_dyn = np.array([float(meta[ep]["object_0_dynamic_friction"]) for ep in episode_ids], dtype=np.float64)
+        surf_dyn = np.array([float(meta[ep]["surface_dynamic_friction"]) for ep in episode_ids], dtype=np.float64)
+        thresholds = {
+            "mass_lo": float(np.quantile(mass, q_lo)),
+            "mass_hi": float(np.quantile(mass, q_hi)),
+            "obj_dyn_lo": float(np.quantile(obj_dyn, q_lo)),
+            "obj_dyn_hi": float(np.quantile(obj_dyn, q_hi)),
+            "surf_dyn_lo": float(np.quantile(surf_dyn, q_lo)),
+            "surf_dyn_hi": float(np.quantile(surf_dyn, q_hi)),
+        }
+    elif task == "drawer":
+        damping = np.array([float(meta[ep]["drawer_joint_damping"]) for ep in episode_ids], dtype=np.float64)
+        thresholds = {
+            "drawer_joint_damping_lo": float(np.quantile(damping, q_lo)),
+            "drawer_joint_damping_hi": float(np.quantile(damping, q_hi)),
+        }
 
     central = []
     ood = []
     for ep in episode_ids:
         rec = meta[ep]
-        in_band = (
-            thresholds["mass_lo"] <= float(rec["object_0_mass"]) <= thresholds["mass_hi"]
-            and thresholds["obj_dyn_lo"] <= float(rec["object_0_dynamic_friction"]) <= thresholds["obj_dyn_hi"]
-            and thresholds["surf_dyn_lo"] <= float(rec["surface_dynamic_friction"]) <= thresholds["surf_dyn_hi"]
-        )
+        if task == "push":
+            in_band = (
+                thresholds["mass_lo"] <= float(rec["object_0_mass"]) <= thresholds["mass_hi"]
+                and thresholds["obj_dyn_lo"] <= float(rec["object_0_dynamic_friction"]) <= thresholds["obj_dyn_hi"]
+                and thresholds["surf_dyn_lo"] <= float(rec["surface_dynamic_friction"]) <= thresholds["surf_dyn_hi"]
+            )
+        elif task == "drawer":
+            in_band = (
+                thresholds["drawer_joint_damping_lo"]
+                <= float(rec["drawer_joint_damping"])
+                <= thresholds["drawer_joint_damping_hi"]
+            )
         if in_band:
             central.append(ep)
         else:
@@ -124,6 +144,7 @@ def build_physics_split(meta: dict[int, dict], split_seed: int):
         "ood_eps": sorted(ood),
         "thresholds": thresholds,
         "counts": {
+            "eligible_total": len(episode_ids),
             "central_total": len(central),
             "ood_total": len(ood),
             "train": len(train_eps),
@@ -133,10 +154,10 @@ def build_physics_split(meta: dict[int, dict], split_seed: int):
     }
 
 
-def load_action_cache(episode_ids: list[int]) -> dict[int, np.ndarray]:
+def load_action_cache(task: str, episode_ids: list[int]) -> dict[int, np.ndarray]:
     action_cache = {}
     for ep in episode_ids:
-        path = os.path.join(DATA_BASE, "push", "data", f"chunk-{ep // 1000:03d}", f"episode_{ep:06d}.parquet")
+        path = os.path.join(DATA_BASE, task, "data", f"chunk-{ep // 1000:03d}", f"episode_{ep:06d}.parquet")
         df = pd.read_parquet(path, columns=["action"])
         action_cache[ep] = np.stack(df["action"].values).astype(np.float32)
     return action_cache
@@ -326,13 +347,13 @@ def main():
     if not episode_ids:
         raise ValueError("No common episodes available across requested representations")
 
-    meta = load_push_meta(episode_ids)
-    split = build_physics_split(meta, split_seed=args.split_seed)
+    meta = load_task_meta(args.task, episode_ids)
+    split = build_physics_split(args.task, meta, split_seed=args.split_seed)
     split_path = os.path.join(RESULTS_DIR, f"{args.run_tag}_split.json")
     with open(split_path, "w") as f:
         json.dump(split, f, indent=2)
 
-    action_cache = load_action_cache(episode_ids)
+    action_cache = load_action_cache(args.task, episode_ids)
 
     summary = {
         "task": args.task,
@@ -428,7 +449,7 @@ def main():
         summary["representations"].items(),
         key=lambda kv: (-kv[1]["ood_r2_mean"], kv[1]["ood_gap_mean"]),
     )
-    report_path = os.path.join(RESULTS_DIR, "functional_significance_verdict.md")
+    report_path = os.path.join(RESULTS_DIR, f"functional_significance_verdict_{args.task}_{args.run_tag}.md")
     with open(report_path, "w") as f:
         f.write("# Functional Significance Verdict\n\n")
         f.write(f"- task: `{args.task}`\n")
