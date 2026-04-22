@@ -1239,3 +1239,32 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Next:
   - launch `V-JEPA / Strike` token-patch extraction on the recollected native
     dataset root
+
+[2026-04-22 14:28 UTC] Native Tier-B extraction wave started on the recollected Strike set.
+- Pipeline code checkpoint:
+  - `ec2d86f` `[NATIVE_FORCE] Add native Strike Tier-B pipeline support`
+  - changes:
+    - `extract_token_features.py` / `extract_cross_model_features.py` now accept `--data-base`
+    - `probe_events.py` now supports `--label-mode native`
+    - added `analyze_native_force_multiseed.py`
+    - added `run_native_force_multiseed.sh`
+- Extraction launches:
+  - `V-JEPA 2 Large`:
+    - session `3068`
+    - output root `/mnt/md1/solee/features/physprobe_vitl_tokenpatch_nativeforce/strike`
+    - early progress check: `23 / 1000`, size `13G`
+  - `VideoMAE-L`:
+    - session `28070`
+    - output root `/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch_nativeforce/strike`
+    - early progress check: `9 / 1000`, size `3.8G`
+  - `DINOv2-L`:
+    - session `6583`
+    - output root `/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch_nativeforce/strike`
+    - launch started after confirming `/mnt` headroom
+- Disk after clearing old committed baseline caches:
+  - `/mnt/md1/solee` free space `2.2T`
+- Current plan:
+  1. finish all three native extractions
+  2. run 3-seed native `contact_force` probes (`42/123/2024`)
+  3. bootstrap `V-JEPA - VideoMAE` and `V-JEPA - DINO`
+  4. compare native-force ranking against the earlier surrogate-force panel
