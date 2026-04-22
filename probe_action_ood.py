@@ -43,7 +43,7 @@ WINDOW_LEN = 16
 class RepSpec:
     name: str
     model: str
-    layer: int
+    layers: tuple[int, ...]
 
 
 def compute_r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -61,10 +61,11 @@ def compute_r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 
 def parse_rep(spec: str) -> RepSpec:
-    # name=model:layer
+    # name=model:layer or name=model:layer1+layer2+...
     name, rhs = spec.split("=")
     model, layer = rhs.split(":")
-    return RepSpec(name=name, model=model, layer=int(layer))
+    layers = tuple(int(x) for x in layer.split("+"))
+    return RepSpec(name=name, model=model, layers=layers)
 
 
 def load_task_meta(task: str, episode_ids: list[int]):
@@ -163,7 +164,13 @@ def load_action_cache(task: str, episode_ids: list[int]) -> dict[int, np.ndarray
     return action_cache
 
 
-def collect_samples(feature_root: str, layer: int, episode_ids: list[int], action_cache: dict[int, np.ndarray], chunk_len: int):
+def collect_samples(
+    feature_root: str,
+    layers: tuple[int, ...],
+    episode_ids: list[int],
+    action_cache: dict[int, np.ndarray],
+    chunk_len: int,
+):
     xs = []
     ys = []
     eps = []
@@ -175,7 +182,8 @@ def collect_samples(feature_root: str, layer: int, episode_ids: list[int], actio
             continue
         with safe_open(feat_path, framework="numpy") as f:
             window_starts = f.get_tensor("window_starts").astype(np.int64)
-            feats = f.get_tensor(f"layer_{layer}").astype(np.float32)
+            feat_parts = [f.get_tensor(f"layer_{layer}").astype(np.float32) for layer in layers]
+            feats = feat_parts[0] if len(feat_parts) == 1 else np.concatenate(feat_parts, axis=1)
         actions = action_cache[ep]
         for w_idx, start in enumerate(window_starts):
             target_start = int(start) + WINDOW_LEN
@@ -186,7 +194,8 @@ def collect_samples(feature_root: str, layer: int, episode_ids: list[int], actio
             ys.append(actions[target_start:target_end].reshape(-1))
             eps.append(ep)
     if not xs:
-        raise ValueError(f"No usable samples for layer {layer} under {feature_root}")
+        layer_desc = "+".join(str(x) for x in layers)
+        raise ValueError(f"No usable samples for layers {layer_desc} under {feature_root}")
     return np.stack(xs), np.stack(ys), np.asarray(eps, dtype=np.int64), n_missing
 
 
@@ -365,10 +374,10 @@ def main():
 
     for rep in reps:
         feature_root = os.path.join(args.feature_root, rep.model, args.task)
-        X_train, Y_train, _, missing_train = collect_samples(feature_root, rep.layer, split["train_eps"], action_cache, args.chunk_len)
-        X_val, Y_val, _, missing_val = collect_samples(feature_root, rep.layer, split["val_eps"], action_cache, args.chunk_len)
-        X_iid, Y_iid, _, missing_iid = collect_samples(feature_root, rep.layer, split["iid_eps"], action_cache, args.chunk_len)
-        X_ood, Y_ood, _, missing_ood = collect_samples(feature_root, rep.layer, split["ood_eps"], action_cache, args.chunk_len)
+        X_train, Y_train, _, missing_train = collect_samples(feature_root, rep.layers, split["train_eps"], action_cache, args.chunk_len)
+        X_val, Y_val, _, missing_val = collect_samples(feature_root, rep.layers, split["val_eps"], action_cache, args.chunk_len)
+        X_iid, Y_iid, _, missing_iid = collect_samples(feature_root, rep.layers, split["iid_eps"], action_cache, args.chunk_len)
+        X_ood, Y_ood, _, missing_ood = collect_samples(feature_root, rep.layers, split["ood_eps"], action_cache, args.chunk_len)
 
         rows = []
         for seed in args.probe_seeds:
@@ -390,7 +399,7 @@ def main():
                 {
                     "representation": rep.name,
                     "model": rep.model,
-                    "layer": rep.layer,
+                    "layer": "+".join(str(x) for x in rep.layers),
                     "probe_seed": seed,
                     **metrics,
                 }
@@ -400,7 +409,7 @@ def main():
 
         summary["representations"][rep.name] = {
             "model": rep.model,
-            "layer": rep.layer,
+            "layer": rep.layers[0] if len(rep.layers) == 1 else list(rep.layers),
             "n_train_windows": int(len(X_train)),
             "n_val_windows": int(len(X_val)),
             "n_iid_windows": int(len(X_iid)),
@@ -438,7 +447,7 @@ def main():
     plt.bar(x + width / 2, ood_vals, width=width, label="OOD")
     plt.xticks(x, rep_names, rotation=15, ha="right")
     plt.ylabel("Action-chunk $R^2$")
-    plt.title("Push control relevance under hidden-physics shift")
+    plt.title(f"{args.task.capitalize()} control relevance under hidden-physics shift")
     plt.legend()
     plt.tight_layout()
     fig_path = os.path.join(FIGURES_DIR, f"{args.run_tag}_iid_vs_ood.png")
@@ -459,8 +468,9 @@ def main():
         f.write("| Representation | Model | Layer | IID $R^2$ | OOD $R^2$ | OOD gap |\n")
         f.write("| --- | --- | ---: | ---: | ---: | ---: |\n")
         for name, rec in ordered:
+            layer_label = rec["layer"] if isinstance(rec["layer"], int) else "+".join(str(x) for x in rec["layer"])
             f.write(
-                f"| `{name}` | `{rec['model']}` | `{rec['layer']}` | "
+                f"| `{name}` | `{rec['model']}` | `{layer_label}` | "
                 f"{rec['iid_r2_mean']:.4f} ± {rec['iid_r2_std']:.4f} | "
                 f"{rec['ood_r2_mean']:.4f} ± {rec['ood_r2_std']:.4f} | "
                 f"{rec['ood_gap_mean']:.4f} ± {rec['ood_gap_std']:.4f} |\n"

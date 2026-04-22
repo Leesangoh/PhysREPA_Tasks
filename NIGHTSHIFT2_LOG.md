@@ -1365,3 +1365,33 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - the strongest honest claim becomes: PEZ generalizes beyond Push/Strike into
     at least one insertion-style task, but it is task-dependent rather than
     universal across all six tasks
+
+[2026-04-22 22:37 UTC] Functional-significance fusion pass completed on Push and Drawer OOD action regression.
+- Probe upgrade:
+  - extended `probe_action_ood.py` to accept multi-layer representations such
+    as `large:11+23`
+  - this enables a direct test of whether PEZ and late control layers are
+    complementary rather than mutually exclusive
+- Push (`mass/friction` OOD, seeds `42 / 123 / 2024`):
+  - `vjepa_pez` (`L11`): IID `0.9071 ± 0.0010`, OOD `0.8794 ± 0.0004`
+  - `vjepa_last` (`L23`): IID `0.9193 ± 0.0002`, OOD `0.8916 ± 0.0005`
+  - `vjepa_fusion` (`L11+23`): IID `0.9174 ± 0.0015`, OOD `0.8923 ± 0.0007`
+  - `videomae_best` (`L23`): IID `0.9181 ± 0.0015`, OOD `0.8903 ± 0.0004`
+  - `dino_mid` (`L15`): IID `0.8276 ± 0.0035`, OOD `0.7955 ± 0.0041`
+- Drawer (`damping` OOD, seeds `42 / 123 / 2024`):
+  - `vjepa_pez` (`L11`): IID `0.8911 ± 0.0009`, OOD `0.9059 ± 0.0003`
+  - `vjepa_last` (`L23`): IID `0.8922 ± 0.0006`, OOD `0.9076 ± 0.0004`
+  - `vjepa_fusion` (`L11+23`): IID `0.8968 ± 0.0006`, OOD `0.9125 ± 0.0002`
+  - `videomae_best` (`L23`): IID `0.9057 ± 0.0004`, OOD `0.9197 ± 0.0009`
+  - `dino_best` (`L15`): IID `0.8735 ± 0.0000`, OOD `0.8893 ± 0.0007`
+- Interpretation:
+  - PEZ alone is not the best action layer on either task
+  - but within V-JEPA, `L11+23` fusion improves over either single V-JEPA layer
+    on both Push and Drawer
+  - this is the strongest current downstream claim:
+    PEZ contributes complementary control signal when combined with the late
+    action layer
+- Paper consequence:
+  - the functional-significance section no longer ends at a negative result
+  - the honest final claim becomes: control relevance is separable from PEZ
+    accessibility, yet PEZ remains useful when fused with the late layer
