@@ -1089,3 +1089,19 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Paper implication:
   - strengthened: predictive-video objective remains numerically strongest on the harder Tier-B target.
   - sharpened: the statistically strongest claim is `V-JEPA > DINO`, while `V-JEPA` vs `VideoMAE` stays close under matched multiseed evaluation.
+
+[2026-04-22 07:34 UTC] Native Strike contact-force validation audited.
+- Full-data audit over all `3000` public Strike episodes:
+  - `contact_force` nonzero episodes: `0 / 3000`
+  - `contact_finger_l_object_force` nonzero episodes: `0 / 3000`
+  - `contact_object_surface_force` nonzero episodes: `0 / 3000`
+  - `contact_flag` nonzero episodes: `0 / 3000`
+  - object-acceleration max over the same audit: `279.35`
+- Matched window-level audit on the `1000`-episode subset used for multiseed Tier-B:
+  - audited windows: `45208`
+  - native `contact_force` nonzero windows: `0`
+  - native `contact_flag` nonzero windows: `0`
+  - surrogate/native Pearson and Spearman correlations are undefined because the native target has zero variance.
+- Consequence:
+  - native `contact_force` probing is impossible with the public Step 0 Strike export.
+  - paper wording must stay on surrogate force-proxy, but this is now backed by a full-dataset native audit rather than a partial caveat.
