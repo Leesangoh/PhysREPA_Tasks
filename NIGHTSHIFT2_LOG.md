@@ -1064,3 +1064,28 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   - extend the functional-significance subsection from Push-only to Push+Drawer
   - frame the result as task-general `video > static`, while explicitly
     separating PEZ accessibility from best-control-layer behavior
+
+[2026-04-22 06:18 UTC] Tier-B force_proxy multiseed statistical tightening launched.
+- Goal: make the `Strike / contact_force_proxy` cross-model panel statistically airtight.
+- Matched setting: all three families are now evaluated on the same `1000`-episode subset with probe seeds `42/123/2024`.
+- Practical adjustment: the original V-JEPA token-patch strike cache is gone, so the rerun uses the surviving `/mnt/md1/solee/features/physprobe_vitl/strike` cache.
+  - Its per-window tensors are already spatially mean-pooled (`(1024,)`), which is functionally consistent with the event-probe readout because `probe_events.py` previously mean-pooled token patches within each window.
+- Engineering fix: `probe_events.py` was patched to accept both rank-2 token patches and rank-1 pre-pooled window features for the same event-probe path.
+- Automation: added `run_force_proxy_multiseed.sh` and `analyze_force_proxy_multiseed.py`.
+- Output targets once runs finish:
+  - `artifacts/results/cross_model_force_proxy_multiseed_verdict.md`
+  - `artifacts/results/cross_model_force_proxy_multiseed_summary.json`
+  - paper Tier-B table update with multiseed CI and paired bootstrap intervals.
+
+[2026-04-22 07:07 UTC] Tier-B force_proxy multiseed statistical tightening completed.
+- Matched setting: `Strike / contact_force_proxy`, shared `1000`-episode subset, probe seeds `42/123/2024`.
+- Peak `R^2` summary:
+  - `V-JEPA~2 Large`: `0.211 ± 0.005`, peak depth `0.847 ± 0.024`
+  - `VideoMAE-L`: `0.206 ± 0.012`, peak depth `0.806 ± 0.024`
+  - `DINOv2-L`: `0.153 ± 0.002`, peak depth `0.819 ± 0.120`
+- Paired bootstrap on peak `R^2` deltas:
+  - `V-JEPA - VideoMAE`: `+0.005`, 95% CI `[-0.015, 0.014]` -> ordering preserved but gap is narrow.
+  - `V-JEPA - DINO`: `+0.058`, 95% CI `[0.055, 0.060]` -> clean separation.
+- Paper implication:
+  - strengthened: predictive-video objective remains numerically strongest on the harder Tier-B target.
+  - sharpened: the statistically strongest claim is `V-JEPA > DINO`, while `V-JEPA` vs `VideoMAE` stays close under matched multiseed evaluation.

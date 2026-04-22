@@ -1,0 +1,31 @@
+{
+  "task": "strike",
+  "model": "dinov2_large",
+  "run_tag": "phase3_events_force_multiseed_dino_seed42_ep1000",
+  "feature_root": "/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch/strike",
+  "patch_shape": [
+    256,
+    1024
+  ],
+  "n_event_class_samples": 1996,
+  "n_event_reg_samples": 998,
+  "positive_rate": 0.5,
+  "contact_happening": {
+    "L0": 0.8505520440140399,
+    "L8": 0.9487900137622788,
+    "peak_auc": 0.9878691312088078,
+    "peak_layer": 16,
+    "last": 0.9777758190449737,
+    "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_events_strike_contact_happening_dinov2_large_phase3_events_force_multiseed_dino_seed42_ep1000.csv",
+    "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_events_strike_contact_happening_dinov2_large_phase3_events_force_multiseed_dino_seed42_ep1000.png"
+  },
+  "contact_force_proxy": {
+    "L0": -0.05392722152200069,
+    "L8": 0.05547662843173373,
+    "peak_r2": 0.15367049537351757,
+    "peak_layer": 18,
+    "last": 0.14314715432792868,
+    "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_events_strike_contact_force_proxy_dinov2_large_phase3_events_force_multiseed_dino_seed42_ep1000.csv",
+    "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_events_strike_contact_force_proxy_dinov2_large_phase3_events_force_multiseed_dino_seed42_ep1000.png"
+  }
+}

@@ -286,11 +286,19 @@ def load_window_features(task: str, model: str, samples: list[dict], feature_roo
             for layer in range(num_layers):
                 key = f"layer_{layer}_window_{sample['window']}"
                 patch = f.get_tensor(key)
-                if patch.ndim != 2:
-                    raise ValueError(f"Expected rank-2 token patch, got {patch.shape} in {key}")
+                if patch.ndim == 1:
+                    # Some older V-JEPA caches already store a spatially pooled
+                    # per-window vector. That is equivalent to the window-level
+                    # mean readout used here, so accept it directly.
+                    vec = np.asarray(patch, dtype=np.float32)
+                    current_shape = [int(patch.shape[0])]
+                elif patch.ndim == 2:
+                    vec = np.asarray(patch.mean(axis=0), dtype=np.float32)
+                    current_shape = list(patch.shape)
+                else:
+                    raise ValueError(f"Expected rank-1 or rank-2 window feature, got {patch.shape} in {key}")
                 if patch_shape is None:
-                    patch_shape = list(patch.shape)
-                vec = np.asarray(patch.mean(axis=0), dtype=np.float32)
+                    patch_shape = current_shape
                 if features_by_layer is None:
                     features_by_layer = {
                         layer_idx: np.empty((len(samples), vec.shape[0]), dtype=np.float32)
