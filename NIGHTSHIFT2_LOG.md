@@ -1268,3 +1268,26 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
   2. run 3-seed native `contact_force` probes (`42/123/2024`)
   3. bootstrap `V-JEPA - VideoMAE` and `V-JEPA - DINO`
   4. compare native-force ranking against the earlier surrogate-force panel
+
+[2026-04-22 18:42 UTC] Native Strike multiseed Tier-B panel completed; native force now anchors the paper.
+- Recollected native-force extraction status:
+  - `V-JEPA / VideoMAE / DINOv2` native Strike token-patch caches all completed
+    at `1000 / 1000` episodes
+- Matched 3-seed native event probes completed for all three model families
+  (`42 / 123 / 2024`) on:
+  - `contact_happening_native`
+  - `contact_force_native`
+- Final native Tier-B result:
+  - `V-JEPA 2 Large`: `0.566 ± 0.002`, peak depth `0.694 ± 0.024`
+  - `VideoMAE-L`: `0.531 ± 0.001`, peak depth `0.917 ± 0.042`
+  - `DINOv2-L`: `0.205 ± 0.005`, peak depth `0.722 ± 0.024`
+- Paired bootstrap:
+  - `V-JEPA - VideoMAE`: `+0.034`, 95% CI `[0.033, 0.036]`
+  - `V-JEPA - DINO`: `+0.360`, 95% CI `[0.355, 0.367]`
+- Surrogate-vs-native comparison:
+  - native force preserves the earlier ordering `V-JEPA > VideoMAE > DINO`
+  - unlike the surrogate panel, the native panel makes `V-JEPA > VideoMAE`
+    statistically significant
+- Paper consequence:
+  - Tier-B claim is no longer surrogate-only
+  - native Strike `contact_force` becomes the main implicit-physics result
