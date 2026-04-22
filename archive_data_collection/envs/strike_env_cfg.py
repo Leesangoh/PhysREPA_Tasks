@@ -79,15 +79,22 @@ class StrikeSceneCfg(InteractiveSceneCfg):
         ],
     )
 
-    # Contact sensor — EE ↔ Ball
+    # Contact sensor — ball ↔ striking bodies.
+    # Read from the rigid object side and filter against the specific Franka
+    # bodies that can strike the ball. Filtering against the whole Robot root is
+    # not supported on GPU contact sensors in Isaac Sim 4.5.
     contact_sensor: ContactSensorCfg = ContactSensorCfg(
-        prim_path="{ENV_REGEX_NS}/Robot/panda_leftfinger",
+        prim_path="{ENV_REGEX_NS}/Object",
         update_period=0.0,
         history_length=1,
         track_air_time=True,
         track_contact_points=True,
         force_threshold=0.5,
-        filter_prim_paths_expr=["{ENV_REGEX_NS}/Object"],
+        filter_prim_paths_expr=[
+            "{ENV_REGEX_NS}/Robot/panda_hand",
+            "{ENV_REGEX_NS}/Robot/panda_leftfinger",
+            "{ENV_REGEX_NS}/Robot/panda_rightfinger",
+        ],
     )
 
     # Thin surface on table for friction randomization

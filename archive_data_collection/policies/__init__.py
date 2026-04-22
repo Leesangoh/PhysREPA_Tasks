@@ -1,6 +1,6 @@
 """Scripted oracle policies for PhysREPA manipulation tasks."""
 
-from physrepa_tasks.policies.scripted_policy import (
+from .scripted_policy import (
     LiftPolicy,
     PickPlacePolicy,
     PushPolicy,

@@ -1086,7 +1086,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Pair-specific: EE ↔ handle (from existing contact_sensor)
                 if "contact_sensor" in env.scene.sensors:
                     sensor = env.scene.sensors["contact_sensor"]
-                    ee_handle_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_handle_force = sensor.data.force_matrix_w[0, 0].sum(dim=0).cpu().numpy()
                     ee_handle_flag = 1.0 if np.linalg.norm(ee_handle_force) > 0.5 else 0.0
                     ep_physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.array([ee_handle_flag], dtype=np.float32))
                     ep_physics_gt["physics_gt.contact_finger_l_handle_force"].append(ee_handle_force.astype(np.float32))
@@ -1096,7 +1096,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Right finger ↔ handle
                 if "contact_sensor_r" in env.scene.sensors:
                     sensor_r = env.scene.sensors["contact_sensor_r"]
-                    r_force = sensor_r.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    r_force = sensor_r.data.force_matrix_w[0, 0].sum(dim=0).cpu().numpy()
                     r_flag = 1.0 if np.linalg.norm(r_force) > 0.5 else 0.0
                     ep_physics_gt["physics_gt.contact_finger_r_handle_flag"].append(np.array([r_flag], dtype=np.float32))
                     ep_physics_gt["physics_gt.contact_finger_r_handle_force"].append(r_force.astype(np.float32))
@@ -1133,7 +1133,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Pair-specific: EE ↔ object (existing contact_sensor = leftfinger → Object)
                 if "contact_sensor" in env.scene.sensors:
                     sensor = env.scene.sensors["contact_sensor"]
-                    ee_obj_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_obj_force = sensor.data.force_matrix_w[0, 0].sum(dim=0).cpu().numpy()
                     ee_obj_flag = 1.0 if np.linalg.norm(ee_obj_force) > 0.5 else 0.0
                 else:
                     ee_obj_force = np.zeros(3, dtype=np.float32)
@@ -1198,7 +1198,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Pair-specific: finger_l ↔ object (stack uses same contact_sensor)
                 if "contact_sensor" in env.scene.sensors:
                     sensor = env.scene.sensors["contact_sensor"]
-                    ee_obj_force = sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                    ee_obj_force = sensor.data.force_matrix_w[0, 0].sum(dim=0).cpu().numpy()
                     ee_obj_flag = 1.0 if np.linalg.norm(ee_obj_force) > 0.5 else 0.0
                 else:
                     ee_obj_force = np.zeros(3, dtype=np.float32)
@@ -1238,7 +1238,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 # Critical fix #3: use force_matrix_w (per-filter-body) not net_forces_w (total)
                 cube_sensor = env.scene.sensors["cube_contact_sensor"]
                 # force_matrix_w shape: (N, B, M, 3) where M=1 (only CubeB as filter)
-                obj_obj_force = cube_sensor.data.force_matrix_w[0, 0, 0, :].cpu().numpy()
+                obj_obj_force = cube_sensor.data.force_matrix_w[0, 0].sum(dim=0).cpu().numpy()
                 obj_obj_flag = 1.0 if np.linalg.norm(obj_obj_force) > 0.5 else 0.0
                 ep_physics_gt["physics_gt.object_object_contact_flag"].append(np.array([obj_obj_flag], dtype=np.float32))
                 ep_physics_gt["physics_gt.object_object_contact_force"].append(obj_obj_force.astype(np.float32))
@@ -1255,7 +1255,9 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
                 if "contact_sensor" in env.scene.sensors:
                     sensor = env.scene.sensors["contact_sensor"]
-                    contact_pos = sensor.data.contact_pos_w[0, 0, 0, :].cpu().numpy()
+                    contact_points = sensor.data.contact_pos_w[0, 0].cpu().numpy()
+                    valid = np.isfinite(contact_points).all(axis=1)
+                    contact_pos = contact_points[valid][0] if valid.any() else np.zeros(3, dtype=np.float32)
                     contact_pos = np.nan_to_num(contact_pos, nan=0.0)
                     ep_physics_gt["physics_gt.contact_point"].append(contact_pos.astype(np.float32))
                 else:
@@ -1992,16 +1994,35 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 obj_half = 0.025 if task_name == "strike" else 0.03
                 on_surface = 1.0 if obj_pos[2] < (obj_half + 0.005) else 0.0
                 buf.physics_gt["physics_gt.object_on_surface"].append(np.array([on_surface], dtype=np.float32))
-                # Contact (zeros — parallel env doesn't have per-env contact sensor readout easily)
-                buf.physics_gt["physics_gt.contact_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_force"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_object_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_object_force"].append(np.zeros(3, dtype=np.float32))
+                # Pair-specific: left finger <-> object from the batched contact sensor.
+                if "contact_sensor" in env.scene.sensors:
+                    sensor = env.scene.sensors["contact_sensor"]
+                    ee_obj_force = sensor.data.force_matrix_w[i, 0].sum(dim=0).cpu().numpy()
+                    ee_obj_flag = 1.0 if np.linalg.norm(ee_obj_force) > 0.5 else 0.0
+                    contact_points = sensor.data.contact_pos_w[i, 0].cpu().numpy()
+                    valid = np.isfinite(contact_points).all(axis=1)
+                    contact_pos = contact_points[valid][0] if valid.any() else np.zeros(3, dtype=np.float32)
+                    contact_pos = np.nan_to_num(contact_pos, nan=0.0)
+                else:
+                    ee_obj_force = np.zeros(3, dtype=np.float32)
+                    ee_obj_flag = 0.0
+                    contact_pos = np.zeros(3, dtype=np.float32)
+                buf.physics_gt["physics_gt.contact_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(ee_obj_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(contact_pos.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_object_flag"].append(np.array([ee_obj_flag], dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_object_force"].append(ee_obj_force.astype(np.float32))
                 # Target (Step0 has no target — use zeros)
                 buf.physics_gt["physics_gt.target_position"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_object_surface_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_object_surface_force"].append(np.zeros(3, dtype=np.float32))
+                if "object_surface_contact" in env.scene.sensors:
+                    surf_sensor = env.scene.sensors["object_surface_contact"]
+                    obj_surf_force = surf_sensor.data.force_matrix_w[i, 0, 0, :].cpu().numpy()
+                    obj_surf_flag = 1.0 if np.linalg.norm(obj_surf_force) > 0.5 else 0.0
+                else:
+                    obj_surf_force = np.zeros(3, dtype=np.float32)
+                    obj_surf_flag = 0.0
+                buf.physics_gt["physics_gt.contact_object_surface_flag"].append(np.array([obj_surf_flag], dtype=np.float32))
+                buf.physics_gt["physics_gt.contact_object_surface_force"].append(obj_surf_force.astype(np.float32))
                 buf.physics_gt["physics_gt.object_to_target_distance"].append(np.array([float("nan")], dtype=np.float32))
                 if task_name == "strike":
                     # Ball planar travel distance (cumulative)

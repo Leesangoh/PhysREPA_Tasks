@@ -1105,3 +1105,93 @@ Codex 동의하면 design 업데이트하고 진행. 이견 있으면 이 로그
 - Consequence:
   - native `contact_force` probing is impossible with the public Step 0 Strike export.
   - paper wording must stay on surrogate force-proxy, but this is now backed by a full-dataset native audit rather than a partial caveat.
+
+[2026-04-22 08:02 UTC] Native contact-force recollection diagnosis started.
+- Collection/export audit target: `/home/solee/physrepa_tasks/archive_data_collection/collect_sample_data.py`
+- Key finding:
+  - the public Step 0 `push/strike` path uses `collect_task_parallel(...)` whenever `num_envs > 1`
+  - inside that path, `physics_gt.contact_flag`, `physics_gt.contact_force`,
+    `physics_gt.contact_point`, `physics_gt.contact_finger_l_object_*`, and
+    `physics_gt.contact_object_surface_*` were hard-coded to zeros with the
+    comment that parallel env contact readout was "not easy"
+- Diagnosis:
+  - this is a concrete collection-script bug, not evidence that PhysX contact
+    forces are unavailable
+  - the same file already reads batched `force_matrix_w` correctly for other
+    tasks (e.g. stack object-object contact), so the Step 0 strike zero-fill is
+    avoidable
+- Patch applied:
+  - parallel `push/strike` collection now reads per-env `force_matrix_w` and
+    `contact_pos_w` from `contact_sensor`
+  - parallel `push/strike` collection now reads per-env `force_matrix_w` from
+    `object_surface_contact`
+- Next:
+  - run a 1-episode Step 0 Strike pilot on the parallel path and verify that
+    native contact-force columns become nonzero in the emitted parquet
+
+[2026-04-22 08:42 UTC] Native Strike pilot reached real collection path.
+- The patched parallel collector successfully emitted a pilot parquet:
+  - `/home/solee/physrepa_tasks/artifacts/native_force_recollection_pilot/strike/data/chunk-000/episode_000000.parquet`
+- Pilot audit:
+  - `physics_gt.contact_force`: still `0` on all `245` frames
+  - `physics_gt.contact_finger_l_object_force`: still `0` on all `245` frames
+  - `physics_gt.contact_object_surface_force`: nonzero on all `245` frames, max `58.91`
+- Interpretation:
+  - the collection-path zero-fill bug is fixed
+  - but Strike has a second task-specific instrumentation bug:
+    - its generic `contact_sensor` is mounted on `panda_leftfinger`
+    - the scripted strike uses a closed-fist swing, so impact is carried by the
+      hand/body rather than the left finger
+    - therefore the generic native `contact_force` channel stays zero even after
+      the collector patch, while `object_surface_contact` already works
+- Patch applied:
+  - `archive_data_collection/envs/strike_env_cfg.py` now mounts the Strike
+    `contact_sensor` on `panda_hand` instead of `panda_leftfinger`
+- Next:
+  - rerun the same 1-episode Step 0 Strike pilot and verify that
+    `physics_gt.contact_force` becomes nonzero
+
+[2026-04-22 08:54 UTC] Strike hand-mounted contact sensor pilot failed to revive native `contact_force`.
+- With `strike_env_cfg.contact_sensor` moved from `panda_leftfinger` to
+  `panda_hand`, the pilot still produced:
+  - `physics_gt.contact_force`: `0 / 245` nonzero frames
+  - `physics_gt.contact_flag`: `0 / 245` nonzero frames
+  - `physics_gt.contact_object_surface_force`: `245 / 245` nonzero frames, max `128.19`
+- Interpretation:
+  - collision is definitely happening
+  - object-side sensors work
+  - articulated robot-side contact sensor remains effectively unusable for this
+    Strike regime under current Step 0 collection
+- Patch applied:
+  - switched the generic Strike `contact_sensor` to an object-centric sensor:
+    - `prim_path = {ENV_REGEX_NS}/Object`
+    - `filter_prim_paths_expr = ["{ENV_REGEX_NS}/Robot"]`
+- Rationale:
+  - this preserves the intended target semantics (ball-robot interaction force)
+    while reading from the rigid object side, which already proved reliable
+    through the nonzero object-surface sensor
+
+[2026-04-22 09:16 UTC] Exact-body-filter Strike pilot succeeded: native robot-ball contact is recoverable.
+- Final Strike `contact_sensor` config:
+  - `prim_path = {ENV_REGEX_NS}/Object`
+  - `filter_prim_paths_expr = [panda_hand, panda_leftfinger, panda_rightfinger]`
+- Collector-side fix:
+  - parallel Step 0 `push/strike` now exports batched `contact_sensor` and
+    `object_surface_contact` values instead of hard-coded zeros
+  - batched contact-force reads now sum across filter bodies
+  - contact points now pick the first finite entry from `contact_pos_w`
+- Pilot parquet:
+  - `/home/solee/physrepa_tasks/artifacts/native_force_recollection_pilot_bodyfilters/strike/data/chunk-000/episode_000000.parquet`
+- Verified nonzero native channels:
+  - `physics_gt.contact_force`: `10 / 245` nonzero frames, max `52.98`
+  - `physics_gt.contact_flag`: `10 / 245` nonzero frames, max `1.0`
+  - `physics_gt.contact_object_surface_force`: `245 / 245` nonzero frames, max `54.16`
+  - `physics_gt.contact_object_surface_flag`: `245 / 245` nonzero frames, max `1.0`
+- Interpretation:
+  - the public zero-filled Strike native-contact export was caused by a real
+    collection/instrumentation bug, not by an inherent PhysX limitation
+  - native robot-ball contact is now available for recollection
+- Next:
+  - commit the collector/runtime patch set
+  - start a fresh `1000`-episode Step 0 Strike recollection with the fixed
+    native force path
