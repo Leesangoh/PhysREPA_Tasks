@@ -1,0 +1,49 @@
+{
+  "task": "push",
+  "summary_json": "/home/solee/physrepa_tasks/artifacts/results/functional_significance_push_fusion_ood_l1_summary.json",
+  "run_tag": "functional_significance_push_fusion_ood_l1",
+  "n_resamples": 1000,
+  "seed": 42,
+  "comparisons": [
+    {
+      "mean_gap": -0.00047796696909261765,
+      "ci_low": -0.004029776600812893,
+      "ci_high": 0.0035243570602724195,
+      "left": "vjepa_fusion",
+      "right": "vjepa_last",
+      "n_episodes": 911,
+      "left_mean": 0.8198384097604525,
+      "right_mean": 0.8203163767295452
+    },
+    {
+      "mean_gap": 0.02412407186948946,
+      "ci_low": 0.019399394175456348,
+      "ci_high": 0.029606446768784586,
+      "left": "vjepa_fusion",
+      "right": "vjepa_pez",
+      "n_episodes": 911,
+      "left_mean": 0.8198384097604525,
+      "right_mean": 0.7957143378909631
+    },
+    {
+      "mean_gap": 0.006371293299882968,
+      "ci_low": -0.0013707468969520375,
+      "ci_high": 0.016052812365240903,
+      "left": "vjepa_fusion",
+      "right": "videomae_best",
+      "n_episodes": 911,
+      "left_mean": 0.8198384097604525,
+      "right_mean": 0.8134671164605697
+    },
+    {
+      "mean_gap": 0.15176457120520523,
+      "ci_low": 0.13203480971872839,
+      "ci_high": 0.17123000883772668,
+      "left": "videomae_best",
+      "right": "dino_mid",
+      "n_episodes": 911,
+      "left_mean": 0.8134671164605697,
+      "right_mean": 0.6617025452553644
+    }
+  ]
+}

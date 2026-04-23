@@ -60,6 +60,35 @@ def compute_r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return float(1.0 - ss_res / ss_tot)
 
 
+def compute_episode_r2_rows(
+    episode_ids: np.ndarray,
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    *,
+    split: str,
+    representation: str,
+    model: str,
+    layer_label: str,
+    probe_seed: int,
+) -> list[dict]:
+    rows = []
+    for ep in np.unique(episode_ids):
+        mask = episode_ids == ep
+        rows.append(
+            {
+                "representation": representation,
+                "model": model,
+                "layer": layer_label,
+                "probe_seed": probe_seed,
+                "split": split,
+                "episode_id": int(ep),
+                "n_windows": int(mask.sum()),
+                "r2": compute_r2(y_true[mask], y_pred[mask]),
+            }
+        )
+    return rows
+
+
 def parse_rep(spec: str) -> RepSpec:
     # name=model:layer or name=model:layer1+layer2+...
     name, rhs = spec.split("=")
@@ -259,6 +288,7 @@ def train_one(
 
     output_dim = Ytr.shape[1]
     best = None
+    best_preds = None
     configs = [(1e-3, 1e-4), (3e-4, 1e-4), (1e-3, 0.0)]
     for lr, wd in configs:
         set_seed(seed)
@@ -311,7 +341,11 @@ def train_one(
         metrics["ood_gap"] = metrics["iid_r2"] - metrics["ood_r2"]
         if best is None or metrics["val_r2"] > best["val_r2"]:
             best = metrics
-    return best
+            best_preds = {
+                "iid_pred": iid_pred,
+                "ood_pred": ood_pred,
+            }
+    return best, best_preds
 
 
 def write_csv(path: str, rows: list[dict]):
@@ -368,20 +402,26 @@ def main():
         "task": args.task,
         "chunk_len": args.chunk_len,
         "feature_root": args.feature_root,
+        "hidden_dim": args.hidden_dim,
+        "batch_size": args.batch_size,
+        "split_seed": args.split_seed,
+        "probe_seeds": list(args.probe_seeds),
         "split": split,
         "representations": {},
     }
 
     for rep in reps:
         feature_root = os.path.join(args.feature_root, rep.model, args.task)
-        X_train, Y_train, _, missing_train = collect_samples(feature_root, rep.layers, split["train_eps"], action_cache, args.chunk_len)
-        X_val, Y_val, _, missing_val = collect_samples(feature_root, rep.layers, split["val_eps"], action_cache, args.chunk_len)
-        X_iid, Y_iid, _, missing_iid = collect_samples(feature_root, rep.layers, split["iid_eps"], action_cache, args.chunk_len)
-        X_ood, Y_ood, _, missing_ood = collect_samples(feature_root, rep.layers, split["ood_eps"], action_cache, args.chunk_len)
+        X_train, Y_train, eps_train, missing_train = collect_samples(feature_root, rep.layers, split["train_eps"], action_cache, args.chunk_len)
+        X_val, Y_val, eps_val, missing_val = collect_samples(feature_root, rep.layers, split["val_eps"], action_cache, args.chunk_len)
+        X_iid, Y_iid, eps_iid, missing_iid = collect_samples(feature_root, rep.layers, split["iid_eps"], action_cache, args.chunk_len)
+        X_ood, Y_ood, eps_ood, missing_ood = collect_samples(feature_root, rep.layers, split["ood_eps"], action_cache, args.chunk_len)
 
         rows = []
+        episode_rows = []
+        layer_label = "+".join(str(x) for x in rep.layers)
         for seed in args.probe_seeds:
-            metrics = train_one(
+            metrics, preds = train_one(
                 X_train,
                 Y_train,
                 X_val,
@@ -399,13 +439,42 @@ def main():
                 {
                     "representation": rep.name,
                     "model": rep.model,
-                    "layer": "+".join(str(x) for x in rep.layers),
+                    "layer": layer_label,
                     "probe_seed": seed,
                     **metrics,
                 }
             )
+            episode_rows.extend(
+                compute_episode_r2_rows(
+                    eps_iid,
+                    Y_iid,
+                    preds["iid_pred"],
+                    split="iid",
+                    representation=rep.name,
+                    model=rep.model,
+                    layer_label=layer_label,
+                    probe_seed=seed,
+                )
+            )
+            episode_rows.extend(
+                compute_episode_r2_rows(
+                    eps_ood,
+                    Y_ood,
+                    preds["ood_pred"],
+                    split="ood",
+                    representation=rep.name,
+                    model=rep.model,
+                    layer_label=layer_label,
+                    probe_seed=seed,
+                )
+            )
         csv_path = os.path.join(RESULTS_DIR, f"action_ood_{args.task}_{rep.name}_{args.run_tag}.csv")
         write_csv(csv_path, rows)
+        episode_csv_path = os.path.join(
+            RESULTS_DIR,
+            f"action_ood_episode_{args.task}_{rep.name}_{args.run_tag}.csv",
+        )
+        write_csv(episode_csv_path, episode_rows)
 
         summary["representations"][rep.name] = {
             "model": rep.model,
@@ -421,6 +490,7 @@ def main():
                 "ood": missing_ood,
             },
             "csv": csv_path,
+            "episode_csv": episode_csv_path,
             "train_r2_mean": summarize_rows(rows, "train_r2")[0],
             "train_r2_std": summarize_rows(rows, "train_r2")[1],
             "val_r2_mean": summarize_rows(rows, "val_r2")[0],
