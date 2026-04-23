@@ -1,0 +1,18 @@
+[2026-04-22T18:16:21Z] START phase3_events_native_force_multiseed_dino_seed42 gpu=2 model=dinov2_large feature_root=/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:16:21Z] START phase3_events_native_force_multiseed_large_seed42 gpu=0 model=large feature_root=/mnt/md1/solee/features/physprobe_vitl_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:16:31Z] START phase3_events_native_force_multiseed_videomae_seed42 gpu=1 model=videomae_large feature_root=/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:22:51Z] DONE phase3_events_native_force_multiseed_dino_seed42
+[2026-04-22T18:22:51Z] START phase3_events_native_force_multiseed_dino_seed123 gpu=2 model=dinov2_large feature_root=/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:24:23Z] DONE phase3_events_native_force_multiseed_large_seed42
+[2026-04-22T18:24:23Z] START phase3_events_native_force_multiseed_large_seed123 gpu=0 model=large feature_root=/mnt/md1/solee/features/physprobe_vitl_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:24:41Z] DONE phase3_events_native_force_multiseed_videomae_seed42
+[2026-04-22T18:24:41Z] START phase3_events_native_force_multiseed_videomae_seed123 gpu=1 model=videomae_large feature_root=/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:29:05Z] DONE phase3_events_native_force_multiseed_dino_seed123
+[2026-04-22T18:29:05Z] START phase3_events_native_force_multiseed_dino_seed2024 gpu=2 model=dinov2_large feature_root=/mnt/md1/solee/features/physprobe_dinov2_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:31:38Z] DONE phase3_events_native_force_multiseed_large_seed123
+[2026-04-22T18:31:38Z] START phase3_events_native_force_multiseed_large_seed2024 gpu=0 model=large feature_root=/mnt/md1/solee/features/physprobe_vitl_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:31:46Z] DONE phase3_events_native_force_multiseed_videomae_seed123
+[2026-04-22T18:31:46Z] START phase3_events_native_force_multiseed_videomae_seed2024 gpu=1 model=videomae_large feature_root=/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch_nativeforce limit=1000
+[2026-04-22T18:35:45Z] DONE phase3_events_native_force_multiseed_dino_seed2024
+[2026-04-22T18:38:56Z] DONE phase3_events_native_force_multiseed_large_seed2024
+[2026-04-22T18:39:20Z] DONE phase3_events_native_force_multiseed_videomae_seed2024

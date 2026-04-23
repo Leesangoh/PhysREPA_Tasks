@@ -1,0 +1,2 @@
+[2026-04-22T06:15:47Z] START phase3_events_force_multiseed_videomae_seed42_ep1000 gpu=1 model=videomae_large feature_root=/mnt/md1/solee/features/physprobe_videomae_large_tokenpatch limit=1000
+[2026-04-22T06:15:47Z] START phase3_events_force_multiseed_large_seed42_ep1000 gpu=0 model=large feature_root=/mnt/md1/solee/features/physprobe_vitl limit=1000

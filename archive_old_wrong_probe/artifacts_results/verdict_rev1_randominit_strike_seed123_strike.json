@@ -1,0 +1,57 @@
+{
+  "task": "strike",
+  "model": "large",
+  "targets": [
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "ee_direction_3d",
+      "probe_seed": 123,
+      "output_dim": 3,
+      "L0": 0.5798128273808879,
+      "L8": 0.6020040803107692,
+      "peak_r2": 0.6186602162863583,
+      "peak_layer": 2,
+      "last": 0.614181357263073,
+      "train_L0": 0.9854359913800534,
+      "train_peak_r2": 0.9900268638930634,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_ee_direction_3d_large_token_patch_rev1_randominit_strike_seed123.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_ee_direction_3d_large_token_patch_rev1_randominit_strike_seed123.png"
+    },
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "object_direction_3d",
+      "probe_seed": 123,
+      "output_dim": 3,
+      "L0": 0.4789440172983623,
+      "L8": 0.5033164367520534,
+      "peak_r2": 0.5087295248237897,
+      "peak_layer": 12,
+      "last": 0.5063354471527982,
+      "train_L0": 0.9740270228332438,
+      "train_peak_r2": 0.9950715077232835,
+      "classification": "PEZ-like",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_object_direction_3d_large_token_patch_rev1_randominit_strike_seed123.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_object_direction_3d_large_token_patch_rev1_randominit_strike_seed123.png"
+    },
+    {
+      "task": "strike",
+      "model": "large",
+      "target": "ee_speed",
+      "probe_seed": 123,
+      "output_dim": 1,
+      "L0": 0.7809622742578619,
+      "L8": 0.788993154089012,
+      "peak_r2": 0.8050382102068564,
+      "peak_layer": 18,
+      "last": 0.7937707678136283,
+      "train_L0": 0.9927067524469546,
+      "train_peak_r2": 0.9995083350377685,
+      "classification": "intermediate",
+      "csv": "/home/solee/physrepa_tasks/artifacts/results/probe_strike_ee_speed_large_token_patch_rev1_randominit_strike_seed123.csv",
+      "figure": "/home/solee/physrepa_tasks/artifacts/figures/curve_strike_ee_speed_large_token_patch_rev1_randominit_strike_seed123.png"
+    }
+  ]
+}

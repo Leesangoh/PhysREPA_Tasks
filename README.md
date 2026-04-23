@@ -1,36 +1,40 @@
 # PhysREPA Tasks
 
-This repository contains the experiment code, analysis scripts, and result
-artifacts used to study manipulation physics representations in video world
-models.
+This repository is now centered on **dataset collection, value auditing, and
+dataset-release recovery** for PhysREPA Step 0.
+
+After the methodology incident documented outside the repo, the old probing and
+paper-analysis stack was removed from the active tree and archived for
+provenance under `archive_old_wrong_probe/`.
 
 ## Primary documents
 
-- [NIGHTSHIFT_FINAL_SUMMARY.md](./NIGHTSHIFT_FINAL_SUMMARY.md): high-level
-  summary of the major experimental phases and conclusions
+- [NIGHTSHIFT_FINAL_SUMMARY.md](./NIGHTSHIFT_FINAL_SUMMARY.md): historical
+  summary of the earlier experiment phases
 - [CONTACT_INFERENCE_ANALYSIS.md](./CONTACT_INFERENCE_ANALYSIS.md): contact-label
-  audit and surrogate-contact analysis notes
+  audit notes from the previous analysis phase
+- [REVISION_PLAN.md](./REVISION_PLAN.md): latest user-provided revision plan
 
-## Repository layout
+## Active layout
 
-- `artifacts/results/`: canonical CSV, JSON, and markdown verdict files used by
-  the paper and figure-generation scripts
-- `artifacts/figures/`: experiment-side plots and diagnostics
-- `archive_data_collection/`: older Isaac Lab collection and training code kept
-  for reference and recovery
-- `docs/archive/`: historical planning documents, run protocols, and nightshift
-  logs preserved for provenance
+- `archive_data_collection/`: Isaac Lab collection code and env definitions
+- `envs/`, `mdp/`, `policies/`: import shims used by the collection code
+- `artifacts/results/`: current audit summaries kept active
+- `artifacts/figures/`: current audit visuals kept active
+- `artifacts/notebooks/`: small audit helpers
 
-## Current scope
+## Archived layout
 
-The finalized analysis covers:
+- `archive_old_wrong_probe/scripts/`: old probe, feature-extraction, and
+  analysis scripts
+- `archive_old_wrong_probe/artifacts_results/`: old result CSV/JSON/markdown
+- `archive_old_wrong_probe/artifacts_figures/`: old probe/result figures
+- `archive_old_wrong_probe/artifacts_logs/`: old run logs
+- `docs/archive/`: historical planning docs and nightshift logs
 
-- V-JEPA scale comparisons (`L/G/H`)
-- cross-model comparisons against VideoMAE-L and DINOv2-L
-- native contact-force recollection and Tier-B validation
-- functional OOD action regression on Push and Drawer
-- selective scope expansion to PegInsert and NutThread
+## Notes
 
-The active paper source lives in a separate nested git repository at
-`PhysProbe_Neurips_Paper/`, which is intentionally ignored from this repo's git
-status.
+- The nested paper repo `PhysProbe_Neurips_Paper/` remains intentionally
+  ignored from this repo's git status.
+- Current active work should stay scoped to dataset regeneration and value
+  validation unless explicitly redirected.

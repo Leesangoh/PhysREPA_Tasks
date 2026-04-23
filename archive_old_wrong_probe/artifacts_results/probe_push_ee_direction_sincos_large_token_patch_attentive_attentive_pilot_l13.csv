@@ -1,0 +1,2 @@
+task,model,target,layer,r2_mean,r2_std,best_lr,best_wd,n_folds
+push,large,ee_direction_sincos,13,0.880753364515327,0.0258865177547124,0.0003,0.01,5
