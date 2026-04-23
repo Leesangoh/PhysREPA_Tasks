@@ -1,56 +1,36 @@
-# PhysREPA Tasks: PEZ Probing Focus
+# PhysREPA Tasks
 
-This repository is currently organized around one goal:
+This repository contains the experiment code, analysis scripts, and result
+artifacts used to study manipulation physics representations in video world
+models.
 
-- applying the PEZ probing methodology from the PEZ reproduction project to PhysProbe manipulation data
+## Primary documents
 
-The active planning document is:
+- [NIGHTSHIFT_FINAL_SUMMARY.md](./NIGHTSHIFT_FINAL_SUMMARY.md): high-level
+  summary of the major experimental phases and conclusions
+- [CONTACT_INFERENCE_ANALYSIS.md](./CONTACT_INFERENCE_ANALYSIS.md): contact-label
+  audit and surrogate-contact analysis notes
 
-- [PEZ_TO_PHYSPROBE_PLAN.md](./PEZ_TO_PHYSPROBE_PLAN.md)
+## Repository layout
 
-## Current focus
+- `artifacts/results/`: canonical CSV, JSON, and markdown verdict files used by
+  the paper and figure-generation scripts
+- `artifacts/figures/`: experiment-side plots and diagnostics
+- `archive_data_collection/`: older Isaac Lab collection and training code kept
+  for reference and recovery
+- `docs/archive/`: historical planning documents, run protocols, and nightshift
+  logs preserved for provenance
 
-The next planned work is:
+## Current scope
 
-1. write a new probing script for manipulation data
-2. load frozen ViT-L / ViT-G PhysProbe features from:
-   - `/mnt/md1/solee/features/physprobe_vitl/`
-   - `/mnt/md1/solee/features/physprobe_vitg/`
-3. load ground-truth physics targets from the PhysProbe parquet dataset
-4. run PEZ-style layer-wise probing and classify each variable as:
-   - PEZ-like
-   - always decodable
-   - never decodable
+The finalized analysis covers:
 
-Planned outputs will go under:
+- V-JEPA scale comparisons (`L/G/H`)
+- cross-model comparisons against VideoMAE-L and DINOv2-L
+- native contact-force recollection and Tier-B validation
+- functional OOD action regression on Push and Drawer
+- selective scope expansion to PegInsert and NutThread
 
-- `./artifacts/`
-
-## Historical note
-
-Older code for:
-
-- data collection
-- RL training
-- Isaac Lab environment configuration
-- rollout / recording
-- verification
-- older probing experiments
-
-has been preserved under:
-
-- `./archive_data_collection/`
-
-That archive is kept for record-keeping and recovery, but it is not the active working surface for the PEZ-to-PhysProbe probing effort.
-
-## Immediate next step
-
-Implement:
-
-- `probe_physprobe.py`
-
-based on:
-
-- the plan in [PEZ_TO_PHYSPROBE_PLAN.md](./PEZ_TO_PHYSPROBE_PLAN.md)
-- the PEZ probing logic from `/home/solee/pez/step3_probe.py`
-
+The active paper source lives in a separate nested git repository at
+`PhysProbe_Neurips_Paper/`, which is intentionally ignored from this repo's git
+status.

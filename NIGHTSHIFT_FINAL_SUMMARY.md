@@ -172,4 +172,4 @@ Reason:
 - `artifacts/results/verdict_phase2_push.json`
 - `artifacts/results/verdict_phase2c_reach_reach.json`
 - `artifacts/results/verdict_phase2c_strike_strike.json`
-- `NIGHTSHIFT_LOG.md`
+- `docs/archive/NIGHTSHIFT_LOG.md`

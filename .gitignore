@@ -3,3 +3,11 @@ __pycache__/
 *.pyo
 .pytest_cache/
 *.egg-info/
+PhysProbe_Neurips_Paper/
+artifacts/action_control_features/
+artifacts/logs/
+artifacts/native_force_recollection_pilot*/
+artifacts/figures/curve_*.png
+artifacts/figures/functional_significance_*_iid_vs_ood.png
+artifacts/figures/gt_distribution_*.png
+artifacts/results/*attentive*pilot*.csv
