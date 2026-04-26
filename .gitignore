@@ -11,3 +11,9 @@ artifacts/figures/curve_*.png
 artifacts/figures/functional_significance_*_iid_vs_ood.png
 artifacts/figures/gt_distribution_*.png
 artifacts/results/*attentive*pilot*.csv
+
+# probe/ workspace — cache is a symlink to /mnt/md1/solee/physprobe_features/ (~944 GB)
+probe/cache
+probe/results/.all_done
+probe/results/.gpu0_done
+probe/results/.gpu1_done

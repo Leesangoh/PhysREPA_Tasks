@@ -1,0 +1,60 @@
+# Common config — applies to all tasks unless overridden.
+# Spec: /home/solee/physrepa_tasks/claude_code_task.md
+
+dataset_root: /home/solee/data/data/isaac_physrepa_v2_recollected_2026-04-23
+cache_root: /home/solee/physrepa_tasks/probe/cache
+results_root: /home/solee/physrepa_tasks/probe/results
+
+# V-JEPA 2 ViT-L (256 px variant)
+vjepa2:
+  source_path: /home/solee/vjepa2/src
+  weights_path: /mnt/md1/solee/checkpoints/vjepa2/vitl.pt
+  factory: vit_large
+  num_layers: 24
+  d_model: 1024
+  patch_size: 16
+  tubelet_size: 2
+  input_size: 256
+  num_frames: 16
+  spatial_tokens: 256   # (256/16)^2
+  temporal_tokens: 8    # 16 / tubelet_size
+
+# Window construction
+window:
+  size: 16
+  stride: 1
+  # Window covers frames [t-15, t]; one window per t in {15, ..., T-1}.
+
+# Cache layout
+variants:
+  - A      # 1024-d spatiotemporal mean
+  - B      # 8192-d spatial mean (temporal preserved)
+# Variant C is fallback only — not extracted at this stage.
+
+feature_dtype: float16
+
+# Probe protocol (spec § 5)
+probe:
+  optimizer: adam
+  loss: mse
+  lr_grid: [1.0e-4, 3.0e-4, 1.0e-3, 3.0e-3, 5.0e-3]
+  wd_grid: [0.01, 0.1, 0.4, 0.8]
+  epochs: 100
+  batch_size: 1024
+  inner_val_episode_frac: 0.10
+
+# CV (spec § 6)
+cv:
+  n_splits: 5
+  group_key: episode_id
+
+# Reproducibility (spec § 11)
+seed: 42
+
+# Stop-condition thresholds
+thresholds:
+  finite_diff_anchor_mae_frac: 0.05         # mean abs err / target std
+  pooling_identity_fp16_tol: 1.0e-3
+  negative_control_r2: 0.05
+  push_min_best_layer_r2: 0.05
+  storage_quota_gb: 1024                    # halt if cache > 1 TB

@@ -1,0 +1,51 @@
+# Per-task definitions: episode count (sanity), object naming, fps from meta.
+# Order is the run order (push first per spec § 9; rest in execution order).
+
+tasks:
+  push:
+    n_episodes: 1500
+    fps: 50              # from meta/info.json
+    has_object: true
+    object_prefix: object        # physics_gt.object_position, etc.
+    object_label: object
+    has_native_obj_acc: true     # physics_gt.object_acceleration present
+
+  strike:
+    n_episodes: 3000
+    fps: 50
+    has_object: true
+    object_prefix: object
+    object_label: hammer
+    has_native_obj_acc: true
+
+  reach:
+    n_episodes: 600
+    fps: 50
+    has_object: false
+    object_prefix: null
+    object_label: null
+    has_native_obj_acc: false
+
+  drawer:
+    n_episodes: 2000
+    fps: 60
+    has_object: true
+    object_prefix: handle        # physics_gt.handle_position
+    object_label: handle
+    has_native_obj_acc: false    # finite-diff derived
+
+  peg_insert:
+    n_episodes: 2500
+    fps: 15
+    has_object: true
+    object_prefix: peg
+    object_label: peg
+    has_native_obj_acc: false
+
+  nut_thread:
+    n_episodes: 2500
+    fps: 15
+    has_object: true
+    object_prefix: nut
+    object_label: nut
+    has_native_obj_acc: false
