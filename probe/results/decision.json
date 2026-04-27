@@ -1,11 +1,11 @@
 {
-  "variant": "A",
+  "variant": "B",
   "criteria": [
     {
       "task": "push",
       "target": "ee_velocity",
       "thr": 0.5,
-      "got": 0.9211430668830872,
+      "got": 0.9525832533836364,
       "best_layer": 22,
       "pass": true
     },
@@ -13,21 +13,21 @@
       "task": "push",
       "target": "ee_position",
       "thr": 0.5,
-      "got": 0.9800593376159668,
-      "best_layer": 21,
+      "got": 0.985657799243927,
+      "best_layer": 22,
       "pass": true
     },
     {
       "task": "strike",
       "target": "ee_velocity",
       "thr": 0.4,
-      "got": 0.9355097413063048,
-      "best_layer": 18,
+      "got": 0.96188063621521,
+      "best_layer": 22,
       "pass": true
     }
   ],
   "push_ee_velocity_peak_strict_layer": 22,
-  "push_ee_velocity_peak_relaxed_layer": 17,
+  "push_ee_velocity_peak_relaxed_layer": 18,
   "pez_peak_in_mid_layers_6_18_strict": false,
   "pez_peak_in_mid_layers_6_18_relaxed_99pct": true,
   "L0_saturates_targets": [],

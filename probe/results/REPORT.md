@@ -7,11 +7,11 @@
 
 | task | target | threshold | got | best_layer | pass |
 |---|---|---|---|---|---|
-| push | ee_velocity | >0.5 | 0.9211 | 22 | True |
-| push | ee_position | >0.5 | 0.9801 | 21 | True |
-| strike | ee_velocity | >0.4 | 0.9355 | 18 | True |
+| push | ee_velocity | >0.5 | 0.9526 | 22 | True |
+| push | ee_position | >0.5 | 0.9857 | 22 | True |
+| strike | ee_velocity | >0.4 | 0.9619 | 22 | True |
 
-Push ee_velocity strict argmax layer: 22; relaxed (first layer ≥ 99 % of max R²): 17
+Push ee_velocity strict argmax layer: 22; relaxed (first layer ≥ 99 % of max R²): 18
 PEZ peak in layers 6–18 (strict argmax): False
 PEZ peak in layers 6–18 (relaxed 99 % plateau): True
 All basic targets R² < 0.2: False
@@ -19,84 +19,64 @@ Layer 0 saturates (R² > 0.9): False
 
 **Why two verdicts?** Push ee_velocity R² rises monotonically L0→L18 then plateaus across L17–L22 (R² 0.915–0.921, all within 1 std). Strict argmax picks L22 (outside spec's 6–18 mid-depth band) only because plateau noise puts L22 marginally on top. Relaxed criterion identifies the first layer in the plateau (≥ 99 % of max R²), which sits inside 6–18. The relaxed verdict reflects the substantive PEZ structure; the strict verdict reflects the literal spec text. Treat the relaxed verdict as primary.
 
-## Plots
-
-See `plots/` directory and the [INDEX.md](INDEX.md) for the full list. Headline figures:
-
-- Per-task layer-vs-R² (EE + Object): [push](plots/push_layer_vs_r2.png) | [strike](plots/strike_layer_vs_r2.png) | [reach](plots/reach_layer_vs_r2.png) | [drawer](plots/drawer_layer_vs_r2.png) | [peg_insert](plots/peg_insert_layer_vs_r2.png) | [nut_thread](plots/nut_thread_layer_vs_r2.png)
-- Cross-task overlay for headline targets: [ee_velocity](plots/cross_task_ee_velocity.png) | [ee_position](plots/cross_task_ee_position.png) | [obj_velocity](plots/cross_task_obj_velocity.png) | [obj_position](plots/cross_task_obj_position.png)
-- Bird's-eye [heatmap_r2.png](plots/heatmap_r2.png) — every (task, target) × 24 layers
-
 ## PEZ peak layer per (task, target)
 
 | task | target | best_layer | r2_mean ± std | mse_mean |
 |---|---|---|---|---|
-| push | ee_accel_mag | 18 | 0.5672 ± 0.0146 | 0.8125 |
-| push | ee_acceleration | 19 | 0.2191 ± 0.0157 | 0.5812 |
-| push | ee_direction | 21 | 0.8384 ± 0.0070 | 0.0519 |
-| push | ee_position | 21 | 0.9801 ± 0.0020 | 0.0004 |
-| push | ee_speed | 20 | 0.9516 ± 0.0052 | 0.0013 |
-| push | ee_velocity | 22 | 0.9211 ± 0.0052 | 0.0018 |
-| push | obj_accel_mag | 18 | 0.2932 ± 0.0276 | 0.9954 |
-| push | obj_acceleration | 16 | 0.0705 ± 0.0121 | 0.4722 |
-| push | obj_direction | 22 | 0.2831 ± 0.0129 | 0.1849 |
-| push | obj_position | 8 | 0.2079 ± 0.0327 | 16.5022 |
-| push | obj_speed | 21 | 0.8116 ± 0.0439 | 0.0026 |
-| push | obj_velocity | 21 | 0.7189 ± 0.0493 | 0.0015 |
-| strike | ee_accel_mag | 18 | 0.7178 ± 0.0041 | 1.3467 |
-| strike | ee_acceleration | 17 | 0.4129 ± 0.0091 | 1.1593 |
-| strike | ee_direction | 17 | 0.8451 ± 0.0073 | 0.0502 |
-| strike | ee_position | 22 | 0.9849 ± 0.0029 | 0.0002 |
-| strike | ee_speed | 18 | 0.9756 ± 0.0007 | 0.0016 |
-| strike | ee_velocity | 18 | 0.9355 ± 0.0011 | 0.0023 |
-| strike | obj_accel_mag | 20 | 0.3440 ± 0.0292 | 1.9652 |
-| strike | obj_acceleration | 19 | 0.1341 ± 0.0117 | 0.9110 |
-| strike | obj_direction | 14 | 0.7732 ± 0.0105 | 0.0301 |
-| strike | obj_position | 3 | 0.2887 ± 0.0083 | 14.8227 |
-| strike | obj_speed | 18 | 0.7832 ± 0.0306 | 0.0034 |
-| strike | obj_velocity | 17 | 0.6651 ± 0.0111 | 0.0021 |
-| reach | ee_accel_mag | 13 | 0.3685 ± 0.0041 | 316.3954 |
-| reach | ee_acceleration | 13 | 0.0984 ± 0.0072 | 152.6991 |
-| reach | ee_direction | 19 | 0.5610 ± 0.0087 | 0.1360 |
-| reach | ee_position | 17 | 0.9356 ± 0.0060 | 0.0006 |
-| reach | ee_speed | 16 | 0.8572 ± 0.0054 | 0.0618 |
-| reach | ee_velocity | 17 | 0.2958 ± 0.0143 | 0.1041 |
-| drawer | ee_accel_mag | 19 | 0.7667 ± 0.0040 | 23.1984 |
-| drawer | ee_acceleration | 22 | 0.2978 ± 0.0216 | 35.6656 |
-| drawer | ee_direction | 18 | 0.6473 ± 0.0038 | 0.0907 |
-| drawer | ee_position | 22 | 0.9764 ± 0.0063 | 0.0001 |
-| drawer | ee_speed | 18 | 0.8721 ± 0.0042 | 0.0097 |
-| drawer | ee_velocity | 22 | 0.5776 ± 0.0164 | 0.0192 |
-| drawer | obj_accel_mag | 18 | 0.4923 ± 0.0039 | 2.8325 |
-| drawer | obj_acceleration | 13 | 0.3303 ± 0.0194 | 1.5000 |
-| drawer | obj_direction | 22 | 0.3775 ± 0.0186 | 0.0563 |
-| drawer | obj_position | 21 | 0.9901 ± 0.0014 | 0.0000 |
-| drawer | obj_speed | 18 | 0.9279 ± 0.0025 | 0.0035 |
-| drawer | obj_velocity | 18 | 0.9178 ± 0.0038 | 0.0013 |
-| peg_insert | ee_accel_mag | 18 | 0.6146 ± 0.0014 | 0.0011 |
-| peg_insert | ee_acceleration | 17 | 0.3480 ± 0.0194 | 0.0007 |
-| peg_insert | ee_direction | 15 | 0.0743 ± 0.0023 | 0.3054 |
-| peg_insert | ee_position | 22 | 0.9687 ± 0.0042 | 0.0000 |
-| peg_insert | ee_speed | 18 | 0.8967 ± 0.0039 | 0.0000 |
-| peg_insert | ee_velocity | 17 | 0.8066 ± 0.0096 | 0.0000 |
-| peg_insert | obj_accel_mag | 18 | 0.2958 ± 0.0265 | 0.0044 |
-| peg_insert | obj_acceleration | 18 | 0.1242 ± 0.0209 | 0.0024 |
-| peg_insert | obj_direction | 17 | 0.1844 ± 0.0047 | 0.2114 |
-| peg_insert | obj_position | 17 | 0.9669 ± 0.0057 | 0.0000 |
-| peg_insert | obj_speed | 18 | 0.5883 ± 0.0353 | 0.0000 |
-| peg_insert | obj_velocity | 17 | 0.4894 ± 0.0268 | 0.0000 |
-| nut_thread | ee_accel_mag | 18 | 0.3192 ± 0.0168 | 0.0005 |
-| nut_thread | ee_acceleration | 17 | 0.0259 ± 0.0035 | 0.0004 |
-| nut_thread | ee_direction | 18 | 0.0112 ± 0.0013 | 0.3291 |
-| nut_thread | ee_position | 17 | 0.9762 ± 0.0009 | 0.0000 |
-| nut_thread | ee_speed | 18 | 0.4024 ± 0.0212 | 0.0000 |
-| nut_thread | ee_velocity | 17 | 0.1592 ± 0.0141 | 0.0000 |
-| nut_thread | obj_accel_mag | 18 | 0.0208 ± 0.0018 | 0.0093 |
-| nut_thread | obj_acceleration | 18 | 0.0009 ± 0.0002 | 0.0066 |
-| nut_thread | obj_direction | 18 | 0.0163 ± 0.0023 | 0.2749 |
-| nut_thread | obj_position | 11 | 0.9764 ± 0.0027 | 0.0000 |
-| nut_thread | obj_speed | 20 | 0.0316 ± 0.0051 | 0.0001 |
-| nut_thread | obj_velocity | 18 | 0.0161 ± 0.0027 | 0.0001 |
+| push | ee_accel_mag | 19 | 0.6586 ± 0.0106 | 0.6410 |
+| push | ee_acceleration | 21 | 0.3716 ± 0.0123 | 0.4677 |
+| push | ee_direction | 15 | 0.8662 ± 0.0052 | 0.0430 |
+| push | ee_position | 22 | 0.9857 ± 0.0016 | 0.0003 |
+| push | ee_speed | 19 | 0.9616 ± 0.0031 | 0.0010 |
+| push | ee_velocity | 22 | 0.9526 ± 0.0043 | 0.0011 |
+| push | obj_accel_mag | 19 | 0.3317 ± 0.0384 | 0.9439 |
+| push | obj_acceleration | 22 | 0.1057 ± 0.0168 | 0.4547 |
+| push | obj_direction | 22 | 0.3058 ± 0.0107 | 0.1791 |
+| push | obj_position | 11 | 0.2607 ± 0.0138 | 15.3986 |
+| push | obj_speed | 22 | 0.8358 ± 0.0493 | 0.0023 |
+| push | obj_velocity | 21 | 0.7630 ± 0.0494 | 0.0012 |
+| strike | ee_accel_mag | 16 | 0.7868 ± 0.0050 | 1.0179 |
+| strike | ee_acceleration | 22 | 0.5878 ± 0.0052 | 0.8139 |
+| strike | ee_direction | 13 | 0.8774 ± 0.0046 | 0.0397 |
+| strike | ee_position | 22 | 0.9870 ± 0.0029 | 0.0002 |
+| strike | ee_speed | 19 | 0.9801 ± 0.0031 | 0.0013 |
+| strike | ee_velocity | 22 | 0.9619 ± 0.0010 | 0.0014 |
+| strike | obj_accel_mag | 16 | 0.4781 ± 0.0474 | 1.5698 |
+| strike | obj_acceleration | 22 | 0.2810 ± 0.0182 | 0.7574 |
+| strike | obj_direction | 23 | 0.8033 ± 0.0071 | 0.0261 |
+| strike | obj_position | 13 | 0.2916 ± 0.0185 | 14.7673 |
+| strike | obj_speed | 16 | 0.8218 ± 0.0394 | 0.0028 |
+| strike | obj_velocity | 23 | 0.7393 ± 0.0238 | 0.0016 |
+| reach | ee_accel_mag | 14 | 0.4712 ± 0.0036 | 264.9171 |
+| reach | ee_acceleration | 19 | 0.2185 ± 0.0179 | 132.3404 |
+| reach | ee_direction | 19 | 0.6377 ± 0.0120 | 0.1122 |
+| reach | ee_position | 19 | 0.9554 ± 0.0054 | 0.0004 |
+| reach | ee_speed | 16 | 0.9351 ± 0.0109 | 0.0280 |
+| reach | ee_velocity | 17 | 0.4802 ± 0.0195 | 0.0767 |
+| drawer | ee_accel_mag | 18 | 0.8274 ± 0.0042 | 17.1678 |
+| drawer | ee_acceleration | 22 | 0.6100 ± 0.0116 | 19.8136 |
+| drawer | ee_direction | 21 | 0.7732 ± 0.0084 | 0.0583 |
+| drawer | ee_position | 20 | 0.9806 ± 0.0072 | 0.0000 |
+| drawer | ee_speed | 19 | 0.9062 ± 0.0078 | 0.0071 |
+| drawer | ee_velocity | 22 | 0.7904 ± 0.0059 | 0.0095 |
+| drawer | obj_accel_mag | 18 | 0.6038 ± 0.0103 | 2.2113 |
+| drawer | obj_acceleration | 17 | 0.5059 ± 0.0073 | 1.1068 |
+| drawer | obj_direction | 6 | 0.5132 ± 0.0087 | 0.0440 |
+| drawer | obj_position | 21 | 0.9900 ± 0.0031 | 0.0000 |
+| drawer | obj_speed | 16 | 0.9362 ± 0.0118 | 0.0031 |
+| drawer | obj_velocity | 22 | 0.9470 ± 0.0021 | 0.0009 |
+| nut_thread | ee_accel_mag | 20 | 0.3814 ± 0.0171 | 0.0004 |
+| nut_thread | ee_acceleration | 20 | 0.0797 ± 0.0086 | 0.0004 |
+| nut_thread | ee_direction | 17 | 0.0186 ± 0.0015 | 0.3266 |
+| nut_thread | ee_position | 17 | 0.9830 ± 0.0007 | 0.0000 |
+| nut_thread | ee_speed | 20 | 0.5036 ± 0.0193 | 0.0000 |
+| nut_thread | ee_velocity | 20 | 0.2557 ± 0.0181 | 0.0000 |
+| nut_thread | obj_accel_mag | 20 | 0.0215 ± 0.0034 | 0.0093 |
+| nut_thread | obj_acceleration | 20 | 0.0041 ± 0.0006 | 0.0065 |
+| nut_thread | obj_direction | 18 | 0.0224 ± 0.0032 | 0.2733 |
+| nut_thread | obj_position | 17 | 0.9828 ± 0.0007 | 0.0000 |
+| nut_thread | obj_speed | 20 | 0.0398 ± 0.0058 | 0.0001 |
+| nut_thread | obj_velocity | 20 | 0.0234 ± 0.0050 | 0.0001 |
 
 ## Per-task layer × R² tables
 

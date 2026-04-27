@@ -1,0 +1,68 @@
+=== variantB finalize start: 2026-04-26T02:16:54Z ===
+=== variantB finalize start: 2026-04-26T02:26:41Z ===
+=== both chains done at 15:16:47Z ===
+--- aggregate (variant B) at 15:16:47Z ---
+{
+  "variant": "B",
+  "criteria": [
+    {
+      "task": "push",
+      "target": "ee_velocity",
+      "thr": 0.5,
+      "got": 0.9525832533836364,
+      "best_layer": 22,
+      "pass": true
+    },
+    {
+      "task": "push",
+      "target": "ee_position",
+      "thr": 0.5,
+      "got": 0.985657799243927,
+      "best_layer": 22,
+      "pass": true
+    },
+    {
+      "task": "strike",
+      "target": "ee_velocity",
+      "thr": 0.4,
+      "got": 0.96188063621521,
+      "best_layer": 22,
+      "pass": true
+    }
+  ],
+  "push_ee_velocity_peak_strict_layer": 22,
+  "push_ee_velocity_peak_relaxed_layer": 18,
+  "pez_peak_in_mid_layers_6_18_strict": false,
+  "pez_peak_in_mid_layers_6_18_relaxed_99pct": true,
+  "L0_saturates_targets": [],
+  "healthy_hits": 3,
+  "all_basic_under_0_2": false,
+  "L0_saturates": false,
+  "verdict_strict": "MARGINAL",
+  "verdict_relaxed_99pct_plateau": "HEALTHY",
+  "verdict": "HEALTHY"
+}
+--- write report (now covers both A and B) at 15:16:48Z ---
+wrote /home/solee/physrepa_tasks/probe/results/REPORT.md
+--- generate plots at 15:16:49Z ---
+wrote 19 plots to /home/solee/physrepa_tasks/probe/results/plots
+  /home/solee/physrepa_tasks/probe/results/plots/push_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/strike_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/reach_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/drawer_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/peg_insert_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/nut_thread_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_position.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_velocity.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_speed.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_direction.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_acceleration.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_accel_mag.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_position.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_velocity.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_speed.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_direction.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_acceleration.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_accel_mag.png
+  /home/solee/physrepa_tasks/probe/results/plots/heatmap_r2.png
+--- git commit + push at 15:16:55Z ---

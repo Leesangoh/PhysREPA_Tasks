@@ -40,7 +40,8 @@ RESULTS = Path("/home/solee/physrepa_tasks/probe/results")
 
 
 def stack_task_features(task: str, variant: str) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Returns X [N_win, 24, D] fp16, episode_id [N_win] int32, t_last [N_win] int32."""
+    """Load all 24 layers at once. Memory: N × 24 × D × 2 bytes (fp16).
+    Variant A (D=1024): ~16 GB for push. Variant B (D=8192): ~134 GB for push."""
     eps = list_cached_episodes(task, variant)
     if not eps:
         raise FileNotFoundError(f"no cached features for task={task} variant={variant}")
@@ -50,6 +51,25 @@ def stack_task_features(task: str, variant: str) -> tuple[np.ndarray, np.ndarray
     for ep in eps:
         d = load_episode_features(task, variant, ep)
         rows_X.append(d["feats"])
+        rows_e.append(d["episode_id"])
+        rows_t.append(d["t_last"])
+    X = np.concatenate(rows_X, axis=0)
+    e = np.concatenate(rows_e, axis=0)
+    t = np.concatenate(rows_t, axis=0)
+    return X, e, t
+
+
+def stack_task_layer(task: str, variant: str, layer: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Load only one layer's features. Memory: N × D × 2 bytes (fp16).
+    Variant B push: ~5.6 GB instead of ~134 GB. Disk-cached after first read.
+    """
+    eps = list_cached_episodes(task, variant)
+    if not eps:
+        raise FileNotFoundError(f"no cached features for task={task} variant={variant}")
+    rows_X, rows_e, rows_t = [], [], []
+    for ep in eps:
+        d = load_episode_features(task, variant, ep)
+        rows_X.append(d["feats"][:, layer, :].copy())
         rows_e.append(d["episode_id"])
         rows_t.append(d["t_last"])
     X = np.concatenate(rows_X, axis=0)
@@ -180,22 +200,52 @@ def main():
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--targets", default="all", help="comma-separated, or 'all'")
     p.add_argument("--layers", default="all", help="comma-separated, or 'all'")
+    p.add_argument("--per-layer-load", action="store_true",
+                   help="Load one layer at a time (smaller peak memory). Default for variant B.")
     args = p.parse_args()
 
     common = load_common()
     targets = task_target_keys(args.task) if args.targets == "all" else args.targets.split(",")
     layers = list(range(24)) if args.layers == "all" else [int(x) for x in args.layers.split(",")]
+    per_layer = args.per_layer_load or args.variant == "B"
 
-    progress(f"[probe] task={args.task} variant={args.variant} targets={targets} layers={layers} gpu={args.gpu}")
+    progress(f"[probe] task={args.task} variant={args.variant} targets={targets} layers={layers} "
+             f"gpu={args.gpu} per_layer_load={per_layer}")
     t0 = time.time()
-    X, eps, t_last = stack_task_features(args.task, args.variant)
-    progress(f"[probe] {args.task}: features [{X.shape}] eps {len(np.unique(eps))} loaded {time.time()-t0:.1f}s")
-
     tgt = load_targets(args.task)
-    for tk in targets:
-        rows = run_target(args.task, args.variant, tk, X, eps, t_last, tgt,
-                          gpu=args.gpu, common=common, layers=layers)
-        write_target_csv(args.task, args.variant, tk, rows)
+
+    if not per_layer:
+        # Variant A path: load all 24 layers at once, iterate per target × all layers.
+        X, eps, t_last = stack_task_features(args.task, args.variant)
+        progress(f"[probe] {args.task}: features [{X.shape}] eps {len(np.unique(eps))} loaded {time.time()-t0:.1f}s")
+        for tk in targets:
+            rows = run_target(args.task, args.variant, tk, X, eps, t_last, tgt,
+                              gpu=args.gpu, common=common, layers=layers)
+            write_target_csv(args.task, args.variant, tk, rows)
+    else:
+        # Variant B path: per-layer outer loop. Each layer's features fit in <10 GB.
+        # All 12 targets per layer share the same X, so we run them in inner loop.
+        per_target_rows: dict[str, list[dict]] = {tk: [] for tk in targets}
+        for L in layers:
+            tL = time.time()
+            X_L, eps_L, t_last_L = stack_task_layer(args.task, args.variant, L)
+            progress(f"[probe] {args.task} {args.variant} layer {L:02d}: loaded "
+                     f"[{X_L.shape}] in {time.time()-tL:.1f}s")
+            X_L_3d = X_L[:, None, :]   # synthesize a [N, 1, F] tensor so run_target's X[:, L, :] works for layer index 0
+            for tk in targets:
+                rows = run_target(
+                    args.task, args.variant, tk, X_L_3d, eps_L, t_last_L, tgt,
+                    gpu=args.gpu, common=common, layers=[0],
+                )
+                # The probe output's "layer" field will be 0 (because X_L_3d has only one layer).
+                # Rewrite to the actual layer index L before appending.
+                for r in rows:
+                    r["layer"] = L
+                    per_target_rows[tk].append(r)
+            del X_L, X_L_3d
+            # Write CSVs after each layer so partial results are persisted incrementally.
+            for tk in targets:
+                write_target_csv(args.task, args.variant, tk, per_target_rows[tk])
 
     write_task_summary(args.task, args.variant)
     progress(f"[probe] {args.task} {args.variant} DONE in {(time.time()-t0)/60:.1f}min")

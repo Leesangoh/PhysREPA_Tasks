@@ -4332,3 +4332,3439 @@ Approved scope: Variant A only (cache both A+B, sweep A); halt at decision rule.
 
 Output: results/decision.json, results/peak_layers.csv, results/REPORT.md, results/<task>/variant_A/*.csv
 
+
+[2026-04-26 01:58:29] [probe] task=reach variant=B targets=['ee_velocity'] layers=[0, 12, 23] gpu=0 per_layer_load=True
+
+[2026-04-26 02:00:01] [probe] reach B layer 00: loaded [(141000, 8192)] in 91.7s
+
+[2026-04-26 02:00:47] [probe] reach B ee_velocity L00: r2_mean=-2.841 std=2.623 41.7s
+
+[2026-04-26 02:02:22] [probe] reach B layer 12: loaded [(141000, 8192)] in 95.1s
+
+[2026-04-26 02:03:05] [probe] reach B ee_velocity L00: r2_mean=0.384 std=0.021 38.3s
+
+[2026-04-26 02:04:42] [probe] reach B layer 23: loaded [(141000, 8192)] in 96.7s
+
+[2026-04-26 02:05:20] [probe] reach B ee_velocity L00: r2_mean=0.370 std=0.073 33.3s
+
+[2026-04-26 02:05:20] [probe] reach B DONE in 6.9min
+
+[2026-04-26 02:09:05] [probe] task=reach variant=B targets=['ee_velocity'] layers=[0, 12, 23] gpu=0 per_layer_load=True
+
+[2026-04-26 02:10:39] [probe] reach B layer 00: loaded [(141000, 8192)] in 94.3s
+
+[2026-04-26 02:11:25] [probe] reach B ee_velocity L00: r2_mean=-2.841 std=2.623 41.4s
+
+[2026-04-26 02:13:00] [probe] reach B layer 12: loaded [(141000, 8192)] in 94.6s
+
+[2026-04-26 02:13:40] [probe] reach B ee_velocity L00: r2_mean=0.384 std=0.021 35.6s
+
+[2026-04-26 02:14:31] [probe] reach B layer 23: loaded [(141000, 8192)] in 50.9s
+
+[2026-04-26 02:15:08] [probe] reach B ee_velocity L00: r2_mean=0.370 std=0.073 32.2s
+
+[2026-04-26 02:15:09] [probe] reach B DONE in 6.1min
+
+[2026-04-26 02:16:57] [probe] task=push variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-26 02:16:57] [probe] task=strike variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=True
+
+[2026-04-26 02:20:39] [probe] push B layer 00: loaded [(340283, 8192)] in 222.2s
+
+[2026-04-26 02:22:20] [probe] push B ee_position L00: r2_mean=0.778 std=0.004 89.4s
+
+[2026-04-26 02:22:46] [probe] strike B layer 00: loaded [(535779, 8192)] in 349.1s
+
+[2026-04-26 02:23:27] [probe] task=reach variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=True
+
+[2026-04-26 02:23:50] [probe] push B ee_velocity L00: r2_mean=0.413 std=0.016 78.2s
+
+[2026-04-26 02:25:10] [probe] reach B layer 00: loaded [(141000, 8192)] in 103.1s
+
+[2026-04-26 02:25:15] [probe] push B ee_speed L00: r2_mean=0.606 std=0.046 72.4s
+
+[2026-04-26 02:26:44] [probe] task=strike variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=True
+
+[2026-04-26 02:26:44] [probe] task=push variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-26 02:30:32] [probe] push B layer 00: loaded [(340283, 8192)] in 227.9s
+
+[2026-04-26 02:32:29] [probe] push B ee_position L00: r2_mean=0.778 std=0.004 106.6s
+
+[2026-04-26 02:32:59] [probe] strike B layer 00: loaded [(535779, 8192)] in 375.0s
+
+[2026-04-26 02:34:37] [probe] push B ee_velocity L00: r2_mean=0.413 std=0.016 115.6s
+
+[2026-04-26 02:36:00] [probe] strike B ee_position L00: r2_mean=0.832 std=0.006 164.4s
+
+[2026-04-26 02:36:38] [probe] push B ee_speed L00: r2_mean=0.605 std=0.046 106.0s
+
+[2026-04-26 02:38:16] [probe] push B ee_direction L00: r2_mean=-8.968 std=7.603 81.5s
+
+[2026-04-26 02:39:04] [probe] strike B ee_velocity L00: r2_mean=0.562 std=0.008 163.7s
+
+[2026-04-26 02:40:16] [probe] push B ee_acceleration L00: r2_mean=0.057 std=0.006 105.0s
+
+[2026-04-26 02:42:00] [probe] strike B ee_speed L00: r2_mean=0.744 std=0.013 156.5s
+
+[2026-04-26 02:42:06] [probe] push B ee_accel_mag L00: r2_mean=0.109 std=0.004 96.7s
+
+[2026-04-26 02:43:37] [probe] strike B ee_direction L00: r2_mean=-3.785 std=3.127 83.7s
+
+[2026-04-26 02:44:02] [probe] push B obj_position L00: r2_mean=0.047 std=0.017 102.8s
+
+[2026-04-26 02:45:58] [probe] push B obj_velocity L00: r2_mean=0.152 std=0.018 102.2s
+
+[2026-04-26 02:46:37] [probe] strike B ee_acceleration L00: r2_mean=0.153 std=0.003 160.3s
+
+[2026-04-26 02:47:48] [probe] push B obj_speed L00: r2_mean=0.311 std=0.030 96.1s
+
+[2026-04-26 02:49:34] [probe] strike B ee_accel_mag L00: r2_mean=0.368 std=0.007 157.6s
+
+[2026-04-26 02:49:42] [probe] push B obj_direction L00: r2_mean=0.042 std=0.006 98.0s
+
+[2026-04-26 02:51:38] [probe] push B obj_acceleration L00: r2_mean=0.004 std=0.003 102.0s
+
+[2026-04-26 02:52:36] [probe] strike B obj_position L00: r2_mean=0.116 std=0.013 162.4s
+
+[2026-04-26 02:53:28] [probe] push B obj_accel_mag L00: r2_mean=0.082 std=0.007 96.2s
+
+[2026-04-26 02:55:38] [probe] strike B obj_velocity L00: r2_mean=0.148 std=0.007 162.6s
+
+[2026-04-26 02:55:56] [probe] push B layer 01: loaded [(340283, 8192)] in 146.6s
+
+[2026-04-26 02:57:50] [probe] push B ee_position L00: r2_mean=0.897 std=0.005 102.2s
+
+[2026-04-26 02:58:36] [probe] strike B obj_speed L00: r2_mean=0.360 std=0.017 158.8s
+
+[2026-04-26 02:59:43] [probe] push B ee_velocity L00: r2_mean=0.710 std=0.010 100.6s
+
+[2026-04-26 03:01:32] [probe] push B ee_speed L00: r2_mean=0.888 std=0.006 95.8s
+
+[2026-04-26 03:01:39] [probe] strike B obj_direction L00: r2_mean=0.321 std=0.012 163.6s
+
+[2026-04-26 03:03:00] [probe] push B ee_direction L00: r2_mean=0.648 std=0.008 75.5s
+
+[2026-04-26 03:04:43] [probe] strike B obj_acceleration L00: r2_mean=0.017 std=0.002 164.0s
+
+[2026-04-26 03:04:53] [probe] push B ee_acceleration L00: r2_mean=0.121 std=0.007 100.8s
+
+[2026-04-26 03:06:44] [probe] push B ee_accel_mag L00: r2_mean=0.308 std=0.005 97.6s
+
+[2026-04-26 03:07:40] [probe] strike B obj_accel_mag L00: r2_mean=0.154 std=0.011 157.5s
+
+[2026-04-26 03:08:42] [probe] push B obj_position L00: r2_mean=0.116 std=0.011 104.2s
+
+[2026-04-26 03:10:39] [probe] push B obj_velocity L00: r2_mean=0.355 std=0.022 103.8s
+
+[2026-04-26 03:11:13] [probe] strike B layer 01: loaded [(535779, 8192)] in 211.5s
+
+[2026-04-26 03:12:31] [probe] push B obj_speed L00: r2_mean=0.533 std=0.033 98.7s
+
+[2026-04-26 03:14:05] [probe] strike B ee_position L00: r2_mean=0.920 std=0.007 154.9s
+
+[2026-04-26 03:14:29] [probe] push B obj_direction L00: r2_mean=0.134 std=0.004 101.4s
+
+[2026-04-26 03:16:27] [probe] push B obj_acceleration L00: r2_mean=0.032 std=0.005 104.3s
+
+[2026-04-26 03:17:01] [probe] strike B ee_velocity L00: r2_mean=0.743 std=0.006 157.1s
+
+[2026-04-26 03:18:18] [probe] push B obj_accel_mag L00: r2_mean=0.170 std=0.018 97.8s
+
+[2026-04-26 03:19:58] [probe] strike B ee_speed L00: r2_mean=0.953 std=0.001 158.0s
+
+[2026-04-26 03:20:43] [probe] push B layer 02: loaded [(340283, 8192)] in 143.9s
+
+[2026-04-26 03:21:37] [probe] strike B ee_direction L00: r2_mean=0.697 std=0.004 84.6s
+
+[2026-04-26 03:22:36] [probe] push B ee_position L00: r2_mean=0.912 std=0.004 101.3s
+
+[2026-04-26 03:24:30] [probe] push B ee_velocity L00: r2_mean=0.773 std=0.009 101.4s
+
+[2026-04-26 03:24:37] [probe] strike B ee_acceleration L00: r2_mean=0.283 std=0.009 160.8s
+
+[2026-04-26 03:26:19] [probe] push B ee_speed L00: r2_mean=0.906 std=0.007 95.8s
+
+[2026-04-26 03:27:36] [probe] strike B ee_accel_mag L00: r2_mean=0.573 std=0.006 158.7s
+
+[2026-04-26 03:27:48] [probe] push B ee_direction L00: r2_mean=0.702 std=0.005 75.8s
+
+[2026-04-26 03:29:46] [probe] push B ee_acceleration L00: r2_mean=0.124 std=0.006 104.8s
+
+[2026-04-26 03:30:38] [probe] strike B obj_position L00: r2_mean=0.225 std=0.016 162.5s
+
+[2026-04-26 03:31:37] [probe] push B ee_accel_mag L00: r2_mean=0.332 std=0.009 98.0s
+
+[2026-04-26 03:33:36] [probe] push B obj_position L00: r2_mean=0.097 std=0.009 105.1s
+
+[2026-04-26 03:33:40] [probe] strike B obj_velocity L00: r2_mean=0.333 std=0.010 162.8s
+
+[2026-04-26 03:35:39] [probe] push B obj_velocity L00: r2_mean=0.419 std=0.029 109.9s
+
+[2026-04-26 03:36:35] [probe] strike B obj_speed L00: r2_mean=0.589 std=0.028 156.5s
+
+[2026-04-26 03:37:30] [probe] push B obj_speed L00: r2_mean=0.569 std=0.029 98.3s
+
+[2026-04-26 03:39:28] [probe] push B obj_direction L00: r2_mean=0.156 std=0.006 101.5s
+
+[2026-04-26 03:39:37] [probe] strike B obj_direction L00: r2_mean=0.432 std=0.016 162.3s
+
+[2026-04-26 03:41:25] [probe] push B obj_acceleration L00: r2_mean=0.035 std=0.006 103.6s
+
+[2026-04-26 03:42:42] [probe] strike B obj_acceleration L00: r2_mean=0.090 std=0.006 166.1s
+
+[2026-04-26 03:43:17] [probe] push B obj_accel_mag L00: r2_mean=0.184 std=0.018 99.1s
+
+[2026-04-26 03:45:42] [probe] strike B obj_accel_mag L00: r2_mean=0.330 std=0.027 160.3s
+
+[2026-04-26 03:45:44] [probe] push B layer 03: loaded [(340283, 8192)] in 146.0s
+
+[2026-04-26 03:47:38] [probe] push B ee_position L00: r2_mean=0.932 std=0.008 101.9s
+
+[2026-04-26 03:48:55] [probe] strike B layer 02: loaded [(535779, 8192)] in 192.4s
+
+[2026-04-26 03:49:33] [probe] push B ee_velocity L00: r2_mean=0.824 std=0.009 102.2s
+
+[2026-04-26 03:51:24] [probe] push B ee_speed L00: r2_mean=0.916 std=0.005 97.8s
+
+[2026-04-26 03:51:48] [probe] strike B ee_position L00: r2_mean=0.923 std=0.004 155.4s
+
+[2026-04-26 03:52:57] [probe] push B ee_direction L00: r2_mean=0.752 std=0.005 79.1s
+
+[2026-04-26 03:54:47] [probe] strike B ee_velocity L00: r2_mean=0.796 std=0.006 160.1s
+
+[2026-04-26 03:54:53] [probe] push B ee_acceleration L00: r2_mean=0.152 std=0.010 103.1s
+
+[2026-04-26 03:56:44] [probe] push B ee_accel_mag L00: r2_mean=0.379 std=0.006 97.4s
+
+[2026-04-26 03:57:45] [probe] strike B ee_speed L00: r2_mean=0.954 std=0.003 158.2s
+
+[2026-04-26 03:58:41] [probe] push B obj_position L00: r2_mean=0.133 std=0.022 103.9s
+
+[2026-04-26 03:59:22] [probe] strike B ee_direction L00: r2_mean=0.747 std=0.009 84.1s
+
+[2026-04-26 04:00:39] [probe] push B obj_velocity L00: r2_mean=0.487 std=0.035 104.6s
+
+[2026-04-26 04:02:24] [probe] strike B ee_acceleration L00: r2_mean=0.300 std=0.006 162.4s
+
+[2026-04-26 04:02:30] [probe] push B obj_speed L00: r2_mean=0.615 std=0.031 98.0s
+
+[2026-04-26 04:04:28] [probe] push B obj_direction L00: r2_mean=0.177 std=0.005 101.4s
+
+[2026-04-26 04:05:19] [probe] strike B ee_accel_mag L00: r2_mean=0.599 std=0.002 154.6s
+
+[2026-04-26 04:06:25] [probe] push B obj_acceleration L00: r2_mean=0.043 std=0.007 103.4s
+
+[2026-04-26 04:08:16] [probe] push B obj_accel_mag L00: r2_mean=0.197 std=0.025 98.2s
+
+[2026-04-26 04:08:21] [probe] strike B obj_position L00: r2_mean=0.191 std=0.013 163.0s
+
+[2026-04-26 04:10:42] [probe] push B layer 04: loaded [(340283, 8192)] in 144.5s
+
+[2026-04-26 04:11:25] [probe] strike B obj_velocity L00: r2_mean=0.402 std=0.009 164.4s
+
+[2026-04-26 04:12:34] [probe] push B ee_position L00: r2_mean=0.939 std=0.004 101.2s
+
+[2026-04-26 04:14:28] [probe] push B ee_velocity L00: r2_mean=0.889 std=0.006 101.2s
+
+[2026-04-26 04:14:40] [probe] strike B obj_speed L00: r2_mean=0.616 std=0.026 172.2s
+
+[2026-04-26 04:16:19] [probe] push B ee_speed L00: r2_mean=0.932 std=0.008 97.2s
+
+[2026-04-26 04:17:49] [probe] push B ee_direction L00: r2_mean=0.806 std=0.004 77.9s
+
+[2026-04-26 04:17:55] [probe] strike B obj_direction L00: r2_mean=0.457 std=0.010 175.3s
+
+[2026-04-26 04:19:48] [probe] push B ee_acceleration L00: r2_mean=0.227 std=0.005 104.5s
+
+[2026-04-26 04:21:09] [probe] strike B obj_acceleration L00: r2_mean=0.104 std=0.005 171.0s
+
+[2026-04-26 04:21:39] [probe] push B ee_accel_mag L00: r2_mean=0.491 std=0.011 97.2s
+
+[2026-04-26 04:23:34] [probe] push B obj_position L00: r2_mean=0.104 std=0.006 102.6s
+
+[2026-04-26 04:24:09] [probe] strike B obj_accel_mag L00: r2_mean=0.337 std=0.025 160.2s
+
+[2026-04-26 04:25:30] [probe] push B obj_velocity L00: r2_mean=0.538 std=0.035 103.2s
+
+[2026-04-26 04:27:20] [probe] push B obj_speed L00: r2_mean=0.668 std=0.039 96.9s
+
+[2026-04-26 04:27:23] [probe] strike B layer 03: loaded [(535779, 8192)] in 192.4s
+
+[2026-04-26 04:29:16] [probe] push B obj_direction L00: r2_mean=0.194 std=0.009 99.5s
+
+[2026-04-26 04:30:20] [probe] strike B ee_position L00: r2_mean=0.941 std=0.009 159.9s
+
+[2026-04-26 04:31:12] [probe] push B obj_acceleration L00: r2_mean=0.056 std=0.007 102.6s
+
+[2026-04-26 04:33:03] [probe] push B obj_accel_mag L00: r2_mean=0.223 std=0.026 97.3s
+
+[2026-04-26 04:33:18] [probe] strike B ee_velocity L00: r2_mean=0.841 std=0.005 158.7s
+
+[2026-04-26 04:35:29] [probe] push B layer 05: loaded [(340283, 8192)] in 144.5s
+
+[2026-04-26 04:36:12] [probe] strike B ee_speed L00: r2_mean=0.955 std=0.004 154.6s
+
+[2026-04-26 04:37:18] [probe] push B ee_position L00: r2_mean=0.948 std=0.004 98.5s
+
+[2026-04-26 04:37:49] [probe] strike B ee_direction L00: r2_mean=0.784 std=0.007 83.9s
+
+[2026-04-26 04:39:11] [probe] push B ee_velocity L00: r2_mean=0.896 std=0.005 99.9s
+
+[2026-04-26 04:40:48] [probe] strike B ee_acceleration L00: r2_mean=0.332 std=0.010 159.3s
+
+[2026-04-26 04:40:58] [probe] push B ee_speed L00: r2_mean=0.934 std=0.004 94.4s
+
+[2026-04-26 04:42:25] [probe] push B ee_direction L00: r2_mean=0.815 std=0.004 74.0s
+
+[2026-04-26 04:43:41] [probe] strike B ee_accel_mag L00: r2_mean=0.642 std=0.001 153.9s
+
+[2026-04-26 04:44:18] [probe] push B ee_acceleration L00: r2_mean=0.254 std=0.011 100.7s
+
+[2026-04-26 04:46:05] [probe] push B ee_accel_mag L00: r2_mean=0.493 std=0.031 94.6s
+
+[2026-04-26 04:46:45] [probe] strike B obj_position L00: r2_mean=0.227 std=0.017 164.6s
+
+[2026-04-26 04:47:58] [probe] push B obj_position L00: r2_mean=0.151 std=0.020 99.8s
+
+[2026-04-26 04:49:46] [probe] strike B obj_velocity L00: r2_mean=0.473 std=0.010 161.9s
+
+[2026-04-26 04:49:50] [probe] push B obj_velocity L00: r2_mean=0.578 std=0.038 99.6s
+
+[2026-04-26 04:51:37] [probe] push B obj_speed L00: r2_mean=0.568 std=0.229 94.1s
+
+[2026-04-26 04:52:42] [probe] strike B obj_speed L00: r2_mean=0.652 std=0.026 156.4s
+
+[2026-04-26 04:53:30] [probe] push B obj_direction L00: r2_mean=0.212 std=0.005 96.6s
+
+[2026-04-26 04:55:24] [probe] push B obj_acceleration L00: r2_mean=0.066 std=0.009 100.9s
+
+[2026-04-26 04:55:41] [probe] strike B obj_direction L00: r2_mean=0.498 std=0.010 159.2s
+
+[2026-04-26 04:57:11] [probe] push B obj_accel_mag L00: r2_mean=0.148 std=0.157 93.6s
+
+[2026-04-26 04:58:39] [probe] strike B obj_acceleration L00: r2_mean=0.130 std=0.006 158.8s
+
+[2026-04-26 04:59:33] [probe] push B layer 06: loaded [(340283, 8192)] in 141.4s
+
+[2026-04-26 05:01:25] [probe] push B ee_position L00: r2_mean=0.954 std=0.002 100.3s
+
+[2026-04-26 05:01:32] [probe] strike B obj_accel_mag L00: r2_mean=0.359 std=0.026 153.7s
+
+[2026-04-26 05:03:20] [probe] push B ee_velocity L00: r2_mean=0.913 std=0.005 102.5s
+
+[2026-04-26 05:04:46] [probe] strike B layer 04: loaded [(535779, 8192)] in 192.5s
+
+[2026-04-26 05:05:09] [probe] push B ee_speed L00: r2_mean=0.934 std=0.012 96.1s
+
+[2026-04-26 05:06:36] [probe] push B ee_direction L00: r2_mean=0.823 std=0.005 74.1s
+
+[2026-04-26 05:07:38] [probe] strike B ee_position L00: r2_mean=0.947 std=0.013 155.2s
+
+[2026-04-26 05:08:31] [probe] push B ee_acceleration L00: r2_mean=0.281 std=0.012 101.8s
+
+[2026-04-26 05:10:20] [probe] push B ee_accel_mag L00: r2_mean=0.490 std=0.049 95.9s
+
+[2026-04-26 05:10:36] [probe] strike B ee_velocity L00: r2_mean=0.897 std=0.010 158.1s
+
+[2026-04-26 05:12:15] [probe] push B obj_position L00: r2_mean=0.156 std=0.019 101.8s
+
+[2026-04-26 05:13:28] [probe] strike B ee_speed L00: r2_mean=0.966 std=0.001 153.0s
+
+[2026-04-26 05:14:10] [probe] push B obj_velocity L00: r2_mean=0.607 std=0.037 102.3s
+
+[2026-04-26 05:15:04] [probe] strike B ee_direction L00: r2_mean=0.833 std=0.005 82.0s
+
+[2026-04-26 05:16:00] [probe] push B obj_speed L00: r2_mean=0.655 std=0.094 96.9s
+
+[2026-04-26 05:17:56] [probe] push B obj_direction L00: r2_mean=0.222 std=0.005 100.5s
+
+[2026-04-26 05:18:01] [probe] strike B ee_acceleration L00: r2_mean=0.416 std=0.003 157.5s
+
+[2026-04-26 05:19:52] [probe] push B obj_acceleration L00: r2_mean=0.072 std=0.010 103.0s
+
+[2026-04-26 05:20:53] [probe] strike B ee_accel_mag L00: r2_mean=0.718 std=0.003 153.2s
+
+[2026-04-26 05:21:43] [probe] push B obj_accel_mag L00: r2_mean=0.181 std=0.069 97.4s
+
+[2026-04-26 05:23:50] [probe] strike B obj_position L00: r2_mean=0.164 std=0.019 157.5s
+
+[2026-04-26 05:24:06] [probe] push B layer 07: loaded [(340283, 8192)] in 141.8s
+
+[2026-04-26 05:25:58] [probe] push B ee_position L00: r2_mean=0.961 std=0.003 101.5s
+
+[2026-04-26 05:26:50] [probe] strike B obj_velocity L00: r2_mean=0.519 std=0.017 160.3s
+
+[2026-04-26 05:27:50] [probe] push B ee_velocity L00: r2_mean=0.919 std=0.007 100.3s
+
+[2026-04-26 05:29:39] [probe] push B ee_speed L00: r2_mean=0.939 std=0.010 95.0s
+
+[2026-04-26 05:29:45] [probe] strike B obj_speed L00: r2_mean=0.690 std=0.026 155.9s
+
+[2026-04-26 05:31:08] [probe] push B ee_direction L00: r2_mean=0.833 std=0.004 76.5s
+
+[2026-04-26 05:32:45] [probe] strike B obj_direction L00: r2_mean=0.523 std=0.012 161.0s
+
+[2026-04-26 05:33:03] [probe] push B ee_acceleration L00: r2_mean=0.287 std=0.007 102.0s
+
+[2026-04-26 05:34:50] [probe] push B ee_accel_mag L00: r2_mean=0.511 std=0.041 94.9s
+
+[2026-04-26 05:35:45] [probe] strike B obj_acceleration L00: r2_mean=0.182 std=0.012 160.0s
+
+[2026-04-26 05:36:43] [probe] push B obj_position L00: r2_mean=0.176 std=0.016 100.8s
+
+[2026-04-26 05:38:37] [probe] push B obj_velocity L00: r2_mean=0.634 std=0.041 100.6s
+
+[2026-04-26 05:38:38] [probe] strike B obj_accel_mag L00: r2_mean=0.400 std=0.029 153.2s
+
+[2026-04-26 05:40:25] [probe] push B obj_speed L00: r2_mean=0.685 std=0.051 94.9s
+
+[2026-04-26 05:41:57] [probe] strike B layer 05: loaded [(535779, 8192)] in 198.5s
+
+[2026-04-26 05:42:19] [probe] push B obj_direction L00: r2_mean=0.230 std=0.009 98.1s
+
+[2026-04-26 05:44:13] [probe] push B obj_acceleration L00: r2_mean=0.075 std=0.012 100.7s
+
+[2026-04-26 05:44:50] [probe] strike B ee_position L00: r2_mean=0.952 std=0.014 155.2s
+
+[2026-04-26 05:46:01] [probe] push B obj_accel_mag L00: r2_mean=0.230 std=0.028 94.9s
+
+[2026-04-26 05:47:47] [probe] strike B ee_velocity L00: r2_mean=0.899 std=0.012 157.7s
+
+[2026-04-26 05:48:23] [probe] push B layer 08: loaded [(340283, 8192)] in 141.5s
+
+[2026-04-26 05:50:13] [probe] push B ee_position L00: r2_mean=0.965 std=0.002 98.5s
+
+[2026-04-26 05:50:40] [probe] strike B ee_speed L00: r2_mean=0.962 std=0.005 153.7s
+
+[2026-04-26 05:52:03] [probe] push B ee_velocity L00: r2_mean=0.918 std=0.006 97.7s
+
+[2026-04-26 05:52:15] [probe] strike B ee_direction L00: r2_mean=0.838 std=0.004 81.7s
+
+[2026-04-26 05:53:49] [probe] push B ee_speed L00: r2_mean=0.942 std=0.005 93.1s
+
+[2026-04-26 05:55:11] [probe] strike B ee_acceleration L00: r2_mean=0.450 std=0.011 157.6s
+
+[2026-04-26 05:55:15] [probe] push B ee_direction L00: r2_mean=0.837 std=0.004 73.7s
+
+[2026-04-26 05:57:06] [probe] push B ee_acceleration L00: r2_mean=0.272 std=0.005 98.7s
+
+[2026-04-26 05:58:04] [probe] strike B ee_accel_mag L00: r2_mean=0.717 std=0.023 153.0s
+
+[2026-04-26 05:58:51] [probe] push B ee_accel_mag L00: r2_mean=0.524 std=0.017 92.5s
+
+[2026-04-26 06:00:43] [probe] push B obj_position L00: r2_mean=0.223 std=0.017 99.6s
+
+[2026-04-26 06:01:00] [probe] strike B obj_position L00: r2_mean=0.192 std=0.022 156.9s
+
+[2026-04-26 06:02:35] [probe] push B obj_velocity L00: r2_mean=0.660 std=0.042 99.1s
+
+[2026-04-26 06:03:57] [probe] strike B obj_velocity L00: r2_mean=0.561 std=0.017 157.9s
+
+[2026-04-26 06:04:21] [probe] push B obj_speed L00: r2_mean=0.706 std=0.079 93.5s
+
+[2026-04-26 06:06:12] [probe] push B obj_direction L00: r2_mean=0.251 std=0.007 94.9s
+
+[2026-04-26 06:06:52] [probe] strike B obj_speed L00: r2_mean=0.683 std=0.061 155.5s
+
+[2026-04-26 06:08:05] [probe] push B obj_acceleration L00: r2_mean=0.079 std=0.012 99.6s
+
+[2026-04-26 06:09:52] [probe] push B obj_accel_mag L00: r2_mean=0.240 std=0.048 93.6s
+
+[2026-04-26 06:09:53] [probe] strike B obj_direction L00: r2_mean=0.557 std=0.010 161.4s
+
+[2026-04-26 06:12:15] [probe] push B layer 09: loaded [(340283, 8192)] in 141.6s
+
+[2026-04-26 06:12:53] [probe] strike B obj_acceleration L00: r2_mean=0.205 std=0.008 160.5s
+
+[2026-04-26 06:14:06] [probe] push B ee_position L00: r2_mean=0.963 std=0.002 100.6s
+
+[2026-04-26 06:15:50] [probe] strike B obj_accel_mag L00: r2_mean=0.385 std=0.084 157.6s
+
+[2026-04-26 06:15:58] [probe] push B ee_velocity L00: r2_mean=0.920 std=0.005 100.1s
+
+[2026-04-26 06:17:46] [probe] push B ee_speed L00: r2_mean=0.942 std=0.011 95.5s
+
+[2026-04-26 06:18:59] [probe] strike B layer 06: loaded [(535779, 8192)] in 188.5s
+
+[2026-04-26 06:19:13] [probe] push B ee_direction L00: r2_mean=0.840 std=0.007 74.8s
+
+[2026-04-26 06:21:05] [probe] push B ee_acceleration L00: r2_mean=0.284 std=0.011 100.2s
+
+[2026-04-26 06:21:52] [probe] strike B ee_position L00: r2_mean=0.963 std=0.002 155.0s
+
+[2026-04-26 06:22:54] [probe] push B ee_accel_mag L00: r2_mean=0.474 std=0.109 95.4s
+
+[2026-04-26 06:24:48] [probe] push B obj_position L00: r2_mean=0.185 std=0.026 101.2s
+
+[2026-04-26 06:24:49] [probe] strike B ee_velocity L00: r2_mean=0.924 std=0.002 157.8s
+
+[2026-04-26 06:26:42] [probe] push B obj_velocity L00: r2_mean=0.704 std=0.041 101.1s
+
+[2026-04-26 06:27:41] [probe] strike B ee_speed L00: r2_mean=0.967 std=0.004 152.2s
+
+[2026-04-26 06:28:31] [probe] push B obj_speed L00: r2_mean=0.708 std=0.080 96.0s
+
+[2026-04-26 06:29:16] [probe] strike B ee_direction L00: r2_mean=0.848 std=0.005 81.9s
+
+[2026-04-26 06:30:27] [probe] push B obj_direction L00: r2_mean=0.264 std=0.011 99.9s
+
+[2026-04-26 06:32:14] [probe] strike B ee_acceleration L00: r2_mean=0.481 std=0.015 158.0s
+
+[2026-04-26 06:32:22] [probe] push B obj_acceleration L00: r2_mean=0.087 std=0.012 102.3s
+
+[2026-04-26 06:34:12] [probe] push B obj_accel_mag L00: r2_mean=0.215 std=0.122 96.9s
+
+[2026-04-26 06:35:09] [probe] strike B ee_accel_mag L00: r2_mean=0.731 std=0.018 155.7s
+
+[2026-04-26 06:36:36] [probe] push B layer 10: loaded [(340283, 8192)] in 142.6s
+
+[2026-04-26 06:38:14] [probe] strike B obj_position L00: r2_mean=0.190 std=0.025 165.6s
+
+[2026-04-26 06:38:28] [probe] push B ee_position L00: r2_mean=0.971 std=0.002 101.1s
+
+[2026-04-26 06:40:20] [probe] push B ee_velocity L00: r2_mean=0.923 std=0.005 100.5s
+
+[2026-04-26 06:41:12] [probe] strike B obj_velocity L00: r2_mean=0.587 std=0.009 159.4s
+
+[2026-04-26 06:42:08] [probe] push B ee_speed L00: r2_mean=0.947 std=0.005 95.1s
+
+[2026-04-26 06:43:40] [probe] push B ee_direction L00: r2_mean=0.848 std=0.005 78.2s
+
+[2026-04-26 06:44:16] [probe] strike B obj_speed L00: r2_mean=0.716 std=0.056 164.4s
+
+[2026-04-26 06:45:34] [probe] push B ee_acceleration L00: r2_mean=0.285 std=0.010 101.4s
+
+[2026-04-26 06:47:23] [probe] push B ee_accel_mag L00: r2_mean=0.531 std=0.026 96.2s
+
+[2026-04-26 06:47:24] [probe] strike B obj_direction L00: r2_mean=0.585 std=0.006 167.7s
+
+[2026-04-26 06:49:17] [probe] push B obj_position L00: r2_mean=0.227 std=0.014 100.6s
+
+[2026-04-26 06:50:27] [probe] strike B obj_acceleration L00: r2_mean=0.226 std=0.007 163.8s
+
+[2026-04-26 06:51:11] [probe] push B obj_velocity L00: r2_mean=0.707 std=0.040 100.7s
+
+[2026-04-26 06:53:01] [probe] push B obj_speed L00: r2_mean=0.685 std=0.128 97.0s
+
+[2026-04-26 06:53:34] [probe] strike B obj_accel_mag L00: r2_mean=0.404 std=0.076 167.5s
+
+[2026-04-26 06:54:54] [probe] push B obj_direction L00: r2_mean=0.267 std=0.011 98.5s
+
+[2026-04-26 06:56:50] [probe] push B obj_acceleration L00: r2_mean=0.089 std=0.012 102.4s
+
+[2026-04-26 06:57:01] [probe] strike B layer 07: loaded [(535779, 8192)] in 205.3s
+
+[2026-04-26 06:58:40] [probe] push B obj_accel_mag L00: r2_mean=0.246 std=0.059 97.1s
+
+[2026-04-26 07:00:11] [probe] strike B ee_position L00: r2_mean=0.969 std=0.002 171.5s
+
+[2026-04-26 07:01:04] [probe] push B layer 11: loaded [(340283, 8192)] in 142.3s
+
+[2026-04-26 07:02:54] [probe] push B ee_position L00: r2_mean=0.975 std=0.002 99.4s
+
+[2026-04-26 07:03:19] [probe] strike B ee_velocity L00: r2_mean=0.921 std=0.009 168.4s
+
+[2026-04-26 07:04:45] [probe] push B ee_velocity L00: r2_mean=0.925 std=0.005 98.8s
+
+[2026-04-26 07:06:29] [probe] strike B ee_speed L00: r2_mean=0.961 std=0.011 170.7s
+
+[2026-04-26 07:06:32] [probe] push B ee_speed L00: r2_mean=0.948 std=0.008 93.5s
+
+[2026-04-26 07:07:55] [probe] push B ee_direction L00: r2_mean=0.852 std=0.004 70.7s
+
+[2026-04-26 07:08:09] [probe] strike B ee_direction L00: r2_mean=0.854 std=0.004 85.4s
+
+[2026-04-26 07:09:44] [probe] push B ee_acceleration L00: r2_mean=0.293 std=0.012 96.0s
+
+[2026-04-26 07:11:13] [probe] strike B ee_acceleration L00: r2_mean=0.485 std=0.018 164.9s
+
+[2026-04-26 07:11:27] [probe] push B ee_accel_mag L00: r2_mean=0.563 std=0.014 90.9s
+
+[2026-04-26 07:13:14] [probe] push B obj_position L00: r2_mean=0.261 std=0.012 95.5s
+
+[2026-04-26 07:14:06] [probe] strike B ee_accel_mag L00: r2_mean=0.729 std=0.016 152.6s
+
+[2026-04-26 07:15:05] [probe] push B obj_velocity L00: r2_mean=0.712 std=0.042 97.4s
+
+[2026-04-26 07:16:47] [probe] push B obj_speed L00: r2_mean=0.720 std=0.101 90.3s
+
+[2026-04-26 07:17:08] [probe] strike B obj_position L00: r2_mean=0.219 std=0.021 162.4s
+
+[2026-04-26 07:18:34] [probe] push B obj_direction L00: r2_mean=0.277 std=0.011 91.6s
+
+[2026-04-26 07:20:09] [probe] strike B obj_velocity L00: r2_mean=0.605 std=0.021 161.7s
+
+[2026-04-26 07:20:24] [probe] push B obj_acceleration L00: r2_mean=0.089 std=0.014 96.4s
+
+[2026-04-26 07:22:07] [probe] push B obj_accel_mag L00: r2_mean=0.278 std=0.031 90.2s
+
+[2026-04-26 07:23:02] [probe] strike B obj_speed L00: r2_mean=0.689 std=0.075 153.5s
+
+[2026-04-26 07:24:29] [probe] push B layer 12: loaded [(340283, 8192)] in 140.2s
+
+[2026-04-26 07:26:00] [probe] strike B obj_direction L00: r2_mean=0.622 std=0.007 158.5s
+
+[2026-04-26 07:26:18] [probe] push B ee_position L00: r2_mean=0.975 std=0.002 98.0s
+
+[2026-04-26 07:28:07] [probe] push B ee_velocity L00: r2_mean=0.924 std=0.005 97.5s
+
+[2026-04-26 07:29:04] [probe] strike B obj_acceleration L00: r2_mean=0.235 std=0.017 164.3s
+
+[2026-04-26 07:29:53] [probe] push B ee_speed L00: r2_mean=0.951 std=0.005 92.3s
+
+[2026-04-26 07:31:19] [probe] push B ee_direction L00: r2_mean=0.856 std=0.008 74.7s
+
+[2026-04-26 07:32:04] [probe] strike B obj_accel_mag L00: r2_mean=0.405 std=0.056 160.4s
+
+[2026-04-26 07:33:11] [probe] push B ee_acceleration L00: r2_mean=0.304 std=0.012 98.7s
+
+[2026-04-26 07:34:56] [probe] push B ee_accel_mag L00: r2_mean=0.568 std=0.018 93.0s
+
+[2026-04-26 07:35:14] [probe] strike B layer 08: loaded [(535779, 8192)] in 188.8s
+
+[2026-04-26 07:36:46] [probe] push B obj_position L00: r2_mean=0.243 std=0.010 98.0s
+
+[2026-04-26 07:38:10] [probe] strike B ee_position L00: r2_mean=0.970 std=0.003 159.1s
+
+[2026-04-26 07:38:38] [probe] push B obj_velocity L00: r2_mean=0.726 std=0.038 99.5s
+
+[2026-04-26 07:40:24] [probe] push B obj_speed L00: r2_mean=0.782 std=0.032 94.0s
+
+[2026-04-26 07:41:08] [probe] strike B ee_velocity L00: r2_mean=0.923 std=0.003 157.7s
+
+[2026-04-26 07:42:18] [probe] push B obj_direction L00: r2_mean=0.289 std=0.013 98.5s
+
+[2026-04-26 07:43:57] [probe] strike B ee_speed L00: r2_mean=0.968 std=0.003 150.0s
+
+[2026-04-26 07:44:12] [probe] push B obj_acceleration L00: r2_mean=0.093 std=0.011 100.7s
+
+[2026-04-26 07:45:33] [probe] strike B ee_direction L00: r2_mean=0.858 std=0.004 81.9s
+
+[2026-04-26 07:46:00] [probe] push B obj_accel_mag L00: r2_mean=0.285 std=0.028 95.0s
+
+[2026-04-26 07:48:23] [probe] push B layer 13: loaded [(340283, 8192)] in 141.7s
+
+[2026-04-26 07:48:30] [probe] strike B ee_acceleration L00: r2_mean=0.471 std=0.005 158.1s
+
+[2026-04-26 07:50:12] [probe] push B ee_position L00: r2_mean=0.979 std=0.002 97.4s
+
+[2026-04-26 07:51:22] [probe] strike B ee_accel_mag L00: r2_mean=0.733 std=0.005 152.3s
+
+[2026-04-26 07:52:04] [probe] push B ee_velocity L00: r2_mean=0.926 std=0.005 99.3s
+
+[2026-04-26 07:53:48] [probe] push B ee_speed L00: r2_mean=0.953 std=0.005 92.0s
+
+[2026-04-26 07:54:18] [probe] strike B obj_position L00: r2_mean=0.267 std=0.021 156.9s
+
+[2026-04-26 07:55:15] [probe] push B ee_direction L00: r2_mean=0.858 std=0.006 74.3s
+
+[2026-04-26 07:57:07] [probe] push B ee_acceleration L00: r2_mean=0.308 std=0.012 99.4s
+
+[2026-04-26 07:57:15] [probe] strike B obj_velocity L00: r2_mean=0.628 std=0.021 157.0s
+
+[2026-04-26 07:58:51] [probe] push B ee_accel_mag L00: r2_mean=0.599 std=0.012 92.4s
+
+[2026-04-26 08:00:08] [probe] strike B obj_speed L00: r2_mean=0.745 std=0.040 153.6s
+
+[2026-04-26 08:00:43] [probe] push B obj_position L00: r2_mean=0.236 std=0.015 98.7s
+
+[2026-04-26 08:02:34] [probe] push B obj_velocity L00: r2_mean=0.736 std=0.046 98.1s
+
+[2026-04-26 08:03:10] [probe] strike B obj_direction L00: r2_mean=0.660 std=0.007 162.7s
+
+[2026-04-26 08:04:21] [probe] push B obj_speed L00: r2_mean=0.804 std=0.038 93.8s
+
+[2026-04-26 08:06:11] [probe] push B obj_direction L00: r2_mean=0.294 std=0.009 95.7s
+
+[2026-04-26 08:06:12] [probe] strike B obj_acceleration L00: r2_mean=0.226 std=0.016 162.4s
+
+[2026-04-26 08:08:03] [probe] push B obj_acceleration L00: r2_mean=0.097 std=0.013 98.5s
+
+[2026-04-26 08:09:09] [probe] strike B obj_accel_mag L00: r2_mean=0.434 std=0.037 157.6s
+
+[2026-04-26 08:09:47] [probe] push B obj_accel_mag L00: r2_mean=0.305 std=0.029 92.3s
+
+[2026-04-26 08:12:09] [probe] push B layer 14: loaded [(340283, 8192)] in 140.6s
+
+[2026-04-26 08:12:36] [probe] strike B layer 09: loaded [(535779, 8192)] in 206.1s
+
+[2026-04-26 08:13:57] [probe] push B ee_position L00: r2_mean=0.980 std=0.001 97.1s
+
+[2026-04-26 08:15:28] [probe] strike B ee_position L00: r2_mean=0.971 std=0.003 154.4s
+
+[2026-04-26 08:15:46] [probe] push B ee_velocity L00: r2_mean=0.929 std=0.004 96.2s
+
+[2026-04-26 08:17:29] [probe] push B ee_speed L00: r2_mean=0.954 std=0.006 90.7s
+
+[2026-04-26 08:18:25] [probe] strike B ee_velocity L00: r2_mean=0.927 std=0.002 157.3s
+
+[2026-04-26 08:18:53] [probe] push B ee_direction L00: r2_mean=0.707 std=0.319 71.3s
+
+[2026-04-26 08:20:42] [probe] push B ee_acceleration L00: r2_mean=0.311 std=0.011 96.4s
+
+[2026-04-26 08:21:15] [probe] strike B ee_speed L00: r2_mean=0.970 std=0.004 150.5s
+
+[2026-04-26 08:22:24] [probe] push B ee_accel_mag L00: r2_mean=0.614 std=0.007 90.2s
+
+[2026-04-26 08:22:51] [probe] strike B ee_direction L00: r2_mean=0.864 std=0.004 82.2s
+
+[2026-04-26 08:24:14] [probe] push B obj_position L00: r2_mean=0.251 std=0.010 97.1s
+
+[2026-04-26 08:25:48] [probe] strike B ee_acceleration L00: r2_mean=0.494 std=0.003 158.1s
+
+[2026-04-26 08:26:03] [probe] push B obj_velocity L00: r2_mean=0.733 std=0.046 96.2s
+
+[2026-04-26 08:27:48] [probe] push B obj_speed L00: r2_mean=0.806 std=0.043 92.2s
+
+[2026-04-26 08:28:46] [probe] strike B ee_accel_mag L00: r2_mean=0.724 std=0.024 157.7s
+
+[2026-04-26 08:29:36] [probe] push B obj_direction L00: r2_mean=0.295 std=0.010 92.6s
+
+[2026-04-26 08:31:26] [probe] push B obj_acceleration L00: r2_mean=0.096 std=0.012 97.3s
+
+[2026-04-26 08:31:50] [probe] strike B obj_position L00: r2_mean=0.225 std=0.018 164.5s
+
+[2026-04-26 08:33:09] [probe] push B obj_accel_mag L00: r2_mean=0.311 std=0.030 90.5s
+
+[2026-04-26 08:34:53] [probe] strike B obj_velocity L00: r2_mean=0.652 std=0.020 164.1s
+
+[2026-04-26 08:35:34] [probe] push B layer 15: loaded [(340283, 8192)] in 144.1s
+
+[2026-04-26 08:37:25] [probe] push B ee_position L00: r2_mean=0.980 std=0.001 99.1s
+
+[2026-04-26 08:37:52] [probe] strike B obj_speed L00: r2_mean=0.704 std=0.048 158.9s
+
+[2026-04-26 08:39:16] [probe] push B ee_velocity L00: r2_mean=0.936 std=0.005 99.6s
+
+[2026-04-26 08:40:55] [probe] strike B obj_direction L00: r2_mean=0.718 std=0.007 163.1s
+
+[2026-04-26 08:41:01] [probe] push B ee_speed L00: r2_mean=0.956 std=0.004 92.7s
+
+[2026-04-26 08:42:27] [probe] push B ee_direction L00: r2_mean=0.866 std=0.005 72.9s
+
+[2026-04-26 08:43:55] [probe] strike B obj_acceleration L00: r2_mean=0.236 std=0.014 160.9s
+
+[2026-04-26 08:44:17] [probe] push B ee_acceleration L00: r2_mean=0.338 std=0.013 98.3s
+
+[2026-04-26 08:46:04] [probe] push B ee_accel_mag L00: r2_mean=0.637 std=0.010 94.1s
+
+[2026-04-26 08:46:50] [probe] strike B obj_accel_mag L00: r2_mean=0.399 std=0.051 155.8s
+
+[2026-04-26 08:47:55] [probe] push B obj_position L00: r2_mean=0.240 std=0.008 99.0s
+
+[2026-04-26 08:49:49] [probe] push B obj_velocity L00: r2_mean=0.732 std=0.044 100.9s
+
+[2026-04-26 08:50:01] [probe] strike B layer 10: loaded [(535779, 8192)] in 189.7s
+
+[2026-04-26 08:51:34] [probe] push B obj_speed L00: r2_mean=0.814 std=0.043 93.4s
+
+[2026-04-26 08:52:51] [probe] strike B ee_position L00: r2_mean=0.975 std=0.004 153.9s
+
+[2026-04-26 08:53:26] [probe] push B obj_direction L00: r2_mean=0.295 std=0.010 96.5s
+
+[2026-04-26 08:55:20] [probe] push B obj_acceleration L00: r2_mean=0.096 std=0.014 100.3s
+
+[2026-04-26 08:55:44] [probe] strike B ee_velocity L00: r2_mean=0.930 std=0.002 154.1s
+
+[2026-04-26 08:57:07] [probe] push B obj_accel_mag L00: r2_mean=0.309 std=0.031 94.1s
+
+[2026-04-26 08:58:33] [probe] strike B ee_speed L00: r2_mean=0.969 std=0.004 151.1s
+
+[2026-04-26 08:59:30] [probe] push B layer 16: loaded [(340283, 8192)] in 141.7s
+
+[2026-04-26 09:00:09] [probe] strike B ee_direction L00: r2_mean=0.863 std=0.006 81.7s
+
+[2026-04-26 09:01:21] [probe] push B ee_position L00: r2_mean=0.981 std=0.001 99.7s
+
+[2026-04-26 09:03:04] [probe] strike B ee_acceleration L00: r2_mean=0.493 std=0.005 156.5s
+
+[2026-04-26 09:03:12] [probe] push B ee_velocity L00: r2_mean=0.938 std=0.005 99.7s
+
+[2026-04-26 09:04:59] [probe] push B ee_speed L00: r2_mean=0.959 std=0.005 93.5s
+
+[2026-04-26 09:05:56] [probe] strike B ee_accel_mag L00: r2_mean=0.734 std=0.017 152.7s
+
+[2026-04-26 09:06:27] [probe] push B ee_direction L00: r2_mean=0.833 std=0.060 75.2s
+
+[2026-04-26 09:08:19] [probe] push B ee_acceleration L00: r2_mean=0.351 std=0.016 98.5s
+
+[2026-04-26 09:08:57] [probe] strike B obj_position L00: r2_mean=0.256 std=0.022 161.5s
+
+[2026-04-26 09:10:04] [probe] push B ee_accel_mag L00: r2_mean=0.638 std=0.014 93.2s
+
+[2026-04-26 09:11:53] [probe] strike B obj_velocity L00: r2_mean=0.673 std=0.016 157.2s
+
+[2026-04-26 09:11:57] [probe] push B obj_position L00: r2_mean=0.234 std=0.012 99.5s
+
+[2026-04-26 09:13:47] [probe] push B obj_velocity L00: r2_mean=0.734 std=0.040 98.8s
+
+[2026-04-26 09:14:41] [probe] strike B obj_speed L00: r2_mean=0.721 std=0.052 148.9s
+
+[2026-04-26 09:15:34] [probe] push B obj_speed L00: r2_mean=0.823 std=0.046 93.1s
+
+[2026-04-26 09:17:25] [probe] push B obj_direction L00: r2_mean=0.296 std=0.008 95.8s
+
+[2026-04-26 09:17:38] [probe] strike B obj_direction L00: r2_mean=0.736 std=0.004 157.1s
+
+[2026-04-26 09:19:18] [probe] push B obj_acceleration L00: r2_mean=0.098 std=0.014 99.6s
+
+[2026-04-26 09:20:34] [probe] strike B obj_acceleration L00: r2_mean=0.245 std=0.012 157.0s
+
+[2026-04-26 09:21:05] [probe] push B obj_accel_mag L00: r2_mean=0.319 std=0.031 93.4s
+
+[2026-04-26 09:23:24] [probe] strike B obj_accel_mag L00: r2_mean=0.416 std=0.030 151.5s
+
+[2026-04-26 09:23:28] [probe] push B layer 17: loaded [(340283, 8192)] in 142.2s
+
+[2026-04-26 09:25:16] [probe] push B ee_position L00: r2_mean=0.982 std=0.001 96.4s
+
+[2026-04-26 09:26:34] [probe] strike B layer 11: loaded [(535779, 8192)] in 188.6s
+
+[2026-04-26 09:27:06] [probe] push B ee_velocity L00: r2_mean=0.942 std=0.004 98.0s
+
+[2026-04-26 09:28:48] [probe] push B ee_speed L00: r2_mean=0.959 std=0.007 91.1s
+
+[2026-04-26 09:29:25] [probe] strike B ee_position L00: r2_mean=0.978 std=0.003 153.6s
+
+[2026-04-26 09:30:14] [probe] push B ee_direction L00: r2_mean=0.844 std=0.033 72.4s
+
+[2026-04-26 09:32:04] [probe] push B ee_acceleration L00: r2_mean=0.357 std=0.011 96.9s
+
+[2026-04-26 09:32:18] [probe] strike B ee_velocity L00: r2_mean=0.933 std=0.001 155.0s
+
+[2026-04-26 09:34:06] [probe] push B ee_accel_mag L00: r2_mean=0.655 std=0.011 110.1s
+
+[2026-04-26 09:35:10] [probe] strike B ee_speed L00: r2_mean=0.971 std=0.003 152.1s
+
+[2026-04-26 09:36:16] [probe] push B obj_position L00: r2_mean=0.229 std=0.007 117.4s
+
+[2026-04-26 09:36:46] [probe] strike B ee_direction L00: r2_mean=0.868 std=0.005 82.1s
+
+[2026-04-26 09:38:28] [probe] push B obj_velocity L00: r2_mean=0.744 std=0.047 118.8s
+
+[2026-04-26 09:39:44] [probe] strike B ee_acceleration L00: r2_mean=0.507 std=0.012 158.6s
+
+[2026-04-26 09:40:25] [probe] push B obj_speed L00: r2_mean=0.819 std=0.057 105.4s
+
+[2026-04-26 09:42:32] [probe] push B obj_direction L00: r2_mean=0.294 std=0.009 110.7s
+
+[2026-04-26 09:42:37] [probe] strike B ee_accel_mag L00: r2_mean=0.746 std=0.019 153.5s
+
+[2026-04-26 09:44:35] [probe] push B obj_acceleration L00: r2_mean=0.099 std=0.014 109.5s
+
+[2026-04-26 09:45:36] [probe] strike B obj_position L00: r2_mean=0.279 std=0.035 158.7s
+
+[2026-04-26 09:46:29] [probe] push B obj_accel_mag L00: r2_mean=0.327 std=0.038 100.7s
+
+[2026-04-26 09:48:36] [probe] strike B obj_velocity L00: r2_mean=0.676 std=0.023 160.7s
+
+[2026-04-26 09:48:53] [probe] push B layer 18: loaded [(340283, 8192)] in 142.6s
+
+[2026-04-26 09:51:03] [probe] push B ee_position L00: r2_mean=0.982 std=0.001 118.9s
+
+[2026-04-26 09:51:25] [probe] strike B obj_speed L00: r2_mean=0.782 std=0.029 149.7s
+
+[2026-04-26 09:53:18] [probe] push B ee_velocity L00: r2_mean=0.943 std=0.004 121.7s
+
+[2026-04-26 09:54:23] [probe] strike B obj_direction L00: r2_mean=0.742 std=0.011 158.8s
+
+[2026-04-26 09:55:17] [probe] push B ee_speed L00: r2_mean=0.959 std=0.004 105.9s
+
+[2026-04-26 09:56:59] [probe] push B ee_direction L00: r2_mean=0.151 std=0.717 89.5s
+
+[2026-04-26 09:57:23] [probe] strike B obj_acceleration L00: r2_mean=0.250 std=0.015 160.8s
+
+[2026-04-26 09:59:07] [probe] push B ee_acceleration L00: r2_mean=0.356 std=0.017 114.7s
+
+[2026-04-26 10:00:16] [probe] strike B obj_accel_mag L00: r2_mean=0.460 std=0.033 153.4s
+
+[2026-04-26 10:01:09] [probe] push B ee_accel_mag L00: r2_mean=0.653 std=0.014 110.1s
+
+[2026-04-26 10:03:18] [probe] push B obj_position L00: r2_mean=0.218 std=0.014 116.6s
+
+[2026-04-26 10:03:29] [probe] strike B layer 12: loaded [(535779, 8192)] in 191.4s
+
+[2026-04-26 10:05:31] [probe] push B obj_velocity L00: r2_mean=0.742 std=0.040 119.2s
+
+[2026-04-26 10:06:29] [probe] strike B ee_position L00: r2_mean=0.977 std=0.003 162.8s
+
+[2026-04-26 10:07:36] [probe] push B obj_speed L00: r2_mean=0.825 std=0.048 112.5s
+
+[2026-04-26 10:09:27] [probe] strike B ee_velocity L00: r2_mean=0.933 std=0.001 158.1s
+
+[2026-04-26 10:09:50] [probe] push B obj_direction L00: r2_mean=0.293 std=0.012 117.7s
+
+[2026-04-26 10:12:07] [probe] push B obj_acceleration L00: r2_mean=0.099 std=0.017 123.2s
+
+[2026-04-26 10:12:21] [probe] strike B ee_speed L00: r2_mean=0.976 std=0.000 155.4s
+
+[2026-04-26 10:13:59] [probe] strike B ee_direction L00: r2_mean=0.874 std=0.006 83.3s
+
+[2026-04-26 10:14:13] [probe] push B obj_accel_mag L00: r2_mean=0.325 std=0.029 113.5s
+
+[2026-04-26 10:16:37] [probe] push B layer 19: loaded [(340283, 8192)] in 142.1s
+
+[2026-04-26 10:16:59] [probe] strike B ee_acceleration L00: r2_mean=0.518 std=0.012 160.3s
+
+[2026-04-26 10:18:48] [probe] push B ee_position L00: r2_mean=0.982 std=0.001 119.9s
+
+[2026-04-26 10:20:18] [probe] strike B ee_accel_mag L00: r2_mean=0.754 std=0.023 179.7s
+
+[2026-04-26 10:21:03] [probe] push B ee_velocity L00: r2_mean=0.947 std=0.004 121.6s
+
+[2026-04-26 10:23:00] [probe] push B ee_speed L00: r2_mean=0.962 std=0.003 103.9s
+
+[2026-04-26 10:23:43] [probe] strike B obj_position L00: r2_mean=0.279 std=0.018 182.6s
+
+[2026-04-26 10:24:45] [probe] push B ee_direction L00: r2_mean=0.485 std=0.340 92.6s
+
+[2026-04-26 10:27:00] [probe] push B ee_acceleration L00: r2_mean=0.364 std=0.016 121.8s
+
+[2026-04-26 10:27:10] [probe] strike B obj_velocity L00: r2_mean=0.700 std=0.028 183.0s
+
+[2026-04-26 10:29:05] [probe] push B ee_accel_mag L00: r2_mean=0.659 std=0.009 111.8s
+
+[2026-04-26 10:30:06] [probe] strike B obj_speed L00: r2_mean=0.785 std=0.034 156.1s
+
+[2026-04-26 10:31:21] [probe] push B obj_position L00: r2_mean=0.215 std=0.010 122.2s
+
+[2026-04-26 10:33:35] [probe] push B obj_velocity L00: r2_mean=0.754 std=0.044 120.2s
+
+[2026-04-26 10:33:47] [probe] strike B obj_direction L00: r2_mean=0.787 std=0.007 196.9s
+
+[2026-04-26 10:35:37] [probe] push B obj_speed L00: r2_mean=0.828 std=0.050 107.8s
+
+[2026-04-26 10:37:23] [probe] strike B obj_acceleration L00: r2_mean=0.246 std=0.010 194.4s
+
+[2026-04-26 10:37:59] [probe] push B obj_direction L00: r2_mean=0.294 std=0.005 125.9s
+
+[2026-04-26 10:40:16] [probe] push B obj_acceleration L00: r2_mean=0.104 std=0.014 121.8s
+
+[2026-04-26 10:40:23] [probe] strike B obj_accel_mag L00: r2_mean=0.427 std=0.070 155.4s
+
+[2026-04-26 10:42:21] [probe] push B obj_accel_mag L00: r2_mean=0.332 std=0.034 111.6s
+
+[2026-04-26 10:44:06] [probe] strike B layer 13: loaded [(535779, 8192)] in 221.4s
+
+[2026-04-26 10:44:46] [probe] push B layer 20: loaded [(340283, 8192)] in 144.0s
+
+[2026-04-26 10:46:56] [probe] push B ee_position L00: r2_mean=0.982 std=0.002 119.0s
+
+[2026-04-26 10:47:11] [probe] strike B ee_position L00: r2_mean=0.980 std=0.003 165.7s
+
+[2026-04-26 10:49:07] [probe] push B ee_velocity L00: r2_mean=0.948 std=0.004 119.0s
+
+[2026-04-26 10:50:10] [probe] strike B ee_velocity L00: r2_mean=0.936 std=0.001 158.4s
+
+[2026-04-26 10:51:10] [probe] push B ee_speed L00: r2_mean=0.960 std=0.004 110.0s
+
+[2026-04-26 10:52:52] [probe] push B ee_direction L00: r2_mean=-6.031 std=11.475 90.1s
+
+[2026-04-26 10:53:03] [probe] strike B ee_speed L00: r2_mean=0.976 std=0.002 153.4s
+
+[2026-04-26 10:54:40] [probe] strike B ee_direction L00: r2_mean=0.877 std=0.004 82.1s
+
+[2026-04-26 10:55:02] [probe] push B ee_acceleration L00: r2_mean=0.370 std=0.012 117.2s
+
+[2026-04-26 10:57:05] [probe] push B ee_accel_mag L00: r2_mean=0.647 std=0.014 109.9s
+
+[2026-04-26 10:57:41] [probe] strike B ee_acceleration L00: r2_mean=0.526 std=0.014 161.5s
+
+[2026-04-26 10:59:13] [probe] push B obj_position L00: r2_mean=0.195 std=0.013 116.2s
+
+[2026-04-26 11:00:34] [probe] strike B ee_accel_mag L00: r2_mean=0.767 std=0.010 153.0s
+
+[2026-04-26 11:01:23] [probe] push B obj_velocity L00: r2_mean=0.757 std=0.042 117.8s
+
+[2026-04-26 11:03:19] [probe] push B obj_speed L00: r2_mean=0.826 std=0.053 103.8s
+
+[2026-04-26 11:03:33] [probe] strike B obj_position L00: r2_mean=0.292 std=0.017 159.3s
+
+[2026-04-26 11:05:29] [probe] push B obj_direction L00: r2_mean=0.296 std=0.012 114.5s
+
+[2026-04-26 11:06:51] [probe] strike B obj_velocity L00: r2_mean=0.714 std=0.026 178.5s
+
+[2026-04-26 11:07:39] [probe] push B obj_acceleration L00: r2_mean=0.103 std=0.014 117.3s
+
+[2026-04-26 11:09:42] [probe] push B obj_accel_mag L00: r2_mean=0.319 std=0.033 110.7s
+
+[2026-04-26 11:10:18] [probe] strike B obj_speed L00: r2_mean=0.806 std=0.030 185.6s
+
+[2026-04-26 11:12:06] [probe] push B layer 21: loaded [(340283, 8192)] in 142.5s
+
+[2026-04-26 11:13:45] [probe] strike B obj_direction L00: r2_mean=0.794 std=0.007 180.7s
+
+[2026-04-26 11:14:22] [probe] push B ee_position L00: r2_mean=0.984 std=0.002 124.4s
+
+[2026-04-26 11:16:38] [probe] push B ee_velocity L00: r2_mean=0.951 std=0.003 122.8s
+
+[2026-04-26 11:16:49] [probe] strike B obj_acceleration L00: r2_mean=0.255 std=0.014 161.3s
+
+[2026-04-26 11:18:52] [probe] push B ee_speed L00: r2_mean=0.958 std=0.009 121.0s
+
+[2026-04-26 11:19:39] [probe] strike B obj_accel_mag L00: r2_mean=0.459 std=0.035 148.3s
+
+[2026-04-26 11:20:41] [probe] push B ee_direction L00: r2_mean=-1.819 std=4.555 95.5s
+
+[2026-04-26 11:22:54] [probe] push B ee_acceleration L00: r2_mean=0.372 std=0.011 119.3s
+
+[2026-04-26 11:23:00] [probe] strike B layer 14: loaded [(535779, 8192)] in 200.0s
+
+[2026-04-26 11:24:54] [probe] push B ee_accel_mag L00: r2_mean=0.648 std=0.013 107.1s
+
+[2026-04-26 11:25:55] [probe] strike B ee_position L00: r2_mean=0.982 std=0.003 157.2s
+
+[2026-04-26 11:27:06] [probe] push B obj_position L00: r2_mean=0.181 std=0.011 118.1s
+
+[2026-04-26 11:28:53] [probe] strike B ee_velocity L00: r2_mean=0.939 std=0.001 157.4s
+
+[2026-04-26 11:29:17] [probe] push B obj_velocity L00: r2_mean=0.763 std=0.044 117.7s
+
+[2026-04-26 11:31:24] [probe] push B obj_speed L00: r2_mean=0.824 std=0.059 114.3s
+
+[2026-04-26 11:31:46] [probe] strike B ee_speed L00: r2_mean=0.978 std=0.001 151.8s
+
+[2026-04-26 11:33:23] [probe] strike B ee_direction L00: r2_mean=0.875 std=0.008 81.8s
+
+[2026-04-26 11:33:36] [probe] push B obj_direction L00: r2_mean=0.302 std=0.009 115.6s
+
+[2026-04-26 11:35:48] [probe] push B obj_acceleration L00: r2_mean=0.103 std=0.012 118.7s
+
+[2026-04-26 11:36:20] [probe] strike B ee_acceleration L00: r2_mean=0.527 std=0.006 156.9s
+
+[2026-04-26 11:37:52] [probe] push B obj_accel_mag L00: r2_mean=0.325 std=0.037 110.9s
+
+[2026-04-26 11:39:22] [probe] strike B ee_accel_mag L00: r2_mean=0.774 std=0.006 160.9s
+
+[2026-04-26 11:40:18] [probe] push B layer 22: loaded [(340283, 8192)] in 144.3s
+
+[2026-04-26 11:42:25] [probe] push B ee_position L00: r2_mean=0.986 std=0.001 115.6s
+
+[2026-04-26 11:42:25] [probe] strike B obj_position L00: r2_mean=0.283 std=0.026 161.6s
+
+[2026-04-26 11:44:32] [probe] push B ee_velocity L00: r2_mean=0.953 std=0.004 114.6s
+
+[2026-04-26 11:45:24] [probe] strike B obj_velocity L00: r2_mean=0.712 std=0.017 157.3s
+
+[2026-04-26 11:46:26] [probe] push B ee_speed L00: r2_mean=0.960 std=0.004 101.2s
+
+[2026-04-26 11:48:15] [probe] strike B obj_speed L00: r2_mean=0.809 std=0.030 150.2s
+
+[2026-04-26 11:48:16] [probe] push B ee_direction L00: r2_mean=-6.043 std=2.898 96.8s
+
+[2026-04-26 11:50:28] [probe] push B ee_acceleration L00: r2_mean=0.371 std=0.012 118.0s
+
+[2026-04-26 11:51:09] [probe] strike B obj_direction L00: r2_mean=0.793 std=0.005 153.1s
+
+[2026-04-26 11:52:34] [probe] push B ee_accel_mag L00: r2_mean=0.651 std=0.008 113.4s
+
+[2026-04-26 11:54:05] [probe] strike B obj_acceleration L00: r2_mean=0.255 std=0.015 155.3s
+
+[2026-04-26 11:54:47] [probe] push B obj_position L00: r2_mean=0.147 std=0.014 119.1s
+
+[2026-04-26 11:56:55] [probe] strike B obj_accel_mag L00: r2_mean=0.464 std=0.028 148.8s
+
+[2026-04-26 11:57:01] [probe] push B obj_velocity L00: r2_mean=0.757 std=0.050 121.4s
+
+[2026-04-26 11:59:09] [probe] push B obj_speed L00: r2_mean=0.836 std=0.044 113.9s
+
+[2026-04-26 12:00:07] [probe] strike B layer 15: loaded [(535779, 8192)] in 190.3s
+
+[2026-04-26 12:01:24] [probe] push B obj_direction L00: r2_mean=0.306 std=0.010 118.1s
+
+[2026-04-26 12:03:09] [probe] strike B ee_position L00: r2_mean=0.982 std=0.002 164.3s
+
+[2026-04-26 12:03:40] [probe] push B obj_acceleration L00: r2_mean=0.106 std=0.015 121.5s
+
+[2026-04-26 12:05:42] [probe] push B obj_accel_mag L00: r2_mean=0.326 std=0.032 108.4s
+
+[2026-04-26 12:06:11] [probe] strike B ee_velocity L00: r2_mean=0.947 std=0.001 161.0s
+
+[2026-04-26 12:08:09] [probe] push B layer 23: loaded [(340283, 8192)] in 146.1s
+
+[2026-04-26 12:09:04] [probe] strike B ee_speed L00: r2_mean=0.978 std=0.001 151.6s
+
+[2026-04-26 12:10:15] [probe] push B ee_position L00: r2_mean=0.984 std=0.002 114.1s
+
+[2026-04-26 12:10:44] [probe] strike B ee_direction L00: r2_mean=0.877 std=0.008 83.9s
+
+[2026-04-26 12:12:24] [probe] push B ee_velocity L00: r2_mean=0.948 std=0.006 117.2s
+
+[2026-04-26 12:13:45] [probe] strike B ee_acceleration L00: r2_mean=0.550 std=0.013 160.0s
+
+[2026-04-26 12:14:27] [probe] push B ee_speed L00: r2_mean=0.961 std=0.003 109.6s
+
+[2026-04-26 12:16:07] [probe] push B ee_direction L00: r2_mean=-11.422 std=11.004 87.1s
+
+[2026-04-26 12:16:41] [probe] strike B ee_accel_mag L00: r2_mean=0.784 std=0.002 155.0s
+
+[2026-04-26 12:18:18] [probe] push B ee_acceleration L00: r2_mean=0.348 std=0.018 116.5s
+
+[2026-04-26 12:19:41] [probe] strike B obj_position L00: r2_mean=0.278 std=0.021 159.3s
+
+[2026-04-26 12:20:17] [probe] push B ee_accel_mag L00: r2_mean=0.646 std=0.009 106.4s
+
+[2026-04-26 12:22:26] [probe] push B obj_position L00: r2_mean=0.118 std=0.023 116.3s
+
+[2026-04-26 12:22:43] [probe] strike B obj_velocity L00: r2_mean=0.711 std=0.015 160.8s
+
+[2026-04-26 12:24:47] [probe] push B obj_velocity L00: r2_mean=0.749 std=0.050 127.1s
+
+[2026-04-26 12:25:43] [probe] strike B obj_speed L00: r2_mean=0.812 std=0.034 158.2s
+
+[2026-04-26 12:26:59] [probe] push B obj_speed L00: r2_mean=0.831 std=0.049 118.4s
+
+[2026-04-26 12:28:44] [probe] strike B obj_direction L00: r2_mean=0.790 std=0.008 159.8s
+
+[2026-04-26 12:29:13] [probe] push B obj_direction L00: r2_mean=0.305 std=0.011 115.7s
+
+[2026-04-26 12:31:31] [probe] push B obj_acceleration L00: r2_mean=0.101 std=0.015 123.9s
+
+[2026-04-26 12:31:44] [probe] strike B obj_acceleration L00: r2_mean=0.248 std=0.006 158.5s
+
+[2026-04-26 12:33:43] [probe] push B obj_accel_mag L00: r2_mean=0.326 std=0.032 117.9s
+
+[2026-04-26 12:33:44] [probe] push B DONE in 607.0min
+
+[2026-04-26 12:33:49] [probe] task=drawer variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-26 12:34:41] [probe] strike B obj_accel_mag L00: r2_mean=0.470 std=0.038 155.9s
+
+[2026-04-26 12:37:54] [probe] strike B layer 16: loaded [(535779, 8192)] in 191.8s
+
+[2026-04-26 12:40:24] [probe] drawer B layer 00: loaded [(560000, 8192)] in 394.6s
+
+[2026-04-26 12:40:46] [probe] strike B ee_position L00: r2_mean=0.983 std=0.002 153.5s
+
+[2026-04-26 12:43:45] [probe] strike B ee_velocity L00: r2_mean=0.952 std=0.001 158.5s
+
+[2026-04-26 12:43:52] [probe] drawer B ee_position L00: r2_mean=0.937 std=0.008 189.2s
+
+[2026-04-26 12:46:39] [probe] strike B ee_speed L00: r2_mean=0.979 std=0.001 152.2s
+
+[2026-04-26 12:47:06] [probe] drawer B ee_velocity L00: r2_mean=0.553 std=0.012 172.7s
+
+[2026-04-26 12:48:16] [probe] strike B ee_direction L00: r2_mean=0.877 std=0.008 81.7s
+
+[2026-04-26 12:50:07] [probe] drawer B ee_speed L00: r2_mean=0.827 std=0.008 160.0s
+
+[2026-04-26 12:51:18] [probe] strike B ee_acceleration L00: r2_mean=0.565 std=0.010 161.9s
+
+[2026-04-26 12:53:25] [probe] drawer B ee_direction L00: r2_mean=0.627 std=0.025 175.9s
+
+[2026-04-26 12:54:19] [probe] strike B ee_accel_mag L00: r2_mean=0.787 std=0.004 160.0s
+
+[2026-04-26 12:56:57] [probe] drawer B ee_acceleration L00: r2_mean=0.418 std=0.012 190.3s
+
+[2026-04-26 12:57:22] [probe] strike B obj_position L00: r2_mean=0.262 std=0.012 161.9s
+
+[2026-04-26 13:00:20] [probe] strike B obj_velocity L00: r2_mean=0.703 std=0.026 157.4s
+
+[2026-04-26 13:00:45] [probe] drawer B ee_accel_mag L00: r2_mean=0.702 std=0.015 206.6s
+
+[2026-04-26 13:03:18] [probe] strike B obj_speed L00: r2_mean=0.822 std=0.035 156.5s
+
+[2026-04-26 13:04:37] [probe] drawer B obj_position L00: r2_mean=0.956 std=0.002 210.1s
+
+[2026-04-26 13:06:19] [probe] strike B obj_direction L00: r2_mean=0.789 std=0.005 160.1s
+
+[2026-04-26 13:08:34] [probe] drawer B obj_velocity L00: r2_mean=0.783 std=0.011 214.7s
+
+[2026-04-26 13:09:15] [probe] strike B obj_acceleration L00: r2_mean=0.251 std=0.013 155.0s
+
+[2026-04-26 13:12:06] [probe] strike B obj_accel_mag L00: r2_mean=0.478 std=0.042 149.9s
+
+[2026-04-26 13:12:06] [probe] drawer B obj_speed L00: r2_mean=0.797 std=0.010 190.2s
+
+[2026-04-26 13:13:09] [probe] drawer B obj_direction L00: r2_mean=0.333 std=0.007 52.0s
+
+[2026-04-26 13:15:25] [probe] strike B layer 17: loaded [(535779, 8192)] in 196.9s
+
+[2026-04-26 13:16:53] [probe] drawer B obj_acceleration L00: r2_mean=0.332 std=0.011 202.3s
+
+[2026-04-26 13:18:20] [probe] strike B ee_position L00: r2_mean=0.984 std=0.002 156.9s
+
+[2026-04-26 13:20:19] [probe] drawer B obj_accel_mag L00: r2_mean=0.445 std=0.008 183.4s
+
+[2026-04-26 13:21:18] [probe] strike B ee_velocity L00: r2_mean=0.956 std=0.001 157.0s
+
+[2026-04-26 13:24:09] [probe] strike B ee_speed L00: r2_mean=0.977 std=0.008 150.1s
+
+[2026-04-26 13:24:13] [probe] drawer B layer 01: loaded [(560000, 8192)] in 232.6s
+
+[2026-04-26 13:25:47] [probe] strike B ee_direction L00: r2_mean=0.864 std=0.029 82.1s
+
+[2026-04-26 13:27:51] [probe] drawer B ee_position L00: r2_mean=0.942 std=0.033 198.0s
+
+[2026-04-26 13:28:58] [probe] strike B ee_acceleration L00: r2_mean=0.566 std=0.008 169.9s
+
+[2026-04-26 13:31:33] [probe] drawer B ee_velocity L00: r2_mean=0.610 std=0.011 200.4s
+
+[2026-04-26 13:32:00] [probe] strike B ee_accel_mag L00: r2_mean=0.769 std=0.046 160.3s
+
+[2026-04-26 13:34:57] [probe] drawer B ee_speed L00: r2_mean=0.865 std=0.007 180.9s
+
+[2026-04-26 13:35:02] [probe] strike B obj_position L00: r2_mean=0.254 std=0.011 161.2s
+
+[2026-04-26 13:38:05] [probe] strike B obj_velocity L00: r2_mean=0.712 std=0.026 161.8s
+
+[2026-04-26 13:38:36] [probe] drawer B ee_direction L00: r2_mean=0.671 std=0.006 196.4s
+
+[2026-04-26 13:41:04] [probe] strike B obj_speed L00: r2_mean=0.802 std=0.038 158.0s
+
+[2026-04-26 13:42:08] [probe] drawer B ee_acceleration L00: r2_mean=0.444 std=0.015 189.7s
+
+[2026-04-26 13:44:06] [probe] strike B obj_direction L00: r2_mean=0.789 std=0.005 160.2s
+
+[2026-04-26 13:45:36] [probe] drawer B ee_accel_mag L00: r2_mean=0.754 std=0.013 183.9s
+
+[2026-04-26 13:47:08] [probe] strike B obj_acceleration L00: r2_mean=0.254 std=0.018 160.5s
+
+[2026-04-26 13:49:08] [probe] drawer B obj_position L00: r2_mean=0.954 std=0.032 188.8s
+
+[2026-04-26 13:50:08] [probe] strike B obj_accel_mag L00: r2_mean=0.441 std=0.063 158.5s
+
+[2026-04-26 13:52:42] [probe] drawer B obj_velocity L00: r2_mean=0.863 std=0.006 192.7s
+
+[2026-04-26 13:53:45] [probe] strike B layer 18: loaded [(535779, 8192)] in 215.6s
+
+[2026-04-26 13:56:05] [probe] drawer B obj_speed L00: r2_mean=0.866 std=0.023 179.4s
+
+[2026-04-26 13:56:38] [probe] strike B ee_position L00: r2_mean=0.985 std=0.002 154.9s
+
+[2026-04-26 13:56:56] [probe] drawer B obj_direction L00: r2_mean=0.387 std=0.009 42.7s
+
+[2026-04-26 13:59:37] [probe] strike B ee_velocity L00: r2_mean=0.958 std=0.001 157.8s
+
+[2026-04-26 13:59:58] [probe] drawer B obj_acceleration L00: r2_mean=0.355 std=0.016 160.7s
+
+[2026-04-26 14:02:35] [probe] strike B ee_speed L00: r2_mean=0.978 std=0.002 155.5s
+
+[2026-04-26 14:03:22] [probe] drawer B obj_accel_mag L00: r2_mean=0.493 std=0.005 182.1s
+
+[2026-04-26 14:04:15] [probe] strike B ee_direction L00: r2_mean=0.637 std=0.255 84.3s
+
+[2026-04-26 14:07:02] [probe] drawer B layer 02: loaded [(560000, 8192)] in 219.1s
+
+[2026-04-26 14:07:17] [probe] strike B ee_acceleration L00: r2_mean=0.561 std=0.002 160.6s
+
+[2026-04-26 14:10:14] [probe] strike B ee_accel_mag L00: r2_mean=0.782 std=0.015 155.4s
+
+[2026-04-26 14:10:32] [probe] drawer B ee_position L00: r2_mean=0.958 std=0.009 190.2s
+
+[2026-04-26 14:13:15] [probe] strike B obj_position L00: r2_mean=0.242 std=0.015 159.6s
+
+[2026-04-26 14:14:04] [probe] drawer B ee_velocity L00: r2_mean=0.609 std=0.008 190.5s
+
+[2026-04-26 14:16:16] [probe] strike B obj_velocity L00: r2_mean=0.712 std=0.025 159.2s
+
+[2026-04-26 14:17:35] [probe] drawer B ee_speed L00: r2_mean=0.863 std=0.003 189.1s
+
+[2026-04-26 14:19:11] [probe] strike B obj_speed L00: r2_mean=0.809 std=0.023 153.6s
+
+[2026-04-26 14:21:15] [probe] drawer B ee_direction L00: r2_mean=0.674 std=0.007 198.1s
+
+[2026-04-26 14:22:08] [probe] strike B obj_direction L00: r2_mean=0.787 std=0.006 156.1s
+
+[2026-04-26 14:24:53] [probe] drawer B ee_acceleration L00: r2_mean=0.439 std=0.015 195.7s
+
+[2026-04-26 14:25:13] [probe] strike B obj_acceleration L00: r2_mean=0.254 std=0.014 163.4s
+
+[2026-04-26 14:28:09] [probe] strike B obj_accel_mag L00: r2_mean=0.463 std=0.026 154.4s
+
+[2026-04-26 14:28:26] [probe] drawer B ee_accel_mag L00: r2_mean=0.760 std=0.008 190.1s
+
+[2026-04-26 14:31:23] [probe] strike B layer 19: loaded [(535779, 8192)] in 192.9s
+
+[2026-04-26 14:31:54] [probe] drawer B obj_position L00: r2_mean=0.970 std=0.003 186.3s
+
+[2026-04-26 14:34:15] [probe] strike B ee_position L00: r2_mean=0.985 std=0.002 153.8s
+
+[2026-04-26 14:35:30] [probe] drawer B obj_velocity L00: r2_mean=0.857 std=0.017 192.8s
+
+[2026-04-26 14:37:11] [probe] strike B ee_velocity L00: r2_mean=0.959 std=0.001 156.9s
+
+[2026-04-26 14:39:06] [probe] drawer B obj_speed L00: r2_mean=0.851 std=0.028 194.1s
+
+[2026-04-26 14:40:10] [probe] strike B ee_speed L00: r2_mean=0.980 std=0.003 158.5s
+
+[2026-04-26 14:40:13] [probe] drawer B obj_direction L00: r2_mean=0.420 std=0.018 57.2s
+
+[2026-04-26 14:41:48] [probe] strike B ee_direction L00: r2_mean=-3.460 std=3.223 82.7s
+
+[2026-04-26 14:43:51] [probe] drawer B obj_acceleration L00: r2_mean=0.366 std=0.016 196.7s
+
+[2026-04-26 14:44:45] [probe] strike B ee_acceleration L00: r2_mean=0.575 std=0.009 156.0s
+
+[2026-04-26 14:47:25] [probe] drawer B obj_accel_mag L00: r2_mean=0.499 std=0.008 192.3s
+
+[2026-04-26 14:47:37] [probe] strike B ee_accel_mag L00: r2_mean=0.783 std=0.014 151.2s
+
+[2026-04-26 14:50:36] [probe] strike B obj_position L00: r2_mean=0.254 std=0.020 157.9s
+
+[2026-04-26 14:52:42] [probe] drawer B layer 03: loaded [(560000, 8192)] in 315.3s
+
+[2026-04-26 14:53:37] [probe] strike B obj_velocity L00: r2_mean=0.719 std=0.025 158.8s
+
+[2026-04-26 14:56:14] [probe] drawer B ee_position L00: r2_mean=0.961 std=0.008 192.5s
+
+[2026-04-26 14:56:31] [probe] strike B obj_speed L00: r2_mean=0.807 std=0.026 152.2s
+
+[2026-04-26 14:59:29] [probe] strike B obj_direction L00: r2_mean=0.787 std=0.009 156.6s
+
+[2026-04-26 14:59:47] [probe] drawer B ee_velocity L00: r2_mean=0.631 std=0.017 191.9s
+
+[2026-04-26 15:02:27] [probe] strike B obj_acceleration L00: r2_mean=0.259 std=0.009 156.6s
+
+[2026-04-26 15:03:24] [probe] drawer B ee_speed L00: r2_mean=0.861 std=0.009 194.6s
+
+[2026-04-26 15:05:20] [probe] strike B obj_accel_mag L00: r2_mean=0.464 std=0.028 152.4s
+
+[2026-04-26 15:07:00] [probe] drawer B ee_direction L00: r2_mean=0.687 std=0.007 194.7s
+
+[2026-04-26 15:08:31] [probe] strike B layer 20: loaded [(535779, 8192)] in 188.6s
+
+[2026-04-26 15:10:42] [probe] drawer B ee_acceleration L00: r2_mean=0.446 std=0.015 199.8s
+
+[2026-04-26 15:11:29] [probe] strike B ee_position L00: r2_mean=0.985 std=0.002 160.6s
+
+[2026-04-26 15:14:12] [probe] drawer B ee_accel_mag L00: r2_mean=0.773 std=0.008 188.3s
+
+[2026-04-26 15:14:24] [probe] strike B ee_velocity L00: r2_mean=0.961 std=0.001 154.8s
+
+[2026-04-26 15:17:15] [probe] strike B ee_speed L00: r2_mean=0.979 std=0.004 150.5s
+
+[2026-04-26 15:17:53] [probe] drawer B obj_position L00: r2_mean=0.976 std=0.003 198.8s
+
+[2026-04-26 15:18:53] [probe] strike B ee_direction L00: r2_mean=-5.493 std=5.399 83.4s
+
+[2026-04-26 15:21:39] [probe] drawer B obj_velocity L00: r2_mean=0.861 std=0.027 203.8s
+
+[2026-04-26 15:21:53] [probe] strike B ee_acceleration L00: r2_mean=0.581 std=0.013 159.0s
+
+[2026-04-26 15:24:46] [probe] strike B ee_accel_mag L00: r2_mean=0.762 std=0.044 152.5s
+
+[2026-04-26 15:25:12] [probe] drawer B obj_speed L00: r2_mean=0.838 std=0.035 190.6s
+
+[2026-04-26 15:26:17] [probe] drawer B obj_direction L00: r2_mean=0.463 std=0.005 55.4s
+
+[2026-04-26 15:27:48] [probe] strike B obj_position L00: r2_mean=0.239 std=0.020 161.0s
+
+[2026-04-26 15:29:58] [probe] drawer B obj_acceleration L00: r2_mean=0.380 std=0.017 199.9s
+
+[2026-04-26 15:30:56] [probe] strike B obj_velocity L00: r2_mean=0.719 std=0.026 166.3s
+
+[2026-04-26 15:33:19] [probe] drawer B obj_accel_mag L00: r2_mean=0.518 std=0.005 179.7s
+
+[2026-04-26 15:33:51] [probe] strike B obj_speed L00: r2_mean=0.780 std=0.072 153.5s
+
+[2026-04-26 15:36:52] [probe] strike B obj_direction L00: r2_mean=0.791 std=0.010 159.7s
+
+[2026-04-26 15:38:34] [probe] drawer B layer 04: loaded [(560000, 8192)] in 313.0s
+
+[2026-04-26 15:39:59] [probe] strike B obj_acceleration L00: r2_mean=0.263 std=0.019 164.8s
+
+[2026-04-26 15:41:57] [probe] drawer B ee_position L00: r2_mean=0.965 std=0.009 184.8s
+
+[2026-04-26 15:42:55] [probe] strike B obj_accel_mag L00: r2_mean=0.443 std=0.061 155.5s
+
+[2026-04-26 15:45:19] [probe] drawer B ee_velocity L00: r2_mean=0.696 std=0.007 180.7s
+
+[2026-04-26 15:46:08] [probe] strike B layer 21: loaded [(535779, 8192)] in 190.3s
+
+[2026-04-26 15:48:44] [probe] drawer B ee_speed L00: r2_mean=0.876 std=0.004 183.6s
+
+[2026-04-26 15:49:00] [probe] strike B ee_position L00: r2_mean=0.987 std=0.003 154.0s
+
+[2026-04-26 15:51:54] [probe] strike B ee_velocity L00: r2_mean=0.961 std=0.001 155.3s
+
+[2026-04-26 15:52:15] [probe] drawer B ee_direction L00: r2_mean=0.735 std=0.004 189.3s
+
+[2026-04-26 15:54:49] [probe] strike B ee_speed L00: r2_mean=0.976 std=0.009 154.2s
+
+[2026-04-26 15:55:45] [probe] drawer B ee_acceleration L00: r2_mean=0.465 std=0.007 187.4s
+
+[2026-04-26 15:56:30] [probe] strike B ee_direction L00: r2_mean=-1.423 std=2.651 85.2s
+
+[2026-04-26 15:59:11] [probe] drawer B ee_accel_mag L00: r2_mean=0.790 std=0.006 183.6s
+
+[2026-04-26 15:59:30] [probe] strike B ee_acceleration L00: r2_mean=0.581 std=0.010 159.6s
+
+[2026-04-26 16:02:22] [probe] strike B ee_accel_mag L00: r2_mean=0.782 std=0.014 150.5s
+
+[2026-04-26 16:02:47] [probe] drawer B obj_position L00: r2_mean=0.970 std=0.020 192.5s
+
+[2026-04-26 16:05:24] [probe] strike B obj_position L00: r2_mean=0.224 std=0.007 161.2s
+
+[2026-04-26 16:06:26] [probe] drawer B obj_velocity L00: r2_mean=0.904 std=0.004 197.1s
+
+[2026-04-26 16:08:32] [probe] strike B obj_velocity L00: r2_mean=0.725 std=0.023 166.2s
+
+[2026-04-26 16:10:08] [probe] drawer B obj_speed L00: r2_mean=0.873 std=0.018 197.0s
+
+[2026-04-26 16:11:11] [probe] drawer B obj_direction L00: r2_mean=0.506 std=0.010 53.8s
+
+[2026-04-26 16:11:29] [probe] strike B obj_speed L00: r2_mean=0.811 std=0.027 155.6s
+
+[2026-04-26 16:14:34] [probe] strike B obj_direction L00: r2_mean=0.798 std=0.007 163.4s
+
+[2026-04-26 16:14:49] [probe] drawer B obj_acceleration L00: r2_mean=0.412 std=0.007 195.8s
+
+[2026-04-26 16:17:36] [probe] strike B obj_acceleration L00: r2_mean=0.270 std=0.016 160.7s
+
+[2026-04-26 16:18:27] [probe] drawer B obj_accel_mag L00: r2_mean=0.553 std=0.007 194.4s
+
+[2026-04-26 16:20:39] [probe] strike B obj_accel_mag L00: r2_mean=0.469 std=0.031 161.2s
+
+[2026-04-26 16:23:55] [probe] drawer B layer 05: loaded [(560000, 8192)] in 325.5s
+
+[2026-04-26 16:23:56] [probe] strike B layer 22: loaded [(535779, 8192)] in 195.0s
+
+[2026-04-26 16:26:49] [probe] strike B ee_position L00: r2_mean=0.987 std=0.003 154.6s
+
+[2026-04-26 16:27:24] [probe] drawer B ee_position L00: r2_mean=0.963 std=0.013 190.5s
+
+[2026-04-26 16:29:47] [probe] strike B ee_velocity L00: r2_mean=0.962 std=0.001 157.8s
+
+[2026-04-26 16:31:00] [probe] drawer B ee_velocity L00: r2_mean=0.711 std=0.009 193.7s
+
+[2026-04-26 16:32:43] [probe] strike B ee_speed L00: r2_mean=0.979 std=0.006 154.9s
+
+[2026-04-26 16:34:21] [probe] strike B ee_direction L00: r2_mean=0.582 std=0.477 84.7s
+
+[2026-04-26 16:34:30] [probe] drawer B ee_speed L00: r2_mean=0.870 std=0.010 188.0s
+
+[2026-04-26 16:37:17] [probe] strike B ee_acceleration L00: r2_mean=0.588 std=0.005 155.6s
+
+[2026-04-26 16:37:56] [probe] drawer B ee_direction L00: r2_mean=0.743 std=0.007 184.6s
+
+[2026-04-26 16:40:11] [probe] strike B ee_accel_mag L00: r2_mean=0.780 std=0.015 152.3s
+
+[2026-04-26 16:41:39] [probe] drawer B ee_acceleration L00: r2_mean=0.485 std=0.024 201.1s
+
+[2026-04-26 16:43:12] [probe] strike B obj_position L00: r2_mean=0.192 std=0.010 159.4s
+
+[2026-04-26 16:45:09] [probe] drawer B ee_accel_mag L00: r2_mean=0.789 std=0.009 187.5s
+
+[2026-04-26 16:46:09] [probe] strike B obj_velocity L00: r2_mean=0.735 std=0.018 156.4s
+
+[2026-04-26 16:48:37] [probe] drawer B obj_position L00: r2_mean=0.970 std=0.015 186.5s
+
+[2026-04-26 16:49:06] [probe] strike B obj_speed L00: r2_mean=0.807 std=0.025 155.5s
+
+[2026-04-26 16:52:08] [probe] strike B obj_direction L00: r2_mean=0.801 std=0.006 161.0s
+
+[2026-04-26 16:52:11] [probe] drawer B obj_velocity L00: r2_mean=0.909 std=0.003 192.6s
+
+[2026-04-26 16:55:10] [probe] strike B obj_acceleration L00: r2_mean=0.281 std=0.016 160.8s
+
+[2026-04-26 16:55:43] [probe] drawer B obj_speed L00: r2_mean=0.842 std=0.053 190.3s
+
+[2026-04-26 16:56:47] [probe] drawer B obj_direction L00: r2_mean=0.512 std=0.011 53.4s
+
+[2026-04-26 16:58:06] [probe] strike B obj_accel_mag L00: r2_mean=0.459 std=0.026 154.1s
+
+[2026-04-26 17:00:14] [probe] drawer B obj_acceleration L00: r2_mean=0.432 std=0.011 186.0s
+
+[2026-04-26 17:01:15] [probe] strike B layer 23: loaded [(535779, 8192)] in 188.1s
+
+[2026-04-26 17:03:23] [probe] drawer B obj_accel_mag L00: r2_mean=0.548 std=0.023 167.0s
+
+[2026-04-26 17:04:07] [probe] strike B ee_position L00: r2_mean=0.986 std=0.003 153.5s
+
+[2026-04-26 17:07:06] [probe] strike B ee_velocity L00: r2_mean=0.959 std=0.001 158.9s
+
+[2026-04-26 17:08:35] [probe] drawer B layer 06: loaded [(560000, 8192)] in 310.1s
+
+[2026-04-26 17:10:00] [probe] strike B ee_speed L00: r2_mean=0.977 std=0.006 152.1s
+
+[2026-04-26 17:11:39] [probe] strike B ee_direction L00: r2_mean=-0.370 std=1.201 82.5s
+
+[2026-04-26 17:11:56] [probe] drawer B ee_position L00: r2_mean=0.969 std=0.009 182.0s
+
+[2026-04-26 17:14:41] [probe] strike B ee_acceleration L00: r2_mean=0.572 std=0.004 160.7s
+
+[2026-04-26 17:15:20] [probe] drawer B ee_velocity L00: r2_mean=0.712 std=0.004 182.4s
+
+[2026-04-26 17:17:36] [probe] strike B ee_accel_mag L00: r2_mean=0.767 std=0.021 153.9s
+
+[2026-04-26 17:18:40] [probe] drawer B ee_speed L00: r2_mean=0.862 std=0.026 179.1s
+
+[2026-04-26 17:20:39] [probe] strike B obj_position L00: r2_mean=0.174 std=0.010 161.6s
+
+[2026-04-26 17:22:10] [probe] drawer B ee_direction L00: r2_mean=0.735 std=0.003 187.3s
+
+[2026-04-26 17:23:43] [probe] strike B obj_velocity L00: r2_mean=0.739 std=0.021 163.4s
+
+[2026-04-26 17:25:42] [probe] drawer B ee_acceleration L00: r2_mean=0.488 std=0.012 189.3s
+
+[2026-04-26 17:26:37] [probe] strike B obj_speed L00: r2_mean=0.797 std=0.029 152.1s
+
+[2026-04-26 17:29:14] [probe] drawer B ee_accel_mag L00: r2_mean=0.785 std=0.009 189.5s
+
+[2026-04-26 17:29:38] [probe] strike B obj_direction L00: r2_mean=0.803 std=0.006 159.6s
+
+[2026-04-26 17:32:40] [probe] strike B obj_acceleration L00: r2_mean=0.273 std=0.016 161.7s
+
+[2026-04-26 17:32:51] [probe] drawer B obj_position L00: r2_mean=0.981 std=0.003 195.4s
+
+[2026-04-26 17:35:36] [probe] strike B obj_accel_mag L00: r2_mean=0.452 std=0.029 154.3s
+
+[2026-04-26 17:35:38] [probe] strike B DONE in 908.9min
+
+[2026-04-26 17:35:43] [probe] task=reach variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=True
+
+[2026-04-26 17:36:21] [probe] drawer B obj_velocity L00: r2_mean=0.912 std=0.003 187.6s
+
+[2026-04-26 17:37:26] [probe] reach B layer 00: loaded [(141000, 8192)] in 103.5s
+
+[2026-04-26 17:38:14] [probe] reach B ee_position L00: r2_mean=-1.793 std=1.950 43.2s
+
+[2026-04-26 17:39:01] [probe] reach B ee_velocity L00: r2_mean=-1.224 std=0.983 41.6s
+
+[2026-04-26 17:39:45] [probe] drawer B obj_speed L00: r2_mean=0.773 std=0.132 181.0s
+
+[2026-04-26 17:39:45] [probe] reach B ee_speed L00: r2_mean=0.448 std=0.210 39.8s
+
+[2026-04-26 17:40:11] [probe] reach B ee_direction L00: r2_mean=-17.542 std=10.230 23.5s
+
+[2026-04-26 17:40:46] [probe] drawer B obj_direction L00: r2_mean=0.513 std=0.008 52.5s
+
+[2026-04-26 17:40:59] [probe] reach B ee_acceleration L00: r2_mean=-6.024 std=6.673 42.2s
+
+[2026-04-26 17:41:44] [probe] reach B ee_accel_mag L00: r2_mean=0.269 std=0.084 40.5s
+
+[2026-04-26 17:43:25] [probe] reach B layer 01: loaded [(141000, 8192)] in 99.9s
+
+[2026-04-26 17:44:12] [probe] drawer B obj_acceleration L00: r2_mean=0.432 std=0.015 183.9s
+
+[2026-04-26 17:44:12] [probe] reach B ee_position L00: r2_mean=0.697 std=0.009 42.8s
+
+[2026-04-26 17:45:00] [probe] reach B ee_velocity L00: r2_mean=0.263 std=0.030 42.6s
+
+[2026-04-26 17:45:46] [probe] reach B ee_speed L00: r2_mean=0.883 std=0.017 41.4s
+
+[2026-04-26 17:46:13] [probe] reach B ee_direction L00: r2_mean=0.238 std=0.020 23.7s
+
+[2026-04-26 17:47:02] [probe] reach B ee_acceleration L00: r2_mean=0.080 std=0.009 43.0s
+
+[2026-04-26 17:47:36] [probe] drawer B obj_accel_mag L00: r2_mean=0.537 std=0.028 181.4s
+
+[2026-04-26 17:47:48] [probe] reach B ee_accel_mag L00: r2_mean=0.276 std=0.076 41.3s
+
+[2026-04-26 17:49:30] [probe] reach B layer 02: loaded [(141000, 8192)] in 100.9s
+
+[2026-04-26 17:50:17] [probe] reach B ee_position L00: r2_mean=0.741 std=0.017 42.6s
+
+[2026-04-26 17:51:04] [probe] reach B ee_velocity L00: r2_mean=0.238 std=0.018 42.0s
+
+[2026-04-26 17:51:51] [probe] reach B ee_speed L00: r2_mean=0.847 std=0.028 41.5s
+
+[2026-04-26 17:52:18] [probe] reach B ee_direction L00: r2_mean=0.307 std=0.021 24.8s
+
+[2026-04-26 17:53:01] [probe] drawer B layer 07: loaded [(560000, 8192)] in 322.9s
+
+[2026-04-26 17:53:07] [probe] reach B ee_acceleration L00: r2_mean=0.063 std=0.006 42.8s
+
+[2026-04-26 17:53:53] [probe] reach B ee_accel_mag L00: r2_mean=0.275 std=0.019 40.7s
+
+[2026-04-26 17:55:34] [probe] reach B layer 03: loaded [(141000, 8192)] in 100.3s
+
+[2026-04-26 17:56:20] [probe] drawer B ee_position L00: r2_mean=0.968 std=0.008 180.3s
+
+[2026-04-26 17:56:21] [probe] reach B ee_position L00: r2_mean=0.798 std=0.020 42.2s
+
+[2026-04-26 17:57:08] [probe] reach B ee_velocity L00: r2_mean=0.244 std=0.014 41.7s
+
+[2026-04-26 17:57:54] [probe] reach B ee_speed L00: r2_mean=0.846 std=0.008 41.0s
+
+[2026-04-26 17:58:19] [probe] reach B ee_direction L00: r2_mean=0.371 std=0.016 22.8s
+
+[2026-04-26 17:59:07] [probe] reach B ee_acceleration L00: r2_mean=0.059 std=0.007 42.1s
+
+[2026-04-26 17:59:44] [probe] drawer B ee_velocity L00: r2_mean=0.723 std=0.006 181.9s
+
+[2026-04-26 17:59:53] [probe] reach B ee_accel_mag L00: r2_mean=0.274 std=0.007 40.9s
+
+[2026-04-26 18:01:36] [probe] reach B layer 04: loaded [(141000, 8192)] in 102.1s
+
+[2026-04-26 18:02:23] [probe] reach B ee_position L00: r2_mean=0.821 std=0.012 42.1s
+
+[2026-04-26 18:03:08] [probe] drawer B ee_speed L00: r2_mean=0.871 std=0.015 183.2s
+
+[2026-04-26 18:03:10] [probe] reach B ee_velocity L00: r2_mean=0.236 std=0.014 42.1s
+
+[2026-04-26 18:03:55] [probe] reach B ee_speed L00: r2_mean=0.829 std=0.027 40.2s
+
+[2026-04-26 18:04:19] [probe] reach B ee_direction L00: r2_mean=0.448 std=0.013 20.8s
+
+[2026-04-26 18:05:06] [probe] reach B ee_acceleration L00: r2_mean=0.066 std=0.009 41.7s
+
+[2026-04-26 18:05:52] [probe] reach B ee_accel_mag L00: r2_mean=0.281 std=0.016 40.3s
+
+[2026-04-26 18:06:33] [probe] drawer B ee_direction L00: r2_mean=0.737 std=0.002 181.9s
+
+[2026-04-26 18:07:32] [probe] reach B layer 05: loaded [(141000, 8192)] in 100.1s
+
+[2026-04-26 18:08:19] [probe] reach B ee_position L00: r2_mean=0.850 std=0.007 41.8s
+
+[2026-04-26 18:09:06] [probe] reach B ee_velocity L00: r2_mean=0.256 std=0.011 42.0s
+
+[2026-04-26 18:09:51] [probe] reach B ee_speed L00: r2_mean=0.744 std=0.107 39.9s
+
+[2026-04-26 18:10:02] [probe] drawer B ee_acceleration L00: r2_mean=0.518 std=0.011 186.9s
+
+[2026-04-26 18:10:16] [probe] reach B ee_direction L00: r2_mean=0.461 std=0.010 22.9s
+
+[2026-04-26 18:11:04] [probe] reach B ee_acceleration L00: r2_mean=0.071 std=0.005 42.2s
+
+[2026-04-26 18:11:49] [probe] reach B ee_accel_mag L00: r2_mean=0.131 std=0.237 40.2s
+
+[2026-04-26 18:13:23] [probe] drawer B ee_accel_mag L00: r2_mean=0.796 std=0.006 179.9s
+
+[2026-04-26 18:13:30] [probe] reach B layer 06: loaded [(141000, 8192)] in 100.6s
+
+[2026-04-26 18:14:17] [probe] reach B ee_position L00: r2_mean=0.868 std=0.008 41.8s
+
+[2026-04-26 18:15:03] [probe] reach B ee_velocity L00: r2_mean=0.324 std=0.016 41.6s
+
+[2026-04-26 18:15:50] [probe] reach B ee_speed L00: r2_mean=0.808 std=0.056 40.7s
+
+[2026-04-26 18:16:13] [probe] reach B ee_direction L00: r2_mean=0.474 std=0.012 20.4s
+
+[2026-04-26 18:16:57] [probe] drawer B obj_position L00: r2_mean=0.973 std=0.008 190.4s
+
+[2026-04-26 18:17:00] [probe] reach B ee_acceleration L00: r2_mean=0.075 std=0.007 42.4s
+
+[2026-04-26 18:17:46] [probe] reach B ee_accel_mag L00: r2_mean=0.206 std=0.102 40.9s
+
+[2026-04-26 18:19:28] [probe] reach B layer 07: loaded [(141000, 8192)] in 100.8s
+
+[2026-04-26 18:20:14] [probe] reach B ee_position L00: r2_mean=0.890 std=0.008 41.8s
+
+[2026-04-26 18:20:31] [probe] drawer B obj_velocity L00: r2_mean=0.916 std=0.004 191.7s
+
+[2026-04-26 18:21:02] [probe] reach B ee_velocity L00: r2_mean=0.323 std=0.016 42.4s
+
+[2026-04-26 18:21:48] [probe] reach B ee_speed L00: r2_mean=0.733 std=0.246 40.7s
+
+[2026-04-26 18:22:15] [probe] reach B ee_direction L00: r2_mean=0.508 std=0.013 23.7s
+
+[2026-04-26 18:23:02] [probe] reach B ee_acceleration L00: r2_mean=0.091 std=0.006 42.5s
+
+[2026-04-26 18:23:48] [probe] reach B ee_accel_mag L00: r2_mean=0.330 std=0.055 40.4s
+
+[2026-04-26 18:23:58] [probe] drawer B obj_speed L00: r2_mean=0.800 std=0.117 184.8s
+
+[2026-04-26 18:25:00] [probe] drawer B obj_direction L00: r2_mean=0.513 std=0.007 52.2s
+
+[2026-04-26 18:25:28] [probe] reach B layer 08: loaded [(141000, 8192)] in 99.9s
+
+[2026-04-26 18:26:15] [probe] reach B ee_position L00: r2_mean=0.901 std=0.006 42.0s
+
+[2026-04-26 18:27:02] [probe] reach B ee_velocity L00: r2_mean=0.308 std=0.028 42.4s
+
+[2026-04-26 18:27:48] [probe] reach B ee_speed L00: r2_mean=0.856 std=0.058 40.3s
+
+[2026-04-26 18:28:11] [probe] reach B ee_direction L00: r2_mean=0.530 std=0.013 20.4s
+
+[2026-04-26 18:28:28] [probe] drawer B obj_acceleration L00: r2_mean=0.439 std=0.017 186.9s
+
+[2026-04-26 18:28:59] [probe] reach B ee_acceleration L00: r2_mean=0.091 std=0.008 42.4s
+
+[2026-04-26 18:29:45] [probe] reach B ee_accel_mag L00: r2_mean=0.349 std=0.048 40.7s
+
+[2026-04-26 18:31:24] [probe] reach B layer 09: loaded [(141000, 8192)] in 99.2s
+
+[2026-04-26 18:31:53] [probe] drawer B obj_accel_mag L00: r2_mean=0.553 std=0.019 181.5s
+
+[2026-04-26 18:32:11] [probe] reach B ee_position L00: r2_mean=0.904 std=0.005 42.0s
+
+[2026-04-26 18:32:59] [probe] reach B ee_velocity L00: r2_mean=0.325 std=0.018 42.6s
+
+[2026-04-26 18:33:45] [probe] reach B ee_speed L00: r2_mean=0.862 std=0.056 40.9s
+
+[2026-04-26 18:34:08] [probe] reach B ee_direction L00: r2_mean=0.549 std=0.018 20.7s
+
+[2026-04-26 18:34:55] [probe] reach B ee_acceleration L00: r2_mean=0.122 std=0.009 42.0s
+
+[2026-04-26 18:35:42] [probe] reach B ee_accel_mag L00: r2_mean=0.403 std=0.023 41.5s
+
+[2026-04-26 18:37:21] [probe] drawer B layer 08: loaded [(560000, 8192)] in 326.0s
+
+[2026-04-26 18:37:23] [probe] reach B layer 10: loaded [(141000, 8192)] in 100.7s
+
+[2026-04-26 18:38:10] [probe] reach B ee_position L00: r2_mean=0.918 std=0.004 42.1s
+
+[2026-04-26 18:38:57] [probe] reach B ee_velocity L00: r2_mean=0.335 std=0.022 42.0s
+
+[2026-04-26 18:39:43] [probe] reach B ee_speed L00: r2_mean=0.858 std=0.035 40.9s
+
+[2026-04-26 18:40:11] [probe] reach B ee_direction L00: r2_mean=0.572 std=0.011 24.6s
+
+[2026-04-26 18:40:37] [probe] drawer B ee_position L00: r2_mean=0.969 std=0.008 176.8s
+
+[2026-04-26 18:40:59] [probe] reach B ee_acceleration L00: r2_mean=0.127 std=0.012 42.8s
+
+[2026-04-26 18:41:46] [probe] reach B ee_accel_mag L00: r2_mean=0.371 std=0.078 41.7s
+
+[2026-04-26 18:43:28] [probe] reach B layer 11: loaded [(141000, 8192)] in 101.7s
+
+[2026-04-26 18:43:47] [probe] drawer B ee_velocity L00: r2_mean=0.721 std=0.007 167.5s
+
+[2026-04-26 18:44:15] [probe] reach B ee_position L00: r2_mean=0.927 std=0.003 42.4s
+
+[2026-04-26 18:45:04] [probe] reach B ee_velocity L00: r2_mean=0.342 std=0.023 42.7s
+
+[2026-04-26 18:45:50] [probe] reach B ee_speed L00: r2_mean=0.842 std=0.037 40.9s
+
+[2026-04-26 18:46:15] [probe] reach B ee_direction L00: r2_mean=0.583 std=0.009 22.8s
+
+[2026-04-26 18:46:49] [probe] drawer B ee_speed L00: r2_mean=0.883 std=0.006 161.0s
+
+[2026-04-26 18:47:03] [probe] reach B ee_acceleration L00: r2_mean=0.134 std=0.012 42.4s
+
+[2026-04-26 18:47:50] [probe] reach B ee_accel_mag L00: r2_mean=0.406 std=0.026 41.1s
+
+[2026-04-26 18:49:30] [probe] reach B layer 12: loaded [(141000, 8192)] in 99.9s
+
+[2026-04-26 18:50:00] [probe] drawer B ee_direction L00: r2_mean=0.740 std=0.008 168.3s
+
+[2026-04-26 18:50:17] [probe] reach B ee_position L00: r2_mean=0.937 std=0.002 42.2s
+
+[2026-04-26 18:51:05] [probe] reach B ee_velocity L00: r2_mean=0.384 std=0.021 42.8s
+
+[2026-04-26 18:51:50] [probe] reach B ee_speed L00: r2_mean=0.915 std=0.011 40.4s
+
+[2026-04-26 18:52:15] [probe] reach B ee_direction L00: r2_mean=0.599 std=0.015 21.7s
+
+[2026-04-26 18:53:02] [probe] reach B ee_acceleration L00: r2_mean=0.154 std=0.009 42.5s
+
+[2026-04-26 18:53:10] [probe] drawer B ee_acceleration L00: r2_mean=0.527 std=0.020 167.4s
+
+[2026-04-26 18:53:48] [probe] reach B ee_accel_mag L00: r2_mean=0.442 std=0.006 40.8s
+
+[2026-04-26 18:55:28] [probe] reach B layer 13: loaded [(141000, 8192)] in 98.9s
+
+[2026-04-26 18:56:14] [probe] reach B ee_position L00: r2_mean=0.940 std=0.004 42.2s
+
+[2026-04-26 18:56:15] [probe] drawer B ee_accel_mag L00: r2_mean=0.797 std=0.015 163.5s
+
+[2026-04-26 18:57:02] [probe] reach B ee_velocity L00: r2_mean=0.408 std=0.018 42.4s
+
+[2026-04-26 18:57:48] [probe] reach B ee_speed L00: r2_mean=0.927 std=0.007 40.5s
+
+[2026-04-26 18:58:16] [probe] reach B ee_direction L00: r2_mean=0.604 std=0.009 26.0s
+
+[2026-04-26 18:59:04] [probe] reach B ee_acceleration L00: r2_mean=0.175 std=0.011 42.8s
+
+[2026-04-26 18:59:37] [probe] drawer B obj_position L00: r2_mean=0.970 std=0.014 178.8s
+
+[2026-04-26 18:59:52] [probe] reach B ee_accel_mag L00: r2_mean=0.461 std=0.011 41.6s
+
+[2026-04-26 19:01:31] [probe] reach B layer 14: loaded [(141000, 8192)] in 99.1s
+
+[2026-04-26 19:02:18] [probe] reach B ee_position L00: r2_mean=0.948 std=0.003 42.0s
+
+[2026-04-26 19:03:00] [probe] drawer B obj_velocity L00: r2_mean=0.916 std=0.004 180.1s
+
+[2026-04-26 19:03:05] [probe] reach B ee_velocity L00: r2_mean=0.447 std=0.020 41.9s
+
+[2026-04-26 19:03:51] [probe] reach B ee_speed L00: r2_mean=0.934 std=0.006 41.0s
+
+[2026-04-26 19:04:16] [probe] reach B ee_direction L00: r2_mean=0.608 std=0.010 22.7s
+
+[2026-04-26 19:05:04] [probe] reach B ee_acceleration L00: r2_mean=0.199 std=0.013 42.6s
+
+[2026-04-26 19:05:50] [probe] reach B ee_accel_mag L00: r2_mean=0.471 std=0.003 40.9s
+
+[2026-04-26 19:06:23] [probe] drawer B obj_speed L00: r2_mean=0.849 std=0.085 180.3s
+
+[2026-04-26 19:07:22] [probe] drawer B obj_direction L00: r2_mean=0.508 std=0.005 50.2s
+
+[2026-04-26 19:07:31] [probe] reach B layer 15: loaded [(141000, 8192)] in 100.2s
+
+[2026-04-26 19:08:18] [probe] reach B ee_position L00: r2_mean=0.945 std=0.003 42.0s
+
+[2026-04-26 19:09:05] [probe] reach B ee_velocity L00: r2_mean=0.428 std=0.019 42.0s
+
+[2026-04-26 19:09:51] [probe] reach B ee_speed L00: r2_mean=0.933 std=0.008 40.6s
+
+[2026-04-26 19:10:13] [probe] reach B ee_direction L00: r2_mean=0.613 std=0.012 19.3s
+
+[2026-04-26 19:10:43] [probe] drawer B obj_acceleration L00: r2_mean=0.453 std=0.017 179.7s
+
+[2026-04-26 19:11:01] [probe] reach B ee_acceleration L00: r2_mean=0.193 std=0.013 42.2s
+
+[2026-04-26 19:11:47] [probe] reach B ee_accel_mag L00: r2_mean=0.461 std=0.008 40.6s
+
+[2026-04-26 19:13:26] [probe] reach B layer 16: loaded [(141000, 8192)] in 98.8s
+
+[2026-04-26 19:14:00] [probe] drawer B obj_accel_mag L00: r2_mean=0.559 std=0.006 174.0s
+
+[2026-04-26 19:14:13] [probe] reach B ee_position L00: r2_mean=0.947 std=0.005 42.0s
+
+[2026-04-26 19:15:00] [probe] reach B ee_velocity L00: r2_mean=0.433 std=0.021 42.3s
+
+[2026-04-26 19:15:46] [probe] reach B ee_speed L00: r2_mean=0.935 std=0.010 40.8s
+
+[2026-04-26 19:16:13] [probe] reach B ee_direction L00: r2_mean=0.619 std=0.014 23.4s
+
+[2026-04-26 19:17:01] [probe] reach B ee_acceleration L00: r2_mean=0.194 std=0.011 42.9s
+
+[2026-04-26 19:17:48] [probe] reach B ee_accel_mag L00: r2_mean=0.461 std=0.013 42.3s
+
+[2026-04-26 19:19:25] [probe] reach B layer 17: loaded [(141000, 8192)] in 95.9s
+
+[2026-04-26 19:19:30] [probe] drawer B layer 09: loaded [(560000, 8192)] in 327.9s
+
+[2026-04-26 19:20:11] [probe] reach B ee_position L00: r2_mean=0.951 std=0.004 41.9s
+
+[2026-04-26 19:20:59] [probe] reach B ee_velocity L00: r2_mean=0.480 std=0.017 42.6s
+
+[2026-04-26 19:21:44] [probe] reach B ee_speed L00: r2_mean=0.925 std=0.018 40.3s
+
+[2026-04-26 19:22:07] [probe] reach B ee_direction L00: r2_mean=0.628 std=0.016 20.6s
+
+[2026-04-26 19:22:49] [probe] drawer B ee_position L00: r2_mean=0.971 std=0.008 179.2s
+
+[2026-04-26 19:22:55] [probe] reach B ee_acceleration L00: r2_mean=0.210 std=0.013 42.2s
+
+[2026-04-26 19:23:40] [probe] reach B ee_accel_mag L00: r2_mean=0.460 std=0.017 40.1s
+
+[2026-04-26 19:25:20] [probe] reach B layer 18: loaded [(141000, 8192)] in 99.7s
+
+[2026-04-26 19:26:07] [probe] reach B ee_position L00: r2_mean=0.953 std=0.004 42.1s
+
+[2026-04-26 19:26:07] [probe] drawer B ee_velocity L00: r2_mean=0.714 std=0.006 177.6s
+
+[2026-04-26 19:26:54] [probe] reach B ee_velocity L00: r2_mean=0.469 std=0.013 42.1s
+
+[2026-04-26 19:27:40] [probe] reach B ee_speed L00: r2_mean=0.931 std=0.009 40.6s
+
+[2026-04-26 19:28:06] [probe] reach B ee_direction L00: r2_mean=0.633 std=0.013 22.8s
+
+[2026-04-26 19:28:54] [probe] reach B ee_acceleration L00: r2_mean=0.207 std=0.016 42.6s
+
+[2026-04-26 19:29:18] [probe] drawer B ee_speed L00: r2_mean=0.886 std=0.006 170.0s
+
+[2026-04-26 19:29:41] [probe] reach B ee_accel_mag L00: r2_mean=0.450 std=0.028 41.9s
+
+[2026-04-26 19:31:21] [probe] reach B layer 19: loaded [(141000, 8192)] in 99.1s
+
+[2026-04-26 19:32:08] [probe] reach B ee_position L00: r2_mean=0.955 std=0.005 42.2s
+
+[2026-04-26 19:32:43] [probe] drawer B ee_direction L00: r2_mean=0.736 std=0.006 182.5s
+
+[2026-04-26 19:32:55] [probe] reach B ee_velocity L00: r2_mean=0.476 std=0.018 42.0s
+
+[2026-04-26 19:33:40] [probe] reach B ee_speed L00: r2_mean=0.928 std=0.022 40.2s
+
+[2026-04-26 19:34:01] [probe] reach B ee_direction L00: r2_mean=0.638 std=0.011 18.4s
+
+[2026-04-26 19:34:49] [probe] reach B ee_acceleration L00: r2_mean=0.219 std=0.016 42.2s
+
+[2026-04-26 19:35:34] [probe] reach B ee_accel_mag L00: r2_mean=0.455 std=0.025 40.4s
+
+[2026-04-26 19:36:07] [probe] drawer B ee_acceleration L00: r2_mean=0.534 std=0.009 182.3s
+
+[2026-04-26 19:37:12] [probe] reach B layer 20: loaded [(141000, 8192)] in 98.0s
+
+[2026-04-26 19:37:59] [probe] reach B ee_position L00: r2_mean=0.952 std=0.013 42.3s
+
+[2026-04-26 19:38:47] [probe] reach B ee_velocity L00: r2_mean=0.446 std=0.036 42.3s
+
+[2026-04-26 19:39:27] [probe] drawer B ee_accel_mag L00: r2_mean=0.796 std=0.010 177.4s
+
+[2026-04-26 19:39:32] [probe] reach B ee_speed L00: r2_mean=0.928 std=0.009 40.6s
+
+[2026-04-26 19:39:58] [probe] reach B ee_direction L00: r2_mean=0.636 std=0.014 23.6s
+
+[2026-04-26 19:40:46] [probe] reach B ee_acceleration L00: r2_mean=0.197 std=0.027 41.9s
+
+[2026-04-26 19:41:32] [probe] reach B ee_accel_mag L00: r2_mean=0.460 std=0.009 41.1s
+
+[2026-04-26 19:42:52] [probe] drawer B obj_position L00: r2_mean=0.980 std=0.004 182.4s
+
+[2026-04-26 19:43:13] [probe] reach B layer 21: loaded [(141000, 8192)] in 100.3s
+
+[2026-04-26 19:44:00] [probe] reach B ee_position L00: r2_mean=-10.191 std=10.953 42.1s
+
+[2026-04-26 19:44:49] [probe] reach B ee_velocity L00: r2_mean=-6.857 std=5.989 43.2s
+
+[2026-04-26 19:45:35] [probe] reach B ee_speed L00: r2_mean=0.210 std=0.395 41.0s
+
+[2026-04-26 19:46:02] [probe] reach B ee_direction L00: r2_mean=0.600 std=0.038 24.1s
+
+[2026-04-26 19:46:14] [probe] drawer B obj_velocity L00: r2_mean=0.915 std=0.003 178.8s
+
+[2026-04-26 19:46:51] [probe] reach B ee_acceleration L00: r2_mean=-5.385 std=4.358 43.2s
+
+[2026-04-26 19:47:38] [probe] reach B ee_accel_mag L00: r2_mean=-1.248 std=1.191 41.6s
+
+[2026-04-26 19:49:13] [probe] reach B layer 22: loaded [(141000, 8192)] in 94.4s
+
+[2026-04-26 19:49:59] [probe] drawer B obj_speed L00: r2_mean=0.869 std=0.056 200.5s
+
+[2026-04-26 19:50:00] [probe] reach B ee_position L00: r2_mean=-14.056 std=19.948 43.1s
+
+[2026-04-26 19:50:49] [probe] reach B ee_velocity L00: r2_mean=-8.743 std=4.388 44.0s
+
+[2026-04-26 19:51:02] [probe] drawer B obj_direction L00: r2_mean=0.500 std=0.006 52.1s
+
+[2026-04-26 19:51:36] [probe] reach B ee_speed L00: r2_mean=0.267 std=0.805 41.3s
+
+[2026-04-26 19:52:02] [probe] reach B ee_direction L00: r2_mean=-79.585 std=138.785 23.2s
+
+[2026-04-26 19:52:51] [probe] reach B ee_acceleration L00: r2_mean=-6.233 std=5.468 43.1s
+
+[2026-04-26 19:53:37] [probe] reach B ee_accel_mag L00: r2_mean=-0.077 std=0.341 40.7s
+
+[2026-04-26 19:54:37] [probe] drawer B obj_acceleration L00: r2_mean=0.459 std=0.008 189.5s
+
+[2026-04-26 19:55:12] [probe] reach B layer 23: loaded [(141000, 8192)] in 94.9s
+
+[2026-04-26 19:55:59] [probe] reach B ee_position L00: r2_mean=0.794 std=0.319 42.7s
+
+[2026-04-26 19:56:47] [probe] reach B ee_velocity L00: r2_mean=0.368 std=0.076 42.5s
+
+[2026-04-26 19:57:33] [probe] reach B ee_speed L00: r2_mean=0.924 std=0.005 41.3s
+
+[2026-04-26 19:58:00] [probe] reach B ee_direction L00: r2_mean=0.101 std=0.892 24.4s
+
+[2026-04-26 19:58:01] [probe] drawer B obj_accel_mag L00: r2_mean=0.558 std=0.007 181.7s
+
+[2026-04-26 19:58:51] [probe] reach B ee_acceleration L00: r2_mean=0.138 std=0.069 44.3s
+
+[2026-04-26 19:59:39] [probe] reach B ee_accel_mag L00: r2_mean=0.457 std=0.003 42.9s
+
+[2026-04-26 19:59:40] [probe] reach B DONE in 144.0min
+
+[2026-04-26 19:59:44] [probe] task=nut_thread variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=True
+
+[2026-04-26 20:03:28] [probe] drawer B layer 10: loaded [(560000, 8192)] in 324.5s
+
+[2026-04-26 20:03:29] [probe] nut_thread B layer 00: loaded [(322500, 8192)] in 225.5s
+
+[2026-04-26 20:05:12] [probe] nut_thread B ee_position L00: r2_mean=0.619 std=0.034 92.5s
+
+[2026-04-26 20:06:50] [probe] drawer B ee_position L00: r2_mean=0.970 std=0.009 182.6s
+
+[2026-04-26 20:06:58] [probe] nut_thread B ee_velocity L00: r2_mean=-0.015 std=0.008 93.2s
+
+[2026-04-26 20:08:38] [probe] nut_thread B ee_speed L00: r2_mean=0.009 std=0.002 88.6s
+
+[2026-04-26 20:10:14] [probe] drawer B ee_velocity L00: r2_mean=0.724 std=0.008 181.7s
+
+[2026-04-26 20:10:27] [probe] nut_thread B ee_direction L00: r2_mean=-0.079 std=0.128 93.6s
+
+[2026-04-26 20:12:13] [probe] nut_thread B ee_acceleration L00: r2_mean=-0.023 std=0.020 93.9s
+
+[2026-04-26 20:13:55] [probe] drawer B ee_speed L00: r2_mean=0.888 std=0.005 194.1s
+
+[2026-04-26 20:13:56] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.012 std=0.005 91.2s
+
+[2026-04-26 20:15:43] [probe] nut_thread B obj_position L00: r2_mean=0.623 std=0.034 94.9s
+
+[2026-04-26 20:17:21] [probe] drawer B ee_direction L00: r2_mean=0.744 std=0.007 182.9s
+
+[2026-04-26 20:17:31] [probe] nut_thread B obj_velocity L00: r2_mean=-0.013 std=0.002 94.7s
+
+[2026-04-26 20:19:14] [probe] nut_thread B obj_speed L00: r2_mean=-0.020 std=0.005 90.3s
+
+[2026-04-26 20:20:49] [probe] drawer B ee_acceleration L00: r2_mean=0.546 std=0.015 181.6s
+
+[2026-04-26 20:21:03] [probe] nut_thread B obj_direction L00: r2_mean=-0.025 std=0.018 94.0s
+
+[2026-04-26 20:22:51] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.060 std=0.087 95.3s
+
+[2026-04-26 20:24:05] [probe] drawer B ee_accel_mag L00: r2_mean=0.805 std=0.005 173.2s
+
+[2026-04-26 20:24:33] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.012 std=0.003 89.4s
+
+[2026-04-26 20:26:52] [probe] nut_thread B layer 01: loaded [(322500, 8192)] in 138.2s
+
+[2026-04-26 20:27:32] [probe] drawer B obj_position L00: r2_mean=0.969 std=0.019 184.4s
+
+[2026-04-26 20:28:39] [probe] nut_thread B ee_position L00: r2_mean=-1.063 std=3.403 96.5s
+
+[2026-04-26 20:30:32] [probe] nut_thread B ee_velocity L00: r2_mean=-0.286 std=0.263 100.4s
+
+[2026-04-26 20:30:54] [probe] drawer B obj_velocity L00: r2_mean=0.920 std=0.006 179.1s
+
+[2026-04-26 20:32:15] [probe] nut_thread B ee_speed L00: r2_mean=0.109 std=0.094 90.8s
+
+[2026-04-26 20:34:05] [probe] nut_thread B ee_direction L00: r2_mean=-1.847 std=1.438 93.8s
+
+[2026-04-26 20:34:10] [probe] drawer B obj_speed L00: r2_mean=0.876 std=0.042 172.2s
+
+[2026-04-26 20:35:11] [probe] drawer B obj_direction L00: r2_mean=0.503 std=0.005 52.2s
+
+[2026-04-26 20:35:55] [probe] nut_thread B ee_acceleration L00: r2_mean=-0.397 std=0.313 98.4s
+
+[2026-04-26 20:37:38] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.048 std=0.115 90.0s
+
+[2026-04-26 20:38:35] [probe] drawer B obj_acceleration L00: r2_mean=0.458 std=0.014 182.4s
+
+[2026-04-26 20:39:26] [probe] nut_thread B obj_position L00: r2_mean=-0.632 std=2.503 96.0s
+
+[2026-04-26 20:41:13] [probe] nut_thread B obj_velocity L00: r2_mean=-0.950 std=1.565 94.7s
+
+[2026-04-26 20:41:54] [probe] drawer B obj_accel_mag L00: r2_mean=0.567 std=0.012 175.7s
+
+[2026-04-26 20:42:56] [probe] nut_thread B obj_speed L00: r2_mean=-0.018 std=0.008 90.7s
+
+[2026-04-26 20:44:46] [probe] nut_thread B obj_direction L00: r2_mean=-1.109 std=1.199 94.5s
+
+[2026-04-26 20:46:35] [probe] nut_thread B obj_acceleration L00: r2_mean=-3.840 std=5.863 96.3s
+
+[2026-04-26 20:47:37] [probe] drawer B layer 11: loaded [(560000, 8192)] in 340.7s
+
+[2026-04-26 20:48:24] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.123 std=0.146 96.5s
+
+[2026-04-26 20:50:43] [probe] nut_thread B layer 02: loaded [(322500, 8192)] in 137.0s
+
+[2026-04-26 20:50:54] [probe] drawer B ee_position L00: r2_mean=0.971 std=0.011 177.9s
+
+[2026-04-26 20:52:26] [probe] nut_thread B ee_position L00: r2_mean=0.871 std=0.004 92.6s
+
+[2026-04-26 20:54:14] [probe] nut_thread B ee_velocity L00: r2_mean=0.053 std=0.010 96.1s
+
+[2026-04-26 20:54:16] [probe] drawer B ee_velocity L00: r2_mean=0.733 std=0.007 179.3s
+
+[2026-04-26 20:55:56] [probe] nut_thread B ee_speed L00: r2_mean=0.259 std=0.015 89.4s
+
+[2026-04-26 20:57:29] [probe] drawer B ee_speed L00: r2_mean=0.896 std=0.003 171.8s
+
+[2026-04-26 20:57:51] [probe] nut_thread B ee_direction L00: r2_mean=0.002 std=0.000 100.2s
+
+[2026-04-26 20:59:45] [probe] nut_thread B ee_acceleration L00: r2_mean=0.013 std=0.002 101.9s
+
+[2026-04-26 21:00:51] [probe] drawer B ee_direction L00: r2_mean=0.751 std=0.007 179.2s
+
+[2026-04-26 21:01:35] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.201 std=0.012 97.5s
+
+[2026-04-26 21:03:25] [probe] nut_thread B obj_position L00: r2_mean=0.872 std=0.004 97.6s
+
+[2026-04-26 21:04:31] [probe] drawer B ee_acceleration L00: r2_mean=0.571 std=0.007 194.5s
+
+[2026-04-26 21:05:14] [probe] nut_thread B obj_velocity L00: r2_mean=0.001 std=0.002 96.0s
+
+[2026-04-26 21:06:55] [probe] nut_thread B obj_speed L00: r2_mean=-0.015 std=0.009 89.3s
+
+[2026-04-26 21:07:54] [probe] drawer B ee_accel_mag L00: r2_mean=0.810 std=0.006 180.1s
+
+[2026-04-26 21:08:45] [probe] nut_thread B obj_direction L00: r2_mean=0.003 std=0.002 93.9s
+
+[2026-04-26 21:10:32] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.001 std=0.000 94.4s
+
+[2026-04-26 21:11:24] [probe] drawer B obj_position L00: r2_mean=0.979 std=0.013 185.1s
+
+[2026-04-26 21:12:13] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.021 std=0.013 89.1s
+
+[2026-04-26 21:14:53] [probe] drawer B obj_velocity L00: r2_mean=0.923 std=0.004 186.1s
+
+[2026-04-26 21:15:17] [probe] nut_thread B layer 03: loaded [(322500, 8192)] in 182.4s
+
+[2026-04-26 21:17:12] [probe] nut_thread B ee_position L00: r2_mean=0.911 std=0.002 104.3s
+
+[2026-04-26 21:18:11] [probe] drawer B obj_speed L00: r2_mean=0.900 std=0.007 176.2s
+
+[2026-04-26 21:19:05] [probe] nut_thread B ee_velocity L00: r2_mean=0.078 std=0.009 99.5s
+
+[2026-04-26 21:19:11] [probe] drawer B obj_direction L00: r2_mean=0.511 std=0.004 51.4s
+
+[2026-04-26 21:20:53] [probe] nut_thread B ee_speed L00: r2_mean=0.301 std=0.020 95.5s
+
+[2026-04-26 21:22:36] [probe] drawer B obj_acceleration L00: r2_mean=0.484 std=0.014 183.6s
+
+[2026-04-26 21:23:00] [probe] nut_thread B ee_direction L00: r2_mean=0.003 std=0.001 108.2s
+
+[2026-04-26 21:24:56] [probe] nut_thread B ee_acceleration L00: r2_mean=0.021 std=0.003 102.5s
+
+[2026-04-26 21:25:53] [probe] drawer B obj_accel_mag L00: r2_mean=0.583 std=0.007 174.4s
+
+[2026-04-26 21:26:44] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.232 std=0.016 94.6s
+
+[2026-04-26 21:28:32] [probe] nut_thread B obj_position L00: r2_mean=0.911 std=0.003 96.1s
+
+[2026-04-26 21:30:18] [probe] nut_thread B obj_velocity L00: r2_mean=0.003 std=0.002 93.8s
+
+[2026-04-26 21:31:19] [probe] drawer B layer 12: loaded [(560000, 8192)] in 323.5s
+
+[2026-04-26 21:31:59] [probe] nut_thread B obj_speed L00: r2_mean=-0.005 std=0.008 88.6s
+
+[2026-04-26 21:33:46] [probe] nut_thread B obj_direction L00: r2_mean=0.003 std=0.002 92.2s
+
+[2026-04-26 21:34:34] [probe] drawer B ee_position L00: r2_mean=0.970 std=0.015 176.6s
+
+[2026-04-26 21:35:32] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.000 std=0.000 93.2s
+
+[2026-04-26 21:37:12] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.011 std=0.005 87.8s
+
+[2026-04-26 21:37:52] [probe] drawer B ee_velocity L00: r2_mean=0.744 std=0.009 177.7s
+
+[2026-04-26 21:40:12] [probe] nut_thread B layer 04: loaded [(322500, 8192)] in 179.5s
+
+[2026-04-26 21:41:04] [probe] drawer B ee_speed L00: r2_mean=0.900 std=0.006 171.1s
+
+[2026-04-26 21:41:55] [probe] nut_thread B ee_position L00: r2_mean=0.929 std=0.003 91.7s
+
+[2026-04-26 21:43:36] [probe] nut_thread B ee_velocity L00: r2_mean=0.175 std=0.009 90.6s
+
+[2026-04-26 21:44:23] [probe] drawer B ee_direction L00: r2_mean=0.755 std=0.007 177.5s
+
+[2026-04-26 21:45:17] [probe] nut_thread B ee_speed L00: r2_mean=0.346 std=0.017 88.0s
+
+[2026-04-26 21:47:04] [probe] nut_thread B ee_direction L00: r2_mean=0.010 std=0.001 93.0s
+
+[2026-04-26 21:47:47] [probe] drawer B ee_acceleration L00: r2_mean=0.577 std=0.013 181.3s
+
+[2026-04-26 21:48:50] [probe] nut_thread B ee_acceleration L00: r2_mean=0.038 std=0.003 93.7s
+
+[2026-04-26 21:50:31] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.274 std=0.014 88.3s
+
+[2026-04-26 21:51:06] [probe] drawer B ee_accel_mag L00: r2_mean=0.815 std=0.005 176.7s
+
+[2026-04-26 21:52:18] [probe] nut_thread B obj_position L00: r2_mean=0.928 std=0.004 94.8s
+
+[2026-04-26 21:54:04] [probe] nut_thread B obj_velocity L00: r2_mean=0.011 std=0.002 93.5s
+
+[2026-04-26 21:54:33] [probe] drawer B obj_position L00: r2_mean=0.978 std=0.018 183.9s
+
+[2026-04-26 21:55:45] [probe] nut_thread B obj_speed L00: r2_mean=-0.022 std=0.026 88.8s
+
+[2026-04-26 21:57:33] [probe] nut_thread B obj_direction L00: r2_mean=0.010 std=0.002 92.6s
+
+[2026-04-26 21:57:58] [probe] drawer B obj_velocity L00: r2_mean=0.924 std=0.003 182.7s
+
+[2026-04-26 21:59:21] [probe] nut_thread B obj_acceleration L00: r2_mean=0.002 std=0.000 95.3s
+
+[2026-04-26 22:01:02] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.031 std=0.023 88.5s
+
+[2026-04-26 22:01:17] [probe] drawer B obj_speed L00: r2_mean=0.905 std=0.041 177.3s
+
+[2026-04-26 22:02:18] [probe] drawer B obj_direction L00: r2_mean=0.511 std=0.003 52.1s
+
+[2026-04-26 22:04:04] [probe] nut_thread B layer 05: loaded [(322500, 8192)] in 181.6s
+
+[2026-04-26 22:05:43] [probe] drawer B obj_acceleration L00: r2_mean=0.489 std=0.012 183.0s
+
+[2026-04-26 22:05:50] [probe] nut_thread B ee_position L00: r2_mean=0.948 std=0.003 94.8s
+
+[2026-04-26 22:07:46] [probe] nut_thread B ee_velocity L00: r2_mean=0.205 std=0.010 103.6s
+
+[2026-04-26 22:09:01] [probe] drawer B obj_accel_mag L00: r2_mean=0.587 std=0.011 176.1s
+
+[2026-04-26 22:09:45] [probe] nut_thread B ee_speed L00: r2_mean=0.362 std=0.038 102.2s
+
+[2026-04-26 22:11:45] [probe] nut_thread B ee_direction L00: r2_mean=0.013 std=0.001 103.1s
+
+[2026-04-26 22:13:46] [probe] nut_thread B ee_acceleration L00: r2_mean=0.045 std=0.003 106.6s
+
+[2026-04-26 22:14:34] [probe] drawer B layer 13: loaded [(560000, 8192)] in 330.8s
+
+[2026-04-26 22:15:38] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.281 std=0.033 98.5s
+
+[2026-04-26 22:17:28] [probe] nut_thread B obj_position L00: r2_mean=0.948 std=0.003 97.3s
+
+[2026-04-26 22:18:09] [probe] drawer B ee_position L00: r2_mean=0.977 std=0.007 195.7s
+
+[2026-04-26 22:19:18] [probe] nut_thread B obj_velocity L00: r2_mean=0.015 std=0.002 96.0s
+
+[2026-04-26 22:21:00] [probe] nut_thread B obj_speed L00: r2_mean=-0.011 std=0.027 89.2s
+
+[2026-04-26 22:21:39] [probe] drawer B ee_velocity L00: r2_mean=0.743 std=0.010 187.4s
+
+[2026-04-26 22:22:58] [probe] nut_thread B obj_direction L00: r2_mean=0.014 std=0.002 102.5s
+
+[2026-04-26 22:24:54] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.000 102.3s
+
+[2026-04-26 22:24:59] [probe] drawer B ee_speed L00: r2_mean=0.897 std=0.013 176.0s
+
+[2026-04-26 22:26:43] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.020 std=0.023 95.2s
+
+[2026-04-26 22:28:55] [probe] drawer B ee_direction L00: r2_mean=0.750 std=0.004 214.1s
+
+[2026-04-26 22:29:51] [probe] nut_thread B layer 06: loaded [(322500, 8192)] in 186.4s
+
+[2026-04-26 22:31:34] [probe] nut_thread B ee_position L00: r2_mean=0.962 std=0.001 91.7s
+
+[2026-04-26 22:32:24] [probe] drawer B ee_acceleration L00: r2_mean=0.587 std=0.007 186.4s
+
+[2026-04-26 22:33:19] [probe] nut_thread B ee_velocity L00: r2_mean=0.210 std=0.014 93.9s
+
+[2026-04-26 22:34:58] [probe] nut_thread B ee_speed L00: r2_mean=0.403 std=0.017 86.1s
+
+[2026-04-26 22:35:42] [probe] drawer B ee_accel_mag L00: r2_mean=0.812 std=0.009 175.0s
+
+[2026-04-26 22:36:48] [probe] nut_thread B ee_direction L00: r2_mean=0.013 std=0.001 95.0s
+
+[2026-04-26 22:38:36] [probe] nut_thread B ee_acceleration L00: r2_mean=0.049 std=0.005 95.9s
+
+[2026-04-26 22:39:12] [probe] drawer B obj_position L00: r2_mean=0.982 std=0.008 187.7s
+
+[2026-04-26 22:40:18] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.312 std=0.012 89.0s
+
+[2026-04-26 22:42:05] [probe] nut_thread B obj_position L00: r2_mean=0.962 std=0.001 94.6s
+
+[2026-04-26 22:42:44] [probe] drawer B obj_velocity L00: r2_mean=0.929 std=0.003 188.1s
+
+[2026-04-26 22:43:51] [probe] nut_thread B obj_velocity L00: r2_mean=0.015 std=0.002 93.7s
+
+[2026-04-26 22:45:32] [probe] nut_thread B obj_speed L00: r2_mean=0.008 std=0.007 88.2s
+
+[2026-04-26 22:46:06] [probe] drawer B obj_speed L00: r2_mean=0.901 std=0.037 179.5s
+
+[2026-04-26 22:47:08] [probe] drawer B obj_direction L00: r2_mean=0.511 std=0.004 51.6s
+
+[2026-04-26 22:47:28] [probe] nut_thread B obj_direction L00: r2_mean=0.013 std=0.002 99.0s
+
+[2026-04-26 22:49:18] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.000 97.4s
+
+[2026-04-26 22:50:35] [probe] drawer B obj_acceleration L00: r2_mean=0.492 std=0.010 184.9s
+
+[2026-04-26 22:51:01] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.004 std=0.007 89.6s
+
+[2026-04-26 22:53:57] [probe] nut_thread B layer 07: loaded [(322500, 8192)] in 175.6s
+
+[2026-04-26 22:54:02] [probe] drawer B obj_accel_mag L00: r2_mean=0.588 std=0.013 185.4s
+
+[2026-04-26 22:55:48] [probe] nut_thread B ee_position L00: r2_mean=0.971 std=0.001 97.5s
+
+[2026-04-26 22:57:38] [probe] nut_thread B ee_velocity L00: r2_mean=0.206 std=0.014 96.7s
+
+[2026-04-26 22:59:22] [probe] nut_thread B ee_speed L00: r2_mean=0.405 std=0.017 90.8s
+
+[2026-04-26 22:59:33] [probe] drawer B layer 14: loaded [(560000, 8192)] in 328.9s
+
+[2026-04-26 23:01:12] [probe] nut_thread B ee_direction L00: r2_mean=0.013 std=0.001 94.5s
+
+[2026-04-26 23:02:55] [probe] drawer B ee_position L00: r2_mean=0.979 std=0.008 183.0s
+
+[2026-04-26 23:03:02] [probe] nut_thread B ee_acceleration L00: r2_mean=0.054 std=0.005 96.7s
+
+[2026-04-26 23:04:45] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.319 std=0.015 89.8s
+
+[2026-04-26 23:06:17] [probe] drawer B ee_velocity L00: r2_mean=0.746 std=0.006 178.9s
+
+[2026-04-26 23:06:31] [probe] nut_thread B obj_position L00: r2_mean=0.971 std=0.001 93.7s
+
+[2026-04-26 23:08:17] [probe] nut_thread B obj_velocity L00: r2_mean=0.015 std=0.002 92.9s
+
+[2026-04-26 23:09:33] [probe] drawer B ee_speed L00: r2_mean=0.902 std=0.005 173.5s
+
+[2026-04-26 23:09:58] [probe] nut_thread B obj_speed L00: r2_mean=0.013 std=0.007 88.7s
+
+[2026-04-26 23:11:45] [probe] nut_thread B obj_direction L00: r2_mean=0.013 std=0.004 91.4s
+
+[2026-04-26 23:13:06] [probe] drawer B ee_direction L00: r2_mean=0.754 std=0.007 192.1s
+
+[2026-04-26 23:13:32] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.001 94.0s
+
+[2026-04-26 23:15:14] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.001 std=0.004 89.0s
+
+[2026-04-26 23:17:17] [probe] drawer B ee_acceleration L00: r2_mean=0.581 std=0.014 225.3s
+
+[2026-04-26 23:18:12] [probe] nut_thread B layer 08: loaded [(322500, 8192)] in 176.6s
+
+[2026-04-26 23:19:57] [probe] nut_thread B ee_position L00: r2_mean=0.383 std=0.585 93.8s
+
+[2026-04-26 23:20:57] [probe] drawer B ee_accel_mag L00: r2_mean=0.813 std=0.022 196.0s
+
+[2026-04-26 23:21:44] [probe] nut_thread B ee_velocity L00: r2_mean=-2.873 std=4.783 94.7s
+
+[2026-04-26 23:23:28] [probe] nut_thread B ee_speed L00: r2_mean=0.013 std=0.319 91.3s
+
+[2026-04-26 23:24:33] [probe] drawer B obj_position L00: r2_mean=0.979 std=0.008 190.7s
+
+[2026-04-26 23:25:20] [probe] nut_thread B ee_direction L00: r2_mean=-8.371 std=9.511 96.7s
+
+[2026-04-26 23:27:11] [probe] nut_thread B ee_acceleration L00: r2_mean=-9.222 std=9.495 98.0s
+
+[2026-04-26 23:28:18] [probe] drawer B obj_velocity L00: r2_mean=0.932 std=0.003 202.4s
+
+[2026-04-26 23:28:56] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.180 std=0.199 91.1s
+
+[2026-04-26 23:30:43] [probe] nut_thread B obj_position L00: r2_mean=-0.105 std=1.412 93.7s
+
+[2026-04-26 23:31:56] [probe] drawer B obj_speed L00: r2_mean=0.905 std=0.055 194.4s
+
+[2026-04-26 23:32:33] [probe] nut_thread B obj_velocity L00: r2_mean=-3.797 std=3.211 97.0s
+
+[2026-04-26 23:32:57] [probe] drawer B obj_direction L00: r2_mean=0.505 std=0.003 50.0s
+
+[2026-04-26 23:34:15] [probe] nut_thread B obj_speed L00: r2_mean=-0.167 std=0.186 89.4s
+
+[2026-04-26 23:36:05] [probe] nut_thread B obj_direction L00: r2_mean=-3.813 std=3.886 94.2s
+
+[2026-04-26 23:36:22] [probe] drawer B obj_acceleration L00: r2_mean=0.498 std=0.010 183.3s
+
+[2026-04-26 23:38:01] [probe] nut_thread B obj_acceleration L00: r2_mean=-6.687 std=5.706 102.1s
+
+[2026-04-26 23:39:47] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.430 std=0.332 93.1s
+
+[2026-04-26 23:39:57] [probe] drawer B obj_accel_mag L00: r2_mean=0.594 std=0.012 190.7s
+
+[2026-04-26 23:42:49] [probe] nut_thread B layer 09: loaded [(322500, 8192)] in 181.1s
+
+[2026-04-26 23:44:43] [probe] nut_thread B ee_position L00: r2_mean=0.866 std=0.165 101.0s
+
+[2026-04-26 23:45:29] [probe] drawer B layer 15: loaded [(560000, 8192)] in 329.4s
+
+[2026-04-26 23:46:34] [probe] nut_thread B ee_velocity L00: r2_mean=-0.831 std=2.041 97.6s
+
+[2026-04-26 23:48:16] [probe] nut_thread B ee_speed L00: r2_mean=0.454 std=0.018 89.1s
+
+[2026-04-26 23:49:08] [probe] drawer B ee_position L00: r2_mean=0.979 std=0.007 199.5s
+
+[2026-04-26 23:50:06] [probe] nut_thread B ee_direction L00: r2_mean=-0.056 std=0.107 94.6s
+
+[2026-04-26 23:51:55] [probe] nut_thread B ee_acceleration L00: r2_mean=0.034 std=0.019 95.4s
+
+[2026-04-26 23:52:54] [probe] drawer B ee_velocity L00: r2_mean=0.751 std=0.005 203.6s
+
+[2026-04-26 23:53:38] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.355 std=0.015 90.5s
+
+[2026-04-26 23:55:29] [probe] nut_thread B obj_position L00: r2_mean=0.869 std=0.151 97.6s
+
+[2026-04-26 23:56:36] [probe] drawer B ee_speed L00: r2_mean=0.905 std=0.002 200.4s
+
+[2026-04-26 23:57:21] [probe] nut_thread B obj_velocity L00: r2_mean=-0.651 std=1.307 98.7s
+
+[2026-04-26 23:59:07] [probe] nut_thread B obj_speed L00: r2_mean=0.005 std=0.007 92.9s
+
+[2026-04-27 00:00:33] [probe] drawer B ee_direction L00: r2_mean=0.760 std=0.008 213.2s
+
+[2026-04-27 00:01:00] [probe] nut_thread B obj_direction L00: r2_mean=-0.053 std=0.116 96.8s
+
+[2026-04-27 00:02:51] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.737 std=0.913 96.8s
+
+[2026-04-27 00:04:18] [probe] drawer B ee_acceleration L00: r2_mean=0.589 std=0.011 197.4s
+
+[2026-04-27 00:04:35] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.004 std=0.008 90.7s
+
+[2026-04-27 00:07:36] [probe] nut_thread B layer 10: loaded [(322500, 8192)] in 180.1s
+
+[2026-04-27 00:08:13] [probe] drawer B ee_accel_mag L00: r2_mean=0.820 std=0.009 210.4s
+
+[2026-04-27 00:09:20] [probe] nut_thread B ee_position L00: r2_mean=-2.319 std=4.026 92.9s
+
+[2026-04-27 00:11:01] [probe] nut_thread B ee_velocity L00: r2_mean=-15.618 std=20.775 89.9s
+
+[2026-04-27 00:11:54] [probe] drawer B obj_position L00: r2_mean=0.985 std=0.009 193.6s
+
+[2026-04-27 00:12:46] [probe] nut_thread B ee_speed L00: r2_mean=0.342 std=0.112 92.2s
+
+[2026-04-27 00:14:41] [probe] nut_thread B ee_direction L00: r2_mean=-2.562 std=1.741 99.9s
+
+[2026-04-27 00:15:41] [probe] drawer B obj_velocity L00: r2_mean=0.939 std=0.003 199.8s
+
+[2026-04-27 00:16:32] [probe] nut_thread B ee_acceleration L00: r2_mean=-28.350 std=46.256 97.6s
+
+[2026-04-27 00:18:15] [probe] nut_thread B ee_accel_mag L00: r2_mean=-0.321 std=0.739 89.8s
+
+[2026-04-27 00:19:16] [probe] drawer B obj_speed L00: r2_mean=0.924 std=0.040 192.8s
+
+[2026-04-27 00:20:03] [probe] nut_thread B obj_position L00: r2_mean=-3.849 std=5.174 95.2s
+
+[2026-04-27 00:20:20] [probe] drawer B obj_direction L00: r2_mean=0.506 std=0.005 54.4s
+
+[2026-04-27 00:21:53] [probe] nut_thread B obj_velocity L00: r2_mean=-8.220 std=4.617 96.4s
+
+[2026-04-27 00:23:36] [probe] nut_thread B obj_speed L00: r2_mean=-0.378 std=0.495 89.5s
+
+[2026-04-27 00:24:20] [probe] drawer B obj_acceleration L00: r2_mean=0.491 std=0.007 218.2s
+
+[2026-04-27 00:25:26] [probe] nut_thread B obj_direction L00: r2_mean=-2.431 std=1.797 94.0s
+
+[2026-04-27 00:27:16] [probe] nut_thread B obj_acceleration L00: r2_mean=-19.169 std=33.966 97.0s
+
+[2026-04-27 00:27:56] [probe] drawer B obj_accel_mag L00: r2_mean=0.598 std=0.008 192.2s
+
+[2026-04-27 00:29:01] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.198 std=0.129 91.7s
+
+[2026-04-27 00:32:03] [probe] nut_thread B layer 11: loaded [(322500, 8192)] in 181.2s
+
+[2026-04-27 00:33:23] [probe] drawer B layer 16: loaded [(560000, 8192)] in 325.4s
+
+[2026-04-27 00:33:47] [probe] nut_thread B ee_position L00: r2_mean=0.035 std=0.969 92.1s
+
+[2026-04-27 00:35:31] [probe] nut_thread B ee_velocity L00: r2_mean=-8.012 std=8.611 92.2s
+
+[2026-04-27 00:36:50] [probe] drawer B ee_position L00: r2_mean=0.973 std=0.013 187.8s
+
+[2026-04-27 00:37:09] [probe] nut_thread B ee_speed L00: r2_mean=0.379 std=0.080 86.0s
+
+[2026-04-27 00:38:56] [probe] nut_thread B ee_direction L00: r2_mean=-3.524 std=1.814 91.0s
+
+[2026-04-27 00:40:18] [probe] drawer B ee_velocity L00: r2_mean=0.757 std=0.007 185.7s
+
+[2026-04-27 00:40:40] [probe] nut_thread B ee_acceleration L00: r2_mean=-5.894 std=4.220 92.4s
+
+[2026-04-27 00:42:23] [probe] nut_thread B ee_accel_mag L00: r2_mean=-0.024 std=0.354 89.2s
+
+[2026-04-27 00:43:52] [probe] drawer B ee_speed L00: r2_mean=0.902 std=0.006 190.7s
+
+[2026-04-27 00:44:10] [probe] nut_thread B obj_position L00: r2_mean=-1.074 std=2.678 94.6s
+
+[2026-04-27 00:45:56] [probe] nut_thread B obj_velocity L00: r2_mean=-2.179 std=1.339 92.1s
+
+[2026-04-27 00:47:20] [probe] drawer B ee_direction L00: r2_mean=0.755 std=0.006 185.9s
+
+[2026-04-27 00:47:40] [probe] nut_thread B obj_speed L00: r2_mean=-0.089 std=0.081 91.3s
+
+[2026-04-27 00:49:29] [probe] nut_thread B obj_direction L00: r2_mean=-4.288 std=2.827 92.8s
+
+[2026-04-27 00:50:56] [probe] drawer B ee_acceleration L00: r2_mean=0.591 std=0.004 192.6s
+
+[2026-04-27 00:51:18] [probe] nut_thread B obj_acceleration L00: r2_mean=-8.513 std=7.868 95.9s
+
+[2026-04-27 00:53:02] [probe] nut_thread B obj_accel_mag L00: r2_mean=-0.150 std=0.225 89.9s
+
+[2026-04-27 00:54:47] [probe] drawer B ee_accel_mag L00: r2_mean=0.814 std=0.018 206.4s
+
+[2026-04-27 00:56:04] [probe] nut_thread B layer 12: loaded [(322500, 8192)] in 181.1s
+
+[2026-04-27 00:57:46] [probe] nut_thread B ee_position L00: r2_mean=0.978 std=0.002 91.0s
+
+[2026-04-27 00:58:25] [probe] drawer B obj_position L00: r2_mean=0.970 std=0.011 194.3s
+
+[2026-04-27 00:59:32] [probe] nut_thread B ee_velocity L00: r2_mean=0.195 std=0.022 94.3s
+
+[2026-04-27 01:01:18] [probe] nut_thread B ee_speed L00: r2_mean=0.464 std=0.019 93.5s
+
+[2026-04-27 01:02:19] [probe] drawer B obj_velocity L00: r2_mean=0.942 std=0.002 208.9s
+
+[2026-04-27 01:03:13] [probe] nut_thread B ee_direction L00: r2_mean=0.012 std=0.003 98.8s
+
+[2026-04-27 01:05:02] [probe] nut_thread B ee_acceleration L00: r2_mean=0.059 std=0.011 95.3s
+
+[2026-04-27 01:05:58] [probe] drawer B obj_speed L00: r2_mean=0.936 std=0.011 195.1s
+
+[2026-04-27 01:06:46] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.358 std=0.016 90.6s
+
+[2026-04-27 01:07:00] [probe] drawer B obj_direction L00: r2_mean=0.505 std=0.006 51.5s
+
+[2026-04-27 01:08:34] [probe] nut_thread B obj_position L00: r2_mean=0.978 std=0.002 94.8s
+
+[2026-04-27 01:10:22] [probe] nut_thread B obj_velocity L00: r2_mean=0.013 std=0.004 94.8s
+
+[2026-04-27 01:10:23] [probe] drawer B obj_acceleration L00: r2_mean=0.501 std=0.013 180.9s
+
+[2026-04-27 01:12:09] [probe] nut_thread B obj_speed L00: r2_mean=0.021 std=0.006 93.0s
+
+[2026-04-27 01:13:51] [probe] drawer B obj_accel_mag L00: r2_mean=0.598 std=0.008 184.3s
+
+[2026-04-27 01:14:02] [probe] nut_thread B obj_direction L00: r2_mean=0.014 std=0.004 96.4s
+
+[2026-04-27 01:15:57] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.050 std=0.100 101.0s
+
+[2026-04-27 01:17:44] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.005 std=0.006 93.9s
+
+[2026-04-27 01:19:21] [probe] drawer B layer 17: loaded [(560000, 8192)] in 328.5s
+
+[2026-04-27 01:20:45] [probe] nut_thread B layer 13: loaded [(322500, 8192)] in 179.7s
+
+[2026-04-27 01:22:27] [probe] nut_thread B ee_position L00: r2_mean=0.978 std=0.003 90.6s
+
+[2026-04-27 01:22:41] [probe] drawer B ee_position L00: r2_mean=0.980 std=0.006 179.8s
+
+[2026-04-27 01:24:14] [probe] nut_thread B ee_velocity L00: r2_mean=0.161 std=0.045 93.8s
+
+[2026-04-27 01:25:51] [probe] nut_thread B ee_speed L00: r2_mean=0.464 std=0.018 85.6s
+
+[2026-04-27 01:26:06] [probe] drawer B ee_velocity L00: r2_mean=0.760 std=0.004 183.9s
+
+[2026-04-27 01:27:38] [probe] nut_thread B ee_direction L00: r2_mean=0.001 std=0.016 92.7s
+
+[2026-04-27 01:29:24] [probe] nut_thread B ee_acceleration L00: r2_mean=0.042 std=0.025 92.5s
+
+[2026-04-27 01:29:37] [probe] drawer B ee_speed L00: r2_mean=0.900 std=0.013 188.3s
+
+[2026-04-27 01:31:06] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.360 std=0.016 90.6s
+
+[2026-04-27 01:32:56] [probe] nut_thread B obj_position L00: r2_mean=0.978 std=0.003 96.7s
+
+[2026-04-27 01:33:31] [probe] drawer B ee_direction L00: r2_mean=0.764 std=0.007 210.2s
+
+[2026-04-27 01:34:45] [probe] nut_thread B obj_velocity L00: r2_mean=-0.014 std=0.032 95.9s
+
+[2026-04-27 01:36:27] [probe] nut_thread B obj_speed L00: r2_mean=0.026 std=0.004 89.6s
+
+[2026-04-27 01:37:13] [probe] drawer B ee_acceleration L00: r2_mean=0.588 std=0.015 197.1s
+
+[2026-04-27 01:38:15] [probe] nut_thread B obj_direction L00: r2_mean=0.006 std=0.014 92.4s
+
+[2026-04-27 01:40:03] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.030 std=0.055 95.6s
+
+[2026-04-27 01:40:54] [probe] drawer B ee_accel_mag L00: r2_mean=0.825 std=0.005 197.8s
+
+[2026-04-27 01:41:50] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.011 std=0.004 93.3s
+
+[2026-04-27 01:44:44] [probe] drawer B obj_position L00: r2_mean=0.978 std=0.013 206.6s
+
+[2026-04-27 01:44:49] [probe] nut_thread B layer 14: loaded [(322500, 8192)] in 178.5s
+
+[2026-04-27 01:46:32] [probe] nut_thread B ee_position L00: r2_mean=0.977 std=0.005 91.8s
+
+[2026-04-27 01:48:16] [probe] nut_thread B ee_velocity L00: r2_mean=0.193 std=0.035 91.5s
+
+[2026-04-27 01:48:31] [probe] drawer B obj_velocity L00: r2_mean=0.946 std=0.002 204.6s
+
+[2026-04-27 01:49:59] [probe] nut_thread B ee_speed L00: r2_mean=0.467 std=0.020 90.1s
+
+[2026-04-27 01:51:49] [probe] nut_thread B ee_direction L00: r2_mean=0.014 std=0.002 94.1s
+
+[2026-04-27 01:52:00] [probe] drawer B obj_speed L00: r2_mean=0.912 std=0.045 185.4s
+
+[2026-04-27 01:53:03] [probe] drawer B obj_direction L00: r2_mean=0.508 std=0.005 54.1s
+
+[2026-04-27 01:53:40] [probe] nut_thread B ee_acceleration L00: r2_mean=0.060 std=0.014 96.8s
+
+[2026-04-27 01:55:23] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.364 std=0.013 89.8s
+
+[2026-04-27 01:56:47] [probe] drawer B obj_acceleration L00: r2_mean=0.506 std=0.007 198.1s
+
+[2026-04-27 01:57:10] [probe] nut_thread B obj_position L00: r2_mean=0.971 std=0.017 93.4s
+
+[2026-04-27 01:58:56] [probe] nut_thread B obj_velocity L00: r2_mean=0.014 std=0.004 92.7s
+
+[2026-04-27 02:00:19] [probe] drawer B obj_accel_mag L00: r2_mean=0.592 std=0.027 188.2s
+
+[2026-04-27 02:00:37] [probe] nut_thread B obj_speed L00: r2_mean=0.031 std=0.002 88.3s
+
+[2026-04-27 02:02:26] [probe] nut_thread B obj_direction L00: r2_mean=0.013 std=0.007 93.3s
+
+[2026-04-27 02:04:15] [probe] nut_thread B obj_acceleration L00: r2_mean=0.002 std=0.001 95.6s
+
+[2026-04-27 02:05:48] [probe] drawer B layer 18: loaded [(560000, 8192)] in 327.1s
+
+[2026-04-27 02:06:00] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.016 std=0.002 91.0s
+
+[2026-04-27 02:09:00] [probe] nut_thread B layer 15: loaded [(322500, 8192)] in 178.7s
+
+[2026-04-27 02:09:21] [probe] drawer B ee_position L00: r2_mean=0.971 std=0.019 190.8s
+
+[2026-04-27 02:10:46] [probe] nut_thread B ee_position L00: r2_mean=0.980 std=0.003 94.8s
+
+[2026-04-27 02:12:30] [probe] nut_thread B ee_velocity L00: r2_mean=0.230 std=0.019 92.7s
+
+[2026-04-27 02:13:16] [probe] drawer B ee_velocity L00: r2_mean=0.762 std=0.004 206.4s
+
+[2026-04-27 02:14:11] [probe] nut_thread B ee_speed L00: r2_mean=0.493 std=0.017 88.1s
+
+[2026-04-27 02:15:57] [probe] nut_thread B ee_direction L00: r2_mean=0.016 std=0.002 90.3s
+
+[2026-04-27 02:16:44] [probe] drawer B ee_speed L00: r2_mean=0.906 std=0.004 184.9s
+
+[2026-04-27 02:17:44] [probe] nut_thread B ee_acceleration L00: r2_mean=0.069 std=0.007 93.6s
+
+[2026-04-27 02:19:26] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.373 std=0.014 89.8s
+
+[2026-04-27 02:20:27] [probe] drawer B ee_direction L00: r2_mean=0.764 std=0.005 194.6s
+
+[2026-04-27 02:21:19] [probe] nut_thread B obj_position L00: r2_mean=0.980 std=0.002 99.0s
+
+[2026-04-27 02:23:06] [probe] nut_thread B obj_velocity L00: r2_mean=-0.017 std=0.072 94.1s
+
+[2026-04-27 02:24:07] [probe] drawer B ee_acceleration L00: r2_mean=0.588 std=0.007 196.5s
+
+[2026-04-27 02:24:50] [probe] nut_thread B obj_speed L00: r2_mean=0.036 std=0.004 90.7s
+
+[2026-04-27 02:26:40] [probe] nut_thread B obj_direction L00: r2_mean=-0.022 std=0.080 94.0s
+
+[2026-04-27 02:27:49] [probe] drawer B ee_accel_mag L00: r2_mean=0.827 std=0.004 198.4s
+
+[2026-04-27 02:28:30] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.003 95.4s
+
+[2026-04-27 02:30:11] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.018 std=0.002 88.0s
+
+[2026-04-27 02:31:27] [probe] drawer B obj_position L00: r2_mean=0.971 std=0.009 194.8s
+
+[2026-04-27 02:33:12] [probe] nut_thread B layer 16: loaded [(322500, 8192)] in 179.8s
+
+[2026-04-27 02:34:54] [probe] nut_thread B ee_position L00: r2_mean=0.982 std=0.001 91.7s
+
+[2026-04-27 02:34:56] [probe] drawer B obj_velocity L00: r2_mean=0.945 std=0.003 185.9s
+
+[2026-04-27 02:36:38] [probe] nut_thread B ee_velocity L00: r2_mean=0.237 std=0.016 91.7s
+
+[2026-04-27 02:38:18] [probe] nut_thread B ee_speed L00: r2_mean=0.493 std=0.018 88.6s
+
+[2026-04-27 02:38:22] [probe] drawer B obj_speed L00: r2_mean=0.917 std=0.054 183.6s
+
+[2026-04-27 02:39:21] [probe] drawer B obj_direction L00: r2_mean=0.508 std=0.006 51.1s
+
+[2026-04-27 02:40:06] [probe] nut_thread B ee_direction L00: r2_mean=0.016 std=0.003 92.0s
+
+[2026-04-27 02:41:56] [probe] nut_thread B ee_acceleration L00: r2_mean=0.071 std=0.005 96.3s
+
+[2026-04-27 02:42:43] [probe] drawer B obj_acceleration L00: r2_mean=0.500 std=0.005 180.6s
+
+[2026-04-27 02:43:40] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.369 std=0.016 90.7s
+
+[2026-04-27 02:45:28] [probe] nut_thread B obj_position L00: r2_mean=0.982 std=0.001 95.5s
+
+[2026-04-27 02:46:30] [probe] drawer B obj_accel_mag L00: r2_mean=0.604 std=0.009 204.4s
+
+[2026-04-27 02:47:21] [probe] nut_thread B obj_velocity L00: r2_mean=0.022 std=0.002 99.6s
+
+[2026-04-27 02:49:07] [probe] nut_thread B obj_speed L00: r2_mean=0.032 std=0.011 93.2s
+
+[2026-04-27 02:50:58] [probe] nut_thread B obj_direction L00: r2_mean=0.011 std=0.016 94.8s
+
+[2026-04-27 02:51:56] [probe] drawer B layer 19: loaded [(560000, 8192)] in 323.5s
+
+[2026-04-27 02:52:48] [probe] nut_thread B obj_acceleration L00: r2_mean=0.001 std=0.002 96.1s
+
+[2026-04-27 02:54:34] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.015 std=0.008 93.4s
+
+[2026-04-27 02:55:56] [probe] drawer B ee_position L00: r2_mean=0.977 std=0.009 219.6s
+
+[2026-04-27 02:57:30] [probe] nut_thread B layer 17: loaded [(322500, 8192)] in 174.9s
+
+[2026-04-27 02:59:12] [probe] nut_thread B ee_position L00: r2_mean=0.983 std=0.001 90.9s
+
+[2026-04-27 02:59:37] [probe] drawer B ee_velocity L00: r2_mean=0.769 std=0.004 198.2s
+
+[2026-04-27 03:00:56] [probe] nut_thread B ee_velocity L00: r2_mean=0.254 std=0.015 92.2s
+
+[2026-04-27 03:02:35] [probe] nut_thread B ee_speed L00: r2_mean=0.502 std=0.019 86.2s
+
+[2026-04-27 03:03:16] [probe] drawer B ee_speed L00: r2_mean=0.906 std=0.007 196.3s
+
+[2026-04-27 03:04:21] [probe] nut_thread B ee_direction L00: r2_mean=0.019 std=0.001 91.3s
+
+[2026-04-27 03:06:09] [probe] nut_thread B ee_acceleration L00: r2_mean=0.057 std=0.039 94.4s
+
+[2026-04-27 03:06:57] [probe] drawer B ee_direction L00: r2_mean=0.767 std=0.006 198.0s
+
+[2026-04-27 03:07:49] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.380 std=0.015 88.0s
+
+[2026-04-27 03:09:36] [probe] nut_thread B obj_position L00: r2_mean=0.983 std=0.001 94.5s
+
+[2026-04-27 03:10:33] [probe] drawer B ee_acceleration L00: r2_mean=0.595 std=0.013 193.2s
+
+[2026-04-27 03:11:27] [probe] nut_thread B obj_velocity L00: r2_mean=0.023 std=0.003 97.4s
+
+[2026-04-27 03:13:10] [probe] nut_thread B obj_speed L00: r2_mean=0.036 std=0.008 90.6s
+
+[2026-04-27 03:14:18] [probe] drawer B ee_accel_mag L00: r2_mean=0.822 std=0.014 201.0s
+
+[2026-04-27 03:15:01] [probe] nut_thread B obj_direction L00: r2_mean=0.021 std=0.004 94.7s
+
+[2026-04-27 03:16:49] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.002 95.0s
+
+[2026-04-27 03:18:14] [probe] drawer B obj_position L00: r2_mean=0.976 std=0.010 212.8s
+
+[2026-04-27 03:18:33] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.019 std=0.004 90.9s
+
+[2026-04-27 03:21:30] [probe] nut_thread B layer 18: loaded [(322500, 8192)] in 175.4s
+
+[2026-04-27 03:21:51] [probe] drawer B obj_velocity L00: r2_mean=0.945 std=0.003 191.7s
+
+[2026-04-27 03:23:15] [probe] nut_thread B ee_position L00: r2_mean=0.981 std=0.002 93.9s
+
+[2026-04-27 03:24:58] [probe] nut_thread B ee_velocity L00: r2_mean=0.235 std=0.034 91.5s
+
+[2026-04-27 03:25:38] [probe] drawer B obj_speed L00: r2_mean=0.925 std=0.026 202.5s
+
+[2026-04-27 03:26:38] [probe] drawer B obj_direction L00: r2_mean=0.505 std=0.004 51.2s
+
+[2026-04-27 03:26:41] [probe] nut_thread B ee_speed L00: r2_mean=0.500 std=0.016 89.5s
+
+[2026-04-27 03:28:27] [probe] nut_thread B ee_direction L00: r2_mean=-0.062 std=0.160 91.3s
+
+[2026-04-27 03:30:09] [probe] drawer B obj_acceleration L00: r2_mean=0.490 std=0.011 189.0s
+
+[2026-04-27 03:30:13] [probe] nut_thread B ee_acceleration L00: r2_mean=0.057 std=0.043 91.9s
+
+[2026-04-27 03:31:51] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.380 std=0.014 86.6s
+
+[2026-04-27 03:33:37] [probe] nut_thread B obj_position L00: r2_mean=0.982 std=0.001 92.8s
+
+[2026-04-27 03:33:37] [probe] drawer B obj_accel_mag L00: r2_mean=0.596 std=0.020 184.3s
+
+[2026-04-27 03:35:24] [probe] nut_thread B obj_velocity L00: r2_mean=-0.002 std=0.053 94.9s
+
+[2026-04-27 03:37:07] [probe] nut_thread B obj_speed L00: r2_mean=0.023 std=0.031 90.1s
+
+[2026-04-27 03:38:57] [probe] nut_thread B obj_direction L00: r2_mean=0.022 std=0.003 93.3s
+
+[2026-04-27 03:39:03] [probe] drawer B layer 20: loaded [(560000, 8192)] in 323.0s
+
+[2026-04-27 03:40:43] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.167 std=0.342 92.3s
+
+[2026-04-27 03:42:22] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.015 std=0.012 86.5s
+
+[2026-04-27 03:42:25] [probe] drawer B ee_position L00: r2_mean=0.981 std=0.006 182.9s
+
+[2026-04-27 03:45:23] [probe] nut_thread B layer 19: loaded [(322500, 8192)] in 180.4s
+
+[2026-04-27 03:46:17] [probe] drawer B ee_velocity L00: r2_mean=0.786 std=0.006 211.6s
+
+[2026-04-27 03:47:07] [probe] nut_thread B ee_position L00: r2_mean=0.982 std=0.001 92.8s
+
+[2026-04-27 03:48:51] [probe] nut_thread B ee_velocity L00: r2_mean=0.242 std=0.014 92.1s
+
+[2026-04-27 03:49:54] [probe] drawer B ee_speed L00: r2_mean=0.900 std=0.014 192.9s
+
+[2026-04-27 03:50:35] [probe] nut_thread B ee_speed L00: r2_mean=0.503 std=0.014 91.0s
+
+[2026-04-27 03:52:25] [probe] nut_thread B ee_direction L00: r2_mean=0.012 std=0.007 94.0s
+
+[2026-04-27 03:53:32] [probe] drawer B ee_direction L00: r2_mean=0.771 std=0.005 194.8s
+
+[2026-04-27 03:54:14] [probe] nut_thread B ee_acceleration L00: r2_mean=0.018 std=0.110 95.6s
+
+[2026-04-27 03:55:57] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.380 std=0.012 90.4s
+
+[2026-04-27 03:56:57] [probe] drawer B ee_acceleration L00: r2_mean=0.606 std=0.005 182.6s
+
+[2026-04-27 03:57:44] [probe] nut_thread B obj_position L00: r2_mean=0.982 std=0.001 93.7s
+
+[2026-04-27 03:59:30] [probe] nut_thread B obj_velocity L00: r2_mean=0.021 std=0.003 93.3s
+
+[2026-04-27 04:00:17] [probe] drawer B ee_accel_mag L00: r2_mean=0.820 std=0.011 178.9s
+
+[2026-04-27 04:01:11] [probe] nut_thread B obj_speed L00: r2_mean=0.037 std=0.005 88.6s
+
+[2026-04-27 04:02:57] [probe] nut_thread B obj_direction L00: r2_mean=-0.012 std=0.052 90.0s
+
+[2026-04-27 04:03:39] [probe] drawer B obj_position L00: r2_mean=0.978 std=0.015 180.4s
+
+[2026-04-27 04:04:43] [probe] nut_thread B obj_acceleration L00: r2_mean=0.001 std=0.003 93.0s
+
+[2026-04-27 04:06:24] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.019 std=0.004 88.2s
+
+[2026-04-27 04:07:02] [probe] drawer B obj_velocity L00: r2_mean=0.946 std=0.002 181.4s
+
+[2026-04-27 04:09:15] [probe] nut_thread B layer 20: loaded [(322500, 8192)] in 170.4s
+
+[2026-04-27 04:10:18] [probe] drawer B obj_speed L00: r2_mean=0.907 std=0.046 173.9s
+
+[2026-04-27 04:10:57] [probe] nut_thread B ee_position L00: r2_mean=0.981 std=0.002 91.2s
+
+[2026-04-27 04:11:18] [probe] drawer B obj_direction L00: r2_mean=0.508 std=0.006 51.2s
+
+[2026-04-27 04:12:40] [probe] nut_thread B ee_velocity L00: r2_mean=0.256 std=0.016 90.7s
+
+[2026-04-27 04:14:18] [probe] nut_thread B ee_speed L00: r2_mean=0.504 std=0.017 86.5s
+
+[2026-04-27 04:14:39] [probe] drawer B obj_acceleration L00: r2_mean=0.488 std=0.009 179.7s
+
+[2026-04-27 04:16:02] [probe] nut_thread B ee_direction L00: r2_mean=-0.026 std=0.086 89.6s
+
+[2026-04-27 04:17:45] [probe] nut_thread B ee_acceleration L00: r2_mean=0.080 std=0.008 91.5s
+
+[2026-04-27 04:17:59] [probe] drawer B obj_accel_mag L00: r2_mean=0.598 std=0.018 177.8s
+
+[2026-04-27 04:19:28] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.381 std=0.015 90.2s
+
+[2026-04-27 04:21:14] [probe] nut_thread B obj_position L00: r2_mean=0.981 std=0.002 94.2s
+
+[2026-04-27 04:23:00] [probe] nut_thread B obj_velocity L00: r2_mean=0.023 std=0.004 93.5s
+
+[2026-04-27 04:23:17] [probe] drawer B layer 21: loaded [(560000, 8192)] in 316.3s
+
+[2026-04-27 04:24:39] [probe] nut_thread B obj_speed L00: r2_mean=0.040 std=0.005 86.4s
+
+[2026-04-27 04:26:23] [probe] nut_thread B obj_direction L00: r2_mean=0.022 std=0.003 89.3s
+
+[2026-04-27 04:26:32] [probe] drawer B ee_position L00: r2_mean=0.980 std=0.007 176.2s
+
+[2026-04-27 04:28:05] [probe] nut_thread B obj_acceleration L00: r2_mean=0.004 std=0.001 90.0s
+
+[2026-04-27 04:29:44] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.022 std=0.003 85.6s
+
+[2026-04-27 04:29:51] [probe] drawer B ee_velocity L00: r2_mean=0.789 std=0.006 179.9s
+
+[2026-04-27 04:32:34] [probe] nut_thread B layer 21: loaded [(322500, 8192)] in 169.7s
+
+[2026-04-27 04:33:06] [probe] drawer B ee_speed L00: r2_mean=0.901 std=0.011 173.0s
+
+[2026-04-27 04:34:19] [probe] nut_thread B ee_position L00: r2_mean=0.975 std=0.013 93.7s
+
+[2026-04-27 04:36:04] [probe] nut_thread B ee_velocity L00: r2_mean=0.252 std=0.014 93.0s
+
+[2026-04-27 04:36:25] [probe] drawer B ee_direction L00: r2_mean=0.773 std=0.008 178.0s
+
+[2026-04-27 04:37:44] [probe] nut_thread B ee_speed L00: r2_mean=0.498 std=0.017 88.4s
+
+[2026-04-27 04:39:31] [probe] nut_thread B ee_direction L00: r2_mean=0.018 std=0.001 91.2s
+
+[2026-04-27 04:39:45] [probe] drawer B ee_acceleration L00: r2_mean=0.608 std=0.007 178.6s
+
+[2026-04-27 04:41:18] [probe] nut_thread B ee_acceleration L00: r2_mean=0.076 std=0.006 94.1s
+
+[2026-04-27 04:42:59] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.376 std=0.017 88.4s
+
+[2026-04-27 04:43:00] [probe] drawer B ee_accel_mag L00: r2_mean=0.825 std=0.004 174.5s
+
+[2026-04-27 04:44:43] [probe] nut_thread B obj_position L00: r2_mean=0.979 std=0.003 92.4s
+
+[2026-04-27 04:46:33] [probe] nut_thread B obj_velocity L00: r2_mean=0.022 std=0.003 97.0s
+
+[2026-04-27 04:46:33] [probe] drawer B obj_position L00: r2_mean=0.990 std=0.003 191.7s
+
+[2026-04-27 04:48:15] [probe] nut_thread B obj_speed L00: r2_mean=0.032 std=0.012 89.2s
+
+[2026-04-27 04:50:05] [probe] nut_thread B obj_direction L00: r2_mean=0.022 std=0.004 94.3s
+
+[2026-04-27 04:50:06] [probe] drawer B obj_velocity L00: r2_mean=0.945 std=0.002 190.7s
+
+[2026-04-27 04:51:51] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.001 93.3s
+
+[2026-04-27 04:53:36] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.020 std=0.003 91.1s
+
+[2026-04-27 04:53:46] [probe] drawer B obj_speed L00: r2_mean=0.923 std=0.023 196.8s
+
+[2026-04-27 04:54:46] [probe] drawer B obj_direction L00: r2_mean=0.507 std=0.006 49.5s
+
+[2026-04-27 04:56:32] [probe] nut_thread B layer 22: loaded [(322500, 8192)] in 174.9s
+
+[2026-04-27 04:57:49] [probe] drawer B obj_acceleration L00: r2_mean=0.503 std=0.008 159.7s
+
+[2026-04-27 04:58:15] [probe] nut_thread B ee_position L00: r2_mean=0.974 std=0.008 92.6s
+
+[2026-04-27 04:59:59] [probe] nut_thread B ee_velocity L00: r2_mean=0.250 std=0.021 92.2s
+
+[2026-04-27 05:00:46] [probe] drawer B obj_accel_mag L00: r2_mean=0.595 std=0.012 153.2s
+
+[2026-04-27 05:01:40] [probe] nut_thread B ee_speed L00: r2_mean=0.495 std=0.018 88.4s
+
+[2026-04-27 05:03:27] [probe] nut_thread B ee_direction L00: r2_mean=0.014 std=0.003 91.6s
+
+[2026-04-27 05:05:13] [probe] nut_thread B ee_acceleration L00: r2_mean=0.060 std=0.031 92.8s
+
+[2026-04-27 05:06:07] [probe] drawer B layer 22: loaded [(560000, 8192)] in 319.0s
+
+[2026-04-27 05:06:53] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.378 std=0.015 88.8s
+
+[2026-04-27 05:08:37] [probe] nut_thread B obj_position L00: r2_mean=0.967 std=0.022 92.7s
+
+[2026-04-27 05:08:58] [probe] drawer B ee_position L00: r2_mean=0.979 std=0.006 153.0s
+
+[2026-04-27 05:10:24] [probe] nut_thread B obj_velocity L00: r2_mean=0.021 std=0.002 93.7s
+
+[2026-04-27 05:11:50] [probe] drawer B ee_velocity L00: r2_mean=0.790 std=0.005 154.0s
+
+[2026-04-27 05:12:04] [probe] nut_thread B obj_speed L00: r2_mean=0.035 std=0.003 87.7s
+
+[2026-04-27 05:13:51] [probe] nut_thread B obj_direction L00: r2_mean=0.021 std=0.003 91.9s
+
+[2026-04-27 05:14:38] [probe] drawer B ee_speed L00: r2_mean=0.894 std=0.023 149.3s
+
+[2026-04-27 05:15:38] [probe] nut_thread B obj_acceleration L00: r2_mean=0.003 std=0.001 94.0s
+
+[2026-04-27 05:17:19] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.019 std=0.002 88.6s
+
+[2026-04-27 05:17:32] [probe] drawer B ee_direction L00: r2_mean=0.771 std=0.004 155.0s
+
+[2026-04-27 05:20:16] [probe] nut_thread B layer 23: loaded [(322500, 8192)] in 175.0s
+
+[2026-04-27 05:20:26] [probe] drawer B ee_acceleration L00: r2_mean=0.610 std=0.010 155.8s
+
+[2026-04-27 05:21:59] [probe] nut_thread B ee_position L00: r2_mean=0.977 std=0.002 92.6s
+
+[2026-04-27 05:23:15] [probe] drawer B ee_accel_mag L00: r2_mean=0.810 std=0.032 150.3s
+
+[2026-04-27 05:23:43] [probe] nut_thread B ee_velocity L00: r2_mean=0.165 std=0.107 92.6s
+
+[2026-04-27 05:25:23] [probe] nut_thread B ee_speed L00: r2_mean=0.485 std=0.021 87.4s
+
+[2026-04-27 05:26:09] [probe] drawer B obj_position L00: r2_mean=0.984 std=0.004 155.3s
+
+[2026-04-27 05:27:11] [probe] nut_thread B ee_direction L00: r2_mean=-0.052 std=0.097 92.1s
+
+[2026-04-27 05:28:57] [probe] nut_thread B ee_acceleration L00: r2_mean=0.041 std=0.035 93.8s
+
+[2026-04-27 05:29:05] [probe] drawer B obj_velocity L00: r2_mean=0.947 std=0.002 156.0s
+
+[2026-04-27 05:30:36] [probe] nut_thread B ee_accel_mag L00: r2_mean=0.371 std=0.015 87.5s
+
+[2026-04-27 05:31:54] [probe] drawer B obj_speed L00: r2_mean=0.885 std=0.077 150.4s
+
+[2026-04-27 05:32:23] [probe] nut_thread B obj_position L00: r2_mean=0.959 std=0.036 94.2s
+
+[2026-04-27 05:32:44] [probe] drawer B obj_direction L00: r2_mean=0.505 std=0.013 42.8s
+
+[2026-04-27 05:34:09] [probe] nut_thread B obj_velocity L00: r2_mean=-0.033 std=0.068 93.4s
+
+[2026-04-27 05:35:39] [probe] drawer B obj_acceleration L00: r2_mean=0.506 std=0.008 154.6s
+
+[2026-04-27 05:35:50] [probe] nut_thread B obj_speed L00: r2_mean=0.034 std=0.006 87.7s
+
+[2026-04-27 05:37:37] [probe] nut_thread B obj_direction L00: r2_mean=-0.022 std=0.051 91.6s
+
+[2026-04-27 05:38:27] [probe] drawer B obj_accel_mag L00: r2_mean=0.585 std=0.029 148.8s
+
+[2026-04-27 05:39:25] [probe] nut_thread B obj_acceleration L00: r2_mean=-0.004 std=0.006 94.0s
+
+[2026-04-27 05:41:05] [probe] nut_thread B obj_accel_mag L00: r2_mean=0.019 std=0.005 88.2s
+
+[2026-04-27 05:41:06] [probe] nut_thread B DONE in 581.4min
+
+[2026-04-27 05:43:55] [probe] drawer B layer 23: loaded [(560000, 8192)] in 326.2s
+
+[2026-04-27 05:47:19] [probe] drawer B ee_position L00: r2_mean=0.980 std=0.007 184.0s
+
+[2026-04-27 05:50:44] [probe] drawer B ee_velocity L00: r2_mean=0.784 std=0.004 181.6s
+
+[2026-04-27 05:53:57] [probe] drawer B ee_speed L00: r2_mean=0.901 std=0.007 172.8s
+
+[2026-04-27 05:57:20] [probe] drawer B ee_direction L00: r2_mean=0.770 std=0.004 181.2s
+
+[2026-04-27 06:00:44] [probe] drawer B ee_acceleration L00: r2_mean=0.604 std=0.007 182.2s
+
+[2026-04-27 06:03:59] [probe] drawer B ee_accel_mag L00: r2_mean=0.825 std=0.003 175.0s
+
+[2026-04-27 06:07:22] [probe] drawer B obj_position L00: r2_mean=0.987 std=0.003 180.6s
+
+[2026-04-27 06:10:43] [probe] drawer B obj_velocity L00: r2_mean=0.945 std=0.002 179.4s
+
+[2026-04-27 06:13:58] [probe] drawer B obj_speed L00: r2_mean=0.903 std=0.023 174.1s
+
+[2026-04-27 06:14:58] [probe] drawer B obj_direction L00: r2_mean=0.499 std=0.009 51.4s
+
+[2026-04-27 06:18:20] [probe] drawer B obj_acceleration L00: r2_mean=0.503 std=0.007 180.7s
+
+[2026-04-27 06:21:39] [probe] drawer B obj_accel_mag L00: r2_mean=0.594 std=0.003 177.3s
+
+[2026-04-27 06:21:41] [probe] drawer B DONE in 1067.9min
+
+[2026-04-27 06:21:45] [probe] task=peg_insert variant=B targets=['ee_position', 'ee_velocity', 'ee_speed', 'ee_direction', 'ee_acceleration', 'ee_accel_mag', 'obj_position', 'obj_velocity', 'obj_speed', 'obj_direction', 'obj_acceleration', 'obj_accel_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-27 06:25:29] [probe] peg_insert B layer 00: loaded [(322500, 8192)] in 223.7s
+
+[2026-04-27 06:27:20] [probe] peg_insert B ee_position L00: r2_mean=0.498 std=0.006 100.9s
+
+[2026-04-27 06:29:11] [probe] peg_insert B ee_velocity L00: r2_mean=0.370 std=0.009 100.0s
+
+[2026-04-27 06:30:59] [probe] peg_insert B ee_speed L00: r2_mean=0.424 std=0.008 96.0s
+
+[2026-04-27 06:32:53] [probe] peg_insert B ee_direction L00: r2_mean=0.002 std=0.006 100.6s
+
+[2026-04-27 06:34:47] [probe] peg_insert B ee_acceleration L00: r2_mean=0.136 std=0.014 101.8s
+
+[2026-04-27 06:36:34] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.349 std=0.008 95.5s
+
+[2026-04-27 06:38:26] [probe] peg_insert B obj_position L00: r2_mean=0.497 std=0.006 101.1s
+
+[2026-04-27 06:40:19] [probe] peg_insert B obj_velocity L00: r2_mean=0.220 std=0.011 100.5s
+
+[2026-04-27 06:42:06] [probe] peg_insert B obj_speed L00: r2_mean=0.261 std=0.020 95.4s
+
+[2026-04-27 06:44:01] [probe] peg_insert B obj_direction L00: r2_mean=0.067 std=0.004 101.5s
+
+[2026-04-27 06:45:57] [probe] peg_insert B obj_acceleration L00: r2_mean=0.039 std=0.005 103.9s
+
+[2026-04-27 06:47:44] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.154 std=0.013 95.4s
+
+[2026-04-27 06:49:56] [probe] peg_insert B layer 01: loaded [(322500, 8192)] in 131.3s
+
+[2026-04-27 06:51:47] [probe] peg_insert B ee_position L00: r2_mean=0.849 std=0.003 100.1s
+
+[2026-04-27 06:53:40] [probe] peg_insert B ee_velocity L00: r2_mean=0.720 std=0.004 101.7s
+
+[2026-04-27 06:55:29] [probe] peg_insert B ee_speed L00: r2_mean=0.806 std=0.012 97.5s
+
+[2026-04-27 06:57:26] [probe] peg_insert B ee_direction L00: r2_mean=0.034 std=0.001 101.1s
+
+[2026-04-27 06:59:22] [probe] peg_insert B ee_acceleration L00: r2_mean=0.282 std=0.007 104.5s
+
+[2026-04-27 07:01:12] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.546 std=0.011 98.7s
+
+[2026-04-27 07:03:07] [probe] peg_insert B obj_position L00: r2_mean=0.847 std=0.003 103.1s
+
+[2026-04-27 07:05:03] [probe] peg_insert B obj_velocity L00: r2_mean=0.435 std=0.018 103.5s
+
+[2026-04-27 07:06:52] [probe] peg_insert B obj_speed L00: r2_mean=0.526 std=0.030 98.0s
+
+[2026-04-27 07:08:50] [probe] peg_insert B obj_direction L00: r2_mean=0.132 std=0.004 103.5s
+
+[2026-04-27 07:10:47] [probe] peg_insert B obj_acceleration L00: r2_mean=0.106 std=0.011 104.6s
+
+[2026-04-27 07:12:37] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.257 std=0.025 98.1s
+
+[2026-04-27 07:15:15] [probe] peg_insert B layer 02: loaded [(322500, 8192)] in 156.8s
+
+[2026-04-27 07:17:05] [probe] peg_insert B ee_position L00: r2_mean=0.856 std=0.002 99.8s
+
+[2026-04-27 07:18:55] [probe] peg_insert B ee_velocity L00: r2_mean=0.739 std=0.006 99.2s
+
+[2026-04-27 07:20:45] [probe] peg_insert B ee_speed L00: r2_mean=0.824 std=0.010 97.9s
+
+[2026-04-27 07:22:42] [probe] peg_insert B ee_direction L00: r2_mean=0.038 std=0.001 103.0s
+
+[2026-04-27 07:24:37] [probe] peg_insert B ee_acceleration L00: r2_mean=0.267 std=0.006 103.2s
+
+[2026-04-27 07:26:26] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.551 std=0.009 97.2s
+
+[2026-04-27 07:28:19] [probe] peg_insert B obj_position L00: r2_mean=0.854 std=0.003 100.9s
+
+[2026-04-27 07:30:15] [probe] peg_insert B obj_velocity L00: r2_mean=0.448 std=0.021 104.4s
+
+[2026-04-27 07:32:04] [probe] peg_insert B obj_speed L00: r2_mean=0.544 std=0.028 96.7s
+
+[2026-04-27 07:34:01] [probe] peg_insert B obj_direction L00: r2_mean=0.145 std=0.002 102.4s
+
+[2026-04-27 07:35:57] [probe] peg_insert B obj_acceleration L00: r2_mean=0.103 std=0.012 103.7s
+
+[2026-04-27 07:37:49] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.263 std=0.022 99.7s
+
+[2026-04-27 07:40:36] [probe] peg_insert B layer 03: loaded [(322500, 8192)] in 166.0s
+
+[2026-04-27 07:42:49] [probe] peg_insert B ee_position L00: r2_mean=0.903 std=0.002 122.3s
+
+[2026-04-27 07:44:55] [probe] peg_insert B ee_velocity L00: r2_mean=0.758 std=0.006 109.3s
+
+[2026-04-27 07:46:49] [probe] peg_insert B ee_speed L00: r2_mean=0.827 std=0.019 100.7s
+
+[2026-04-27 07:48:48] [probe] peg_insert B ee_direction L00: r2_mean=0.040 std=0.002 102.2s
+
+[2026-04-27 07:50:46] [probe] peg_insert B ee_acceleration L00: r2_mean=0.301 std=0.007 104.2s
+
+[2026-04-27 07:52:42] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.567 std=0.019 103.8s
+
+[2026-04-27 07:54:47] [probe] peg_insert B obj_position L00: r2_mean=0.902 std=0.002 111.2s
+
+[2026-04-27 07:56:47] [probe] peg_insert B obj_velocity L00: r2_mean=0.464 std=0.021 107.8s
+
+[2026-04-27 07:58:41] [probe] peg_insert B obj_speed L00: r2_mean=0.544 std=0.030 100.7s
+
+[2026-04-27 08:00:43] [probe] peg_insert B obj_direction L00: r2_mean=0.158 std=0.002 105.4s
+
+[2026-04-27 08:02:42] [probe] peg_insert B obj_acceleration L00: r2_mean=0.116 std=0.010 106.2s
+
+[2026-04-27 08:04:35] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.265 std=0.027 99.5s
+
+[2026-04-27 08:07:23] [probe] peg_insert B layer 04: loaded [(322500, 8192)] in 167.2s
+
+[2026-04-27 08:09:17] [probe] peg_insert B ee_position L00: r2_mean=0.921 std=0.001 102.2s
+
+[2026-04-27 08:11:12] [probe] peg_insert B ee_velocity L00: r2_mean=0.794 std=0.006 104.1s
+
+[2026-04-27 08:13:05] [probe] peg_insert B ee_speed L00: r2_mean=0.815 std=0.053 99.7s
+
+[2026-04-27 08:15:03] [probe] peg_insert B ee_direction L00: r2_mean=0.049 std=0.002 103.1s
+
+[2026-04-27 08:17:06] [probe] peg_insert B ee_acceleration L00: r2_mean=0.395 std=0.010 109.3s
+
+[2026-04-27 08:18:56] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.614 std=0.052 97.9s
+
+[2026-04-27 08:20:55] [probe] peg_insert B obj_position L00: r2_mean=0.919 std=0.001 105.2s
+
+[2026-04-27 08:22:48] [probe] peg_insert B obj_velocity L00: r2_mean=0.488 std=0.020 102.1s
+
+[2026-04-27 08:24:38] [probe] peg_insert B obj_speed L00: r2_mean=0.533 std=0.043 97.4s
+
+[2026-04-27 08:26:35] [probe] peg_insert B obj_direction L00: r2_mean=0.171 std=0.002 100.8s
+
+[2026-04-27 08:28:34] [probe] peg_insert B obj_acceleration L00: r2_mean=0.151 std=0.015 105.1s
+
+[2026-04-27 08:30:24] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.277 std=0.047 98.6s
+
+[2026-04-27 08:33:11] [probe] peg_insert B layer 05: loaded [(322500, 8192)] in 165.2s
+
+[2026-04-27 08:35:17] [probe] peg_insert B ee_position L00: r2_mean=0.943 std=0.001 115.0s
+
+[2026-04-27 08:37:21] [probe] peg_insert B ee_velocity L00: r2_mean=0.808 std=0.002 112.8s
+
+[2026-04-27 08:39:26] [probe] peg_insert B ee_speed L00: r2_mean=0.770 std=0.136 111.0s
+
+[2026-04-27 08:41:36] [probe] peg_insert B ee_direction L00: r2_mean=0.053 std=0.002 114.7s
+
+[2026-04-27 08:43:43] [probe] peg_insert B ee_acceleration L00: r2_mean=0.433 std=0.011 112.9s
+
+[2026-04-27 08:45:34] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.594 std=0.137 98.0s
+
+[2026-04-27 08:47:32] [probe] peg_insert B obj_position L00: r2_mean=0.941 std=0.001 105.5s
+
+[2026-04-27 08:49:31] [probe] peg_insert B obj_velocity L00: r2_mean=0.494 std=0.020 106.2s
+
+[2026-04-27 08:51:24] [probe] peg_insert B obj_speed L00: r2_mean=0.476 std=0.132 99.9s
+
+[2026-04-27 08:53:18] [probe] peg_insert B obj_direction L00: r2_mean=0.175 std=0.003 99.2s
+
+[2026-04-27 08:55:15] [probe] peg_insert B obj_acceleration L00: r2_mean=0.168 std=0.018 103.4s
+
+[2026-04-27 08:57:05] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.228 std=0.154 97.9s
+
+[2026-04-27 08:59:51] [probe] peg_insert B layer 06: loaded [(322500, 8192)] in 164.2s
+
+[2026-04-27 09:01:44] [probe] peg_insert B ee_position L00: r2_mean=0.951 std=0.001 103.0s
+
+[2026-04-27 09:03:37] [probe] peg_insert B ee_velocity L00: r2_mean=0.829 std=0.006 101.3s
+
+[2026-04-27 09:05:24] [probe] peg_insert B ee_speed L00: r2_mean=0.833 std=0.034 95.3s
+
+[2026-04-27 09:07:19] [probe] peg_insert B ee_direction L00: r2_mean=0.056 std=0.002 98.9s
+
+[2026-04-27 09:09:17] [probe] peg_insert B ee_acceleration L00: r2_mean=0.475 std=0.009 105.2s
+
+[2026-04-27 09:11:10] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.648 std=0.032 100.3s
+
+[2026-04-27 09:13:09] [probe] peg_insert B obj_position L00: r2_mean=0.949 std=0.001 105.8s
+
+[2026-04-27 09:15:07] [probe] peg_insert B obj_velocity L00: r2_mean=0.506 std=0.022 105.6s
+
+[2026-04-27 09:16:57] [probe] peg_insert B obj_speed L00: r2_mean=0.530 std=0.034 97.5s
+
+[2026-04-27 09:18:56] [probe] peg_insert B obj_direction L00: r2_mean=0.179 std=0.002 103.3s
+
+[2026-04-27 09:20:55] [probe] peg_insert B obj_acceleration L00: r2_mean=0.180 std=0.018 105.6s
+
+[2026-04-27 09:22:49] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.275 std=0.050 101.4s
+
+[2026-04-27 09:25:35] [probe] peg_insert B layer 07: loaded [(322500, 8192)] in 164.5s
+
+[2026-04-27 09:27:26] [probe] peg_insert B ee_position L00: r2_mean=0.961 std=0.002 100.2s
+
+[2026-04-27 09:29:16] [probe] peg_insert B ee_velocity L00: r2_mean=0.833 std=0.005 98.1s
+
+[2026-04-27 09:31:02] [probe] peg_insert B ee_speed L00: r2_mean=0.812 std=0.055 94.2s
+
+[2026-04-27 09:33:01] [probe] peg_insert B ee_direction L00: r2_mean=0.061 std=0.002 104.2s
+
+[2026-04-27 09:35:00] [probe] peg_insert B ee_acceleration L00: r2_mean=0.496 std=0.006 105.8s
+
+[2026-04-27 09:36:51] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.654 std=0.051 99.6s
+
+[2026-04-27 09:38:50] [probe] peg_insert B obj_position L00: r2_mean=0.959 std=0.002 106.4s
+
+[2026-04-27 09:40:44] [probe] peg_insert B obj_velocity L00: r2_mean=0.508 std=0.021 101.2s
+
+[2026-04-27 09:42:31] [probe] peg_insert B obj_speed L00: r2_mean=0.525 std=0.063 95.6s
+
+[2026-04-27 09:44:23] [probe] peg_insert B obj_direction L00: r2_mean=0.182 std=0.002 96.0s
+
+[2026-04-27 09:46:15] [probe] peg_insert B obj_acceleration L00: r2_mean=0.189 std=0.021 99.0s
+
+[2026-04-27 09:48:08] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.298 std=0.036 100.2s
+
+[2026-04-27 09:50:54] [probe] peg_insert B layer 08: loaded [(322500, 8192)] in 164.6s
+
+[2026-04-27 09:52:41] [probe] peg_insert B ee_position L00: r2_mean=0.967 std=0.001 96.3s
+
+[2026-04-27 09:54:34] [probe] peg_insert B ee_velocity L00: r2_mean=0.832 std=0.006 101.2s
+
+[2026-04-27 09:56:25] [probe] peg_insert B ee_speed L00: r2_mean=0.891 std=0.007 99.1s
+
+[2026-04-27 09:58:23] [probe] peg_insert B ee_direction L00: r2_mean=0.070 std=0.001 103.0s
+
+[2026-04-27 10:00:20] [probe] peg_insert B ee_acceleration L00: r2_mean=0.504 std=0.005 104.8s
+
+[2026-04-27 10:02:10] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.706 std=0.019 97.9s
+
+[2026-04-27 10:04:04] [probe] peg_insert B obj_position L00: r2_mean=0.965 std=0.002 101.4s
+
+[2026-04-27 10:05:56] [probe] peg_insert B obj_velocity L00: r2_mean=0.510 std=0.021 100.5s
+
+[2026-04-27 10:07:45] [probe] peg_insert B obj_speed L00: r2_mean=0.567 std=0.028 96.7s
+
+[2026-04-27 10:09:43] [probe] peg_insert B obj_direction L00: r2_mean=0.182 std=0.003 102.0s
+
+[2026-04-27 10:11:35] [probe] peg_insert B obj_acceleration L00: r2_mean=0.192 std=0.021 100.5s
+
+[2026-04-27 10:13:23] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.329 std=0.020 95.1s
+
+[2026-04-27 10:16:08] [probe] peg_insert B layer 09: loaded [(322500, 8192)] in 163.6s
+
+[2026-04-27 10:18:02] [probe] peg_insert B ee_position L00: r2_mean=0.967 std=0.003 103.4s
+
+[2026-04-27 10:19:57] [probe] peg_insert B ee_velocity L00: r2_mean=0.629 std=0.241 103.8s
+
+[2026-04-27 10:21:46] [probe] peg_insert B ee_speed L00: r2_mean=0.898 std=0.004 97.3s
+
+[2026-04-27 10:23:40] [probe] peg_insert B ee_direction L00: r2_mean=-0.036 std=0.128 99.1s
+
+[2026-04-27 10:25:36] [probe] peg_insert B ee_acceleration L00: r2_mean=-1.225 std=3.439 103.3s
+
+[2026-04-27 10:27:27] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.729 std=0.005 99.4s
+
+[2026-04-27 10:29:24] [probe] peg_insert B obj_position L00: r2_mean=0.960 std=0.013 104.3s
+
+[2026-04-27 10:31:19] [probe] peg_insert B obj_velocity L00: r2_mean=0.370 std=0.211 102.9s
+
+[2026-04-27 10:33:10] [probe] peg_insert B obj_speed L00: r2_mean=0.586 std=0.035 98.8s
+
+[2026-04-27 10:35:09] [probe] peg_insert B obj_direction L00: r2_mean=0.058 std=0.164 103.3s
+
+[2026-04-27 10:37:08] [probe] peg_insert B obj_acceleration L00: r2_mean=0.129 std=0.127 105.9s
+
+[2026-04-27 10:38:59] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.342 std=0.029 98.6s
+
+[2026-04-27 10:41:42] [probe] peg_insert B layer 10: loaded [(322500, 8192)] in 161.8s
+
+[2026-04-27 10:43:33] [probe] peg_insert B ee_position L00: r2_mean=0.748 std=0.242 100.5s
+
+[2026-04-27 10:45:25] [probe] peg_insert B ee_velocity L00: r2_mean=-0.046 std=0.879 100.4s
+
+[2026-04-27 10:47:12] [probe] peg_insert B ee_speed L00: r2_mean=0.442 std=0.873 94.7s
+
+[2026-04-27 10:49:07] [probe] peg_insert B ee_direction L00: r2_mean=-0.343 std=0.263 100.1s
+
+[2026-04-27 10:50:59] [probe] peg_insert B ee_acceleration L00: r2_mean=-0.124 std=0.560 100.2s
+
+[2026-04-27 10:52:47] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.718 std=0.015 95.8s
+
+[2026-04-27 10:54:41] [probe] peg_insert B obj_position L00: r2_mean=0.361 std=0.796 102.2s
+
+[2026-04-27 10:56:35] [probe] peg_insert B obj_velocity L00: r2_mean=-0.688 std=1.539 101.0s
+
+[2026-04-27 10:58:22] [probe] peg_insert B obj_speed L00: r2_mean=0.500 std=0.128 94.9s
+
+[2026-04-27 11:00:17] [probe] peg_insert B obj_direction L00: r2_mean=-1.604 std=3.447 99.6s
+
+[2026-04-27 11:02:13] [probe] peg_insert B obj_acceleration L00: r2_mean=-8.115 std=10.921 102.4s
+
+[2026-04-27 11:03:57] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.311 std=0.058 92.3s
+
+[2026-04-27 11:06:45] [probe] peg_insert B layer 11: loaded [(322500, 8192)] in 165.8s
+
+[2026-04-27 11:08:41] [probe] peg_insert B ee_position L00: r2_mean=-4.283 std=6.794 105.1s
+
+[2026-04-27 11:10:39] [probe] peg_insert B ee_velocity L00: r2_mean=-7.624 std=10.503 106.1s
+
+[2026-04-27 11:12:30] [probe] peg_insert B ee_speed L00: r2_mean=0.282 std=0.775 99.8s
+
+[2026-04-27 11:14:27] [probe] peg_insert B ee_direction L00: r2_mean=-6.219 std=3.422 99.1s
+
+[2026-04-27 11:16:31] [probe] peg_insert B ee_acceleration L00: r2_mean=-3.971 std=5.203 111.2s
+
+[2026-04-27 11:18:36] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.484 std=0.141 112.0s
+
+[2026-04-27 11:20:45] [probe] peg_insert B obj_position L00: r2_mean=-0.204 std=0.860 117.8s
+
+[2026-04-27 11:22:57] [probe] peg_insert B obj_velocity L00: r2_mean=-2.692 std=3.527 119.1s
+
+[2026-04-27 11:24:56] [probe] peg_insert B obj_speed L00: r2_mean=0.274 std=0.342 106.6s
+
+[2026-04-27 11:27:00] [probe] peg_insert B obj_direction L00: r2_mean=-7.770 std=4.749 108.8s
+
+[2026-04-27 11:29:07] [probe] peg_insert B obj_acceleration L00: r2_mean=-3.632 std=4.066 113.1s
+
+[2026-04-27 11:30:59] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.146 std=0.105 99.2s
+
+[2026-04-27 11:33:52] [probe] peg_insert B layer 12: loaded [(322500, 8192)] in 172.1s
+
+[2026-04-27 11:35:53] [probe] peg_insert B ee_position L00: r2_mean=0.972 std=0.002 109.8s
+
+[2026-04-27 11:38:05] [probe] peg_insert B ee_velocity L00: r2_mean=0.824 std=0.008 120.6s
+
+[2026-04-27 11:40:09] [probe] peg_insert B ee_speed L00: r2_mean=0.867 std=0.028 112.5s
+
+[2026-04-27 11:42:23] [probe] peg_insert B ee_direction L00: r2_mean=0.089 std=0.004 118.6s
+
+[2026-04-27 11:44:33] [probe] peg_insert B ee_acceleration L00: r2_mean=0.523 std=0.006 118.3s
+
+[2026-04-27 11:46:35] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.712 std=0.015 109.0s
+
+[2026-04-27 11:48:42] [probe] peg_insert B obj_position L00: r2_mean=0.971 std=0.001 114.4s
+
+[2026-04-27 11:50:50] [probe] peg_insert B obj_velocity L00: r2_mean=0.506 std=0.023 116.7s
+
+[2026-04-27 11:52:57] [probe] peg_insert B obj_speed L00: r2_mean=0.562 std=0.042 114.3s
+
+[2026-04-27 11:55:09] [probe] peg_insert B obj_direction L00: r2_mean=0.190 std=0.003 117.6s
+
+[2026-04-27 11:57:16] [probe] peg_insert B obj_acceleration L00: r2_mean=0.199 std=0.022 114.6s
+
+[2026-04-27 11:59:14] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.323 std=0.038 104.8s
+
+[2026-04-27 12:02:01] [probe] peg_insert B layer 13: loaded [(322500, 8192)] in 166.4s
+
+[2026-04-27 12:04:06] [probe] peg_insert B ee_position L00: r2_mean=0.975 std=0.001 113.9s
+
+[2026-04-27 12:06:12] [probe] peg_insert B ee_velocity L00: r2_mean=0.832 std=0.003 114.7s
+
+[2026-04-27 12:08:09] [probe] peg_insert B ee_speed L00: r2_mean=0.893 std=0.008 104.0s
+
+[2026-04-27 12:10:14] [probe] peg_insert B ee_direction L00: r2_mean=0.091 std=0.002 110.3s
+
+[2026-04-27 12:12:16] [probe] peg_insert B ee_acceleration L00: r2_mean=0.541 std=0.007 110.3s
+
+[2026-04-27 12:14:13] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.737 std=0.009 104.7s
+
+[2026-04-27 12:16:16] [probe] peg_insert B obj_position L00: r2_mean=0.974 std=0.001 110.8s
+
+[2026-04-27 12:18:18] [probe] peg_insert B obj_velocity L00: r2_mean=0.510 std=0.022 111.1s
+
+[2026-04-27 12:20:18] [probe] peg_insert B obj_speed L00: r2_mean=0.586 std=0.031 106.8s
+
+[2026-04-27 12:22:27] [probe] peg_insert B obj_direction L00: r2_mean=0.188 std=0.003 113.9s
+
+[2026-04-27 12:24:37] [probe] peg_insert B obj_acceleration L00: r2_mean=0.206 std=0.022 117.9s
+
+[2026-04-27 12:26:42] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.348 std=0.028 111.9s
+
+[2026-04-27 12:29:31] [probe] peg_insert B layer 14: loaded [(322500, 8192)] in 167.6s
+
+[2026-04-27 12:31:17] [probe] peg_insert B ee_position L00: r2_mean=0.976 std=0.000 95.1s
+
+[2026-04-27 12:33:05] [probe] peg_insert B ee_velocity L00: r2_mean=0.836 std=0.003 96.3s
+
+[2026-04-27 12:34:49] [probe] peg_insert B ee_speed L00: r2_mean=0.896 std=0.006 91.6s
+
+[2026-04-27 12:36:39] [probe] peg_insert B ee_direction L00: r2_mean=0.090 std=0.003 95.3s
+
+[2026-04-27 12:38:38] [probe] peg_insert B ee_acceleration L00: r2_mean=0.548 std=0.006 106.7s
+
+[2026-04-27 12:40:34] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.733 std=0.012 103.1s
+
+[2026-04-27 12:42:36] [probe] peg_insert B obj_position L00: r2_mean=0.975 std=0.000 109.0s
+
+[2026-04-27 12:44:38] [probe] peg_insert B obj_velocity L00: r2_mean=0.513 std=0.022 109.6s
+
+[2026-04-27 12:46:33] [probe] peg_insert B obj_speed L00: r2_mean=0.585 std=0.033 102.3s
+
+[2026-04-27 12:48:33] [probe] peg_insert B obj_direction L00: r2_mean=0.190 std=0.003 105.0s
+
+[2026-04-27 12:50:30] [probe] peg_insert B obj_acceleration L00: r2_mean=0.210 std=0.023 104.7s
+
+[2026-04-27 12:52:22] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.342 std=0.032 99.5s
+
+[2026-04-27 12:55:07] [probe] peg_insert B layer 15: loaded [(322500, 8192)] in 163.0s
+
+[2026-04-27 12:57:00] [probe] peg_insert B ee_position L00: r2_mean=0.973 std=0.004 102.3s
+
+[2026-04-27 12:58:54] [probe] peg_insert B ee_velocity L00: r2_mean=0.855 std=0.003 102.7s
+
+[2026-04-27 13:00:44] [probe] peg_insert B ee_speed L00: r2_mean=0.884 std=0.060 97.5s
+
+[2026-04-27 13:02:41] [probe] peg_insert B ee_direction L00: r2_mean=0.091 std=0.003 102.7s
+
+[2026-04-27 13:04:36] [probe] peg_insert B ee_acceleration L00: r2_mean=0.564 std=0.006 102.7s
+
+[2026-04-27 13:06:24] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.706 std=0.088 96.6s
+
+[2026-04-27 13:08:20] [probe] peg_insert B obj_position L00: r2_mean=0.975 std=0.002 104.1s
+
+[2026-04-27 13:10:17] [probe] peg_insert B obj_velocity L00: r2_mean=0.519 std=0.028 104.6s
+
+[2026-04-27 13:12:09] [probe] peg_insert B obj_speed L00: r2_mean=0.596 std=0.034 99.3s
+
+[2026-04-27 13:14:06] [probe] peg_insert B obj_direction L00: r2_mean=0.191 std=0.004 101.4s
+
+[2026-04-27 13:15:56] [probe] peg_insert B obj_acceleration L00: r2_mean=0.214 std=0.028 97.4s
+
+[2026-04-27 13:17:46] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.354 std=0.027 97.4s
+
+[2026-04-27 13:20:34] [probe] peg_insert B layer 16: loaded [(322500, 8192)] in 166.3s
+
+[2026-04-27 13:22:33] [probe] peg_insert B ee_position L00: r2_mean=0.802 std=0.122 107.8s
+
+[2026-04-27 13:24:34] [probe] peg_insert B ee_velocity L00: r2_mean=0.799 std=0.116 108.6s
+
+[2026-04-27 13:26:27] [probe] peg_insert B ee_speed L00: r2_mean=0.912 std=0.015 100.6s
+
+[2026-04-27 13:28:28] [probe] peg_insert B ee_direction L00: r2_mean=0.013 std=0.142 106.5s
+
+[2026-04-27 13:30:21] [probe] peg_insert B ee_acceleration L00: r2_mean=0.562 std=0.007 99.3s
+
+[2026-04-27 13:32:13] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.748 std=0.023 100.1s
+
+[2026-04-27 13:34:09] [probe] peg_insert B obj_position L00: r2_mean=0.056 std=1.240 102.7s
+
+[2026-04-27 13:36:07] [probe] peg_insert B obj_velocity L00: r2_mean=0.511 std=0.022 106.0s
+
+[2026-04-27 13:38:03] [probe] peg_insert B obj_speed L00: r2_mean=0.592 std=0.039 102.7s
+
+[2026-04-27 13:40:07] [probe] peg_insert B obj_direction L00: r2_mean=-0.328 std=0.906 108.6s
+
+[2026-04-27 13:42:09] [probe] peg_insert B obj_acceleration L00: r2_mean=0.104 std=0.189 108.9s
+
+[2026-04-27 13:44:06] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.352 std=0.027 104.8s
+
+[2026-04-27 13:46:55] [probe] peg_insert B layer 17: loaded [(322500, 8192)] in 167.2s
+
+[2026-04-27 13:48:54] [probe] peg_insert B ee_position L00: r2_mean=0.970 std=0.006 108.2s
+
+[2026-04-27 13:50:55] [probe] peg_insert B ee_velocity L00: r2_mean=0.869 std=0.003 109.1s
+
+[2026-04-27 13:52:50] [probe] peg_insert B ee_speed L00: r2_mean=0.926 std=0.002 103.9s
+
+[2026-04-27 13:54:50] [probe] peg_insert B ee_direction L00: r2_mean=0.097 std=0.003 104.4s
+
+[2026-04-27 13:56:49] [probe] peg_insert B ee_acceleration L00: r2_mean=0.568 std=0.015 105.5s
+
+[2026-04-27 13:58:47] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.768 std=0.002 105.5s
+
+[2026-04-27 14:00:51] [probe] peg_insert B obj_position L00: r2_mean=0.914 std=0.081 111.2s
+
+[2026-04-27 14:02:49] [probe] peg_insert B obj_velocity L00: r2_mean=0.528 std=0.024 105.3s
+
+[2026-04-27 14:04:44] [probe] peg_insert B obj_speed L00: r2_mean=0.605 std=0.033 102.7s
+
+[2026-04-27 14:06:48] [probe] peg_insert B obj_direction L00: r2_mean=0.192 std=0.003 108.4s
+
+[2026-04-27 14:08:52] [probe] peg_insert B obj_acceleration L00: r2_mean=0.100 std=0.234 111.2s
+
+[2026-04-27 14:10:50] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.363 std=0.026 104.8s
+
+[2026-04-27 14:13:38] [probe] peg_insert B layer 18: loaded [(322500, 8192)] in 166.7s
+
+[2026-04-27 14:15:32] [probe] peg_insert B ee_position L00: r2_mean=0.714 std=0.333 103.0s
+
+[2026-04-27 14:17:28] [probe] peg_insert B ee_velocity L00: r2_mean=0.232 std=0.768 104.5s
+
+[2026-04-27 14:19:17] [probe] peg_insert B ee_speed L00: r2_mean=0.928 std=0.003 97.2s
+
+[2026-04-27 14:21:14] [probe] peg_insert B ee_direction L00: r2_mean=-0.204 std=0.337 102.1s
+
+[2026-04-27 14:23:09] [probe] peg_insert B ee_acceleration L00: r2_mean=0.496 std=0.103 102.8s
+
+[2026-04-27 14:25:00] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.766 std=0.004 98.9s
+
+[2026-04-27 14:26:56] [probe] peg_insert B obj_position L00: r2_mean=-1.967 std=3.063 103.8s
+
+[2026-04-27 14:28:51] [probe] peg_insert B obj_velocity L00: r2_mean=0.389 std=0.246 103.1s
+
+[2026-04-27 14:30:42] [probe] peg_insert B obj_speed L00: r2_mean=0.606 std=0.033 98.7s
+
+[2026-04-27 14:32:42] [probe] peg_insert B obj_direction L00: r2_mean=0.058 std=0.143 104.1s
+
+[2026-04-27 14:34:39] [probe] peg_insert B obj_acceleration L00: r2_mean=0.034 std=0.178 104.3s
+
+[2026-04-27 14:36:30] [probe] peg_insert B obj_accel_mag L00: r2_mean=0.362 std=0.027 98.2s
+
+[2026-04-27 14:39:14] [probe] peg_insert B layer 19: loaded [(322500, 8192)] in 162.8s
+
+[2026-04-27 14:41:08] [probe] peg_insert B ee_position L00: r2_mean=-0.981 std=1.303 103.8s
+
+[2026-04-27 14:43:03] [probe] peg_insert B ee_velocity L00: r2_mean=-15.502 std=19.004 103.3s
+
+[2026-04-27 14:44:54] [probe] peg_insert B ee_speed L00: r2_mean=0.389 std=0.851 98.5s
+
+[2026-04-27 14:46:51] [probe] peg_insert B ee_direction L00: r2_mean=-12.361 std=16.869 102.3s
+
+[2026-04-27 14:48:47] [probe] peg_insert B ee_acceleration L00: r2_mean=-8.569 std=6.760 103.6s
+
+[2026-04-27 14:50:39] [probe] peg_insert B ee_accel_mag L00: r2_mean=0.561 std=0.265 101.1s
+
+[2026-04-27 14:52:41] [probe] peg_insert B obj_position L00: r2_mean=-1.499 std=3.613 108.9s
+
+[2026-04-27 14:54:44] [probe] peg_insert B obj_velocity L00: r2_mean=-2.523 std=2.348 110.1s
+
+[2026-04-27 14:56:41] [probe] peg_insert B obj_speed L00: r2_mean=0.195 std=0.667 105.2s
+
+[2026-04-27 14:58:41] [probe] peg_insert B obj_direction L00: r2_mean=-27.276 std=46.830 104.6s
+
+[2026-04-27 15:00:45] [probe] peg_insert B obj_acceleration L00: r2_mean=-10.311 std=11.751 110.9s
+
+[2026-04-27 15:02:42] [probe] peg_insert B obj_accel_mag L00: r2_mean=-0.159 std=0.918 104.5s
+
+[2026-04-27 15:05:28] [probe] peg_insert B layer 20: loaded [(322500, 8192)] in 163.9s
+
+[2026-04-27 15:07:23] [probe] peg_insert B ee_position L00: r2_mean=-6.021 std=4.894 104.7s
+
+[2026-04-27 15:09:18] [probe] peg_insert B ee_velocity L00: r2_mean=-19.612 std=27.074 103.5s
+
+[2026-04-27 15:11:12] [probe] peg_insert B ee_speed L00: r2_mean=0.101 std=0.881 101.0s
+
+[2026-04-27 15:13:14] [probe] peg_insert B ee_direction L00: r2_mean=-16.263 std=17.219 106.0s
+
+[2026-04-27 15:15:21] [probe] peg_insert B ee_acceleration L00: r2_mean=-7.178 std=6.450 114.6s

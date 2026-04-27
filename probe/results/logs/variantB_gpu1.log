@@ -1,0 +1,22 @@
+=== GPU 1 Variant B chain start: 2026-04-26T02:16:54Z ===
+--- strike probe at 02:16:54Z ---
+Traceback (most recent call last):
+  File "/home/solee/physrepa_tasks/probe/scripts/03_run_probe.py", line 255, in <module>
+    main()
+  File "/home/solee/physrepa_tasks/probe/scripts/03_run_probe.py", line 236, in main
+    rows = run_target(
+  File "/home/solee/physrepa_tasks/probe/scripts/03_run_probe.py", line 118, in run_target
+    results = run_groupkfold_probe(
+  File "/home/solee/physrepa_tasks/probe/utils/probe.py", line 207, in run_groupkfold_probe
+    best_lr, best_wd, y_pred = fit_one_fold(
+  File "/home/solee/physrepa_tasks/probe/utils/probe.py", line 94, in fit_one_fold
+    Xi_n = (Xi - feat_mean) / feat_std
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 11.81 GiB. GPU 1 has a total capacity of 47.40 GiB of which 5.82 GiB is free. Including non-PyTorch memory, this process has 41.57 GiB memory in use. Of the allocated memory 41.26 GiB is allocated by PyTorch, and 16.25 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+There was an error running python
+strike probe failed (continuing)
+--- reach probe at 02:23:24Z ---
+=== GPU 1 Variant B chain start: 2026-04-26T02:26:41Z ===
+--- strike probe at 02:26:41Z ---
+--- reach probe at 17:35:40Z ---
+--- nut_thread probe at 19:59:41Z ---
+=== GPU 1 Variant B chain done: 2026-04-27T05:41:08Z ===
