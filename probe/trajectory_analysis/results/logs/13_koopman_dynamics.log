@@ -1,0 +1,151 @@
+[13_koopman] push loading ...
+[13_koopman] push L00 self=0.950 delta=+0.022 ee_pos_next=0.573 ee_vel_next=0.199 ee_acc_next=-0.016 obj_vel_next=-0.159
+[13_koopman] push L01 self=0.687 delta=+0.120 ee_pos_next=0.854 ee_vel_next=0.594 ee_acc_next=0.019 obj_vel_next=-0.002
+[13_koopman] push L02 self=0.496 delta=+0.175 ee_pos_next=0.790 ee_vel_next=0.706 ee_acc_next=0.079 obj_vel_next=0.278
+[13_koopman] push L03 self=0.560 delta=+0.136 ee_pos_next=0.863 ee_vel_next=0.739 ee_acc_next=0.079 obj_vel_next=0.299
+[13_koopman] push L04 self=0.434 delta=+0.204 ee_pos_next=0.878 ee_vel_next=0.791 ee_acc_next=0.079 obj_vel_next=0.349
+[13_koopman] push L05 self=0.510 delta=+0.161 ee_pos_next=0.909 ee_vel_next=0.804 ee_acc_next=0.082 obj_vel_next=0.394
+[13_koopman] push L06 self=0.525 delta=+0.171 ee_pos_next=0.938 ee_vel_next=0.818 ee_acc_next=0.080 obj_vel_next=0.460
+[13_koopman] push L07 self=0.573 delta=+0.117 ee_pos_next=0.946 ee_vel_next=0.826 ee_acc_next=0.071 obj_vel_next=0.516
+[13_koopman] push L08 self=0.651 delta=+0.090 ee_pos_next=0.948 ee_vel_next=0.813 ee_acc_next=0.048 obj_vel_next=0.531
+[13_koopman] push L09 self=0.719 delta=+0.059 ee_pos_next=0.935 ee_vel_next=0.839 ee_acc_next=0.072 obj_vel_next=0.601
+[13_koopman] push L10 self=0.713 delta=+0.058 ee_pos_next=0.956 ee_vel_next=0.833 ee_acc_next=0.065 obj_vel_next=0.591
+[13_koopman] push L11 self=0.714 delta=+0.055 ee_pos_next=0.967 ee_vel_next=0.834 ee_acc_next=0.064 obj_vel_next=0.598
+[13_koopman] push L12 self=0.740 delta=+0.050 ee_pos_next=0.956 ee_vel_next=0.808 ee_acc_next=0.054 obj_vel_next=0.612
+[13_koopman] push L13 self=0.726 delta=+0.059 ee_pos_next=0.970 ee_vel_next=0.821 ee_acc_next=0.085 obj_vel_next=0.651
+[13_koopman] push L14 self=0.711 delta=+0.052 ee_pos_next=0.971 ee_vel_next=0.824 ee_acc_next=0.086 obj_vel_next=0.600
+[13_koopman] push L15 self=0.694 delta=+0.058 ee_pos_next=0.974 ee_vel_next=0.847 ee_acc_next=0.103 obj_vel_next=0.640
+[13_koopman] push L16 self=0.699 delta=+0.054 ee_pos_next=0.976 ee_vel_next=0.885 ee_acc_next=0.116 obj_vel_next=0.700
+[13_koopman] push L17 self=0.703 delta=+0.046 ee_pos_next=0.972 ee_vel_next=0.877 ee_acc_next=0.111 obj_vel_next=0.700
+[13_koopman] push L18 self=0.715 delta=+0.047 ee_pos_next=0.975 ee_vel_next=0.893 ee_acc_next=0.098 obj_vel_next=0.721
+[13_koopman] push L19 self=0.723 delta=+0.033 ee_pos_next=0.979 ee_vel_next=0.890 ee_acc_next=0.093 obj_vel_next=0.701
+[13_koopman] push L20 self=0.737 delta=+0.029 ee_pos_next=0.976 ee_vel_next=0.895 ee_acc_next=0.097 obj_vel_next=0.710
+[13_koopman] push L21 self=0.756 delta=+0.024 ee_pos_next=0.977 ee_vel_next=0.882 ee_acc_next=0.065 obj_vel_next=0.703
+[13_koopman] push L22 self=0.777 delta=+0.015 ee_pos_next=0.980 ee_vel_next=0.895 ee_acc_next=-0.013 obj_vel_next=0.725
+[13_koopman] push L23 self=0.793 delta=+0.008 ee_pos_next=0.972 ee_vel_next=0.892 ee_acc_next=0.063 obj_vel_next=0.709
+[13_koopman] strike loading ...
+[13_koopman] strike L00 self=0.859 delta=+0.053 ee_pos_next=0.731 ee_vel_next=-0.243 ee_acc_next=0.020 obj_vel_next=-0.680
+[13_koopman] strike L01 self=0.522 delta=+0.206 ee_pos_next=0.855 ee_vel_next=0.292 ee_acc_next=0.023 obj_vel_next=-0.466
+[13_koopman] strike L02 self=0.467 delta=+0.264 ee_pos_next=0.834 ee_vel_next=0.600 ee_acc_next=0.119 obj_vel_next=0.178
+[13_koopman] strike L03 self=0.495 delta=+0.205 ee_pos_next=0.897 ee_vel_next=0.626 ee_acc_next=0.131 obj_vel_next=0.190
+[13_koopman] strike L04 self=0.450 delta=+0.224 ee_pos_next=0.924 ee_vel_next=0.682 ee_acc_next=0.145 obj_vel_next=0.240
+[13_koopman] strike L05 self=0.562 delta=+0.152 ee_pos_next=0.928 ee_vel_next=0.654 ee_acc_next=0.156 obj_vel_next=0.274
+[13_koopman] strike L06 self=0.501 delta=+0.243 ee_pos_next=0.944 ee_vel_next=0.693 ee_acc_next=0.165 obj_vel_next=0.279
+[13_koopman] strike L07 self=0.569 delta=+0.179 ee_pos_next=0.953 ee_vel_next=0.745 ee_acc_next=0.147 obj_vel_next=0.330
+[13_koopman] strike L08 self=0.601 delta=+0.129 ee_pos_next=0.957 ee_vel_next=0.742 ee_acc_next=0.167 obj_vel_next=0.205
+[13_koopman] strike L09 self=0.626 delta=+0.075 ee_pos_next=0.957 ee_vel_next=0.788 ee_acc_next=0.129 obj_vel_next=0.275
+[13_koopman] strike L10 self=0.625 delta=+0.074 ee_pos_next=0.954 ee_vel_next=0.773 ee_acc_next=0.164 obj_vel_next=0.297
+[13_koopman] strike L11 self=0.612 delta=+0.080 ee_pos_next=0.956 ee_vel_next=0.763 ee_acc_next=0.164 obj_vel_next=0.360
+[13_koopman] strike L12 self=0.638 delta=+0.060 ee_pos_next=0.963 ee_vel_next=0.746 ee_acc_next=0.157 obj_vel_next=0.340
+[13_koopman] strike L13 self=0.623 delta=+0.068 ee_pos_next=0.966 ee_vel_next=0.789 ee_acc_next=0.158 obj_vel_next=0.430
+[13_koopman] strike L14 self=0.607 delta=+0.070 ee_pos_next=0.975 ee_vel_next=0.797 ee_acc_next=0.178 obj_vel_next=0.329
+[13_koopman] strike L15 self=0.588 delta=+0.078 ee_pos_next=0.976 ee_vel_next=0.821 ee_acc_next=0.182 obj_vel_next=0.356
+[13_koopman] strike L16 self=0.587 delta=+0.072 ee_pos_next=0.980 ee_vel_next=0.877 ee_acc_next=0.193 obj_vel_next=0.346
+[13_koopman] strike L17 self=0.600 delta=+0.066 ee_pos_next=0.979 ee_vel_next=0.859 ee_acc_next=0.224 obj_vel_next=0.420
+[13_koopman] strike L18 self=0.598 delta=+0.044 ee_pos_next=0.984 ee_vel_next=0.866 ee_acc_next=0.188 obj_vel_next=0.381
+[13_koopman] strike L19 self=0.625 delta=+0.046 ee_pos_next=0.985 ee_vel_next=0.853 ee_acc_next=0.197 obj_vel_next=0.416
+[13_koopman] strike L20 self=0.646 delta=+0.040 ee_pos_next=0.982 ee_vel_next=0.871 ee_acc_next=0.194 obj_vel_next=0.386
+[13_koopman] strike L21 self=0.654 delta=+0.032 ee_pos_next=0.985 ee_vel_next=0.883 ee_acc_next=0.185 obj_vel_next=0.423
+[13_koopman] strike L22 self=0.655 delta=+0.010 ee_pos_next=0.986 ee_vel_next=0.876 ee_acc_next=0.241 obj_vel_next=0.476
+[13_koopman] strike L23 self=0.688 delta=+0.009 ee_pos_next=0.982 ee_vel_next=0.876 ee_acc_next=0.127 obj_vel_next=0.352
+[13_koopman] reach loading ...
+[13_koopman] reach L00 self=0.926 delta=-0.005 ee_pos_next=-0.407 ee_vel_next=-0.368 ee_acc_next=-0.035
+[13_koopman] reach L01 self=0.347 delta=-0.249 ee_pos_next=-0.075 ee_vel_next=-0.199 ee_acc_next=-0.060
+[13_koopman] reach L02 self=0.463 delta=+0.066 ee_pos_next=0.254 ee_vel_next=0.011 ee_acc_next=-0.003
+[13_koopman] reach L03 self=0.502 delta=-0.003 ee_pos_next=0.160 ee_vel_next=-0.040 ee_acc_next=0.011
+[13_koopman] reach L04 self=0.404 delta=+0.146 ee_pos_next=0.538 ee_vel_next=0.009 ee_acc_next=0.028
+[13_koopman] reach L05 self=0.481 delta=+0.119 ee_pos_next=0.571 ee_vel_next=0.018 ee_acc_next=0.023
+[13_koopman] reach L06 self=0.408 delta=+0.151 ee_pos_next=0.640 ee_vel_next=0.010 ee_acc_next=0.035
+[13_koopman] reach L07 self=0.420 delta=+0.060 ee_pos_next=0.692 ee_vel_next=0.001 ee_acc_next=-0.007
+[13_koopman] reach L08 self=0.453 delta=+0.022 ee_pos_next=0.804 ee_vel_next=-0.013 ee_acc_next=-0.014
+[13_koopman] reach L09 self=0.585 delta=+0.020 ee_pos_next=0.741 ee_vel_next=-0.029 ee_acc_next=0.017
+[13_koopman] reach L10 self=0.561 delta=+0.002 ee_pos_next=0.749 ee_vel_next=-0.029 ee_acc_next=-0.006
+[13_koopman] reach L11 self=0.526 delta=-0.005 ee_pos_next=0.700 ee_vel_next=-0.033 ee_acc_next=-0.006
+[13_koopman] reach L12 self=0.515 delta=-0.033 ee_pos_next=0.730 ee_vel_next=-0.068 ee_acc_next=-0.072
+[13_koopman] reach L13 self=0.520 delta=-0.005 ee_pos_next=0.751 ee_vel_next=-0.027 ee_acc_next=0.009
+[13_koopman] reach L14 self=0.497 delta=-0.004 ee_pos_next=0.833 ee_vel_next=-0.030 ee_acc_next=0.048
+[13_koopman] reach L15 self=0.490 delta=-0.001 ee_pos_next=0.832 ee_vel_next=-0.043 ee_acc_next=0.009
+[13_koopman] reach L16 self=0.489 delta=+0.007 ee_pos_next=0.845 ee_vel_next=-0.026 ee_acc_next=0.057
+[13_koopman] reach L17 self=0.491 delta=-0.002 ee_pos_next=0.828 ee_vel_next=-0.006 ee_acc_next=0.073
+[13_koopman] reach L18 self=0.496 delta=-0.024 ee_pos_next=0.818 ee_vel_next=0.003 ee_acc_next=0.083
+[13_koopman] reach L19 self=0.500 delta=-0.041 ee_pos_next=0.861 ee_vel_next=0.001 ee_acc_next=0.012
+[13_koopman] reach L20 self=0.525 delta=-0.030 ee_pos_next=0.866 ee_vel_next=-0.007 ee_acc_next=-0.020
+[13_koopman] reach L21 self=0.510 delta=-0.064 ee_pos_next=0.832 ee_vel_next=0.016 ee_acc_next=0.003
+[13_koopman] reach L22 self=0.517 delta=-0.076 ee_pos_next=0.853 ee_vel_next=0.013 ee_acc_next=-0.061
+[13_koopman] reach L23 self=0.550 delta=-0.085 ee_pos_next=0.805 ee_vel_next=0.023 ee_acc_next=-0.169
+[13_koopman] drawer loading ...
+[13_koopman] drawer L00 self=0.944 delta=+0.069 ee_pos_next=0.888 ee_vel_next=0.156 ee_acc_next=0.007 obj_vel_next=0.627
+[13_koopman] drawer L01 self=0.544 delta=+0.363 ee_pos_next=0.909 ee_vel_next=0.197 ee_acc_next=0.016 obj_vel_next=0.730
+[13_koopman] drawer L02 self=0.550 delta=+0.231 ee_pos_next=0.897 ee_vel_next=0.187 ee_acc_next=0.015 obj_vel_next=0.695
+[13_koopman] drawer L03 self=0.556 delta=+0.290 ee_pos_next=0.910 ee_vel_next=0.190 ee_acc_next=0.020 obj_vel_next=0.698
+[13_koopman] drawer L04 self=0.397 delta=+0.353 ee_pos_next=0.935 ee_vel_next=0.220 ee_acc_next=0.045 obj_vel_next=0.739
+[13_koopman] drawer L05 self=0.432 delta=+0.310 ee_pos_next=0.949 ee_vel_next=0.253 ee_acc_next=0.107 obj_vel_next=0.744
+[13_koopman] drawer L06 self=0.452 delta=+0.293 ee_pos_next=0.949 ee_vel_next=0.299 ee_acc_next=0.174 obj_vel_next=0.781
+[13_koopman] drawer L07 self=0.494 delta=+0.241 ee_pos_next=0.956 ee_vel_next=0.352 ee_acc_next=0.246 obj_vel_next=0.795
+[13_koopman] drawer L08 self=0.551 delta=+0.177 ee_pos_next=0.958 ee_vel_next=0.327 ee_acc_next=0.204 obj_vel_next=0.789
+[13_koopman] drawer L09 self=0.600 delta=+0.124 ee_pos_next=0.959 ee_vel_next=0.285 ee_acc_next=0.171 obj_vel_next=0.756
+[13_koopman] drawer L10 self=0.598 delta=+0.126 ee_pos_next=0.958 ee_vel_next=0.278 ee_acc_next=0.170 obj_vel_next=0.751
+[13_koopman] drawer L11 self=0.612 delta=+0.113 ee_pos_next=0.963 ee_vel_next=0.304 ee_acc_next=0.176 obj_vel_next=0.781
+[13_koopman] drawer L12 self=0.593 delta=+0.122 ee_pos_next=0.963 ee_vel_next=0.334 ee_acc_next=0.190 obj_vel_next=0.769
+[13_koopman] drawer L13 self=0.581 delta=+0.125 ee_pos_next=0.965 ee_vel_next=0.359 ee_acc_next=0.211 obj_vel_next=0.791
+[13_koopman] drawer L14 self=0.559 delta=+0.122 ee_pos_next=0.965 ee_vel_next=0.321 ee_acc_next=0.184 obj_vel_next=0.770
+[13_koopman] drawer L15 self=0.543 delta=+0.116 ee_pos_next=0.969 ee_vel_next=0.323 ee_acc_next=0.199 obj_vel_next=0.784
+[13_koopman] drawer L16 self=0.533 delta=+0.121 ee_pos_next=0.969 ee_vel_next=0.340 ee_acc_next=0.184 obj_vel_next=0.807
+[13_koopman] drawer L17 self=0.538 delta=+0.109 ee_pos_next=0.969 ee_vel_next=0.356 ee_acc_next=0.208 obj_vel_next=0.846
+[13_koopman] drawer L18 self=0.533 delta=+0.103 ee_pos_next=0.969 ee_vel_next=0.368 ee_acc_next=0.240 obj_vel_next=0.845
+[13_koopman] drawer L19 self=0.520 delta=+0.106 ee_pos_next=0.971 ee_vel_next=0.355 ee_acc_next=0.248 obj_vel_next=0.850
+[13_koopman] drawer L20 self=0.516 delta=+0.108 ee_pos_next=0.971 ee_vel_next=0.383 ee_acc_next=0.245 obj_vel_next=0.840
+[13_koopman] drawer L21 self=0.508 delta=+0.108 ee_pos_next=0.974 ee_vel_next=0.383 ee_acc_next=0.254 obj_vel_next=0.831
+[13_koopman] drawer L22 self=0.490 delta=+0.115 ee_pos_next=0.976 ee_vel_next=0.394 ee_acc_next=0.284 obj_vel_next=0.842
+[13_koopman] drawer L23 self=0.478 delta=+0.119 ee_pos_next=0.973 ee_vel_next=0.389 ee_acc_next=0.265 obj_vel_next=0.850
+[13_koopman] peg_insert loading ...
+[13_koopman] peg_insert L00 self=0.969 delta=+0.009 ee_pos_next=-0.078 ee_vel_next=-0.008 ee_acc_next=-0.064 obj_vel_next=-0.004
+[13_koopman] peg_insert L01 self=0.750 delta=+0.058 ee_pos_next=0.580 ee_vel_next=0.029 ee_acc_next=-0.003 obj_vel_next=-0.014
+[13_koopman] peg_insert L02 self=0.643 delta=+0.135 ee_pos_next=0.775 ee_vel_next=0.157 ee_acc_next=0.046 obj_vel_next=0.036
+[13_koopman] peg_insert L03 self=0.663 delta=+0.085 ee_pos_next=0.760 ee_vel_next=0.114 ee_acc_next=0.040 obj_vel_next=0.001
+[13_koopman] peg_insert L04 self=0.465 delta=+0.056 ee_pos_next=0.797 ee_vel_next=0.173 ee_acc_next=0.054 obj_vel_next=0.042
+[13_koopman] peg_insert L05 self=0.525 delta=+0.004 ee_pos_next=0.872 ee_vel_next=0.133 ee_acc_next=0.067 obj_vel_next=0.032
+[13_koopman] peg_insert L06 self=0.560 delta=+0.014 ee_pos_next=0.900 ee_vel_next=0.129 ee_acc_next=0.098 obj_vel_next=0.053
+[13_koopman] peg_insert L07 self=0.606 delta=+0.005 ee_pos_next=0.907 ee_vel_next=0.369 ee_acc_next=0.090 obj_vel_next=0.123
+[13_koopman] peg_insert L08 self=0.632 delta=-0.007 ee_pos_next=0.892 ee_vel_next=0.242 ee_acc_next=0.113 obj_vel_next=0.067
+[13_koopman] peg_insert L09 self=0.593 delta=-0.006 ee_pos_next=0.908 ee_vel_next=0.349 ee_acc_next=0.057 obj_vel_next=0.087
+[13_koopman] peg_insert L10 self=0.599 delta=-0.003 ee_pos_next=0.912 ee_vel_next=0.335 ee_acc_next=0.079 obj_vel_next=0.111
+[13_koopman] peg_insert L11 self=0.610 delta=-0.015 ee_pos_next=0.932 ee_vel_next=0.343 ee_acc_next=0.119 obj_vel_next=0.105
+[13_koopman] peg_insert L12 self=0.650 delta=-0.008 ee_pos_next=0.930 ee_vel_next=0.246 ee_acc_next=0.070 obj_vel_next=0.045
+[13_koopman] peg_insert L13 self=0.647 delta=-0.019 ee_pos_next=0.911 ee_vel_next=0.415 ee_acc_next=0.064 obj_vel_next=0.113
+[13_koopman] peg_insert L14 self=0.630 delta=-0.020 ee_pos_next=0.906 ee_vel_next=0.429 ee_acc_next=0.066 obj_vel_next=0.133
+[13_koopman] peg_insert L15 self=0.621 delta=-0.018 ee_pos_next=0.925 ee_vel_next=0.487 ee_acc_next=0.064 obj_vel_next=0.150
+[13_koopman] peg_insert L16 self=0.616 delta=-0.018 ee_pos_next=0.936 ee_vel_next=0.544 ee_acc_next=0.110 obj_vel_next=0.168
+[13_koopman] peg_insert L17 self=0.638 delta=-0.015 ee_pos_next=0.934 ee_vel_next=0.515 ee_acc_next=0.131 obj_vel_next=0.170
+[13_koopman] peg_insert L18 self=0.634 delta=-0.023 ee_pos_next=0.946 ee_vel_next=0.512 ee_acc_next=0.112 obj_vel_next=0.168
+[13_koopman] peg_insert L19 self=0.640 delta=-0.019 ee_pos_next=0.940 ee_vel_next=0.532 ee_acc_next=0.157 obj_vel_next=0.169
+[13_koopman] peg_insert L20 self=0.644 delta=-0.023 ee_pos_next=0.933 ee_vel_next=0.490 ee_acc_next=0.132 obj_vel_next=0.135
+[13_koopman] peg_insert L21 self=0.655 delta=-0.031 ee_pos_next=0.938 ee_vel_next=0.455 ee_acc_next=0.014 obj_vel_next=0.131
+[13_koopman] peg_insert L22 self=0.670 delta=-0.020 ee_pos_next=0.937 ee_vel_next=0.520 ee_acc_next=0.099 obj_vel_next=0.163
+[13_koopman] peg_insert L23 self=0.670 delta=-0.021 ee_pos_next=0.942 ee_vel_next=0.532 ee_acc_next=0.110 obj_vel_next=0.146
+[13_koopman] nut_thread loading ...
+[13_koopman] nut_thread L00 self=0.958 delta=+0.018 ee_pos_next=-0.347 ee_vel_next=-0.084 ee_acc_next=-0.005 obj_vel_next=-0.138
+[13_koopman] nut_thread L01 self=0.867 delta=+0.020 ee_pos_next=0.333 ee_vel_next=-0.085 ee_acc_next=-0.015 obj_vel_next=-0.146
+[13_koopman] nut_thread L02 self=0.742 delta=+0.056 ee_pos_next=0.421 ee_vel_next=-0.035 ee_acc_next=-0.008 obj_vel_next=-0.134
+[13_koopman] nut_thread L03 self=0.734 delta=-0.012 ee_pos_next=0.678 ee_vel_next=-0.083 ee_acc_next=-0.027 obj_vel_next=-0.190
+[13_koopman] nut_thread L04 self=0.424 delta=+0.094 ee_pos_next=0.795 ee_vel_next=-0.091 ee_acc_next=-0.030 obj_vel_next=-0.082
+[13_koopman] nut_thread L05 self=0.483 delta=+0.046 ee_pos_next=0.782 ee_vel_next=-0.158 ee_acc_next=-0.020 obj_vel_next=-0.116
+[13_koopman] nut_thread L06 self=0.487 delta=+0.018 ee_pos_next=0.840 ee_vel_next=-0.144 ee_acc_next=-0.034 obj_vel_next=-0.103
+[13_koopman] nut_thread L07 self=0.542 delta=-0.018 ee_pos_next=0.816 ee_vel_next=-0.129 ee_acc_next=-0.038 obj_vel_next=-0.133
+[13_koopman] nut_thread L08 self=0.626 delta=-0.018 ee_pos_next=0.862 ee_vel_next=-0.143 ee_acc_next=-0.059 obj_vel_next=-0.155
+[13_koopman] nut_thread L09 self=0.665 delta=-0.006 ee_pos_next=0.882 ee_vel_next=-0.055 ee_acc_next=-0.048 obj_vel_next=-0.111
+[13_koopman] nut_thread L10 self=0.646 delta=-0.013 ee_pos_next=0.908 ee_vel_next=-0.039 ee_acc_next=-0.038 obj_vel_next=-0.081
+[13_koopman] nut_thread L11 self=0.641 delta=-0.013 ee_pos_next=0.921 ee_vel_next=-0.085 ee_acc_next=-0.034 obj_vel_next=-0.093
+[13_koopman] nut_thread L12 self=0.646 delta=-0.010 ee_pos_next=0.901 ee_vel_next=-0.117 ee_acc_next=-0.035 obj_vel_next=-0.133
+[13_koopman] nut_thread L13 self=0.641 delta=+0.000 ee_pos_next=0.930 ee_vel_next=-0.074 ee_acc_next=-0.020 obj_vel_next=-0.074
+[13_koopman] nut_thread L14 self=0.611 delta=+0.002 ee_pos_next=0.921 ee_vel_next=-0.086 ee_acc_next=-0.035 obj_vel_next=-0.069
+[13_koopman] nut_thread L15 self=0.596 delta=+0.004 ee_pos_next=0.916 ee_vel_next=-0.067 ee_acc_next=-0.030 obj_vel_next=-0.090
+[13_koopman] nut_thread L16 self=0.589 delta=+0.007 ee_pos_next=0.916 ee_vel_next=-0.051 ee_acc_next=-0.057 obj_vel_next=-0.096
+[13_koopman] nut_thread L17 self=0.604 delta=-0.001 ee_pos_next=0.916 ee_vel_next=-0.088 ee_acc_next=-0.060 obj_vel_next=-0.089
+[13_koopman] nut_thread L18 self=0.603 delta=-0.001 ee_pos_next=0.919 ee_vel_next=-0.066 ee_acc_next=-0.018 obj_vel_next=-0.123
+[13_koopman] nut_thread L19 self=0.612 delta=-0.003 ee_pos_next=0.930 ee_vel_next=-0.045 ee_acc_next=-0.033 obj_vel_next=-0.112
+[13_koopman] nut_thread L20 self=0.609 delta=-0.003 ee_pos_next=0.933 ee_vel_next=-0.071 ee_acc_next=-0.017 obj_vel_next=-0.090
+[13_koopman] nut_thread L21 self=0.622 delta=-0.001 ee_pos_next=0.938 ee_vel_next=-0.038 ee_acc_next=-0.045 obj_vel_next=-0.066
+[13_koopman] nut_thread L22 self=0.628 delta=+0.002 ee_pos_next=0.945 ee_vel_next=-0.026 ee_acc_next=-0.022 obj_vel_next=-0.085
+[13_koopman] nut_thread L23 self=0.633 delta=-0.001 ee_pos_next=0.936 ee_vel_next=-0.076 ee_acc_next=-0.034 obj_vel_next=-0.089
+[13_koopman] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/koopman.csv (144 rows)

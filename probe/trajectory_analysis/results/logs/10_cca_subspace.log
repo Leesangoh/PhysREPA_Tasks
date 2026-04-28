@@ -1,0 +1,343 @@
+[10_cca] push loading ...
+[10_cca] push L00 done
+[10_cca] push L01 done
+[10_cca] push L02 done
+[10_cca] push L03 done
+[10_cca] push L04 done
+[10_cca] push L05 done
+[10_cca] push L06 done
+[10_cca] push L07 done
+[10_cca] push L08 done
+[10_cca] push L09 done
+[10_cca] push L10 done
+[10_cca] push L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L12 done
+[10_cca] push L13 done
+[10_cca] push L14 done
+[10_cca] push L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L16 done
+[10_cca] push L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L20 done
+[10_cca] push L21 done
+[10_cca] push L22 done
+[10_cca] push L23 done
+[10_cca] strike loading ...
+[10_cca] strike L00 done
+[10_cca] strike L01 done
+[10_cca] strike L02 done
+[10_cca] strike L03 done
+[10_cca] strike L04 done
+[10_cca] strike L05 done
+[10_cca] strike L06 done
+[10_cca] strike L07 done
+[10_cca] strike L08 done
+[10_cca] strike L09 done
+[10_cca] strike L10 done
+[10_cca] strike L11 done
+[10_cca] strike L12 done
+[10_cca] strike L13 done
+[10_cca] strike L14 done
+[10_cca] strike L15 done
+[10_cca] strike L16 done
+[10_cca] strike L17 done
+[10_cca] strike L18 done
+[10_cca] strike L19 done
+[10_cca] strike L20 done
+[10_cca] strike L21 done
+[10_cca] strike L22 done
+[10_cca] strike L23 done
+[10_cca] reach loading ...
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L00 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L01 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L02 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L03 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L04 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L05 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L06 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L07 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L08 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L09 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L10 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L12 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L13 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L14 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L16 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L21 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L23 done
+[10_cca] drawer loading ...
+[10_cca] drawer L00 done
+[10_cca] drawer L01 done
+[10_cca] drawer L02 done
+[10_cca] drawer L03 done
+[10_cca] drawer L04 done
+[10_cca] drawer L05 done
+[10_cca] drawer L06 done
+[10_cca] drawer L07 done
+[10_cca] drawer L08 done
+[10_cca] drawer L09 done
+[10_cca] drawer L10 done
+[10_cca] drawer L11 done
+[10_cca] drawer L12 done
+[10_cca] drawer L13 done
+[10_cca] drawer L14 done
+[10_cca] drawer L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] drawer L16 done
+[10_cca] drawer L17 done
+[10_cca] drawer L18 done
+[10_cca] drawer L19 done
+[10_cca] drawer L20 done
+[10_cca] drawer L21 done
+[10_cca] drawer L22 done
+[10_cca] drawer L23 done
+[10_cca] peg_insert loading ...
+[10_cca] peg_insert L00 done
+[10_cca] peg_insert L01 done
+[10_cca] peg_insert L02 done
+[10_cca] peg_insert L03 done
+[10_cca] peg_insert L04 done
+[10_cca] peg_insert L05 done
+[10_cca] peg_insert L06 done
+[10_cca] peg_insert L07 done
+[10_cca] peg_insert L08 done
+[10_cca] peg_insert L09 done
+[10_cca] peg_insert L10 done
+[10_cca] peg_insert L11 done
+[10_cca] peg_insert L12 done
+[10_cca] peg_insert L13 done
+[10_cca] peg_insert L14 done
+[10_cca] peg_insert L15 done
+[10_cca] peg_insert L16 done
+[10_cca] peg_insert L17 done
+[10_cca] peg_insert L18 done
+[10_cca] peg_insert L19 done
+[10_cca] peg_insert L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] peg_insert L21 done
+[10_cca] peg_insert L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] peg_insert L23 done
+[10_cca] nut_thread loading ...
+[10_cca] nut_thread L00 done
+[10_cca] nut_thread L01 done
+[10_cca] nut_thread L02 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L03 done
+[10_cca] nut_thread L04 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L05 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L06 done
+[10_cca] nut_thread L07 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L08 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L09 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L10 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L12 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L13 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L14 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L16 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L21 done
+[10_cca] nut_thread L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L23 done
+[10_cca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/cca_subspace.csv (576 rows)
