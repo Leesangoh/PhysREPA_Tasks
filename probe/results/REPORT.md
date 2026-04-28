@@ -7,11 +7,11 @@
 
 | task | target | threshold | got | best_layer | pass |
 |---|---|---|---|---|---|
-| push | ee_velocity | >0.5 | 0.9526 | 22 | True |
-| push | ee_position | >0.5 | 0.9857 | 22 | True |
+| push | ee_velocity | >0.5 | 0.9507 | 22 | True |
+| push | ee_position | >0.5 | 0.9844 | 22 | True |
 | strike | ee_velocity | >0.4 | 0.9619 | 22 | True |
 
-Push ee_velocity strict argmax layer: 22; relaxed (first layer ≥ 99 % of max R²): 18
+Push ee_velocity strict argmax layer: 22; relaxed (first layer ≥ 99 % of max R²): 17
 PEZ peak in layers 6–18 (strict argmax): False
 PEZ peak in layers 6–18 (relaxed 99 % plateau): True
 All basic targets R² < 0.2: False
@@ -24,22 +24,22 @@ Layer 0 saturates (R² > 0.9): False
 | task | target | best_layer | r2_mean ± std | mse_mean |
 |---|---|---|---|---|
 | push | ee_accel_mag | 19 | 0.6586 ± 0.0106 | 0.6410 |
-| push | ee_acceleration | 21 | 0.3716 ± 0.0123 | 0.4677 |
+| push | ee_acceleration | 21 | 0.3725 ± 0.0126 | 0.4671 |
 | push | ee_direction | 15 | 0.8662 ± 0.0052 | 0.0430 |
-| push | ee_position | 22 | 0.9857 ± 0.0016 | 0.0003 |
+| push | ee_position | 22 | 0.9844 ± 0.0021 | 0.0003 |
 | push | ee_speed | 19 | 0.9616 ± 0.0031 | 0.0010 |
-| push | ee_velocity | 22 | 0.9526 ± 0.0043 | 0.0011 |
+| push | ee_velocity | 22 | 0.9507 ± 0.0064 | 0.0011 |
 | push | obj_accel_mag | 19 | 0.3317 ± 0.0384 | 0.9439 |
-| push | obj_acceleration | 22 | 0.1057 ± 0.0168 | 0.4547 |
-| push | obj_direction | 22 | 0.3058 ± 0.0107 | 0.1791 |
+| push | obj_acceleration | 21 | 0.1036 ± 0.0160 | 0.4557 |
+| push | obj_direction | 22 | 0.3033 ± 0.0100 | 0.1797 |
 | push | obj_position | 11 | 0.2607 ± 0.0138 | 15.3986 |
-| push | obj_speed | 22 | 0.8358 ± 0.0493 | 0.0023 |
-| push | obj_velocity | 21 | 0.7630 ± 0.0494 | 0.0012 |
+| push | obj_speed | 22 | 0.8346 ± 0.0493 | 0.0023 |
+| push | obj_velocity | 21 | 0.7632 ± 0.0467 | 0.0012 |
 | strike | ee_accel_mag | 16 | 0.7868 ± 0.0050 | 1.0179 |
 | strike | ee_acceleration | 22 | 0.5878 ± 0.0052 | 0.8139 |
 | strike | ee_direction | 13 | 0.8774 ± 0.0046 | 0.0397 |
 | strike | ee_position | 22 | 0.9870 ± 0.0029 | 0.0002 |
-| strike | ee_speed | 19 | 0.9801 ± 0.0031 | 0.0013 |
+| strike | ee_speed | 16 | 0.9794 ± 0.0013 | 0.0014 |
 | strike | ee_velocity | 22 | 0.9619 ± 0.0010 | 0.0014 |
 | strike | obj_accel_mag | 16 | 0.4781 ± 0.0474 | 1.5698 |
 | strike | obj_acceleration | 22 | 0.2810 ± 0.0182 | 0.7574 |
@@ -65,6 +65,18 @@ Layer 0 saturates (R² > 0.9): False
 | drawer | obj_position | 21 | 0.9900 ± 0.0031 | 0.0000 |
 | drawer | obj_speed | 16 | 0.9362 ± 0.0118 | 0.0031 |
 | drawer | obj_velocity | 22 | 0.9470 ± 0.0021 | 0.0009 |
+| peg_insert | ee_accel_mag | 17 | 0.7679 ± 0.0028 | 0.0007 |
+| peg_insert | ee_acceleration | 17 | 0.5675 ± 0.0162 | 0.0005 |
+| peg_insert | ee_direction | 17 | 0.0966 ± 0.0031 | 0.2981 |
+| peg_insert | ee_position | 14 | 0.9759 ± 0.0005 | 0.0000 |
+| peg_insert | ee_speed | 17 | 0.9261 ± 0.0022 | 0.0000 |
+| peg_insert | ee_velocity | 17 | 0.8689 ± 0.0028 | 0.0000 |
+| peg_insert | obj_accel_mag | 17 | 0.3625 ± 0.0285 | 0.0040 |
+| peg_insert | obj_acceleration | 15 | 0.2145 ± 0.0313 | 0.0022 |
+| peg_insert | obj_direction | 17 | 0.1917 ± 0.0039 | 0.2096 |
+| peg_insert | obj_position | 14 | 0.9752 ± 0.0004 | 0.0000 |
+| peg_insert | obj_speed | 17 | 0.6046 ± 0.0369 | 0.0000 |
+| peg_insert | obj_velocity | 17 | 0.5283 ± 0.0268 | 0.0000 |
 | nut_thread | ee_accel_mag | 20 | 0.3814 ± 0.0171 | 0.0004 |
 | nut_thread | ee_acceleration | 20 | 0.0797 ± 0.0086 | 0.0004 |
 | nut_thread | ee_direction | 17 | 0.0186 ± 0.0015 | 0.3266 |

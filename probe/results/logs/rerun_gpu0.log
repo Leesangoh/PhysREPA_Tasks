@@ -1,0 +1,4 @@
+=== GPU 0 rerun start: 2026-04-27T15:19:27Z ===
+--- peg_insert rerun layers 9,10,11,16,18,19,20,21,22,23 ---
+--- reach rerun layers 0,21,22 ---
+=== GPU 0 rerun done: 2026-04-27T20:21:27Z ===

@@ -7768,3 +7768,807 @@ Output: results/decision.json, results/peak_layers.csv, results/REPORT.md, resul
 [2026-04-27 15:13:14] [probe] peg_insert B ee_direction L00: r2_mean=-16.263 std=17.219 106.0s
 
 [2026-04-27 15:15:21] [probe] peg_insert B ee_acceleration L00: r2_mean=-7.178 std=6.450 114.6s
+
+[2026-04-27 15:19:30] [rerun] task=peg_insert variant=B layers=[9, 10, 11, 16, 18, 19, 20, 21, 22, 23] gpu=0
+
+[2026-04-27 15:19:30] [rerun] task=strike variant=B layers=[0, 19, 20, 21] gpu=1
+
+[2026-04-27 15:23:33] [rerun] peg_insert B layer 09: loaded [(322500, 8192)] in 243.3s
+
+[2026-04-27 15:25:37] [rerun] peg_insert B ee_position L09: r2_mean=0.957 std=0.018 122.8s
+
+[2026-04-27 15:26:05] [rerun] strike B layer 00: loaded [(535779, 8192)] in 395.2s
+
+[2026-04-27 15:27:31] [rerun] task=push variant=B layers=[0, 20, 21, 22, 23] gpu=1
+
+[2026-04-27 15:27:42] [rerun] peg_insert B ee_velocity L09: r2_mean=0.820 std=0.007 125.5s
+
+[2026-04-27 15:29:27] [rerun] task=nut_thread variant=B layers=[1, 8, 9, 10, 11] gpu=1
+
+[2026-04-27 15:29:40] [rerun] peg_insert B ee_speed L09: r2_mean=0.894 std=0.009 117.2s
+
+[2026-04-27 15:31:46] [rerun] peg_insert B ee_direction L09: r2_mean=-1.494 std=3.033 121.3s
+
+[2026-04-27 15:33:26] [rerun] nut_thread B layer 01: loaded [(322500, 8192)] in 239.0s
+
+[2026-04-27 15:33:54] [rerun] peg_insert B ee_acceleration L09: r2_mean=0.417 std=0.079 127.2s
+
+[2026-04-27 15:35:59] [rerun] peg_insert B ee_accel_mag L09: r2_mean=0.718 std=0.021 124.4s
+
+[2026-04-27 15:38:02] [rerun] peg_insert B obj_position L09: r2_mean=0.959 std=0.011 123.0s
+
+[2026-04-27 15:40:06] [rerun] peg_insert B obj_velocity L09: r2_mean=0.318 std=0.292 123.4s
+
+[2026-04-27 15:42:06] [rerun] peg_insert B obj_speed L09: r2_mean=0.570 std=0.032 119.8s
+
+[2026-04-27 15:44:12] [rerun] peg_insert B obj_direction L09: r2_mean=0.116 std=0.052 121.6s
+
+[2026-04-27 15:46:17] [rerun] peg_insert B obj_acceleration L09: r2_mean=0.040 std=0.126 124.5s
+
+[2026-04-27 15:48:20] [rerun] peg_insert B obj_accel_mag L09: r2_mean=0.328 std=0.019 122.0s
+
+[2026-04-27 15:50:38] [rerun] peg_insert B layer 10: loaded [(322500, 8192)] in 138.6s
+
+[2026-04-27 15:52:43] [rerun] peg_insert B ee_position L10: r2_mean=0.714 std=0.286 124.2s
+
+[2026-04-27 15:54:50] [rerun] peg_insert B ee_velocity L10: r2_mean=0.453 std=0.376 126.8s
+
+[2026-04-27 15:56:54] [rerun] peg_insert B ee_speed L10: r2_mean=0.248 std=0.722 122.9s
+
+[2026-04-27 15:59:03] [rerun] peg_insert B ee_direction L10: r2_mean=-1.274 std=1.517 124.8s
+
+[2026-04-27 16:01:21] [rerun] peg_insert B ee_acceleration L10: r2_mean=-3.505 std=4.967 137.4s
+
+[2026-04-27 16:03:55] [rerun] peg_insert B ee_accel_mag L10: r2_mean=0.660 std=0.098 154.3s
+
+[2026-04-27 16:06:17] [rerun] peg_insert B obj_position L10: r2_mean=-0.086 std=1.097 141.5s
+
+[2026-04-27 16:08:44] [rerun] peg_insert B obj_velocity L10: r2_mean=-1.178 std=2.146 146.3s
+
+[2026-04-27 16:10:50] [rerun] peg_insert B obj_speed L10: r2_mean=0.032 std=1.065 126.1s
+
+[2026-04-27 16:13:10] [rerun] peg_insert B obj_direction L10: r2_mean=-4.974 std=9.427 131.6s
+
+[2026-04-27 16:15:14] [rerun] peg_insert B obj_acceleration L10: r2_mean=-0.299 std=0.673 123.1s
+
+[2026-04-27 16:17:19] [rerun] peg_insert B obj_accel_mag L10: r2_mean=0.221 std=0.186 124.5s
+
+[2026-04-27 16:19:34] [rerun] peg_insert B layer 11: loaded [(322500, 8192)] in 135.1s
+
+[2026-04-27 16:21:39] [rerun] peg_insert B ee_position L11: r2_mean=-0.789 std=1.405 124.1s
+
+[2026-04-27 16:23:43] [rerun] peg_insert B ee_velocity L11: r2_mean=-4.500 std=5.336 124.1s
+
+[2026-04-27 16:25:43] [rerun] peg_insert B ee_speed L11: r2_mean=0.715 std=0.207 119.4s
+
+[2026-04-27 16:27:43] [rerun] peg_insert B ee_direction L11: r2_mean=-4.752 std=3.857 115.7s
+
+[2026-04-27 16:29:51] [rerun] peg_insert B ee_acceleration L11: r2_mean=-2.827 std=3.324 126.7s
+
+[2026-04-27 16:31:53] [rerun] peg_insert B ee_accel_mag L11: r2_mean=0.391 std=0.247 121.5s
+
+[2026-04-27 16:34:05] [rerun] peg_insert B obj_position L11: r2_mean=-4.606 std=5.772 131.9s
+
+[2026-04-27 16:36:14] [rerun] peg_insert B obj_velocity L11: r2_mean=-3.601 std=2.179 128.3s
+
+[2026-04-27 16:38:17] [rerun] peg_insert B obj_speed L11: r2_mean=0.271 std=0.126 123.5s
+
+[2026-04-27 16:40:31] [rerun] peg_insert B obj_direction L11: r2_mean=-5.699 std=3.021 129.3s
+
+[2026-04-27 16:42:36] [rerun] peg_insert B obj_acceleration L11: r2_mean=-6.708 std=3.874 123.9s
+
+[2026-04-27 16:44:37] [rerun] peg_insert B obj_accel_mag L11: r2_mean=-0.062 std=0.624 120.2s
+
+[2026-04-27 16:46:51] [rerun] peg_insert B layer 16: loaded [(322500, 8192)] in 134.2s
+
+[2026-04-27 16:48:52] [rerun] peg_insert B ee_position L16: r2_mean=0.886 std=0.109 120.5s
+
+[2026-04-27 16:50:54] [rerun] peg_insert B ee_velocity L16: r2_mean=0.842 std=0.022 121.2s
+
+[2026-04-27 16:52:48] [rerun] peg_insert B ee_speed L16: r2_mean=0.913 std=0.018 114.4s
+
+[2026-04-27 16:54:49] [rerun] peg_insert B ee_direction L16: r2_mean=0.086 std=0.005 116.2s
+
+[2026-04-27 16:56:53] [rerun] peg_insert B ee_acceleration L16: r2_mean=0.369 std=0.356 123.6s
+
+[2026-04-27 16:58:55] [rerun] peg_insert B ee_accel_mag L16: r2_mean=0.763 std=0.002 121.1s
+
+[2026-04-27 17:01:03] [rerun] peg_insert B obj_position L16: r2_mean=0.815 std=0.236 127.9s
+
+[2026-04-27 17:03:07] [rerun] peg_insert B obj_velocity L16: r2_mean=-0.757 std=2.398 123.7s
+
+[2026-04-27 17:05:08] [rerun] peg_insert B obj_speed L16: r2_mean=0.591 std=0.038 120.2s
+
+[2026-04-27 17:07:19] [rerun] peg_insert B obj_direction L16: r2_mean=0.164 std=0.035 126.9s
+
+[2026-04-27 17:09:24] [rerun] peg_insert B obj_acceleration L16: r2_mean=0.188 std=0.024 124.0s
+
+[2026-04-27 17:11:23] [rerun] peg_insert B obj_accel_mag L16: r2_mean=0.361 std=0.023 118.6s
+
+[2026-04-27 17:13:37] [rerun] peg_insert B layer 18: loaded [(322500, 8192)] in 134.2s
+
+[2026-04-27 17:15:42] [rerun] peg_insert B ee_position L18: r2_mean=-1.201 std=2.279 123.6s
+
+[2026-04-27 17:17:46] [rerun] peg_insert B ee_velocity L18: r2_mean=0.765 std=0.133 123.9s
+
+[2026-04-27 17:19:44] [rerun] peg_insert B ee_speed L18: r2_mean=0.925 std=0.002 117.9s
+
+[2026-04-27 17:21:45] [rerun] peg_insert B ee_direction L18: r2_mean=0.029 std=0.075 117.0s
+
+[2026-04-27 17:23:50] [rerun] peg_insert B ee_acceleration L18: r2_mean=0.285 std=0.483 124.8s
+
+[2026-04-27 17:25:47] [rerun] peg_insert B ee_accel_mag L18: r2_mean=0.759 std=0.009 116.6s
+
+[2026-04-27 17:27:54] [rerun] peg_insert B obj_position L18: r2_mean=-1.346 std=3.312 126.5s
+
+[2026-04-27 17:29:58] [rerun] peg_insert B obj_velocity L18: r2_mean=0.295 std=0.144 123.8s
+
+[2026-04-27 17:31:57] [rerun] peg_insert B obj_speed L18: r2_mean=0.596 std=0.046 117.8s
+
+[2026-04-27 17:34:03] [rerun] peg_insert B obj_direction L18: r2_mean=-0.526 std=0.469 122.3s
+
+[2026-04-27 17:36:07] [rerun] peg_insert B obj_acceleration L18: r2_mean=-0.056 std=0.307 123.3s
+
+[2026-04-27 17:38:07] [rerun] peg_insert B obj_accel_mag L18: r2_mean=0.337 std=0.046 119.3s
+
+[2026-04-27 17:40:21] [rerun] peg_insert B layer 19: loaded [(322500, 8192)] in 133.8s
+
+[2026-04-27 17:42:28] [rerun] peg_insert B ee_position L19: r2_mean=-1.170 std=1.870 126.6s
+
+[2026-04-27 17:44:38] [rerun] peg_insert B ee_velocity L19: r2_mean=0.021 std=0.641 129.0s
+
+[2026-04-27 17:46:39] [rerun] peg_insert B ee_speed L19: r2_mean=0.877 std=0.034 121.1s
+
+[2026-04-27 17:48:41] [rerun] peg_insert B ee_direction L19: r2_mean=-4.514 std=5.789 118.4s
+
+[2026-04-27 17:50:48] [rerun] peg_insert B ee_acceleration L19: r2_mean=-2.733 std=1.859 126.7s
+
+[2026-04-27 17:52:48] [rerun] peg_insert B ee_accel_mag L19: r2_mean=0.655 std=0.104 119.5s
+
+[2026-04-27 17:54:54] [rerun] peg_insert B obj_position L19: r2_mean=-3.918 std=7.150 125.6s
+
+[2026-04-27 17:57:04] [rerun] peg_insert B obj_velocity L19: r2_mean=-0.767 std=0.550 129.3s
+
+[2026-04-27 17:59:06] [rerun] peg_insert B obj_speed L19: r2_mean=0.443 std=0.206 121.2s
+
+[2026-04-27 18:01:14] [rerun] peg_insert B obj_direction L19: r2_mean=-2.293 std=2.065 124.5s
+
+[2026-04-27 18:03:22] [rerun] peg_insert B obj_acceleration L19: r2_mean=-2.729 std=3.750 126.6s
+
+[2026-04-27 18:05:23] [rerun] peg_insert B obj_accel_mag L19: r2_mean=-0.013 std=0.404 120.8s
+
+[2026-04-27 18:07:37] [rerun] peg_insert B layer 20: loaded [(322500, 8192)] in 134.5s
+
+[2026-04-27 18:09:42] [rerun] peg_insert B ee_position L20: r2_mean=-2.777 std=4.583 123.6s
+
+[2026-04-27 18:11:48] [rerun] peg_insert B ee_velocity L20: r2_mean=-9.048 std=6.865 125.8s
+
+[2026-04-27 18:13:48] [rerun] peg_insert B ee_speed L20: r2_mean=0.393 std=0.633 119.2s
+
+[2026-04-27 18:15:50] [rerun] peg_insert B ee_direction L20: r2_mean=-9.754 std=7.802 118.2s
+
+[2026-04-27 18:17:53] [rerun] peg_insert B ee_acceleration L20: r2_mean=-1.320 std=1.651 122.0s
+
+[2026-04-27 18:19:53] [rerun] peg_insert B ee_accel_mag L20: r2_mean=0.002 std=0.509 120.0s
+
+[2026-04-27 18:22:20] [rerun] peg_insert B obj_position L20: r2_mean=-5.604 std=5.524 146.5s
+
+[2026-04-27 18:24:39] [rerun] peg_insert B obj_velocity L20: r2_mean=-6.969 std=5.951 138.6s
+
+[2026-04-27 18:26:51] [rerun] peg_insert B obj_speed L20: r2_mean=-0.869 std=1.313 131.1s
+
+[2026-04-27 18:29:04] [rerun] peg_insert B obj_direction L20: r2_mean=-10.207 std=11.457 128.4s
+
+[2026-04-27 18:31:16] [rerun] peg_insert B obj_acceleration L20: r2_mean=-16.104 std=14.128 131.1s
+
+[2026-04-27 18:33:31] [rerun] peg_insert B obj_accel_mag L20: r2_mean=-0.288 std=0.638 134.5s
+
+[2026-04-27 18:35:57] [rerun] peg_insert B layer 21: loaded [(322500, 8192)] in 146.0s
+
+[2026-04-27 18:38:02] [rerun] peg_insert B ee_position L21: r2_mean=0.967 std=0.013 124.0s
+
+[2026-04-27 18:40:25] [rerun] peg_insert B ee_velocity L21: r2_mean=0.160 std=1.003 142.6s
+
+[2026-04-27 18:42:57] [rerun] peg_insert B ee_speed L21: r2_mean=0.908 std=0.034 152.0s
+
+[2026-04-27 18:45:16] [rerun] peg_insert B ee_direction L21: r2_mean=-2.474 std=3.057 133.5s
+
+[2026-04-27 18:47:42] [rerun] peg_insert B ee_acceleration L21: r2_mean=0.453 std=0.062 145.1s
+
+[2026-04-27 18:49:56] [rerun] peg_insert B ee_accel_mag L21: r2_mean=0.743 std=0.029 133.9s
+
+[2026-04-27 18:52:20] [rerun] peg_insert B obj_position L21: r2_mean=0.577 std=0.677 142.7s
+
+[2026-04-27 18:54:45] [rerun] peg_insert B obj_velocity L21: r2_mean=0.250 std=0.279 144.5s
+
+[2026-04-27 18:57:13] [rerun] peg_insert B obj_speed L21: r2_mean=0.597 std=0.038 148.0s
+
+[2026-04-27 18:59:45] [rerun] peg_insert B obj_direction L21: r2_mean=-0.290 std=0.495 146.5s
+
+[2026-04-27 19:02:02] [rerun] peg_insert B obj_acceleration L21: r2_mean=0.009 std=0.158 135.4s
+
+[2026-04-27 19:04:06] [rerun] peg_insert B obj_accel_mag L21: r2_mean=0.349 std=0.040 124.3s
+
+[2026-04-27 19:06:32] [rerun] peg_insert B layer 22: loaded [(322500, 8192)] in 145.1s
+
+[2026-04-27 19:08:36] [rerun] peg_insert B ee_position L22: r2_mean=0.974 std=0.003 123.2s
+
+[2026-04-27 19:10:47] [rerun] peg_insert B ee_velocity L22: r2_mean=-9.205 std=18.302 130.4s
+
+[2026-04-27 19:12:52] [rerun] peg_insert B ee_speed L22: r2_mean=0.923 std=0.001 125.2s
+
+[2026-04-27 19:15:05] [rerun] peg_insert B ee_direction L22: r2_mean=-2.495 std=3.652 127.9s
+
+[2026-04-27 19:17:19] [rerun] peg_insert B ee_acceleration L22: r2_mean=0.450 std=0.079 133.8s
+
+[2026-04-27 19:19:31] [rerun] peg_insert B ee_accel_mag L22: r2_mean=0.748 std=0.004 131.8s
+
+[2026-04-27 19:21:43] [rerun] peg_insert B obj_position L22: r2_mean=0.935 std=0.061 130.9s
+
+[2026-04-27 19:23:53] [rerun] peg_insert B obj_velocity L22: r2_mean=-0.476 std=1.145 130.3s
+
+[2026-04-27 19:25:52] [rerun] peg_insert B obj_speed L22: r2_mean=0.601 std=0.032 118.7s
+
+[2026-04-27 19:27:59] [rerun] peg_insert B obj_direction L22: r2_mean=-1.495 std=1.867 121.9s
+
+[2026-04-27 19:30:05] [rerun] peg_insert B obj_acceleration L22: r2_mean=0.016 std=0.156 125.1s
+
+[2026-04-27 19:32:13] [rerun] peg_insert B obj_accel_mag L22: r2_mean=0.344 std=0.036 127.6s
+
+[2026-04-27 19:34:39] [rerun] peg_insert B layer 23: loaded [(322500, 8192)] in 145.6s
+
+[2026-04-27 19:36:44] [rerun] peg_insert B ee_position L23: r2_mean=0.723 std=0.395 124.6s
+
+[2026-04-27 19:38:49] [rerun] peg_insert B ee_velocity L23: r2_mean=0.769 std=0.047 124.2s
+
+[2026-04-27 19:40:45] [rerun] peg_insert B ee_speed L23: r2_mean=0.917 std=0.003 116.0s
+
+[2026-04-27 19:42:42] [rerun] peg_insert B ee_direction L23: r2_mean=-1.483 std=2.875 112.6s
+
+[2026-04-27 19:44:44] [rerun] peg_insert B ee_acceleration L23: r2_mean=-0.127 std=0.970 121.0s
+
+[2026-04-27 19:46:40] [rerun] peg_insert B ee_accel_mag L23: r2_mean=0.731 std=0.011 115.5s
+
+[2026-04-27 19:48:42] [rerun] peg_insert B obj_position L23: r2_mean=0.884 std=0.100 121.5s
+
+[2026-04-27 19:51:04] [rerun] peg_insert B obj_velocity L23: r2_mean=0.414 std=0.139 142.0s
+
+[2026-04-27 19:53:16] [rerun] peg_insert B obj_speed L23: r2_mean=0.370 std=0.448 131.4s
+
+[2026-04-27 19:55:58] [rerun] peg_insert B obj_direction L23: r2_mean=-0.743 std=1.544 154.8s
+
+[2026-04-27 19:58:30] [rerun] peg_insert B obj_acceleration L23: r2_mean=-0.585 std=1.085 151.6s
+
+[2026-04-27 20:00:51] [rerun] peg_insert B obj_accel_mag L23: r2_mean=0.341 std=0.033 140.1s
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_position.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_velocity.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_speed.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_direction.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_acceleration.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/ee_accel_mag.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_position.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_velocity.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_speed.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_direction.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_acceleration.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] wrote /home/solee/physrepa_tasks/probe/results/peg_insert/variant_B/obj_accel_mag.csv (kept 70 + new 50 = 120 rows)
+
+[2026-04-27 20:00:51] [rerun] peg_insert B layers [9, 10, 11, 16, 18, 19, 20, 21, 22, 23] DONE in 281.4min
+
+[2026-04-27 20:00:57] [rerun] task=reach variant=B layers=[0, 21, 22] gpu=0
+
+[2026-04-27 20:02:41] [rerun] reach B layer 00: loaded [(141000, 8192)] in 104.4s
+
+[2026-04-27 20:03:40] [rerun] reach B ee_position L00: r2_mean=-0.393 std=0.936 58.1s
+
+[2026-04-27 20:04:38] [rerun] reach B ee_velocity L00: r2_mean=-2.324 std=1.970 57.8s
+
+[2026-04-27 20:05:32] [rerun] reach B ee_speed L00: r2_mean=0.498 std=0.123 54.4s
+
+[2026-04-27 20:05:58] [rerun] reach B ee_direction L00: r2_mean=-31.707 std=26.832 25.5s
+
+[2026-04-27 20:06:54] [rerun] reach B ee_acceleration L00: r2_mean=-2.462 std=1.841 55.2s
+
+[2026-04-27 20:07:47] [rerun] reach B ee_accel_mag L00: r2_mean=0.206 std=0.157 53.5s
+
+[2026-04-27 20:09:36] [rerun] reach B layer 21: loaded [(141000, 8192)] in 108.6s
+
+[2026-04-27 20:10:31] [rerun] reach B ee_position L21: r2_mean=0.063 std=1.351 54.8s
+
+[2026-04-27 20:11:27] [rerun] reach B ee_velocity L21: r2_mean=-11.613 std=14.192 55.4s
+
+[2026-04-27 20:12:21] [rerun] reach B ee_speed L21: r2_mean=0.665 std=0.346 53.7s
+
+[2026-04-27 20:12:43] [rerun] reach B ee_direction L21: r2_mean=0.629 std=0.012 22.1s
+
+[2026-04-27 20:13:40] [rerun] reach B ee_acceleration L21: r2_mean=-2.322 std=2.264 56.1s
+
+[2026-04-27 20:14:33] [rerun] reach B ee_accel_mag L21: r2_mean=0.249 std=0.073 53.3s
+
+[2026-04-27 20:16:19] [rerun] reach B layer 22: loaded [(141000, 8192)] in 105.6s
+
+[2026-04-27 20:17:13] [rerun] reach B ee_position L22: r2_mean=-9.063 std=7.136 54.3s
+
+[2026-04-27 20:18:08] [rerun] reach B ee_velocity L22: r2_mean=-23.629 std=24.802 54.8s
+
+[2026-04-27 20:19:03] [rerun] reach B ee_speed L22: r2_mean=-0.332 std=0.682 54.2s
+
+[2026-04-27 20:19:29] [rerun] reach B ee_direction L22: r2_mean=-4.050 std=2.941 25.4s
+
+[2026-04-27 20:20:28] [rerun] reach B ee_acceleration L22: r2_mean=-19.308 std=26.361 58.7s
+
+[2026-04-27 20:21:25] [rerun] reach B ee_accel_mag L22: r2_mean=-4.240 std=4.073 57.5s
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_position.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_velocity.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_speed.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_direction.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_acceleration.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] wrote /home/solee/physrepa_tasks/probe/results/reach/variant_B/ee_accel_mag.csv (kept 105 + new 15 = 120 rows)
+
+[2026-04-27 20:21:25] [rerun] reach B layers [0, 21, 22] DONE in 20.5min
+
+[2026-04-27 20:21:42] [rerun] task=nut_thread variant=B layers=[1, 8, 9, 10, 11] gpu=0
+
+[2026-04-27 20:25:48] [rerun] nut_thread B layer 01: loaded [(322500, 8192)] in 245.5s
+
+[2026-04-27 20:27:48] [rerun] nut_thread B ee_position L01: r2_mean=-4.422 std=4.524 120.2s
+
+[2026-04-27 20:29:47] [rerun] nut_thread B ee_velocity L01: r2_mean=-5.721 std=6.991 118.4s
+
+[2026-04-27 20:31:45] [rerun] nut_thread B ee_speed L01: r2_mean=0.128 std=0.075 117.2s
+
+[2026-04-27 20:34:03] [rerun] nut_thread B ee_direction L01: r2_mean=-1.903 std=2.020 133.4s
+
+[2026-04-27 20:36:25] [rerun] nut_thread B ee_acceleration L01: r2_mean=-1.333 std=1.880 141.3s
+
+[2026-04-27 20:38:33] [rerun] nut_thread B ee_accel_mag L01: r2_mean=0.135 std=0.037 127.2s
+
+[2026-04-27 20:40:51] [rerun] nut_thread B obj_position L01: r2_mean=-0.500 std=2.534 138.0s
+
+[2026-04-27 20:43:07] [rerun] nut_thread B obj_velocity L01: r2_mean=-1.848 std=1.852 135.6s
+
+[2026-04-27 20:45:10] [rerun] nut_thread B obj_speed L01: r2_mean=-0.131 std=0.139 122.4s
+
+[2026-04-27 20:47:24] [rerun] nut_thread B obj_direction L01: r2_mean=-0.802 std=1.113 129.9s
+
+[2026-04-27 20:49:43] [rerun] nut_thread B obj_acceleration L01: r2_mean=-1.348 std=1.564 138.2s
+
+[2026-04-27 20:52:16] [rerun] nut_thread B obj_accel_mag L01: r2_mean=-0.161 std=0.190 152.8s
+
+[2026-04-27 20:54:45] [rerun] nut_thread B layer 08: loaded [(322500, 8192)] in 148.7s
+
+[2026-04-27 20:57:07] [rerun] nut_thread B ee_position L08: r2_mean=-1.847 std=3.048 140.7s
+
+[2026-04-27 20:59:21] [rerun] nut_thread B ee_velocity L08: r2_mean=-10.714 std=17.905 134.2s
+
+[2026-04-27 21:01:31] [rerun] nut_thread B ee_speed L08: r2_mean=-0.032 std=0.417 128.7s
+
+[2026-04-27 21:03:53] [rerun] nut_thread B ee_direction L08: r2_mean=-5.271 std=3.619 138.2s
+
+[2026-04-27 21:06:09] [rerun] nut_thread B ee_acceleration L08: r2_mean=-3.933 std=2.099 134.4s
+
+[2026-04-27 21:08:16] [rerun] nut_thread B ee_accel_mag L08: r2_mean=0.287 std=0.041 126.7s
+
+[2026-04-27 21:10:23] [rerun] nut_thread B obj_position L08: r2_mean=-4.913 std=8.774 126.9s
+
+[2026-04-27 21:12:51] [rerun] nut_thread B obj_velocity L08: r2_mean=-4.513 std=4.397 147.4s
+
+[2026-04-27 21:15:15] [rerun] nut_thread B obj_speed L08: r2_mean=-0.138 std=0.180 143.5s
+
+[2026-04-27 21:17:48] [rerun] nut_thread B obj_direction L08: r2_mean=-9.571 std=12.831 144.7s
+
+[2026-04-27 21:20:09] [rerun] nut_thread B obj_acceleration L08: r2_mean=-4.872 std=4.336 139.9s
+
+[2026-04-27 21:22:28] [rerun] nut_thread B obj_accel_mag L08: r2_mean=-0.328 std=0.388 138.9s
+
+[2026-04-27 21:25:52] [rerun] nut_thread B layer 09: loaded [(322500, 8192)] in 203.9s
+
+[2026-04-27 21:28:11] [rerun] nut_thread B ee_position L09: r2_mean=0.744 std=0.397 138.2s
+
+[2026-04-27 21:30:42] [rerun] nut_thread B ee_velocity L09: r2_mean=0.098 std=0.086 150.6s
+
+[2026-04-27 21:33:10] [rerun] nut_thread B ee_speed L09: r2_mean=0.456 std=0.016 147.5s
+
+[2026-04-27 21:35:50] [rerun] nut_thread B ee_direction L09: r2_mean=-0.047 std=0.062 155.2s
+
+[2026-04-27 21:38:28] [rerun] nut_thread B ee_acceleration L09: r2_mean=-0.272 std=0.324 156.8s
+
+[2026-04-27 21:40:43] [rerun] nut_thread B ee_accel_mag L09: r2_mean=0.355 std=0.011 135.0s
+
+[2026-04-27 21:43:04] [rerun] nut_thread B obj_position L09: r2_mean=0.480 std=0.864 140.8s
+
+[2026-04-27 21:45:23] [rerun] nut_thread B obj_velocity L09: r2_mean=-0.626 std=0.511 138.5s
+
+[2026-04-27 21:47:28] [rerun] nut_thread B obj_speed L09: r2_mean=0.010 std=0.003 124.6s
+
+[2026-04-27 21:49:37] [rerun] nut_thread B obj_direction L09: r2_mean=-0.155 std=0.153 124.0s
+
+[2026-04-27 21:51:45] [rerun] nut_thread B obj_acceleration L09: r2_mean=-0.520 std=0.271 127.0s
+
+[2026-04-27 21:53:45] [rerun] nut_thread B obj_accel_mag L09: r2_mean=-0.000 std=0.005 119.3s
+
+[2026-04-27 21:57:14] [rerun] nut_thread B layer 10: loaded [(322500, 8192)] in 209.2s
+
+[2026-04-27 21:59:34] [rerun] nut_thread B ee_position L10: r2_mean=-3.386 std=6.533 139.8s
+
+[2026-04-27 22:02:07] [rerun] nut_thread B ee_velocity L10: r2_mean=-1.840 std=1.365 152.6s
+
+[2026-04-27 22:04:20] [rerun] nut_thread B ee_speed L10: r2_mean=0.006 std=0.356 132.2s
+
+[2026-04-27 22:06:45] [rerun] nut_thread B ee_direction L10: r2_mean=-8.133 std=12.561 136.5s
+
+[2026-04-27 22:09:03] [rerun] nut_thread B ee_acceleration L10: r2_mean=-2.330 std=1.854 136.6s
+
+[2026-04-27 22:11:03] [rerun] nut_thread B ee_accel_mag L10: r2_mean=0.163 std=0.185 120.3s
+
+[2026-04-27 22:13:08] [rerun] nut_thread B obj_position L10: r2_mean=-0.099 std=0.724 124.5s
+
+[2026-04-27 22:15:13] [rerun] nut_thread B obj_velocity L10: r2_mean=-7.196 std=11.618 125.0s
+
+[2026-04-27 22:17:15] [rerun] nut_thread B obj_speed L10: r2_mean=-0.375 std=0.656 120.9s
+
+[2026-04-27 22:19:23] [rerun] nut_thread B obj_direction L10: r2_mean=-3.834 std=2.756 123.4s
+
+[2026-04-27 22:21:30] [rerun] nut_thread B obj_acceleration L10: r2_mean=-1.660 std=1.812 126.8s
+
+[2026-04-27 22:23:36] [rerun] nut_thread B obj_accel_mag L10: r2_mean=-0.375 std=0.116 125.2s
+
+[2026-04-27 22:26:58] [rerun] nut_thread B layer 11: loaded [(322500, 8192)] in 202.2s
+
+[2026-04-27 22:29:05] [rerun] nut_thread B ee_position L11: r2_mean=-1.225 std=2.265 125.9s
+
+[2026-04-27 22:31:21] [rerun] nut_thread B ee_velocity L11: r2_mean=-2.567 std=3.518 135.3s
+
+[2026-04-27 22:33:40] [rerun] nut_thread B ee_speed L11: r2_mean=0.357 std=0.052 139.2s
+
+[2026-04-27 22:36:16] [rerun] nut_thread B ee_direction L11: r2_mean=-7.533 std=2.434 150.7s
+
+[2026-04-27 22:38:49] [rerun] nut_thread B ee_acceleration L11: r2_mean=-2.407 std=2.868 152.7s
+
+[2026-04-27 22:41:02] [rerun] nut_thread B ee_accel_mag L11: r2_mean=0.255 std=0.107 131.8s
+
+[2026-04-27 22:43:16] [rerun] nut_thread B obj_position L11: r2_mean=-1.369 std=2.458 133.9s
+
+[2026-04-27 22:45:29] [rerun] nut_thread B obj_velocity L11: r2_mean=-4.885 std=4.767 132.4s
+
+[2026-04-27 22:47:36] [rerun] nut_thread B obj_speed L11: r2_mean=-1.118 std=2.221 126.8s
+
+[2026-04-27 22:49:51] [rerun] nut_thread B obj_direction L11: r2_mean=-2.908 std=1.803 130.5s
+
+[2026-04-27 22:52:01] [rerun] nut_thread B obj_acceleration L11: r2_mean=-2.751 std=3.423 129.3s
+
+[2026-04-27 22:54:10] [rerun] nut_thread B obj_accel_mag L11: r2_mean=-0.142 std=0.178 128.4s
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_position.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_velocity.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_speed.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_direction.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_acceleration.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/ee_accel_mag.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_position.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_velocity.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_speed.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_direction.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_acceleration.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/nut_thread/variant_B/obj_accel_mag.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-27 22:54:10] [rerun] nut_thread B layers [1, 8, 9, 10, 11] DONE in 152.5min
+
+[2026-04-27 22:54:15] [rerun] task=strike variant=B layers=[0, 19, 20, 21] gpu=0
+
+[2026-04-27 23:00:49] [rerun] strike B layer 00: loaded [(535779, 8192)] in 393.8s
+
+[2026-04-27 23:04:19] [rerun] strike B ee_position L00: r2_mean=0.832 std=0.006 209.1s
+
+[2026-04-27 23:07:50] [rerun] strike B ee_velocity L00: r2_mean=0.562 std=0.008 210.7s
+
+[2026-04-27 23:11:18] [rerun] strike B ee_speed L00: r2_mean=0.744 std=0.013 207.1s
+
+[2026-04-27 23:13:11] [rerun] strike B ee_direction L00: r2_mean=-0.969 std=0.971 109.3s
+
+[2026-04-27 23:16:43] [rerun] strike B ee_acceleration L00: r2_mean=0.153 std=0.003 210.4s
+
+[2026-04-27 23:20:03] [rerun] strike B ee_accel_mag L00: r2_mean=0.368 std=0.007 200.2s
+
+[2026-04-27 23:23:23] [rerun] strike B obj_position L00: r2_mean=0.117 std=0.014 198.6s
+
+[2026-04-27 23:26:45] [rerun] strike B obj_velocity L00: r2_mean=0.148 std=0.007 201.4s
+
+[2026-04-27 23:29:54] [rerun] strike B obj_speed L00: r2_mean=0.360 std=0.017 189.0s
+
+[2026-04-27 23:33:09] [rerun] strike B obj_direction L00: r2_mean=0.321 std=0.012 194.2s
+
+[2026-04-27 23:36:24] [rerun] strike B obj_acceleration L00: r2_mean=0.017 std=0.002 194.2s
+
+[2026-04-27 23:39:35] [rerun] strike B obj_accel_mag L00: r2_mean=0.154 std=0.011 190.0s
+
+[2026-04-27 23:43:15] [rerun] strike B layer 19: loaded [(535779, 8192)] in 220.6s
+
+[2026-04-27 23:46:23] [rerun] strike B ee_position L19: r2_mean=0.985 std=0.003 186.8s
+
+[2026-04-27 23:49:38] [rerun] strike B ee_velocity L19: r2_mean=0.959 std=0.001 194.2s
+
+[2026-04-27 23:52:53] [rerun] strike B ee_speed L19: r2_mean=0.975 std=0.005 194.0s
+
+[2026-04-27 23:54:37] [rerun] strike B ee_direction L19: r2_mean=-7.085 std=11.598 100.5s
+
+[2026-04-27 23:57:52] [rerun] strike B ee_acceleration L19: r2_mean=0.572 std=0.007 193.9s
+
+[2026-04-28 00:01:02] [rerun] strike B ee_accel_mag L19: r2_mean=0.756 std=0.044 189.5s
+
+[2026-04-28 00:04:17] [rerun] strike B obj_position L19: r2_mean=0.242 std=0.018 193.7s
+
+[2026-04-28 00:07:33] [rerun] strike B obj_velocity L19: r2_mean=0.716 std=0.028 195.5s
+
+[2026-04-28 00:10:43] [rerun] strike B obj_speed L19: r2_mean=0.781 std=0.048 189.4s
+
+[2026-04-28 00:13:58] [rerun] strike B obj_direction L19: r2_mean=0.788 std=0.008 194.6s
+
+[2026-04-28 00:17:13] [rerun] strike B obj_acceleration L19: r2_mean=0.259 std=0.015 194.6s
+
+[2026-04-28 00:20:24] [rerun] strike B obj_accel_mag L19: r2_mean=0.441 std=0.057 190.0s
+
+[2026-04-28 00:23:45] [rerun] strike B layer 20: loaded [(535779, 8192)] in 200.8s
+
+[2026-04-28 00:26:58] [rerun] strike B ee_position L20: r2_mean=0.986 std=0.002 192.3s
+
+[2026-04-28 00:30:25] [rerun] strike B ee_velocity L20: r2_mean=0.961 std=0.001 205.7s
+
+[2026-04-28 00:33:37] [rerun] strike B ee_speed L20: r2_mean=0.974 std=0.009 191.2s
+
+[2026-04-28 00:35:23] [rerun] strike B ee_direction L20: r2_mean=-6.866 std=4.388 101.8s
+
+[2026-04-28 00:38:36] [rerun] strike B ee_acceleration L20: r2_mean=0.572 std=0.006 192.6s
+
+[2026-04-28 00:41:43] [rerun] strike B ee_accel_mag L20: r2_mean=0.730 std=0.072 186.7s
+
+[2026-04-28 00:44:54] [rerun] strike B obj_position L20: r2_mean=0.232 std=0.021 190.2s
+
+[2026-04-28 00:48:06] [rerun] strike B obj_velocity L20: r2_mean=0.721 std=0.023 190.9s
+
+[2026-04-28 00:51:12] [rerun] strike B obj_speed L20: r2_mean=0.696 std=0.180 185.6s
+
+[2026-04-28 00:54:24] [rerun] strike B obj_direction L20: r2_mean=0.788 std=0.004 191.5s
+
+[2026-04-28 00:57:35] [rerun] strike B obj_acceleration L20: r2_mean=0.255 std=0.014 190.5s
+
+[2026-04-28 01:00:41] [rerun] strike B obj_accel_mag L20: r2_mean=0.351 std=0.177 185.1s
+
+[2026-04-28 01:04:01] [rerun] strike B layer 21: loaded [(535779, 8192)] in 200.2s
+
+[2026-04-28 01:07:13] [rerun] strike B ee_position L21: r2_mean=0.987 std=0.003 191.0s
+
+[2026-04-28 01:10:29] [rerun] strike B ee_velocity L21: r2_mean=0.961 std=0.001 194.8s
+
+[2026-04-28 01:13:40] [rerun] strike B ee_speed L21: r2_mean=0.979 std=0.004 190.3s
+
+[2026-04-28 01:15:26] [rerun] strike B ee_direction L21: r2_mean=-0.705 std=2.349 102.2s
+
+[2026-04-28 01:18:41] [rerun] strike B ee_acceleration L21: r2_mean=0.566 std=0.003 194.1s
+
+[2026-04-28 01:21:51] [rerun] strike B ee_accel_mag L21: r2_mean=0.781 std=0.015 189.6s
+
+[2026-04-28 01:25:06] [rerun] strike B obj_position L21: r2_mean=0.193 std=0.011 193.6s
+
+[2026-04-28 01:28:21] [rerun] strike B obj_velocity L21: r2_mean=0.725 std=0.023 194.5s
+
+[2026-04-28 01:31:30] [rerun] strike B obj_speed L21: r2_mean=0.807 std=0.030 189.1s
+
+[2026-04-28 01:34:45] [rerun] strike B obj_direction L21: r2_mean=0.795 std=0.005 194.1s
+
+[2026-04-28 01:38:00] [rerun] strike B obj_acceleration L21: r2_mean=0.266 std=0.019 193.8s
+
+[2026-04-28 01:41:09] [rerun] strike B obj_accel_mag L21: r2_mean=0.467 std=0.037 189.2s
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_position.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_velocity.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_speed.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_direction.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_acceleration.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/ee_accel_mag.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_position.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_velocity.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_speed.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_direction.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_acceleration.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] wrote /home/solee/physrepa_tasks/probe/results/strike/variant_B/obj_accel_mag.csv (kept 100 + new 20 = 120 rows)
+
+[2026-04-28 01:41:10] [rerun] strike B layers [0, 19, 20, 21] DONE in 166.9min
+
+[2026-04-28 01:41:15] [rerun] task=push variant=B layers=[0, 20, 21, 22, 23] gpu=0
+
+[2026-04-28 01:45:35] [rerun] push B layer 00: loaded [(340283, 8192)] in 260.0s
+
+[2026-04-28 01:47:33] [rerun] push B ee_position L00: r2_mean=0.778 std=0.004 117.2s
+
+[2026-04-28 01:49:33] [rerun] push B ee_velocity L00: r2_mean=0.413 std=0.016 120.3s
+
+[2026-04-28 01:51:28] [rerun] push B ee_speed L00: r2_mean=0.606 std=0.046 114.3s
+
+[2026-04-28 01:53:03] [rerun] push B ee_direction L00: r2_mean=-7.331 std=8.015 91.8s
+
+[2026-04-28 01:55:07] [rerun] push B ee_acceleration L00: r2_mean=0.057 std=0.006 122.9s
+
+[2026-04-28 01:57:03] [rerun] push B ee_accel_mag L00: r2_mean=0.109 std=0.004 115.8s
+
+[2026-04-28 01:59:05] [rerun] push B obj_position L00: r2_mean=0.049 std=0.017 122.0s
+
+[2026-04-28 02:01:08] [rerun] push B obj_velocity L00: r2_mean=0.156 std=0.020 122.5s
+
+[2026-04-28 02:03:05] [rerun] push B obj_speed L00: r2_mean=0.311 std=0.030 116.0s
+
+[2026-04-28 02:05:07] [rerun] push B obj_direction L00: r2_mean=0.043 std=0.006 118.1s
+
+[2026-04-28 02:07:09] [rerun] push B obj_acceleration L00: r2_mean=0.004 std=0.002 121.0s
+
+[2026-04-28 02:09:07] [rerun] push B obj_accel_mag L00: r2_mean=0.082 std=0.007 117.5s
+
+[2026-04-28 02:11:30] [rerun] push B layer 20: loaded [(340283, 8192)] in 142.5s
+
+[2026-04-28 02:13:39] [rerun] push B ee_position L20: r2_mean=0.983 std=0.002 128.5s
+
+[2026-04-28 02:15:41] [rerun] push B ee_velocity L20: r2_mean=0.949 std=0.004 122.1s
+
+[2026-04-28 02:17:37] [rerun] push B ee_speed L20: r2_mean=0.956 std=0.010 115.5s
+
+[2026-04-28 02:19:16] [rerun] push B ee_direction L20: r2_mean=-0.665 std=1.929 95.2s
+
+[2026-04-28 02:21:24] [rerun] push B ee_acceleration L20: r2_mean=0.370 std=0.015 127.2s
+
+[2026-04-28 02:23:22] [rerun] push B ee_accel_mag L20: r2_mean=0.636 std=0.025 118.0s
+
+[2026-04-28 02:25:24] [rerun] push B obj_position L20: r2_mean=0.193 std=0.013 121.6s
+
+[2026-04-28 02:27:26] [rerun] push B obj_velocity L20: r2_mean=0.757 std=0.042 121.1s
+
+[2026-04-28 02:29:23] [rerun] push B obj_speed L20: r2_mean=0.822 std=0.050 117.0s
+
+[2026-04-28 02:31:29] [rerun] push B obj_direction L20: r2_mean=0.293 std=0.010 121.2s
+
+[2026-04-28 02:33:33] [rerun] push B obj_acceleration L20: r2_mean=0.100 std=0.015 123.7s
+
+[2026-04-28 02:35:35] [rerun] push B obj_accel_mag L20: r2_mean=0.316 std=0.042 121.1s
+
+[2026-04-28 02:37:55] [rerun] push B layer 21: loaded [(340283, 8192)] in 140.5s
+
+[2026-04-28 02:39:55] [rerun] push B ee_position L21: r2_mean=0.984 std=0.001 118.6s
+
+[2026-04-28 02:41:53] [rerun] push B ee_velocity L21: r2_mean=0.950 std=0.005 117.7s
+
+[2026-04-28 02:43:47] [rerun] push B ee_speed L21: r2_mean=0.956 std=0.006 113.6s
+
+[2026-04-28 02:45:22] [rerun] push B ee_direction L21: r2_mean=-2.309 std=4.337 91.3s
+
+[2026-04-28 02:47:24] [rerun] push B ee_acceleration L21: r2_mean=0.372 std=0.011 121.3s
+
+[2026-04-28 02:49:19] [rerun] push B ee_accel_mag L21: r2_mean=0.651 std=0.012 115.1s
+
+[2026-04-28 02:51:21] [rerun] push B obj_position L21: r2_mean=0.181 std=0.010 120.9s
+
+[2026-04-28 02:53:21] [rerun] push B obj_velocity L21: r2_mean=0.763 std=0.042 120.6s
+
+[2026-04-28 02:55:17] [rerun] push B obj_speed L21: r2_mean=0.829 std=0.040 115.0s
+
+[2026-04-28 02:57:19] [rerun] push B obj_direction L21: r2_mean=0.302 std=0.010 117.2s
+
+[2026-04-28 02:59:20] [rerun] push B obj_acceleration L21: r2_mean=0.104 std=0.014 120.8s
+
+[2026-04-28 03:01:15] [rerun] push B obj_accel_mag L21: r2_mean=0.325 std=0.026 114.8s
+
+[2026-04-28 03:03:37] [rerun] push B layer 22: loaded [(340283, 8192)] in 141.2s
+
+[2026-04-28 03:05:35] [rerun] push B ee_position L22: r2_mean=0.984 std=0.002 117.3s
+
+[2026-04-28 03:07:31] [rerun] push B ee_velocity L22: r2_mean=0.951 std=0.006 115.5s
+
+[2026-04-28 03:09:24] [rerun] push B ee_speed L22: r2_mean=0.957 std=0.007 113.1s
+
+[2026-04-28 03:10:56] [rerun] push B ee_direction L22: r2_mean=-1.815 std=1.782 88.8s
+
+[2026-04-28 03:12:58] [rerun] push B ee_acceleration L22: r2_mean=0.359 std=0.024 121.7s
+
+[2026-04-28 03:15:02] [rerun] push B ee_accel_mag L22: r2_mean=0.648 std=0.009 122.8s
+
+[2026-04-28 03:17:17] [rerun] push B obj_position L22: r2_mean=0.137 std=0.027 135.2s
+
+[2026-04-28 03:19:26] [rerun] push B obj_velocity L22: r2_mean=0.758 std=0.042 128.1s
+
+[2026-04-28 03:21:21] [rerun] push B obj_speed L22: r2_mean=0.835 std=0.044 114.5s
+
+[2026-04-28 03:23:22] [rerun] push B obj_direction L22: r2_mean=0.303 std=0.009 116.0s
+
+[2026-04-28 03:25:24] [rerun] push B obj_acceleration L22: r2_mean=0.103 std=0.017 122.1s
+
+[2026-04-28 03:27:18] [rerun] push B obj_accel_mag L22: r2_mean=0.330 std=0.031 113.5s
+
+[2026-04-28 03:29:49] [rerun] push B layer 23: loaded [(340283, 8192)] in 150.2s
+
+[2026-04-28 03:31:44] [rerun] push B ee_position L23: r2_mean=0.984 std=0.004 114.8s
+
+[2026-04-28 03:33:43] [rerun] push B ee_velocity L23: r2_mean=0.776 std=0.333 118.0s
+
+[2026-04-28 03:35:36] [rerun] push B ee_speed L23: r2_mean=0.961 std=0.004 113.4s
+
+[2026-04-28 03:37:09] [rerun] push B ee_direction L23: r2_mean=-6.594 std=10.048 88.3s
+
+[2026-04-28 03:39:05] [rerun] push B ee_acceleration L23: r2_mean=0.356 std=0.011 115.9s
+
+[2026-04-28 03:40:55] [rerun] push B ee_accel_mag L23: r2_mean=0.645 std=0.012 109.5s
+
+[2026-04-28 03:42:52] [rerun] push B obj_position L23: r2_mean=0.123 std=0.012 116.6s
+
+[2026-04-28 03:44:48] [rerun] push B obj_velocity L23: r2_mean=0.735 std=0.060 115.8s
+
+[2026-04-28 03:46:39] [rerun] push B obj_speed L23: r2_mean=0.834 std=0.042 110.2s
+
+[2026-04-28 03:48:34] [rerun] push B obj_direction L23: r2_mean=0.275 std=0.045 111.1s
+
+[2026-04-28 03:50:30] [rerun] push B obj_acceleration L23: r2_mean=0.095 std=0.016 115.0s
+
+[2026-04-28 03:52:18] [rerun] push B obj_accel_mag L23: r2_mean=0.330 std=0.029 108.1s
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_position.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_velocity.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_speed.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_direction.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_acceleration.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/ee_accel_mag.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_position.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_velocity.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_speed.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_direction.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_acceleration.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_accel_mag.csv (kept 95 + new 25 = 120 rows)
+
+[2026-04-28 03:52:18] [rerun] push B layers [0, 20, 21, 22, 23] DONE in 131.1min

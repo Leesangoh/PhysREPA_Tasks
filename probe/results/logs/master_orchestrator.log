@@ -1,0 +1,75 @@
+=== master orchestrator start: 2026-04-27T15:42:33Z ===
+nut PID = 
+=== master orchestrator start: 2026-04-27T15:43:24Z ===
+nut PID = 
+=== master orchestrator start: 2026-04-27T15:44:34Z ===
+=== master orchestrator start: 2026-04-27T15:46:39Z ===
+[20:21:39Z] gpu0 rerun done (peg+reach)
+[20:21:39Z] rerunning nut_thread layers 1,8,9,10,11 on GPU 0
+[22:54:12Z] rerunning strike layers 0,19,20,21 on GPU 0
+[01:41:12Z] rerunning push layers 0,20,21,22,23 on GPU 0
+[03:52:20Z] all reruns done
+[03:52:20Z] aggregate variant B
+{
+  "variant": "B",
+  "criteria": [
+    {
+      "task": "push",
+      "target": "ee_velocity",
+      "thr": 0.5,
+      "got": 0.9506636142730712,
+      "best_layer": 22,
+      "pass": true
+    },
+    {
+      "task": "push",
+      "target": "ee_position",
+      "thr": 0.5,
+      "got": 0.984430170059204,
+      "best_layer": 22,
+      "pass": true
+    },
+    {
+      "task": "strike",
+      "target": "ee_velocity",
+      "thr": 0.4,
+      "got": 0.96188063621521,
+      "best_layer": 22,
+      "pass": true
+    }
+  ],
+  "push_ee_velocity_peak_strict_layer": 22,
+  "push_ee_velocity_peak_relaxed_layer": 17,
+  "pez_peak_in_mid_layers_6_18_strict": false,
+  "pez_peak_in_mid_layers_6_18_relaxed_99pct": true,
+  "L0_saturates_targets": [],
+  "healthy_hits": 3,
+  "all_basic_under_0_2": false,
+  "L0_saturates": false,
+  "verdict_strict": "MARGINAL",
+  "verdict_relaxed_99pct_plateau": "HEALTHY",
+  "verdict": "HEALTHY"
+}
+[03:52:21Z] write report
+wrote /home/solee/physrepa_tasks/probe/results/REPORT.md
+[03:52:22Z] generate plots
+wrote 19 plots to /home/solee/physrepa_tasks/probe/results/plots
+  /home/solee/physrepa_tasks/probe/results/plots/push_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/strike_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/reach_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/drawer_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/peg_insert_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/nut_thread_layer_vs_r2.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_position.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_velocity.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_speed.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_direction.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_acceleration.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_ee_accel_mag.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_position.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_velocity.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_speed.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_direction.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_acceleration.png
+  /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_accel_mag.png
+  /home/solee/physrepa_tasks/probe/results/plots/heatmap_r2.png

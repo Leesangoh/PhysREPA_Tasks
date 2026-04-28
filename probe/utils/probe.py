@@ -74,30 +74,62 @@ def fit_one_fold(
         y_test_2d = y_test
         squeeze = False
 
-    Xt = torch.as_tensor(X_train, dtype=dtype, device=device)
-    yt = torch.as_tensor(y_train_2d, dtype=dtype, device=device)
-    Xe = torch.as_tensor(X_test, dtype=dtype, device=device)
+    # Memory-efficient: store features as fp16 on GPU; normalize per-batch in
+    # fp32. Targets are tiny so kept in fp32. This pattern keeps peak GPU memory
+    # at ~F×N×2 bytes (fp16) regardless of N — required for large-N + 8192-d
+    # Variant B (Strike: 535K × 8192 fp32 = 17 GB; fp16 = 8.7 GB).
+    # Memory-efficient: keep only Xt and Xe on GPU as fp16. Inner-train and
+    # inner-val are accessed via INDEX TENSORS into Xt rather than fancy-indexed
+    # copies. This avoids the 6.3 GB Xi tensor on Strike Variant B that triggered
+    # OOM on a fragmented 47 GB GPU shared with another container.
+    Xt = torch.as_tensor(X_train, dtype=torch.float16, device=device)
+    yt = torch.as_tensor(y_train_2d, dtype=torch.float32, device=device)
+    Xe = torch.as_tensor(X_test, dtype=torch.float16, device=device)
+    torch.cuda.empty_cache()
 
-    inner_idx = np.where(is_inner_train)[0]
-    val_idx = np.where(~is_inner_train)[0]
+    inner_idx_np = np.where(is_inner_train)[0]
+    val_idx_np = np.where(~is_inner_train)[0]
+    inner_idx_t = torch.from_numpy(inner_idx_np).to(device, dtype=torch.long)
+    val_idx_t = torch.from_numpy(val_idx_np).to(device, dtype=torch.long)
+    yi = yt[inner_idx_t]
+    yv = yt[val_idx_t]
 
-    Xi = Xt[inner_idx]
-    yi = yt[inner_idx]
-    Xv = Xt[val_idx]
-    yv = yt[val_idx]
+    # Stats in fp32 from inner_train only — TWO-PASS chunked computation for
+    # numerical stability. The earlier one-pass (E[x²] - E[x]²) suffers from
+    # catastrophic cancellation when E[x²] ≈ E[x]², which gave feat_std ≈ 1e-8
+    # for some V-JEPA layer features and caused Adam to diverge with large
+    # normalized values. Two-pass: pass 1 mean, pass 2 sum of squared
+    # deviations from mean. Plus a sane lower bound on feat_std (not just
+    # 1e-8) so any near-constant feature dimension does not blow up the
+    # normalized batch.
+    # Stats by chunked indexed access into Xt (inner_idx). No separate Xi tensor.
+    with torch.no_grad():
+        F = Xt.shape[1]
+        chunk_n = 8192
+        # Pass 1: mean over inner-train rows of Xt
+        sum_x = torch.zeros(F, device=device, dtype=torch.float32)
+        n_inner = inner_idx_t.numel()
+        for s in range(0, n_inner, chunk_n):
+            idx_chunk = inner_idx_t[s:s + chunk_n]
+            sum_x += Xt[idx_chunk].float().sum(dim=0)
+        feat_mean = (sum_x / n_inner).reshape(1, -1)
+        # Pass 2: sum of squared deviations
+        sum_dev2 = torch.zeros(F, device=device, dtype=torch.float32)
+        for s in range(0, n_inner, chunk_n):
+            idx_chunk = inner_idx_t[s:s + chunk_n]
+            xb = Xt[idx_chunk].float() - feat_mean
+            sum_dev2 += (xb * xb).sum(dim=0)
+        feat_var = sum_dev2 / n_inner
+        raw_std = feat_var.clamp_min(0).sqrt()
+        median_std = raw_std.median()
+        feat_std = raw_std.clamp_min(max(median_std.item() * 0.01, 1e-4))
+        targ_mean = yi.mean(dim=0, keepdim=True)
+        targ_std = yi.std(dim=0, unbiased=False, keepdim=True).clamp_min(1e-8)
 
-    feat_mean = Xi.mean(dim=0, keepdim=True)
-    feat_std = Xi.std(dim=0, unbiased=False, keepdim=True).clamp_min(1e-8)
-    targ_mean = yi.mean(dim=0, keepdim=True)
-    targ_std = yi.std(dim=0, unbiased=False, keepdim=True).clamp_min(1e-8)
-
-    Xi_n = (Xi - feat_mean) / feat_std
-    Xv_n = (Xv - feat_mean) / feat_std
-    Xe_n = (Xe - feat_mean) / feat_std
     yi_n = (yi - targ_mean) / targ_std
     yv_n = (yv - targ_mean) / targ_std
+    # No Xi_n / Xv_n materialization — we slice Xt[inner_idx_t[batch]] in the loop.
 
-    F = Xi_n.shape[1]
     D = yi_n.shape[1]
     n_cfg = len(lr_grid) * len(wd_grid)
     cfgs = [(lr, wd) for lr in lr_grid for wd in wd_grid]
@@ -120,19 +152,20 @@ def fit_one_fold(
     # iterations. For convex MSE on a linear probe this gives the same optimum
     # at 100 epochs while ~50× faster wall time. Documented as a deviation in
     # REPORT.md.
-    n_train = Xi_n.shape[0]
+    n_train = inner_idx_t.numel()
     eff_batch = max(batch_size, (n_train + 7) // 8)
     if n_train < 2 * batch_size:
         eff_batch = n_train
 
     perm = torch.arange(n_train, device=device)
     for epoch in range(epochs):
-        # Shuffle once per epoch
         perm = perm[torch.randperm(perm.numel(), device=device, generator=g)]
         for s in range(0, perm.numel(), eff_batch):
-            idx = perm[s : s + eff_batch]
-            xb = Xi_n[idx]                                  # [B, F]
-            yb = yi_n[idx]                                  # [B, D]
+            idx_local = perm[s : s + eff_batch]
+            # Map local positions to global Xt rows via inner_idx_t.
+            global_idx = inner_idx_t[idx_local]
+            xb = (Xt[global_idx].float() - feat_mean) / feat_std  # [B, F] fp32
+            yb = yi_n[idx_local]
             # forward stacked: [n_cfg, B, D]  = einsum(xb, W) + b
             pred = torch.einsum("bf,cfd->cbd", xb, W) + b[:, None, :]
             err = pred - yb[None]                           # [n_cfg, B, D]
@@ -152,9 +185,19 @@ def fit_one_fold(
             break
 
     with torch.no_grad():
-        # Inner-val MSE per config
-        pred_v = torch.einsum("bf,cfd->cbd", Xv_n, W) + b[:, None, :]
-        val_mse = ((pred_v - yv_n[None]) ** 2).mean(dim=(1, 2))
+        chunk = max(1024, eff_batch)
+        # Val pass via indexed access into Xt
+        n_v = val_idx_t.numel()
+        val_se = torch.zeros(n_cfg, device=device, dtype=torch.float32)
+        val_count = 0
+        for s in range(0, n_v, chunk):
+            idx_chunk = val_idx_t[s:s + chunk]
+            xb = (Xt[idx_chunk].float() - feat_mean) / feat_std
+            yb = yv_n[s:s + chunk]
+            pred_v = torch.einsum("bf,cfd->cbd", xb, W) + b[:, None, :]
+            val_se += ((pred_v - yb[None]) ** 2).sum(dim=(1, 2))
+            val_count += xb.shape[0] * yb.shape[1]
+        val_mse = val_se / max(val_count, 1)
         val_mse = torch.where(torch.isfinite(val_mse), val_mse, torch.full_like(val_mse, float("inf")))
         best_cfg = int(val_mse.argmin().item())
         best_lr = float(lrs[best_cfg].item())
@@ -162,9 +205,18 @@ def fit_one_fold(
 
         Wb = W[best_cfg]
         bb = b[best_cfg]
-        pred_n = Xe_n @ Wb + bb                             # [N_te, D] normalized
-        pred = pred_n * targ_std + targ_mean                # unnormalize
-        y_pred = pred.cpu().float().numpy()
+        # Test inference — Xe is already a separate fp16 tensor, chunk it.
+        n_e = Xe.shape[0]
+        out_chunks = []
+        for s in range(0, n_e, chunk):
+            xb = (Xe[s:s + chunk].float() - feat_mean) / feat_std
+            pred_n = xb @ Wb + bb
+            out_chunks.append((pred_n * targ_std + targ_mean).cpu())
+        pred = torch.cat(out_chunks, dim=0)
+        y_pred = pred.float().numpy()
+    # Free per-fold memory before next fold runs
+    del Xt, Xe, W, b
+    torch.cuda.empty_cache()
     if squeeze:
         y_pred = y_pred.squeeze(-1)
     return best_lr, best_wd, y_pred

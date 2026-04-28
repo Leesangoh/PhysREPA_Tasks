@@ -5,7 +5,7 @@
       "task": "push",
       "target": "ee_velocity",
       "thr": 0.5,
-      "got": 0.9525832533836364,
+      "got": 0.9506636142730712,
       "best_layer": 22,
       "pass": true
     },
@@ -13,7 +13,7 @@
       "task": "push",
       "target": "ee_position",
       "thr": 0.5,
-      "got": 0.985657799243927,
+      "got": 0.984430170059204,
       "best_layer": 22,
       "pass": true
     },
@@ -27,7 +27,7 @@
     }
   ],
   "push_ee_velocity_peak_strict_layer": 22,
-  "push_ee_velocity_peak_relaxed_layer": 18,
+  "push_ee_velocity_peak_relaxed_layer": 17,
   "pez_peak_in_mid_layers_6_18_strict": false,
   "pez_peak_in_mid_layers_6_18_relaxed_99pct": true,
   "L0_saturates_targets": [],

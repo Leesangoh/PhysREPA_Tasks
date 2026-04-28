@@ -66,3 +66,85 @@ wrote 19 plots to /home/solee/physrepa_tasks/probe/results/plots
   /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_accel_mag.png
   /home/solee/physrepa_tasks/probe/results/plots/heatmap_r2.png
 --- git commit + push at 15:16:55Z ---
+[main d08bc64] Add PhysProbe Variant B layer-wise probing run
+ 81 files changed, 12761 insertions(+), 161 deletions(-)
+ create mode 100644 probe/results/.gpu0_B_done
+ create mode 100644 probe/results/.gpu1_B_done
+ create mode 100644 probe/results/drawer/variant_B/_summary.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_direction.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_position.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_speed.csv
+ create mode 100644 probe/results/drawer/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_accel_mag.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_acceleration.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_direction.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_position.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_speed.csv
+ create mode 100644 probe/results/drawer/variant_B/obj_velocity.csv
+ create mode 100644 probe/results/logs/variantB_finalize.log
+ create mode 100644 probe/results/logs/variantB_gpu0.log
+ create mode 100644 probe/results/logs/variantB_gpu1.log
+ create mode 100644 probe/results/nut_thread/variant_B/_summary.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_direction.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_position.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_speed.csv
+ create mode 100644 probe/results/nut_thread/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_accel_mag.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_acceleration.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_direction.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_position.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_speed.csv
+ create mode 100644 probe/results/nut_thread/variant_B/obj_velocity.csv
+ rewrite probe/results/peak_layers.csv (98%)
+ create mode 100644 probe/results/peg_insert/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/peg_insert/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/peg_insert/variant_B/ee_direction.csv
+ create mode 100644 probe/results/peg_insert/variant_B/ee_position.csv
+ create mode 100644 probe/results/peg_insert/variant_B/ee_speed.csv
+ create mode 100644 probe/results/peg_insert/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_accel_mag.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_acceleration.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_direction.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_position.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_speed.csv
+ create mode 100644 probe/results/peg_insert/variant_B/obj_velocity.csv
+ create mode 100644 probe/results/push/variant_B/_summary.csv
+ create mode 100644 probe/results/push/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/push/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/push/variant_B/ee_direction.csv
+ create mode 100644 probe/results/push/variant_B/ee_position.csv
+ create mode 100644 probe/results/push/variant_B/ee_speed.csv
+ create mode 100644 probe/results/push/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/push/variant_B/obj_accel_mag.csv
+ create mode 100644 probe/results/push/variant_B/obj_acceleration.csv
+ create mode 100644 probe/results/push/variant_B/obj_direction.csv
+ create mode 100644 probe/results/push/variant_B/obj_position.csv
+ create mode 100644 probe/results/push/variant_B/obj_speed.csv
+ create mode 100644 probe/results/push/variant_B/obj_velocity.csv
+ create mode 100644 probe/results/reach/variant_B/_summary.csv
+ create mode 100644 probe/results/reach/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/reach/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/reach/variant_B/ee_direction.csv
+ create mode 100644 probe/results/reach/variant_B/ee_position.csv
+ create mode 100644 probe/results/reach/variant_B/ee_speed.csv
+ create mode 100644 probe/results/reach/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/strike/variant_B/_summary.csv
+ create mode 100644 probe/results/strike/variant_B/ee_accel_mag.csv
+ create mode 100644 probe/results/strike/variant_B/ee_acceleration.csv
+ create mode 100644 probe/results/strike/variant_B/ee_direction.csv
+ create mode 100644 probe/results/strike/variant_B/ee_position.csv
+ create mode 100644 probe/results/strike/variant_B/ee_speed.csv
+ create mode 100644 probe/results/strike/variant_B/ee_velocity.csv
+ create mode 100644 probe/results/strike/variant_B/obj_accel_mag.csv
+ create mode 100644 probe/results/strike/variant_B/obj_acceleration.csv
+ create mode 100644 probe/results/strike/variant_B/obj_direction.csv
+ create mode 100644 probe/results/strike/variant_B/obj_position.csv
+ create mode 100644 probe/results/strike/variant_B/obj_speed.csv
+ create mode 100644 probe/results/strike/variant_B/obj_velocity.csv
+To https://github.com/Leesangoh/PhysREPA_Tasks.git
+   eb5fe92..d08bc64  main -> main
+=== finalize done: 2026-04-27T15:16:58Z ===
