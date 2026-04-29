@@ -1,0 +1,13 @@
+=== extended orchestrator start: 2026-04-28T09:53:26Z ===
+[09:53:26Z] GPU 0: probing push tier=all_extended variant=A
+[09:53:26Z] GPU 1: probing strike tier=all_extended variant=A
+=== extended orchestrator start: 2026-04-28T10:03:37Z ===
+[10:03:37Z] GPU 0: probing push tier=all_extended variant=A
+[10:03:37Z] GPU 1: probing strike tier=all_extended variant=A
+[10:04:52Z] strike ext-A failed (continuing)
+[10:04:52Z] GPU 1: probing reach tier=all_extended variant=A
+[10:05:14Z] reach ext-A failed (continuing)
+[10:05:14Z] GPU 1: probing nut_thread tier=all_extended variant=A
+[10:06:02Z] nut_thread ext-A failed (continuing)
+[10:06:02Z] GPU 1: all extended-A tasks done
+[11:26:31Z] GPU 0: probing drawer tier=all_extended variant=A

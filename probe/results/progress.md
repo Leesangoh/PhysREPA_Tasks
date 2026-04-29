@@ -8572,3 +8572,3941 @@ Output: results/decision.json, results/peak_layers.csv, results/REPORT.md, resul
 [2026-04-28 03:52:18] [rerun] wrote /home/solee/physrepa_tasks/probe/results/push/variant_B/obj_accel_mag.csv (kept 95 + new 25 = 120 rows)
 
 [2026-04-28 03:52:18] [rerun] push B layers [0, 20, 21, 22, 23] DONE in 131.1min
+
+[2026-04-28 09:06:29] [targets] push: ep=1500 win=340283 ee_vel_mae_frac=0.0201 ee_acc_native_diff=0.1284 obj_acc_native_diff=0.1708 gate=0.05 pass=1 elapsed=60.0s
+
+[2026-04-28 09:08:25] [targets] strike: ep=2999 win=535779 ee_vel_mae_frac=0.0269 ee_acc_native_diff=0.1245 obj_acc_native_diff=0.0917 gate=0.05 pass=1 elapsed=116.0s
+
+[2026-04-28 09:08:41] [targets] reach: ep=600 win=141000 ee_vel_mae_frac=0.0676 ee_acc_native_diff=0.0875 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=15.5s
+
+[2026-04-28 09:09:58] [targets] drawer: ep=2000 win=560000 ee_vel_mae_frac=0.2660 ee_acc_native_diff=0.3734 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=77.3s
+
+[2026-04-28 09:11:28] [targets] peg_insert: ep=2500 win=322500 ee_vel_mae_frac=0.0882 ee_acc_native_diff=0.2581 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=89.6s
+
+[2026-04-28 09:12:58] [targets] nut_thread: ep=2500 win=322500 ee_vel_mae_frac=0.2016 ee_acc_native_diff=0.4293 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=90.4s
+
+[2026-04-28 09:12:58] [targets] WARN: vel-consistency above gate 0.05 on reach=0.068, drawer=0.266, peg_insert=0.088, nut_thread=0.202 — continuing per finite-diff-uniform directive
+
+[2026-04-28 09:53:29] [probe] task=push variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_point', 'phase', 'ee_to_object_distance', 'object_to_target_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 09:53:29] [probe] task=strike variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_point', 'phase', 'ee_to_object_distance', 'object_to_target_distance', 'ball_planar_travel_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=False
+
+[2026-04-28 09:54:06] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 36.6s
+
+[2026-04-28 09:56:10] [targets] push: ep=1500 win=340283 ee_vel_mae_frac=0.0201 ee_acc_native_diff=0.1284 obj_acc_native_diff=0.1708 gate=0.05 pass=1 elapsed=58.7s
+
+[2026-04-28 09:58:06] [targets] strike: ep=2999 win=535779 ee_vel_mae_frac=0.0269 ee_acc_native_diff=0.1245 obj_acc_native_diff=0.0917 gate=0.05 pass=1 elapsed=116.3s
+
+[2026-04-28 09:58:22] [targets] reach: ep=600 win=141000 ee_vel_mae_frac=0.0676 ee_acc_native_diff=0.0875 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=15.4s
+
+[2026-04-28 09:59:41] [targets] drawer: ep=2000 win=560000 ee_vel_mae_frac=0.2660 ee_acc_native_diff=0.3734 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=79.7s
+
+[2026-04-28 10:01:12] [targets] peg_insert: ep=2500 win=322500 ee_vel_mae_frac=0.0882 ee_acc_native_diff=0.2581 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=90.8s
+
+[2026-04-28 10:02:44] [targets] nut_thread: ep=2500 win=322500 ee_vel_mae_frac=0.2016 ee_acc_native_diff=0.4293 obj_acc_native_diff=nan gate=0.05 pass=0 elapsed=91.7s
+
+[2026-04-28 10:02:44] [targets] WARN: vel-consistency above gate 0.05 on reach=0.068, drawer=0.266, peg_insert=0.088, nut_thread=0.202 — continuing per finite-diff-uniform directive
+
+[2026-04-28 10:03:40] [probe] task=strike variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'ee_to_object_distance', 'object_to_target_distance', 'ball_planar_travel_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=False
+
+[2026-04-28 10:03:41] [probe] task=push variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'ee_to_object_distance', 'object_to_target_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 10:04:19] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 38.7s
+
+[2026-04-28 10:04:42] [probe] push A ee_orientation L00: r2_mean=0.409 std=0.017 21.0s
+
+[2026-04-28 10:04:44] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 63.5s
+
+[2026-04-28 10:04:55] [probe] task=reach variant=A targets=['ee_orientation', 'ee_angular_velocity', 'phase', 'ee_to_target_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=False
+
+[2026-04-28 10:05:02] [probe] push A ee_orientation L01: r2_mean=0.517 std=0.013 17.8s
+
+[2026-04-28 10:05:11] [probe] reach: features [(141000, 24, 1024)] eps 600 loaded 16.2s
+
+[2026-04-28 10:05:17] [probe] task=nut_thread variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'axial_progress', 'nut_bolt_relative_angle'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=1 per_layer_load=False
+
+[2026-04-28 10:05:20] [probe] push A ee_orientation L02: r2_mean=0.532 std=0.013 17.4s
+
+[2026-04-28 10:05:41] [probe] push A ee_orientation L03: r2_mean=0.570 std=0.016 19.8s
+
+[2026-04-28 10:05:57] [probe] nut_thread: features [(322500, 24, 1024)] eps 2500 loaded 39.8s
+
+[2026-04-28 10:06:01] [probe] push A ee_orientation L04: r2_mean=0.567 std=0.016 18.0s
+
+[2026-04-28 10:06:19] [probe] push A ee_orientation L05: r2_mean=0.576 std=0.020 16.4s
+
+[2026-04-28 10:06:37] [probe] push A ee_orientation L06: r2_mean=0.559 std=0.032 16.3s
+
+[2026-04-28 10:06:55] [probe] push A ee_orientation L07: r2_mean=0.575 std=0.021 16.1s
+
+[2026-04-28 10:07:13] [probe] push A ee_orientation L08: r2_mean=0.579 std=0.021 17.6s
+
+[2026-04-28 10:07:33] [probe] push A ee_orientation L09: r2_mean=0.571 std=0.028 18.3s
+
+[2026-04-28 10:07:50] [probe] push A ee_orientation L10: r2_mean=0.570 std=0.025 15.8s
+
+[2026-04-28 10:08:10] [probe] push A ee_orientation L11: r2_mean=0.587 std=0.027 18.7s
+
+[2026-04-28 10:08:31] [probe] push A ee_orientation L12: r2_mean=0.589 std=0.022 18.3s
+
+[2026-04-28 10:08:54] [probe] push A ee_orientation L13: r2_mean=0.595 std=0.023 20.3s
+
+[2026-04-28 10:09:15] [probe] push A ee_orientation L14: r2_mean=0.604 std=0.023 20.0s
+
+[2026-04-28 10:09:36] [probe] push A ee_orientation L15: r2_mean=0.603 std=0.021 18.1s
+
+[2026-04-28 10:09:55] [probe] push A ee_orientation L16: r2_mean=0.612 std=0.032 16.9s
+
+[2026-04-28 10:10:17] [probe] push A ee_orientation L17: r2_mean=0.601 std=0.028 19.5s
+
+[2026-04-28 10:10:38] [probe] push A ee_orientation L18: r2_mean=0.597 std=0.035 19.7s
+
+[2026-04-28 10:10:56] [probe] push A ee_orientation L19: r2_mean=0.606 std=0.023 15.5s
+
+[2026-04-28 10:11:17] [probe] push A ee_orientation L20: r2_mean=0.619 std=0.022 19.9s
+
+[2026-04-28 10:11:36] [probe] push A ee_orientation L21: r2_mean=0.618 std=0.014 17.0s
+
+[2026-04-28 10:11:53] [probe] push A ee_orientation L22: r2_mean=0.634 std=0.022 16.3s
+
+[2026-04-28 10:12:15] [probe] push A ee_orientation L23: r2_mean=0.627 std=0.036 18.1s
+
+[2026-04-28 10:12:34] [probe] push A ee_angular_velocity L00: r2_mean=0.216 std=0.013 17.6s
+
+[2026-04-28 10:12:54] [probe] push A ee_angular_velocity L01: r2_mean=0.380 std=0.021 18.2s
+
+[2026-04-28 10:13:14] [probe] push A ee_angular_velocity L02: r2_mean=0.454 std=0.025 17.9s
+
+[2026-04-28 10:13:32] [probe] push A ee_angular_velocity L03: r2_mean=0.489 std=0.021 17.2s
+
+[2026-04-28 10:13:53] [probe] push A ee_angular_velocity L04: r2_mean=0.512 std=0.019 18.8s
+
+[2026-04-28 10:14:11] [probe] push A ee_angular_velocity L05: r2_mean=0.535 std=0.021 16.7s
+
+[2026-04-28 10:14:30] [probe] push A ee_angular_velocity L06: r2_mean=0.549 std=0.025 16.9s
+
+[2026-04-28 10:14:51] [probe] push A ee_angular_velocity L07: r2_mean=0.560 std=0.017 18.4s
+
+[2026-04-28 10:15:09] [probe] push A ee_angular_velocity L08: r2_mean=0.573 std=0.022 16.5s
+
+[2026-04-28 10:15:28] [probe] push A ee_angular_velocity L09: r2_mean=0.568 std=0.016 18.4s
+
+[2026-04-28 10:15:48] [probe] push A ee_angular_velocity L10: r2_mean=0.578 std=0.027 17.0s
+
+[2026-04-28 10:16:05] [probe] push A ee_angular_velocity L11: r2_mean=0.598 std=0.015 15.7s
+
+[2026-04-28 10:16:24] [probe] push A ee_angular_velocity L12: r2_mean=0.597 std=0.017 17.2s
+
+[2026-04-28 10:16:44] [probe] push A ee_angular_velocity L13: r2_mean=0.609 std=0.018 18.6s
+
+[2026-04-28 10:17:01] [probe] push A ee_angular_velocity L14: r2_mean=0.607 std=0.032 15.9s
+
+[2026-04-28 10:17:20] [probe] push A ee_angular_velocity L15: r2_mean=0.626 std=0.018 17.5s
+
+[2026-04-28 10:17:39] [probe] push A ee_angular_velocity L16: r2_mean=0.637 std=0.028 17.7s
+
+[2026-04-28 10:17:58] [probe] push A ee_angular_velocity L17: r2_mean=0.641 std=0.024 16.7s
+
+[2026-04-28 10:18:14] [probe] push A ee_angular_velocity L18: r2_mean=0.645 std=0.018 15.5s
+
+[2026-04-28 10:18:35] [probe] push A ee_angular_velocity L19: r2_mean=0.651 std=0.017 19.5s
+
+[2026-04-28 10:18:53] [probe] push A ee_angular_velocity L20: r2_mean=0.651 std=0.022 16.1s
+
+[2026-04-28 10:19:11] [probe] push A ee_angular_velocity L21: r2_mean=0.664 std=0.042 15.9s
+
+[2026-04-28 10:19:30] [probe] push A ee_angular_velocity L22: r2_mean=0.694 std=0.030 17.3s
+
+[2026-04-28 10:19:50] [probe] push A ee_angular_velocity L23: r2_mean=0.684 std=0.044 19.5s
+
+[2026-04-28 10:20:10] [probe] push A obj_orientation L00: r2_mean=0.045 std=0.007 17.7s
+
+[2026-04-28 10:20:29] [probe] push A obj_orientation L01: r2_mean=0.063 std=0.009 17.2s
+
+[2026-04-28 10:20:48] [probe] push A obj_orientation L02: r2_mean=0.064 std=0.009 18.8s
+
+[2026-04-28 10:21:09] [probe] push A obj_orientation L03: r2_mean=0.076 std=0.016 18.6s
+
+[2026-04-28 10:21:29] [probe] push A obj_orientation L04: r2_mean=0.082 std=0.012 19.0s
+
+[2026-04-28 10:21:49] [probe] push A obj_orientation L05: r2_mean=0.087 std=0.012 18.0s
+
+[2026-04-28 10:22:08] [probe] push A obj_orientation L06: r2_mean=0.077 std=0.018 17.5s
+
+[2026-04-28 10:22:27] [probe] push A obj_orientation L07: r2_mean=0.080 std=0.012 16.4s
+
+[2026-04-28 10:22:45] [probe] push A obj_orientation L08: r2_mean=0.082 std=0.008 17.1s
+
+[2026-04-28 10:23:03] [probe] push A obj_orientation L09: r2_mean=0.073 std=0.005 16.5s
+
+[2026-04-28 10:23:22] [probe] push A obj_orientation L10: r2_mean=0.069 std=0.008 17.9s
+
+[2026-04-28 10:23:41] [probe] push A obj_orientation L11: r2_mean=0.078 std=0.013 17.4s
+
+[2026-04-28 10:24:00] [probe] push A obj_orientation L12: r2_mean=0.089 std=0.013 17.8s
+
+[2026-04-28 10:24:21] [probe] push A obj_orientation L13: r2_mean=0.097 std=0.009 19.5s
+
+[2026-04-28 10:24:41] [probe] push A obj_orientation L14: r2_mean=0.100 std=0.015 18.9s
+
+[2026-04-28 10:25:01] [probe] push A obj_orientation L15: r2_mean=0.101 std=0.006 17.9s
+
+[2026-04-28 10:25:22] [probe] push A obj_orientation L16: r2_mean=0.095 std=0.012 19.6s
+
+[2026-04-28 10:25:41] [probe] push A obj_orientation L17: r2_mean=0.087 std=0.011 17.7s
+
+[2026-04-28 10:26:01] [probe] push A obj_orientation L18: r2_mean=0.095 std=0.010 19.0s
+
+[2026-04-28 10:26:19] [probe] push A obj_orientation L19: r2_mean=0.086 std=0.014 15.6s
+
+[2026-04-28 10:26:37] [probe] push A obj_orientation L20: r2_mean=0.091 std=0.004 16.8s
+
+[2026-04-28 10:26:56] [probe] push A obj_orientation L21: r2_mean=0.090 std=0.015 18.0s
+
+[2026-04-28 10:27:15] [probe] push A obj_orientation L22: r2_mean=0.094 std=0.015 17.4s
+
+[2026-04-28 10:27:34] [probe] push A obj_orientation L23: r2_mean=0.053 std=0.030 17.4s
+
+[2026-04-28 10:27:52] [probe] push A obj_angular_velocity L00: r2_mean=-0.005 std=0.003 16.8s
+
+[2026-04-28 10:28:10] [probe] push A obj_angular_velocity L01: r2_mean=0.026 std=0.008 16.8s
+
+[2026-04-28 10:28:30] [probe] push A obj_angular_velocity L02: r2_mean=0.036 std=0.013 18.5s
+
+[2026-04-28 10:28:49] [probe] push A obj_angular_velocity L03: r2_mean=0.046 std=0.013 17.2s
+
+[2026-04-28 10:29:06] [probe] push A obj_angular_velocity L04: r2_mean=0.053 std=0.014 15.6s
+
+[2026-04-28 10:29:25] [probe] push A obj_angular_velocity L05: r2_mean=0.060 std=0.016 17.3s
+
+[2026-04-28 10:29:44] [probe] push A obj_angular_velocity L06: r2_mean=0.060 std=0.016 17.6s
+
+[2026-04-28 10:30:02] [probe] push A obj_angular_velocity L07: r2_mean=0.062 std=0.015 16.8s
+
+[2026-04-28 10:30:19] [probe] push A obj_angular_velocity L08: r2_mean=0.066 std=0.017 16.2s
+
+[2026-04-28 10:30:38] [probe] push A obj_angular_velocity L09: r2_mean=0.068 std=0.016 17.3s
+
+[2026-04-28 10:30:56] [probe] push A obj_angular_velocity L10: r2_mean=0.068 std=0.016 16.8s
+
+[2026-04-28 10:31:15] [probe] push A obj_angular_velocity L11: r2_mean=0.070 std=0.016 17.3s
+
+[2026-04-28 10:31:34] [probe] push A obj_angular_velocity L12: r2_mean=0.069 std=0.016 18.6s
+
+[2026-04-28 10:31:55] [probe] push A obj_angular_velocity L13: r2_mean=0.072 std=0.017 19.3s
+
+[2026-04-28 10:32:14] [probe] push A obj_angular_velocity L14: r2_mean=0.074 std=0.019 17.2s
+
+[2026-04-28 10:32:33] [probe] push A obj_angular_velocity L15: r2_mean=0.073 std=0.018 17.7s
+
+[2026-04-28 10:32:53] [probe] push A obj_angular_velocity L16: r2_mean=0.071 std=0.018 18.7s
+
+[2026-04-28 10:33:12] [probe] push A obj_angular_velocity L17: r2_mean=0.072 std=0.018 18.2s
+
+[2026-04-28 10:33:31] [probe] push A obj_angular_velocity L18: r2_mean=0.070 std=0.019 17.6s
+
+[2026-04-28 10:33:49] [probe] push A obj_angular_velocity L19: r2_mean=0.066 std=0.020 16.2s
+
+[2026-04-28 10:34:09] [probe] push A obj_angular_velocity L20: r2_mean=0.071 std=0.018 18.5s
+
+[2026-04-28 10:34:26] [probe] push A obj_angular_velocity L21: r2_mean=0.070 std=0.020 15.8s
+
+[2026-04-28 10:34:43] [probe] push A obj_angular_velocity L22: r2_mean=0.076 std=0.017 16.2s
+
+[2026-04-28 10:35:03] [probe] push A obj_angular_velocity L23: r2_mean=0.071 std=0.024 18.3s
+
+[2026-04-28 10:35:23] [probe] push A contact_flag L00: r2_mean=0.377 std=0.028 18.5s
+
+[2026-04-28 10:35:42] [probe] push A contact_flag L01: r2_mean=0.572 std=0.014 17.7s
+
+[2026-04-28 10:36:01] [probe] push A contact_flag L02: r2_mean=0.598 std=0.015 17.2s
+
+[2026-04-28 10:36:21] [probe] push A contact_flag L03: r2_mean=0.611 std=0.015 18.7s
+
+[2026-04-28 10:36:39] [probe] push A contact_flag L04: r2_mean=0.637 std=0.014 16.3s
+
+[2026-04-28 10:36:57] [probe] push A contact_flag L05: r2_mean=0.647 std=0.012 16.7s
+
+[2026-04-28 10:37:15] [probe] push A contact_flag L06: r2_mean=0.667 std=0.011 16.6s
+
+[2026-04-28 10:37:34] [probe] push A contact_flag L07: r2_mean=0.682 std=0.009 17.5s
+
+[2026-04-28 10:37:51] [probe] push A contact_flag L08: r2_mean=0.690 std=0.010 16.1s
+
+[2026-04-28 10:38:10] [probe] push A contact_flag L09: r2_mean=0.709 std=0.004 17.7s
+
+[2026-04-28 10:38:28] [probe] push A contact_flag L10: r2_mean=0.721 std=0.006 16.8s
+
+[2026-04-28 10:38:44] [probe] push A contact_flag L11: r2_mean=0.729 std=0.007 14.2s
+
+[2026-04-28 10:39:01] [probe] push A contact_flag L12: r2_mean=0.737 std=0.004 16.2s
+
+[2026-04-28 10:39:20] [probe] push A contact_flag L13: r2_mean=0.745 std=0.007 17.1s
+
+[2026-04-28 10:39:39] [probe] push A contact_flag L14: r2_mean=0.754 std=0.008 18.0s
+
+[2026-04-28 10:39:57] [probe] push A contact_flag L15: r2_mean=0.755 std=0.008 16.4s
+
+[2026-04-28 10:40:14] [probe] push A contact_flag L16: r2_mean=0.761 std=0.009 16.2s
+
+[2026-04-28 10:40:31] [probe] push A contact_flag L17: r2_mean=0.766 std=0.006 15.2s
+
+[2026-04-28 10:40:49] [probe] push A contact_flag L18: r2_mean=0.767 std=0.006 16.8s
+
+[2026-04-28 10:41:08] [probe] push A contact_flag L19: r2_mean=0.765 std=0.005 17.4s
+
+[2026-04-28 10:41:26] [probe] push A contact_flag L20: r2_mean=0.766 std=0.007 16.2s
+
+[2026-04-28 10:41:43] [probe] push A contact_flag L21: r2_mean=0.768 std=0.007 15.9s
+
+[2026-04-28 10:42:00] [probe] push A contact_flag L22: r2_mean=0.766 std=0.009 16.1s
+
+[2026-04-28 10:42:18] [probe] push A contact_flag L23: r2_mean=0.761 std=0.009 16.5s
+
+[2026-04-28 10:42:38] [probe] push A contact_force L00: r2_mean=0.066 std=0.025 18.3s
+
+[2026-04-28 10:42:57] [probe] push A contact_force L01: r2_mean=0.163 std=0.017 17.3s
+
+[2026-04-28 10:43:14] [probe] push A contact_force L02: r2_mean=0.177 std=0.019 16.4s
+
+[2026-04-28 10:43:34] [probe] push A contact_force L03: r2_mean=0.197 std=0.016 18.5s
+
+[2026-04-28 10:43:55] [probe] push A contact_force L04: r2_mean=0.200 std=0.016 18.9s
+
+[2026-04-28 10:44:12] [probe] push A contact_force L05: r2_mean=0.216 std=0.023 16.4s
+
+[2026-04-28 10:44:30] [probe] push A contact_force L06: r2_mean=0.228 std=0.022 16.9s
+
+[2026-04-28 10:44:50] [probe] push A contact_force L07: r2_mean=0.250 std=0.020 18.3s
+
+[2026-04-28 10:45:09] [probe] push A contact_force L08: r2_mean=0.262 std=0.020 17.7s
+
+[2026-04-28 10:45:28] [probe] push A contact_force L09: r2_mean=0.269 std=0.022 16.9s
+
+[2026-04-28 10:45:45] [probe] push A contact_force L10: r2_mean=0.274 std=0.023 16.2s
+
+[2026-04-28 10:46:04] [probe] push A contact_force L11: r2_mean=0.279 std=0.023 17.6s
+
+[2026-04-28 10:46:22] [probe] push A contact_force L12: r2_mean=0.288 std=0.025 16.4s
+
+[2026-04-28 10:46:40] [probe] push A contact_force L13: r2_mean=0.298 std=0.023 16.5s
+
+[2026-04-28 10:46:57] [probe] push A contact_force L14: r2_mean=0.304 std=0.025 15.8s
+
+[2026-04-28 10:47:14] [probe] push A contact_force L15: r2_mean=0.302 std=0.027 15.2s
+
+[2026-04-28 10:47:32] [probe] push A contact_force L16: r2_mean=0.304 std=0.023 16.8s
+
+[2026-04-28 10:47:50] [probe] push A contact_force L17: r2_mean=0.311 std=0.020 16.7s
+
+[2026-04-28 10:48:10] [probe] push A contact_force L18: r2_mean=0.319 std=0.021 18.8s
+
+[2026-04-28 10:48:28] [probe] push A contact_force L19: r2_mean=0.327 std=0.022 16.8s
+
+[2026-04-28 10:48:48] [probe] push A contact_force L20: r2_mean=0.319 std=0.015 18.9s
+
+[2026-04-28 10:49:09] [probe] push A contact_force L21: r2_mean=0.331 std=0.028 18.6s
+
+[2026-04-28 10:49:28] [probe] push A contact_force L22: r2_mean=0.345 std=0.025 18.4s
+
+[2026-04-28 10:49:46] [probe] push A contact_force L23: r2_mean=0.321 std=0.040 16.2s
+
+[2026-04-28 10:50:05] [probe] push A contact_force_mag L00: r2_mean=0.137 std=0.026 17.7s
+
+[2026-04-28 10:50:23] [probe] push A contact_force_mag L01: r2_mean=0.268 std=0.028 15.9s
+
+[2026-04-28 10:50:39] [probe] push A contact_force_mag L02: r2_mean=0.279 std=0.034 15.8s
+
+[2026-04-28 10:50:57] [probe] push A contact_force_mag L03: r2_mean=0.305 std=0.025 16.2s
+
+[2026-04-28 10:51:13] [probe] push A contact_force_mag L04: r2_mean=0.320 std=0.023 14.2s
+
+[2026-04-28 10:51:29] [probe] push A contact_force_mag L05: r2_mean=0.339 std=0.027 15.1s
+
+[2026-04-28 10:51:46] [probe] push A contact_force_mag L06: r2_mean=0.345 std=0.037 16.0s
+
+[2026-04-28 10:52:04] [probe] push A contact_force_mag L07: r2_mean=0.367 std=0.035 16.4s
+
+[2026-04-28 10:52:20] [probe] push A contact_force_mag L08: r2_mean=0.382 std=0.030 14.9s
+
+[2026-04-28 10:52:39] [probe] push A contact_force_mag L09: r2_mean=0.392 std=0.034 17.8s
+
+[2026-04-28 10:52:59] [probe] push A contact_force_mag L10: r2_mean=0.400 std=0.038 17.8s
+
+[2026-04-28 10:53:18] [probe] push A contact_force_mag L11: r2_mean=0.407 std=0.038 18.1s
+
+[2026-04-28 10:53:34] [probe] push A contact_force_mag L12: r2_mean=0.415 std=0.038 13.8s
+
+[2026-04-28 10:53:52] [probe] push A contact_force_mag L13: r2_mean=0.421 std=0.038 17.5s
+
+[2026-04-28 10:54:09] [probe] push A contact_force_mag L14: r2_mean=0.430 std=0.038 15.2s
+
+[2026-04-28 10:54:26] [probe] push A contact_force_mag L15: r2_mean=0.435 std=0.039 16.0s
+
+[2026-04-28 10:54:44] [probe] push A contact_force_mag L16: r2_mean=0.441 std=0.037 17.0s
+
+[2026-04-28 10:55:02] [probe] push A contact_force_mag L17: r2_mean=0.442 std=0.034 16.2s
+
+[2026-04-28 10:55:22] [probe] push A contact_force_mag L18: r2_mean=0.446 std=0.032 18.3s
+
+[2026-04-28 10:55:41] [probe] push A contact_force_mag L19: r2_mean=0.458 std=0.036 18.4s
+
+[2026-04-28 10:56:00] [probe] push A contact_force_mag L20: r2_mean=0.456 std=0.035 17.5s
+
+[2026-04-28 10:56:20] [probe] push A contact_force_mag L21: r2_mean=0.461 std=0.034 18.9s
+
+[2026-04-28 10:56:39] [probe] push A contact_force_mag L22: r2_mean=0.456 std=0.034 16.8s
+
+[2026-04-28 10:56:57] [probe] push A contact_force_mag L23: r2_mean=0.448 std=0.039 16.9s
+
+[2026-04-28 10:57:16] [probe] push A contact_force_log1p_mag L00: r2_mean=0.349 std=0.039 17.3s
+
+[2026-04-28 10:57:36] [probe] push A contact_force_log1p_mag L01: r2_mean=0.555 std=0.022 18.7s
+
+[2026-04-28 10:57:55] [probe] push A contact_force_log1p_mag L02: r2_mean=0.580 std=0.023 18.3s
+
+[2026-04-28 10:58:13] [probe] push A contact_force_log1p_mag L03: r2_mean=0.593 std=0.020 16.2s
+
+[2026-04-28 10:58:30] [probe] push A contact_force_log1p_mag L04: r2_mean=0.616 std=0.019 15.7s
+
+[2026-04-28 10:58:50] [probe] push A contact_force_log1p_mag L05: r2_mean=0.625 std=0.016 17.9s
+
+[2026-04-28 10:59:10] [probe] push A contact_force_log1p_mag L06: r2_mean=0.642 std=0.024 19.0s
+
+[2026-04-28 10:59:28] [probe] push A contact_force_log1p_mag L07: r2_mean=0.664 std=0.011 16.9s
+
+[2026-04-28 10:59:46] [probe] push A contact_force_log1p_mag L08: r2_mean=0.678 std=0.009 16.6s
+
+[2026-04-28 11:00:04] [probe] push A contact_force_log1p_mag L09: r2_mean=0.693 std=0.007 16.4s
+
+[2026-04-28 11:00:20] [probe] push A contact_force_log1p_mag L10: r2_mean=0.701 std=0.010 15.3s
+
+[2026-04-28 11:00:39] [probe] push A contact_force_log1p_mag L11: r2_mean=0.710 std=0.012 16.9s
+
+[2026-04-28 11:00:58] [probe] push A contact_force_log1p_mag L12: r2_mean=0.721 std=0.010 18.0s
+
+[2026-04-28 11:01:16] [probe] push A contact_force_log1p_mag L13: r2_mean=0.728 std=0.012 16.8s
+
+[2026-04-28 11:01:35] [probe] push A contact_force_log1p_mag L14: r2_mean=0.738 std=0.013 17.0s
+
+[2026-04-28 11:01:53] [probe] push A contact_force_log1p_mag L15: r2_mean=0.738 std=0.016 16.6s
+
+[2026-04-28 11:02:11] [probe] push A contact_force_log1p_mag L16: r2_mean=0.744 std=0.015 17.5s
+
+[2026-04-28 11:02:29] [probe] push A contact_force_log1p_mag L17: r2_mean=0.747 std=0.009 16.7s
+
+[2026-04-28 11:02:49] [probe] push A contact_force_log1p_mag L18: r2_mean=0.749 std=0.009 17.9s
+
+[2026-04-28 11:03:08] [probe] push A contact_force_log1p_mag L19: r2_mean=0.753 std=0.009 17.9s
+
+[2026-04-28 11:03:27] [probe] push A contact_force_log1p_mag L20: r2_mean=0.750 std=0.010 17.5s
+
+[2026-04-28 11:03:45] [probe] push A contact_force_log1p_mag L21: r2_mean=0.754 std=0.011 16.1s
+
+[2026-04-28 11:04:01] [probe] push A contact_force_log1p_mag L22: r2_mean=0.752 std=0.014 15.3s
+
+[2026-04-28 11:04:20] [probe] push A contact_force_log1p_mag L23: r2_mean=0.746 std=0.016 17.2s
+
+[2026-04-28 11:04:40] [probe] push A contact_point L00: r2_mean=-0.014 std=0.007 18.0s
+
+[2026-04-28 11:05:00] [probe] push A contact_point L01: r2_mean=-0.002 std=0.003 19.4s
+
+[2026-04-28 11:05:21] [probe] push A contact_point L02: r2_mean=0.005 std=0.004 19.2s
+
+[2026-04-28 11:05:38] [probe] push A contact_point L03: r2_mean=0.004 std=0.010 16.0s
+
+[2026-04-28 11:05:58] [probe] push A contact_point L04: r2_mean=0.007 std=0.008 18.2s
+
+[2026-04-28 11:06:16] [probe] push A contact_point L05: r2_mean=0.024 std=0.006 17.1s
+
+[2026-04-28 11:06:37] [probe] push A contact_point L06: r2_mean=0.019 std=0.009 19.2s
+
+[2026-04-28 11:06:55] [probe] push A contact_point L07: r2_mean=0.016 std=0.008 17.0s
+
+[2026-04-28 11:07:16] [probe] push A contact_point L08: r2_mean=0.022 std=0.007 19.3s
+
+[2026-04-28 11:07:36] [probe] push A contact_point L09: r2_mean=0.012 std=0.008 18.6s
+
+[2026-04-28 11:07:53] [probe] push A contact_point L10: r2_mean=0.008 std=0.010 16.1s
+
+[2026-04-28 11:08:13] [probe] push A contact_point L11: r2_mean=0.014 std=0.010 18.2s
+
+[2026-04-28 11:08:35] [probe] push A contact_point L12: r2_mean=0.004 std=0.012 20.0s
+
+[2026-04-28 11:08:56] [probe] push A contact_point L13: r2_mean=0.001 std=0.015 19.6s
+
+[2026-04-28 11:09:17] [probe] push A contact_point L14: r2_mean=-0.002 std=0.008 19.5s
+
+[2026-04-28 11:09:37] [probe] push A contact_point L15: r2_mean=-0.002 std=0.008 18.5s
+
+[2026-04-28 11:09:54] [probe] push A contact_point L16: r2_mean=-0.004 std=0.007 16.1s
+
+[2026-04-28 11:10:14] [probe] push A contact_point L17: r2_mean=-0.006 std=0.008 18.6s
+
+[2026-04-28 11:10:35] [probe] push A contact_point L18: r2_mean=-0.014 std=0.009 19.4s
+
+[2026-04-28 11:10:53] [probe] push A contact_point L19: r2_mean=-0.018 std=0.010 16.0s
+
+[2026-04-28 11:11:13] [probe] push A contact_point L20: r2_mean=-0.018 std=0.007 18.6s
+
+[2026-04-28 11:11:32] [probe] push A contact_point L21: r2_mean=-0.024 std=0.006 18.1s
+
+[2026-04-28 11:11:52] [probe] push A contact_point L22: r2_mean=-0.024 std=0.013 17.9s
+
+[2026-04-28 11:12:10] [probe] push A contact_point L23: r2_mean=-0.022 std=0.007 17.3s
+
+[2026-04-28 11:12:29] [probe] push A phase L00: r2_mean=0.726 std=0.023 16.4s
+
+[2026-04-28 11:12:44] [probe] push A phase L01: r2_mean=0.833 std=0.013 14.5s
+
+[2026-04-28 11:13:02] [probe] push A phase L02: r2_mean=0.859 std=0.011 16.4s
+
+[2026-04-28 11:13:18] [probe] push A phase L03: r2_mean=0.880 std=0.012 14.5s
+
+[2026-04-28 11:13:37] [probe] push A phase L04: r2_mean=0.892 std=0.012 17.7s
+
+[2026-04-28 11:13:57] [probe] push A phase L05: r2_mean=0.896 std=0.013 18.0s
+
+[2026-04-28 11:14:16] [probe] push A phase L06: r2_mean=0.912 std=0.009 18.2s
+
+[2026-04-28 11:14:34] [probe] push A phase L07: r2_mean=0.919 std=0.007 16.3s
+
+[2026-04-28 11:14:52] [probe] push A phase L08: r2_mean=0.925 std=0.008 16.8s
+
+[2026-04-28 11:15:10] [probe] push A phase L09: r2_mean=0.928 std=0.006 17.0s
+
+[2026-04-28 11:15:27] [probe] push A phase L10: r2_mean=0.931 std=0.005 15.8s
+
+[2026-04-28 11:15:45] [probe] push A phase L11: r2_mean=0.934 std=0.007 16.0s
+
+[2026-04-28 11:16:04] [probe] push A phase L12: r2_mean=0.940 std=0.006 17.4s
+
+[2026-04-28 11:16:20] [probe] push A phase L13: r2_mean=0.945 std=0.004 14.7s
+
+[2026-04-28 11:16:38] [probe] push A phase L14: r2_mean=0.946 std=0.004 16.8s
+
+[2026-04-28 11:16:57] [probe] push A phase L15: r2_mean=0.948 std=0.003 17.9s
+
+[2026-04-28 11:17:16] [probe] push A phase L16: r2_mean=0.953 std=0.004 18.0s
+
+[2026-04-28 11:17:34] [probe] push A phase L17: r2_mean=0.955 std=0.004 15.9s
+
+[2026-04-28 11:17:50] [probe] push A phase L18: r2_mean=0.955 std=0.004 15.5s
+
+[2026-04-28 11:18:10] [probe] push A phase L19: r2_mean=0.954 std=0.004 18.3s
+
+[2026-04-28 11:18:29] [probe] push A phase L20: r2_mean=0.954 std=0.004 17.4s
+
+[2026-04-28 11:18:44] [probe] push A phase L21: r2_mean=0.954 std=0.004 14.5s
+
+[2026-04-28 11:19:03] [probe] push A phase L22: r2_mean=0.953 std=0.004 17.5s
+
+[2026-04-28 11:19:24] [probe] push A phase L23: r2_mean=0.952 std=0.004 19.7s
+
+[2026-04-28 11:19:43] [probe] push A ee_to_object_distance L00: r2_mean=-0.009 std=0.015 17.3s
+
+[2026-04-28 11:20:01] [probe] push A ee_to_object_distance L01: r2_mean=0.064 std=0.039 16.2s
+
+[2026-04-28 11:20:19] [probe] push A ee_to_object_distance L02: r2_mean=0.053 std=0.014 17.2s
+
+[2026-04-28 11:20:39] [probe] push A ee_to_object_distance L03: r2_mean=0.114 std=0.018 17.7s
+
+[2026-04-28 11:20:55] [probe] push A ee_to_object_distance L04: r2_mean=0.122 std=0.023 15.2s
+
+[2026-04-28 11:21:10] [probe] push A ee_to_object_distance L05: r2_mean=0.236 std=0.023 14.1s
+
+[2026-04-28 11:21:29] [probe] push A ee_to_object_distance L06: r2_mean=0.228 std=0.022 17.8s
+
+[2026-04-28 11:21:47] [probe] push A ee_to_object_distance L07: r2_mean=0.232 std=0.021 16.6s
+
+[2026-04-28 11:22:05] [probe] push A ee_to_object_distance L08: r2_mean=0.203 std=0.034 16.7s
+
+[2026-04-28 11:22:22] [probe] push A ee_to_object_distance L09: r2_mean=0.147 std=0.028 15.1s
+
+[2026-04-28 11:22:39] [probe] push A ee_to_object_distance L10: r2_mean=0.147 std=0.013 16.2s
+
+[2026-04-28 11:22:58] [probe] push A ee_to_object_distance L11: r2_mean=0.166 std=0.022 17.9s
+
+[2026-04-28 11:23:14] [probe] push A ee_to_object_distance L12: r2_mean=0.163 std=0.015 15.1s
+
+[2026-04-28 11:23:30] [probe] push A ee_to_object_distance L13: r2_mean=0.136 std=0.021 13.5s
+
+[2026-04-28 11:23:48] [probe] push A ee_to_object_distance L14: r2_mean=0.130 std=0.020 17.1s
+
+[2026-04-28 11:24:06] [probe] push A ee_to_object_distance L15: r2_mean=0.102 std=0.028 16.6s
+
+[2026-04-28 11:24:22] [probe] push A ee_to_object_distance L16: r2_mean=0.110 std=0.020 15.0s
+
+[2026-04-28 11:24:40] [probe] push A ee_to_object_distance L17: r2_mean=0.083 std=0.020 16.0s
+
+[2026-04-28 11:24:57] [probe] push A ee_to_object_distance L18: r2_mean=0.075 std=0.029 16.2s
+
+[2026-04-28 11:25:15] [probe] push A ee_to_object_distance L19: r2_mean=0.071 std=0.022 15.8s
+
+[2026-04-28 11:25:33] [probe] push A ee_to_object_distance L20: r2_mean=0.063 std=0.021 17.3s
+
+[2026-04-28 11:25:53] [probe] push A ee_to_object_distance L21: r2_mean=0.045 std=0.027 18.6s
+
+[2026-04-28 11:26:09] [probe] push A ee_to_object_distance L22: r2_mean=0.023 std=0.025 15.3s
+
+[2026-04-28 11:26:27] [probe] push A ee_to_object_distance L23: r2_mean=0.014 std=0.029 16.2s
+
+[2026-04-28 11:26:28] [probe] push A object_to_target_distance: only 0 valid windows — skipping
+
+[2026-04-28 11:26:28] [probe] push A DONE in 82.8min
+
+[2026-04-28 11:26:34] [probe] task=drawer variant=A targets=['ee_orientation', 'ee_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'drawer_joint_pos', 'drawer_joint_vel', 'drawer_opening_extent'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 11:27:45] [probe] drawer: features [(560000, 24, 1024)] eps 2000 loaded 71.3s
+
+[2026-04-28 11:28:19] [probe] drawer A ee_orientation L00: r2_mean=0.840 std=0.005 30.1s
+
+[2026-04-28 11:28:51] [probe] drawer A ee_orientation L01: r2_mean=0.913 std=0.006 28.5s
+
+[2026-04-28 11:29:21] [probe] drawer A ee_orientation L02: r2_mean=0.921 std=0.004 27.7s
+
+[2026-04-28 11:29:53] [probe] drawer A ee_orientation L03: r2_mean=0.933 std=0.003 28.0s
+
+[2026-04-28 11:30:25] [probe] drawer A ee_orientation L04: r2_mean=0.940 std=0.004 28.6s
+
+[2026-04-28 11:30:57] [probe] drawer A ee_orientation L05: r2_mean=0.943 std=0.004 28.1s
+
+[2026-04-28 11:31:29] [probe] drawer A ee_orientation L06: r2_mean=0.943 std=0.004 29.1s
+
+[2026-04-28 11:32:00] [probe] drawer A ee_orientation L07: r2_mean=0.948 std=0.004 27.9s
+
+[2026-04-28 11:32:32] [probe] drawer A ee_orientation L08: r2_mean=0.946 std=0.004 28.2s
+
+[2026-04-28 11:33:04] [probe] drawer A ee_orientation L09: r2_mean=0.945 std=0.005 28.7s
+
+[2026-04-28 11:33:36] [probe] drawer A ee_orientation L10: r2_mean=0.947 std=0.005 28.3s
+
+[2026-04-28 11:34:08] [probe] drawer A ee_orientation L11: r2_mean=0.951 std=0.004 28.4s
+
+[2026-04-28 11:34:39] [probe] drawer A ee_orientation L12: r2_mean=0.954 std=0.004 27.6s
+
+[2026-04-28 11:35:11] [probe] drawer A ee_orientation L13: r2_mean=0.956 std=0.003 28.7s
+
+[2026-04-28 11:35:43] [probe] drawer A ee_orientation L14: r2_mean=0.956 std=0.003 28.8s
+
+[2026-04-28 11:36:16] [probe] drawer A ee_orientation L15: r2_mean=0.958 std=0.003 28.8s
+
+[2026-04-28 11:36:47] [probe] drawer A ee_orientation L16: r2_mean=0.958 std=0.003 28.0s
+
+[2026-04-28 11:37:20] [probe] drawer A ee_orientation L17: r2_mean=0.960 std=0.003 29.4s
+
+[2026-04-28 11:37:51] [probe] drawer A ee_orientation L18: r2_mean=0.960 std=0.003 28.2s
+
+[2026-04-28 11:38:23] [probe] drawer A ee_orientation L19: r2_mean=0.959 std=0.002 29.1s
+
+[2026-04-28 11:38:54] [probe] drawer A ee_orientation L20: r2_mean=0.957 std=0.003 27.9s
+
+[2026-04-28 11:39:26] [probe] drawer A ee_orientation L21: r2_mean=0.960 std=0.003 28.3s
+
+[2026-04-28 11:39:58] [probe] drawer A ee_orientation L22: r2_mean=0.961 std=0.002 28.7s
+
+[2026-04-28 11:40:30] [probe] drawer A ee_orientation L23: r2_mean=0.960 std=0.001 28.0s
+
+[2026-04-28 11:41:01] [probe] drawer A ee_angular_velocity L00: r2_mean=0.176 std=0.007 27.8s
+
+[2026-04-28 11:41:32] [probe] drawer A ee_angular_velocity L01: r2_mean=0.207 std=0.008 27.3s
+
+[2026-04-28 11:42:04] [probe] drawer A ee_angular_velocity L02: r2_mean=0.233 std=0.009 28.7s
+
+[2026-04-28 11:42:34] [probe] drawer A ee_angular_velocity L03: r2_mean=0.269 std=0.010 27.3s
+
+[2026-04-28 11:43:05] [probe] drawer A ee_angular_velocity L04: r2_mean=0.286 std=0.017 27.9s
+
+[2026-04-28 11:43:36] [probe] drawer A ee_angular_velocity L05: r2_mean=0.357 std=0.006 27.6s
+
+[2026-04-28 11:44:07] [probe] drawer A ee_angular_velocity L06: r2_mean=0.375 std=0.016 27.0s
+
+[2026-04-28 11:44:38] [probe] drawer A ee_angular_velocity L07: r2_mean=0.407 std=0.007 27.4s
+
+[2026-04-28 11:45:09] [probe] drawer A ee_angular_velocity L08: r2_mean=0.412 std=0.020 27.9s
+
+[2026-04-28 11:45:40] [probe] drawer A ee_angular_velocity L09: r2_mean=0.396 std=0.009 27.3s
+
+[2026-04-28 11:46:11] [probe] drawer A ee_angular_velocity L10: r2_mean=0.394 std=0.009 27.4s
+
+[2026-04-28 11:46:43] [probe] drawer A ee_angular_velocity L11: r2_mean=0.408 std=0.012 28.4s
+
+[2026-04-28 11:47:14] [probe] drawer A ee_angular_velocity L12: r2_mean=0.427 std=0.023 27.5s
+
+[2026-04-28 11:47:47] [probe] drawer A ee_angular_velocity L13: r2_mean=0.439 std=0.016 29.2s
+
+[2026-04-28 11:48:18] [probe] drawer A ee_angular_velocity L14: r2_mean=0.424 std=0.014 28.0s
+
+[2026-04-28 11:48:50] [probe] drawer A ee_angular_velocity L15: r2_mean=0.416 std=0.014 28.4s
+
+[2026-04-28 11:49:21] [probe] drawer A ee_angular_velocity L16: r2_mean=0.426 std=0.009 28.1s
+
+[2026-04-28 11:49:57] [probe] drawer A ee_angular_velocity L17: r2_mean=0.442 std=0.012 30.2s
+
+[2026-04-28 11:50:27] [probe] drawer A ee_angular_velocity L18: r2_mean=0.435 std=0.006 26.8s
+
+[2026-04-28 11:51:02] [probe] drawer A ee_angular_velocity L19: r2_mean=0.456 std=0.019 28.3s
+
+[2026-04-28 11:51:31] [probe] drawer A ee_angular_velocity L20: r2_mean=0.457 std=0.024 25.9s
+
+[2026-04-28 11:52:04] [probe] drawer A ee_angular_velocity L21: r2_mean=0.458 std=0.008 26.7s
+
+[2026-04-28 11:52:34] [probe] drawer A ee_angular_velocity L22: r2_mean=0.484 std=0.015 26.8s
+
+[2026-04-28 11:53:07] [probe] drawer A ee_angular_velocity L23: r2_mean=0.452 std=0.009 27.5s
+
+[2026-04-28 11:53:34] [probe] drawer A contact_flag L00: r2_mean=0.405 std=0.005 24.0s
+
+[2026-04-28 11:54:04] [probe] drawer A contact_flag L01: r2_mean=0.475 std=0.007 24.5s
+
+[2026-04-28 11:54:33] [probe] drawer A contact_flag L02: r2_mean=0.498 std=0.003 25.0s
+
+[2026-04-28 11:55:03] [probe] drawer A contact_flag L03: r2_mean=0.535 std=0.006 25.0s
+
+[2026-04-28 11:55:30] [probe] drawer A contact_flag L04: r2_mean=0.561 std=0.007 23.9s
+
+[2026-04-28 11:56:00] [probe] drawer A contact_flag L05: r2_mean=0.613 std=0.006 25.0s
+
+[2026-04-28 11:56:27] [probe] drawer A contact_flag L06: r2_mean=0.629 std=0.011 23.3s
+
+[2026-04-28 11:56:56] [probe] drawer A contact_flag L07: r2_mean=0.678 std=0.007 24.3s
+
+[2026-04-28 11:57:24] [probe] drawer A contact_flag L08: r2_mean=0.675 std=0.007 24.5s
+
+[2026-04-28 11:57:53] [probe] drawer A contact_flag L09: r2_mean=0.654 std=0.009 23.9s
+
+[2026-04-28 11:58:21] [probe] drawer A contact_flag L10: r2_mean=0.663 std=0.007 24.9s
+
+[2026-04-28 11:58:51] [probe] drawer A contact_flag L11: r2_mean=0.678 std=0.005 24.9s
+
+[2026-04-28 11:59:19] [probe] drawer A contact_flag L12: r2_mean=0.688 std=0.005 24.4s
+
+[2026-04-28 11:59:48] [probe] drawer A contact_flag L13: r2_mean=0.697 std=0.004 24.7s
+
+[2026-04-28 12:00:16] [probe] drawer A contact_flag L14: r2_mean=0.692 std=0.006 24.1s
+
+[2026-04-28 12:00:44] [probe] drawer A contact_flag L15: r2_mean=0.697 std=0.005 23.6s
+
+[2026-04-28 12:01:13] [probe] drawer A contact_flag L16: r2_mean=0.697 std=0.003 26.7s
+
+[2026-04-28 12:01:41] [probe] drawer A contact_flag L17: r2_mean=0.710 std=0.009 24.1s
+
+[2026-04-28 12:02:09] [probe] drawer A contact_flag L18: r2_mean=0.710 std=0.006 24.1s
+
+[2026-04-28 12:02:37] [probe] drawer A contact_flag L19: r2_mean=0.709 std=0.006 24.6s
+
+[2026-04-28 12:03:06] [probe] drawer A contact_flag L20: r2_mean=0.697 std=0.005 25.2s
+
+[2026-04-28 12:03:34] [probe] drawer A contact_flag L21: r2_mean=0.702 std=0.006 23.8s
+
+[2026-04-28 12:04:01] [probe] drawer A contact_flag L22: r2_mean=0.698 std=0.010 24.6s
+
+[2026-04-28 12:04:29] [probe] drawer A contact_flag L23: r2_mean=0.696 std=0.005 23.6s
+
+[2026-04-28 12:04:59] [probe] drawer A contact_force L00: r2_mean=0.361 std=0.006 26.6s
+
+[2026-04-28 12:05:30] [probe] drawer A contact_force L01: r2_mean=0.445 std=0.006 27.0s
+
+[2026-04-28 12:05:59] [probe] drawer A contact_force L02: r2_mean=0.464 std=0.009 25.9s
+
+[2026-04-28 12:06:28] [probe] drawer A contact_force L03: r2_mean=0.494 std=0.023 26.3s
+
+[2026-04-28 12:06:57] [probe] drawer A contact_force L04: r2_mean=0.512 std=0.019 25.8s
+
+[2026-04-28 12:07:27] [probe] drawer A contact_force L05: r2_mean=0.575 std=0.009 26.6s
+
+[2026-04-28 12:07:57] [probe] drawer A contact_force L06: r2_mean=0.601 std=0.023 26.1s
+
+[2026-04-28 12:08:26] [probe] drawer A contact_force L07: r2_mean=0.663 std=0.013 26.4s
+
+[2026-04-28 12:08:55] [probe] drawer A contact_force L08: r2_mean=0.664 std=0.017 25.9s
+
+[2026-04-28 12:09:26] [probe] drawer A contact_force L09: r2_mean=0.670 std=0.009 26.7s
+
+[2026-04-28 12:09:56] [probe] drawer A contact_force L10: r2_mean=0.655 std=0.019 27.0s
+
+[2026-04-28 12:10:25] [probe] drawer A contact_force L11: r2_mean=0.676 std=0.018 25.9s
+
+[2026-04-28 12:10:55] [probe] drawer A contact_force L12: r2_mean=0.691 std=0.015 26.4s
+
+[2026-04-28 12:11:24] [probe] drawer A contact_force L13: r2_mean=0.690 std=0.005 26.3s
+
+[2026-04-28 12:11:53] [probe] drawer A contact_force L14: r2_mean=0.691 std=0.014 26.1s
+
+[2026-04-28 12:12:24] [probe] drawer A contact_force L15: r2_mean=0.686 std=0.016 26.8s
+
+[2026-04-28 12:12:52] [probe] drawer A contact_force L16: r2_mean=0.698 std=0.017 25.8s
+
+[2026-04-28 12:13:22] [probe] drawer A contact_force L17: r2_mean=0.705 std=0.012 26.2s
+
+[2026-04-28 12:13:52] [probe] drawer A contact_force L18: r2_mean=0.710 std=0.010 26.4s
+
+[2026-04-28 12:14:22] [probe] drawer A contact_force L19: r2_mean=0.689 std=0.004 27.1s
+
+[2026-04-28 12:14:52] [probe] drawer A contact_force L20: r2_mean=0.678 std=0.002 26.3s
+
+[2026-04-28 12:15:22] [probe] drawer A contact_force L21: r2_mean=0.678 std=0.003 26.2s
+
+[2026-04-28 12:15:52] [probe] drawer A contact_force L22: r2_mean=0.685 std=0.020 27.1s
+
+[2026-04-28 12:16:22] [probe] drawer A contact_force L23: r2_mean=0.668 std=0.010 26.0s
+
+[2026-04-28 12:16:49] [probe] drawer A contact_force_mag L00: r2_mean=0.376 std=0.010 23.8s
+
+[2026-04-28 12:17:16] [probe] drawer A contact_force_mag L01: r2_mean=0.445 std=0.005 23.7s
+
+[2026-04-28 12:17:43] [probe] drawer A contact_force_mag L02: r2_mean=0.457 std=0.006 24.0s
+
+[2026-04-28 12:18:11] [probe] drawer A contact_force_mag L03: r2_mean=0.510 std=0.003 23.9s
+
+[2026-04-28 12:18:37] [probe] drawer A contact_force_mag L04: r2_mean=0.534 std=0.014 23.4s
+
+[2026-04-28 12:19:05] [probe] drawer A contact_force_mag L05: r2_mean=0.616 std=0.007 23.9s
+
+[2026-04-28 12:19:32] [probe] drawer A contact_force_mag L06: r2_mean=0.646 std=0.005 24.6s
+
+[2026-04-28 12:20:01] [probe] drawer A contact_force_mag L07: r2_mean=0.692 std=0.008 25.8s
+
+[2026-04-28 12:20:27] [probe] drawer A contact_force_mag L08: r2_mean=0.694 std=0.003 22.8s
+
+[2026-04-28 12:20:56] [probe] drawer A contact_force_mag L09: r2_mean=0.688 std=0.003 24.9s
+
+[2026-04-28 12:21:24] [probe] drawer A contact_force_mag L10: r2_mean=0.695 std=0.009 24.2s
+
+[2026-04-28 12:21:52] [probe] drawer A contact_force_mag L11: r2_mean=0.715 std=0.008 24.3s
+
+[2026-04-28 12:22:19] [probe] drawer A contact_force_mag L12: r2_mean=0.730 std=0.008 23.9s
+
+[2026-04-28 12:22:47] [probe] drawer A contact_force_mag L13: r2_mean=0.752 std=0.002 25.3s
+
+[2026-04-28 12:23:14] [probe] drawer A contact_force_mag L14: r2_mean=0.734 std=0.008 23.5s
+
+[2026-04-28 12:23:42] [probe] drawer A contact_force_mag L15: r2_mean=0.740 std=0.005 25.0s
+
+[2026-04-28 12:24:08] [probe] drawer A contact_force_mag L16: r2_mean=0.740 std=0.005 22.7s
+
+[2026-04-28 12:24:36] [probe] drawer A contact_force_mag L17: r2_mean=0.741 std=0.006 24.3s
+
+[2026-04-28 12:25:03] [probe] drawer A contact_force_mag L18: r2_mean=0.741 std=0.004 23.8s
+
+[2026-04-28 12:25:31] [probe] drawer A contact_force_mag L19: r2_mean=0.735 std=0.003 23.8s
+
+[2026-04-28 12:25:58] [probe] drawer A contact_force_mag L20: r2_mean=0.730 std=0.011 23.6s
+
+[2026-04-28 12:26:26] [probe] drawer A contact_force_mag L21: r2_mean=0.728 std=0.007 25.0s
+
+[2026-04-28 12:26:54] [probe] drawer A contact_force_mag L22: r2_mean=0.723 std=0.005 24.3s
+
+[2026-04-28 12:27:23] [probe] drawer A contact_force_mag L23: r2_mean=0.717 std=0.010 24.8s
+
+[2026-04-28 12:27:51] [probe] drawer A contact_force_log1p_mag L00: r2_mean=0.287 std=0.006 23.9s
+
+[2026-04-28 12:28:18] [probe] drawer A contact_force_log1p_mag L01: r2_mean=0.377 std=0.009 23.9s
+
+[2026-04-28 12:28:45] [probe] drawer A contact_force_log1p_mag L02: r2_mean=0.400 std=0.005 23.8s
+
+[2026-04-28 12:29:13] [probe] drawer A contact_force_log1p_mag L03: r2_mean=0.451 std=0.010 24.5s
+
+[2026-04-28 12:29:40] [probe] drawer A contact_force_log1p_mag L04: r2_mean=0.489 std=0.010 24.3s
+
+[2026-04-28 12:30:09] [probe] drawer A contact_force_log1p_mag L05: r2_mean=0.589 std=0.010 25.3s
+
+[2026-04-28 12:30:35] [probe] drawer A contact_force_log1p_mag L06: r2_mean=0.607 std=0.016 22.8s
+
+[2026-04-28 12:31:03] [probe] drawer A contact_force_log1p_mag L07: r2_mean=0.672 std=0.008 24.7s
+
+[2026-04-28 12:31:31] [probe] drawer A contact_force_log1p_mag L08: r2_mean=0.669 std=0.009 24.8s
+
+[2026-04-28 12:31:59] [probe] drawer A contact_force_log1p_mag L09: r2_mean=0.651 std=0.008 24.8s
+
+[2026-04-28 12:32:27] [probe] drawer A contact_force_log1p_mag L10: r2_mean=0.659 std=0.009 24.3s
+
+[2026-04-28 12:32:55] [probe] drawer A contact_force_log1p_mag L11: r2_mean=0.681 std=0.007 24.4s
+
+[2026-04-28 12:33:23] [probe] drawer A contact_force_log1p_mag L12: r2_mean=0.693 std=0.012 24.9s
+
+[2026-04-28 12:33:52] [probe] drawer A contact_force_log1p_mag L13: r2_mean=0.711 std=0.009 25.3s
+
+[2026-04-28 12:34:19] [probe] drawer A contact_force_log1p_mag L14: r2_mean=0.690 std=0.004 23.7s
+
+[2026-04-28 12:34:47] [probe] drawer A contact_force_log1p_mag L15: r2_mean=0.705 std=0.009 24.5s
+
+[2026-04-28 12:35:16] [probe] drawer A contact_force_log1p_mag L16: r2_mean=0.706 std=0.004 25.5s
+
+[2026-04-28 12:35:44] [probe] drawer A contact_force_log1p_mag L17: r2_mean=0.719 std=0.010 25.0s
+
+[2026-04-28 12:36:12] [probe] drawer A contact_force_log1p_mag L18: r2_mean=0.720 std=0.007 24.0s
+
+[2026-04-28 12:36:40] [probe] drawer A contact_force_log1p_mag L19: r2_mean=0.715 std=0.008 24.3s
+
+[2026-04-28 12:37:07] [probe] drawer A contact_force_log1p_mag L20: r2_mean=0.706 std=0.008 24.3s
+
+[2026-04-28 12:37:37] [probe] drawer A contact_force_log1p_mag L21: r2_mean=0.709 std=0.004 25.4s
+
+[2026-04-28 12:38:04] [probe] drawer A contact_force_log1p_mag L22: r2_mean=0.704 std=0.011 24.1s
+
+[2026-04-28 12:38:33] [probe] drawer A contact_force_log1p_mag L23: r2_mean=0.697 std=0.008 24.9s
+
+[2026-04-28 12:39:03] [probe] drawer A contact_point L00: r2_mean=0.040 std=0.005 26.3s
+
+[2026-04-28 12:39:34] [probe] drawer A contact_point L01: r2_mean=0.182 std=0.021 27.4s
+
+[2026-04-28 12:40:03] [probe] drawer A contact_point L02: r2_mean=0.207 std=0.023 26.0s
+
+[2026-04-28 12:40:34] [probe] drawer A contact_point L03: r2_mean=0.199 std=0.029 27.6s
+
+[2026-04-28 12:41:03] [probe] drawer A contact_point L04: r2_mean=0.178 std=0.006 25.9s
+
+[2026-04-28 12:41:34] [probe] drawer A contact_point L05: r2_mean=0.209 std=0.019 27.4s
+
+[2026-04-28 12:42:04] [probe] drawer A contact_point L06: r2_mean=0.221 std=0.025 27.0s
+
+[2026-04-28 12:42:34] [probe] drawer A contact_point L07: r2_mean=0.241 std=0.020 26.5s
+
+[2026-04-28 12:43:04] [probe] drawer A contact_point L08: r2_mean=0.253 std=0.016 27.1s
+
+[2026-04-28 12:43:35] [probe] drawer A contact_point L09: r2_mean=0.253 std=0.017 27.2s
+
+[2026-04-28 12:44:05] [probe] drawer A contact_point L10: r2_mean=0.264 std=0.017 26.8s
+
+[2026-04-28 12:44:35] [probe] drawer A contact_point L11: r2_mean=0.283 std=0.029 26.6s
+
+[2026-04-28 12:45:04] [probe] drawer A contact_point L12: r2_mean=0.281 std=0.019 26.1s
+
+[2026-04-28 12:45:35] [probe] drawer A contact_point L13: r2_mean=0.277 std=0.010 26.7s
+
+[2026-04-28 12:46:04] [probe] drawer A contact_point L14: r2_mean=0.265 std=0.018 26.3s
+
+[2026-04-28 12:46:34] [probe] drawer A contact_point L15: r2_mean=0.262 std=0.039 26.7s
+
+[2026-04-28 12:47:03] [probe] drawer A contact_point L16: r2_mean=0.259 std=0.022 26.0s
+
+[2026-04-28 12:47:33] [probe] drawer A contact_point L17: r2_mean=0.230 std=0.005 26.5s
+
+[2026-04-28 12:48:02] [probe] drawer A contact_point L18: r2_mean=0.223 std=0.008 26.3s
+
+[2026-04-28 12:48:32] [probe] drawer A contact_point L19: r2_mean=0.228 std=0.018 26.4s
+
+[2026-04-28 12:49:01] [probe] drawer A contact_point L20: r2_mean=0.212 std=0.003 25.8s
+
+[2026-04-28 12:49:31] [probe] drawer A contact_point L21: r2_mean=0.207 std=0.006 26.4s
+
+[2026-04-28 12:50:00] [probe] drawer A contact_point L22: r2_mean=0.215 std=0.007 25.8s
+
+[2026-04-28 12:50:30] [probe] drawer A contact_point L23: r2_mean=0.175 std=0.004 26.7s
+
+[2026-04-28 12:50:58] [probe] drawer A phase L00: r2_mean=1.000 std=0.000 23.5s
+
+[2026-04-28 12:51:25] [probe] drawer A phase L01: r2_mean=1.000 std=0.000 24.1s
+
+[2026-04-28 12:51:53] [probe] drawer A phase L02: r2_mean=1.000 std=0.000 24.3s
+
+[2026-04-28 12:52:21] [probe] drawer A phase L03: r2_mean=1.000 std=0.000 24.7s
+
+[2026-04-28 12:52:48] [probe] drawer A phase L04: r2_mean=1.000 std=0.000 23.7s
+
+[2026-04-28 12:53:17] [probe] drawer A phase L05: r2_mean=1.000 std=0.000 25.8s
+
+[2026-04-28 12:53:45] [probe] drawer A phase L06: r2_mean=1.000 std=0.000 24.9s
+
+[2026-04-28 12:54:14] [probe] drawer A phase L07: r2_mean=1.000 std=0.000 24.4s
+
+[2026-04-28 12:54:42] [probe] drawer A phase L08: r2_mean=1.000 std=0.000 25.2s
+
+[2026-04-28 12:55:10] [probe] drawer A phase L09: r2_mean=1.000 std=0.000 24.0s
+
+[2026-04-28 12:55:37] [probe] drawer A phase L10: r2_mean=1.000 std=0.000 24.3s
+
+[2026-04-28 12:56:05] [probe] drawer A phase L11: r2_mean=1.000 std=0.000 24.5s
+
+[2026-04-28 12:56:32] [probe] drawer A phase L12: r2_mean=1.000 std=0.000 23.3s
+
+[2026-04-28 12:57:00] [probe] drawer A phase L13: r2_mean=1.000 std=0.000 24.8s
+
+[2026-04-28 12:57:28] [probe] drawer A phase L14: r2_mean=1.000 std=0.000 24.6s
+
+[2026-04-28 12:57:57] [probe] drawer A phase L15: r2_mean=1.000 std=0.000 25.2s
+
+[2026-04-28 12:58:24] [probe] drawer A phase L16: r2_mean=1.000 std=0.000 23.8s
+
+[2026-04-28 12:58:52] [probe] drawer A phase L17: r2_mean=1.000 std=0.000 24.2s
+
+[2026-04-28 12:59:19] [probe] drawer A phase L18: r2_mean=1.000 std=0.000 24.1s
+
+[2026-04-28 12:59:47] [probe] drawer A phase L19: r2_mean=1.000 std=0.000 24.2s
+
+[2026-04-28 13:00:16] [probe] drawer A phase L20: r2_mean=1.000 std=0.000 25.4s
+
+[2026-04-28 13:00:44] [probe] drawer A phase L21: r2_mean=1.000 std=0.000 24.3s
+
+[2026-04-28 13:01:10] [probe] drawer A phase L22: r2_mean=1.000 std=0.000 23.5s
+
+[2026-04-28 13:01:37] [probe] drawer A phase L23: r2_mean=1.000 std=0.000 23.6s
+
+[2026-04-28 13:02:03] [probe] drawer A drawer_joint_pos L00: r2_mean=0.936 std=0.002 22.4s
+
+[2026-04-28 13:02:32] [probe] drawer A drawer_joint_pos L01: r2_mean=0.973 std=0.001 25.0s
+
+[2026-04-28 13:02:58] [probe] drawer A drawer_joint_pos L02: r2_mean=0.974 std=0.002 23.4s
+
+[2026-04-28 13:03:27] [probe] drawer A drawer_joint_pos L03: r2_mean=0.977 std=0.002 25.2s
+
+[2026-04-28 13:03:53] [probe] drawer A drawer_joint_pos L04: r2_mean=0.981 std=0.002 23.8s
+
+[2026-04-28 13:04:20] [probe] drawer A drawer_joint_pos L05: r2_mean=0.980 std=0.002 23.6s
+
+[2026-04-28 13:04:48] [probe] drawer A drawer_joint_pos L06: r2_mean=0.980 std=0.003 24.2s
+
+[2026-04-28 13:05:16] [probe] drawer A drawer_joint_pos L07: r2_mean=0.980 std=0.004 25.0s
+
+[2026-04-28 13:05:43] [probe] drawer A drawer_joint_pos L08: r2_mean=0.979 std=0.005 24.0s
+
+[2026-04-28 13:06:11] [probe] drawer A drawer_joint_pos L09: r2_mean=0.983 std=0.002 24.3s
+
+[2026-04-28 13:06:38] [probe] drawer A drawer_joint_pos L10: r2_mean=0.984 std=0.002 23.7s
+
+[2026-04-28 13:07:07] [probe] drawer A drawer_joint_pos L11: r2_mean=0.986 std=0.003 25.2s
+
+[2026-04-28 13:07:33] [probe] drawer A drawer_joint_pos L12: r2_mean=0.986 std=0.002 23.9s
+
+[2026-04-28 13:08:02] [probe] drawer A drawer_joint_pos L13: r2_mean=0.988 std=0.001 25.0s
+
+[2026-04-28 13:08:29] [probe] drawer A drawer_joint_pos L14: r2_mean=0.988 std=0.001 24.0s
+
+[2026-04-28 13:08:57] [probe] drawer A drawer_joint_pos L15: r2_mean=0.989 std=0.002 24.9s
+
+[2026-04-28 13:09:25] [probe] drawer A drawer_joint_pos L16: r2_mean=0.989 std=0.002 25.0s
+
+[2026-04-28 13:09:54] [probe] drawer A drawer_joint_pos L17: r2_mean=0.989 std=0.002 25.2s
+
+[2026-04-28 13:10:21] [probe] drawer A drawer_joint_pos L18: r2_mean=0.989 std=0.001 24.4s
+
+[2026-04-28 13:10:51] [probe] drawer A drawer_joint_pos L19: r2_mean=0.990 std=0.001 26.0s
+
+[2026-04-28 13:11:18] [probe] drawer A drawer_joint_pos L20: r2_mean=0.990 std=0.001 24.0s
+
+[2026-04-28 13:11:47] [probe] drawer A drawer_joint_pos L21: r2_mean=0.990 std=0.001 25.6s
+
+[2026-04-28 13:12:15] [probe] drawer A drawer_joint_pos L22: r2_mean=0.991 std=0.002 24.9s
+
+[2026-04-28 13:12:43] [probe] drawer A drawer_joint_pos L23: r2_mean=0.991 std=0.001 24.3s
+
+[2026-04-28 13:13:11] [probe] drawer A drawer_joint_vel L00: r2_mean=0.705 std=0.015 24.2s
+
+[2026-04-28 13:13:38] [probe] drawer A drawer_joint_vel L01: r2_mean=0.800 std=0.010 23.8s
+
+[2026-04-28 13:14:05] [probe] drawer A drawer_joint_vel L02: r2_mean=0.789 std=0.016 24.1s
+
+[2026-04-28 13:14:33] [probe] drawer A drawer_joint_vel L03: r2_mean=0.820 std=0.007 24.4s
+
+[2026-04-28 13:14:59] [probe] drawer A drawer_joint_vel L04: r2_mean=0.828 std=0.007 23.6s
+
+[2026-04-28 13:15:28] [probe] drawer A drawer_joint_vel L05: r2_mean=0.853 std=0.005 24.7s
+
+[2026-04-28 13:15:55] [probe] drawer A drawer_joint_vel L06: r2_mean=0.852 std=0.006 24.6s
+
+[2026-04-28 13:16:22] [probe] drawer A drawer_joint_vel L07: r2_mean=0.872 std=0.006 23.6s
+
+[2026-04-28 13:16:50] [probe] drawer A drawer_joint_vel L08: r2_mean=0.870 std=0.005 24.3s
+
+[2026-04-28 13:17:18] [probe] drawer A drawer_joint_vel L09: r2_mean=0.867 std=0.006 24.5s
+
+[2026-04-28 13:17:45] [probe] drawer A drawer_joint_vel L10: r2_mean=0.875 std=0.005 23.7s
+
+[2026-04-28 13:18:13] [probe] drawer A drawer_joint_vel L11: r2_mean=0.883 std=0.005 24.2s
+
+[2026-04-28 13:18:40] [probe] drawer A drawer_joint_vel L12: r2_mean=0.884 std=0.003 24.4s
+
+[2026-04-28 13:19:09] [probe] drawer A drawer_joint_vel L13: r2_mean=0.899 std=0.004 25.2s
+
+[2026-04-28 13:19:37] [probe] drawer A drawer_joint_vel L14: r2_mean=0.899 std=0.004 24.8s
+
+[2026-04-28 13:20:05] [probe] drawer A drawer_joint_vel L15: r2_mean=0.911 std=0.004 25.2s
+
+[2026-04-28 13:20:32] [probe] drawer A drawer_joint_vel L16: r2_mean=0.918 std=0.003 23.8s
+
+[2026-04-28 13:20:59] [probe] drawer A drawer_joint_vel L17: r2_mean=0.923 std=0.004 23.8s
+
+[2026-04-28 13:21:27] [probe] drawer A drawer_joint_vel L18: r2_mean=0.924 std=0.003 24.7s
+
+[2026-04-28 13:21:55] [probe] drawer A drawer_joint_vel L19: r2_mean=0.921 std=0.004 24.2s
+
+[2026-04-28 13:22:21] [probe] drawer A drawer_joint_vel L20: r2_mean=0.920 std=0.002 22.9s
+
+[2026-04-28 13:22:49] [probe] drawer A drawer_joint_vel L21: r2_mean=0.922 std=0.003 24.0s
+
+[2026-04-28 13:23:15] [probe] drawer A drawer_joint_vel L22: r2_mean=0.923 std=0.003 22.9s
+
+[2026-04-28 13:23:43] [probe] drawer A drawer_joint_vel L23: r2_mean=0.920 std=0.003 25.2s
+
+[2026-04-28 13:24:11] [probe] drawer A drawer_opening_extent L00: r2_mean=0.933 std=0.002 23.9s
+
+[2026-04-28 13:24:38] [probe] drawer A drawer_opening_extent L01: r2_mean=0.972 std=0.001 23.9s
+
+[2026-04-28 13:25:06] [probe] drawer A drawer_opening_extent L02: r2_mean=0.973 std=0.003 24.8s
+
+[2026-04-28 13:25:35] [probe] drawer A drawer_opening_extent L03: r2_mean=0.975 std=0.002 25.3s
+
+[2026-04-28 13:26:04] [probe] drawer A drawer_opening_extent L04: r2_mean=0.980 std=0.002 25.6s
+
+[2026-04-28 13:26:32] [probe] drawer A drawer_opening_extent L05: r2_mean=0.977 std=0.007 24.4s
+
+[2026-04-28 13:27:00] [probe] drawer A drawer_opening_extent L06: r2_mean=0.980 std=0.003 24.3s
+
+[2026-04-28 13:27:27] [probe] drawer A drawer_opening_extent L07: r2_mean=0.979 std=0.005 23.3s
+
+[2026-04-28 13:27:54] [probe] drawer A drawer_opening_extent L08: r2_mean=0.979 std=0.005 23.8s
+
+[2026-04-28 13:28:22] [probe] drawer A drawer_opening_extent L09: r2_mean=0.982 std=0.002 24.8s
+
+[2026-04-28 13:28:50] [probe] drawer A drawer_opening_extent L10: r2_mean=0.984 std=0.003 24.4s
+
+[2026-04-28 13:29:18] [probe] drawer A drawer_opening_extent L11: r2_mean=0.985 std=0.003 24.6s
+
+[2026-04-28 13:29:45] [probe] drawer A drawer_opening_extent L12: r2_mean=0.985 std=0.003 23.9s
+
+[2026-04-28 13:30:13] [probe] drawer A drawer_opening_extent L13: r2_mean=0.987 std=0.001 24.1s
+
+[2026-04-28 13:30:39] [probe] drawer A drawer_opening_extent L14: r2_mean=0.988 std=0.001 23.6s
+
+[2026-04-28 13:31:08] [probe] drawer A drawer_opening_extent L15: r2_mean=0.989 std=0.002 25.1s
+
+[2026-04-28 13:31:34] [probe] drawer A drawer_opening_extent L16: r2_mean=0.988 std=0.002 23.2s
+
+[2026-04-28 13:32:02] [probe] drawer A drawer_opening_extent L17: r2_mean=0.989 std=0.002 24.9s
+
+[2026-04-28 13:32:29] [probe] drawer A drawer_opening_extent L18: r2_mean=0.989 std=0.001 23.6s
+
+[2026-04-28 13:32:58] [probe] drawer A drawer_opening_extent L19: r2_mean=0.990 std=0.001 25.3s
+
+[2026-04-28 13:33:24] [probe] drawer A drawer_opening_extent L20: r2_mean=0.990 std=0.001 23.4s
+
+[2026-04-28 13:33:53] [probe] drawer A drawer_opening_extent L21: r2_mean=0.990 std=0.001 25.0s
+
+[2026-04-28 13:34:20] [probe] drawer A drawer_opening_extent L22: r2_mean=0.991 std=0.001 24.4s
+
+[2026-04-28 13:34:47] [probe] drawer A drawer_opening_extent L23: r2_mean=0.990 std=0.001 23.9s
+
+[2026-04-28 13:34:48] [probe] drawer A DONE in 128.2min
+
+[2026-04-28 13:35:39] [probe] task=peg_insert variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'insertion_depth', 'peg_hole_lateral_error'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 13:36:17] [probe] peg_insert: features [(322500, 24, 1024)] eps 2500 loaded 37.6s
+
+[2026-04-28 13:36:45] [probe] peg_insert A ee_orientation L00: r2_mean=0.269 std=0.015 25.9s
+
+[2026-04-28 13:37:09] [probe] peg_insert A ee_orientation L01: r2_mean=0.467 std=0.016 21.7s
+
+[2026-04-28 13:37:32] [probe] peg_insert A ee_orientation L02: r2_mean=0.494 std=0.022 21.5s
+
+[2026-04-28 13:37:56] [probe] peg_insert A ee_orientation L03: r2_mean=0.550 std=0.025 21.6s
+
+[2026-04-28 13:38:20] [probe] peg_insert A ee_orientation L04: r2_mean=0.594 std=0.042 22.2s
+
+[2026-04-28 13:38:44] [probe] peg_insert A ee_orientation L05: r2_mean=0.634 std=0.012 21.2s
+
+[2026-04-28 13:39:09] [probe] peg_insert A ee_orientation L06: r2_mean=0.649 std=0.020 22.9s
+
+[2026-04-28 13:39:34] [probe] peg_insert A ee_orientation L07: r2_mean=0.669 std=0.017 22.6s
+
+[2026-04-28 13:39:58] [probe] peg_insert A ee_orientation L08: r2_mean=0.679 std=0.008 22.7s
+
+[2026-04-28 13:40:22] [probe] peg_insert A ee_orientation L09: r2_mean=0.685 std=0.009 20.9s
+
+[2026-04-28 13:40:46] [probe] peg_insert A ee_orientation L10: r2_mean=0.700 std=0.010 22.3s
+
+[2026-04-28 13:41:09] [probe] peg_insert A ee_orientation L11: r2_mean=0.691 std=0.029 20.5s
+
+[2026-04-28 13:41:33] [probe] peg_insert A ee_orientation L12: r2_mean=0.710 std=0.007 22.6s
+
+[2026-04-28 13:41:57] [probe] peg_insert A ee_orientation L13: r2_mean=0.705 std=0.008 21.5s
+
+[2026-04-28 13:42:20] [probe] peg_insert A ee_orientation L14: r2_mean=0.720 std=0.012 21.4s
+
+[2026-04-28 13:42:43] [probe] peg_insert A ee_orientation L15: r2_mean=0.739 std=0.007 20.4s
+
+[2026-04-28 13:43:06] [probe] peg_insert A ee_orientation L16: r2_mean=0.731 std=0.020 20.6s
+
+[2026-04-28 13:43:30] [probe] peg_insert A ee_orientation L17: r2_mean=0.759 std=0.003 21.9s
+
+[2026-04-28 13:43:55] [probe] peg_insert A ee_orientation L18: r2_mean=0.754 std=0.009 22.5s
+
+[2026-04-28 13:44:18] [probe] peg_insert A ee_orientation L19: r2_mean=0.699 std=0.088 21.3s
+
+[2026-04-28 13:44:42] [probe] peg_insert A ee_orientation L20: r2_mean=0.572 std=0.273 21.9s
+
+[2026-04-28 13:45:06] [probe] peg_insert A ee_orientation L21: r2_mean=0.757 std=0.019 21.2s
+
+[2026-04-28 13:45:30] [probe] peg_insert A ee_orientation L22: r2_mean=0.727 std=0.029 22.3s
+
+[2026-04-28 13:45:54] [probe] peg_insert A ee_orientation L23: r2_mean=0.578 std=0.089 22.3s
+
+[2026-04-28 13:46:20] [probe] peg_insert A ee_angular_velocity L00: r2_mean=0.134 std=0.014 23.1s
+
+[2026-04-28 13:46:45] [probe] peg_insert A ee_angular_velocity L01: r2_mean=0.490 std=0.032 23.1s
+
+[2026-04-28 13:47:10] [probe] peg_insert A ee_angular_velocity L02: r2_mean=0.541 std=0.030 22.1s
+
+[2026-04-28 13:47:31] [probe] peg_insert A ee_angular_velocity L03: r2_mean=0.570 std=0.017 19.3s
+
+[2026-04-28 13:47:55] [probe] peg_insert A ee_angular_velocity L04: r2_mean=0.619 std=0.036 22.1s
+
+[2026-04-28 13:48:19] [probe] peg_insert A ee_angular_velocity L05: r2_mean=0.628 std=0.027 21.9s
+
+[2026-04-28 13:48:43] [probe] peg_insert A ee_angular_velocity L06: r2_mean=0.648 std=0.029 21.4s
+
+[2026-04-28 13:49:05] [probe] peg_insert A ee_angular_velocity L07: r2_mean=0.679 std=0.018 20.2s
+
+[2026-04-28 13:49:28] [probe] peg_insert A ee_angular_velocity L08: r2_mean=0.717 std=0.012 21.0s
+
+[2026-04-28 13:49:51] [probe] peg_insert A ee_angular_velocity L09: r2_mean=0.727 std=0.017 20.8s
+
+[2026-04-28 13:50:14] [probe] peg_insert A ee_angular_velocity L10: r2_mean=0.748 std=0.009 21.3s
+
+[2026-04-28 13:50:37] [probe] peg_insert A ee_angular_velocity L11: r2_mean=0.746 std=0.036 21.4s
+
+[2026-04-28 13:50:58] [probe] peg_insert A ee_angular_velocity L12: r2_mean=0.772 std=0.005 18.6s
+
+[2026-04-28 13:51:23] [probe] peg_insert A ee_angular_velocity L13: r2_mean=0.784 std=0.012 22.8s
+
+[2026-04-28 13:51:45] [probe] peg_insert A ee_angular_velocity L14: r2_mean=0.806 std=0.005 20.1s
+
+[2026-04-28 13:52:08] [probe] peg_insert A ee_angular_velocity L15: r2_mean=0.819 std=0.006 21.2s
+
+[2026-04-28 13:52:29] [probe] peg_insert A ee_angular_velocity L16: r2_mean=0.795 std=0.079 19.5s
+
+[2026-04-28 13:52:50] [probe] peg_insert A ee_angular_velocity L17: r2_mean=0.833 std=0.018 18.9s
+
+[2026-04-28 13:53:14] [probe] peg_insert A ee_angular_velocity L18: r2_mean=0.824 std=0.042 22.0s
+
+[2026-04-28 13:53:37] [probe] peg_insert A ee_angular_velocity L19: r2_mean=0.763 std=0.078 20.8s
+
+[2026-04-28 13:53:58] [probe] peg_insert A ee_angular_velocity L20: r2_mean=-0.056 std=0.651 19.2s
+
+[2026-04-28 13:54:21] [probe] peg_insert A ee_angular_velocity L21: r2_mean=0.826 std=0.022 20.6s
+
+[2026-04-28 13:54:44] [probe] peg_insert A ee_angular_velocity L22: r2_mean=0.766 std=0.110 21.1s
+
+[2026-04-28 13:55:08] [probe] peg_insert A ee_angular_velocity L23: r2_mean=0.805 std=0.051 22.6s
+
+[2026-04-28 13:55:32] [probe] peg_insert A obj_orientation L00: r2_mean=0.207 std=0.012 21.1s
+
+[2026-04-28 13:55:53] [probe] peg_insert A obj_orientation L01: r2_mean=0.461 std=0.009 19.6s
+
+[2026-04-28 13:56:17] [probe] peg_insert A obj_orientation L02: r2_mean=0.481 std=0.015 22.2s
+
+[2026-04-28 13:56:40] [probe] peg_insert A obj_orientation L03: r2_mean=0.581 std=0.004 21.1s
+
+[2026-04-28 13:57:03] [probe] peg_insert A obj_orientation L04: r2_mean=0.656 std=0.008 20.8s
+
+[2026-04-28 13:57:27] [probe] peg_insert A obj_orientation L05: r2_mean=0.705 std=0.003 21.6s
+
+[2026-04-28 13:57:50] [probe] peg_insert A obj_orientation L06: r2_mean=0.721 std=0.003 21.5s
+
+[2026-04-28 13:58:14] [probe] peg_insert A obj_orientation L07: r2_mean=0.764 std=0.013 21.5s
+
+[2026-04-28 13:58:36] [probe] peg_insert A obj_orientation L08: r2_mean=0.789 std=0.008 20.5s
+
+[2026-04-28 13:58:58] [probe] peg_insert A obj_orientation L09: r2_mean=0.779 std=0.017 20.5s
+
+[2026-04-28 13:59:19] [probe] peg_insert A obj_orientation L10: r2_mean=0.800 std=0.018 18.8s
+
+[2026-04-28 13:59:41] [probe] peg_insert A obj_orientation L11: r2_mean=0.765 std=0.052 20.1s
+
+[2026-04-28 14:00:04] [probe] peg_insert A obj_orientation L12: r2_mean=0.807 std=0.011 21.4s
+
+[2026-04-28 14:00:28] [probe] peg_insert A obj_orientation L13: r2_mean=0.794 std=0.003 21.4s
+
+[2026-04-28 14:00:51] [probe] peg_insert A obj_orientation L14: r2_mean=0.804 std=0.009 21.2s
+
+[2026-04-28 14:01:13] [probe] peg_insert A obj_orientation L15: r2_mean=0.819 std=0.015 19.9s
+
+[2026-04-28 14:01:37] [probe] peg_insert A obj_orientation L16: r2_mean=0.794 std=0.039 22.9s
+
+[2026-04-28 14:02:00] [probe] peg_insert A obj_orientation L17: r2_mean=0.802 std=0.032 20.4s
+
+[2026-04-28 14:02:23] [probe] peg_insert A obj_orientation L18: r2_mean=0.828 std=0.014 21.2s
+
+[2026-04-28 14:02:47] [probe] peg_insert A obj_orientation L19: r2_mean=0.701 std=0.044 21.1s
+
+[2026-04-28 14:03:11] [probe] peg_insert A obj_orientation L20: r2_mean=0.157 std=0.928 22.7s
+
+[2026-04-28 14:03:35] [probe] peg_insert A obj_orientation L21: r2_mean=0.542 std=0.490 21.3s
+
+[2026-04-28 14:03:58] [probe] peg_insert A obj_orientation L22: r2_mean=0.725 std=0.154 21.6s
+
+[2026-04-28 14:04:23] [probe] peg_insert A obj_orientation L23: r2_mean=0.707 std=0.069 22.0s
+
+[2026-04-28 14:04:44] [probe] peg_insert A obj_angular_velocity L00: r2_mean=0.001 std=0.001 19.1s
+
+[2026-04-28 14:05:07] [probe] peg_insert A obj_angular_velocity L01: r2_mean=0.018 std=0.002 20.8s
+
+[2026-04-28 14:05:28] [probe] peg_insert A obj_angular_velocity L02: r2_mean=0.023 std=0.002 19.3s
+
+[2026-04-28 14:05:52] [probe] peg_insert A obj_angular_velocity L03: r2_mean=0.025 std=0.001 21.8s
+
+[2026-04-28 14:06:17] [probe] peg_insert A obj_angular_velocity L04: r2_mean=0.026 std=0.002 22.5s
+
+[2026-04-28 14:06:39] [probe] peg_insert A obj_angular_velocity L05: r2_mean=0.028 std=0.002 20.0s
+
+[2026-04-28 14:07:04] [probe] peg_insert A obj_angular_velocity L06: r2_mean=0.029 std=0.002 22.8s
+
+[2026-04-28 14:07:25] [probe] peg_insert A obj_angular_velocity L07: r2_mean=0.029 std=0.003 19.2s
+
+[2026-04-28 14:07:46] [probe] peg_insert A obj_angular_velocity L08: r2_mean=0.027 std=0.003 18.5s
+
+[2026-04-28 14:08:07] [probe] peg_insert A obj_angular_velocity L09: r2_mean=0.032 std=0.003 19.1s
+
+[2026-04-28 14:08:28] [probe] peg_insert A obj_angular_velocity L10: r2_mean=0.028 std=0.003 19.0s
+
+[2026-04-28 14:08:50] [probe] peg_insert A obj_angular_velocity L11: r2_mean=-0.056 std=0.163 20.1s
+
+[2026-04-28 14:09:15] [probe] peg_insert A obj_angular_velocity L12: r2_mean=0.033 std=0.003 23.0s
+
+[2026-04-28 14:09:39] [probe] peg_insert A obj_angular_velocity L13: r2_mean=0.031 std=0.004 22.1s
+
+[2026-04-28 14:10:04] [probe] peg_insert A obj_angular_velocity L14: r2_mean=0.034 std=0.004 22.6s
+
+[2026-04-28 14:10:29] [probe] peg_insert A obj_angular_velocity L15: r2_mean=0.034 std=0.004 22.7s
+
+[2026-04-28 14:10:53] [probe] peg_insert A obj_angular_velocity L16: r2_mean=0.012 std=0.018 22.0s
+
+[2026-04-28 14:11:15] [probe] peg_insert A obj_angular_velocity L17: r2_mean=0.034 std=0.002 19.9s
+
+[2026-04-28 14:11:40] [probe] peg_insert A obj_angular_velocity L18: r2_mean=0.032 std=0.007 22.5s
+
+[2026-04-28 14:12:04] [probe] peg_insert A obj_angular_velocity L19: r2_mean=-0.039 std=0.095 21.8s
+
+[2026-04-28 14:12:28] [probe] peg_insert A obj_angular_velocity L20: r2_mean=-1.196 std=1.908 22.2s
+
+[2026-04-28 14:12:51] [probe] peg_insert A obj_angular_velocity L21: r2_mean=0.019 std=0.009 20.8s
+
+[2026-04-28 14:13:12] [probe] peg_insert A obj_angular_velocity L22: r2_mean=0.028 std=0.007 19.4s
+
+[2026-04-28 14:13:34] [probe] peg_insert A obj_angular_velocity L23: r2_mean=0.011 std=0.031 20.2s
+
+[2026-04-28 14:13:56] [probe] peg_insert A contact_flag L00: r2_mean=1.000 std=0.000 19.7s
+
+[2026-04-28 14:14:18] [probe] peg_insert A contact_flag L01: r2_mean=1.000 std=0.000 19.8s
+
+[2026-04-28 14:14:39] [probe] peg_insert A contact_flag L02: r2_mean=1.000 std=0.000 18.9s
+
+[2026-04-28 14:15:00] [probe] peg_insert A contact_flag L03: r2_mean=1.000 std=0.000 18.8s
+
+[2026-04-28 14:15:19] [probe] peg_insert A contact_flag L04: r2_mean=1.000 std=0.000 17.1s
+
+[2026-04-28 14:15:41] [probe] peg_insert A contact_flag L05: r2_mean=1.000 std=0.000 19.4s
+
+[2026-04-28 14:16:03] [probe] peg_insert A contact_flag L06: r2_mean=1.000 std=0.000 19.6s
+
+[2026-04-28 14:16:24] [probe] peg_insert A contact_flag L07: r2_mean=1.000 std=0.000 19.4s
+
+[2026-04-28 14:16:46] [probe] peg_insert A contact_flag L08: r2_mean=1.000 std=0.000 19.7s
+
+[2026-04-28 14:17:09] [probe] peg_insert A contact_flag L09: r2_mean=1.000 std=0.000 20.7s
+
+[2026-04-28 14:17:29] [probe] peg_insert A contact_flag L10: r2_mean=1.000 std=0.000 18.6s
+
+[2026-04-28 14:17:50] [probe] peg_insert A contact_flag L11: r2_mean=1.000 std=0.000 19.0s
+
+[2026-04-28 14:18:07] [probe] peg_insert A contact_flag L12: r2_mean=1.000 std=0.000 14.5s
+
+[2026-04-28 14:18:29] [probe] peg_insert A contact_flag L13: r2_mean=1.000 std=0.000 19.9s
+
+[2026-04-28 14:18:52] [probe] peg_insert A contact_flag L14: r2_mean=1.000 std=0.000 21.1s
+
+[2026-04-28 14:19:12] [probe] peg_insert A contact_flag L15: r2_mean=1.000 std=0.000 17.6s
+
+[2026-04-28 14:19:32] [probe] peg_insert A contact_flag L16: r2_mean=1.000 std=0.000 18.8s
+
+[2026-04-28 14:19:53] [probe] peg_insert A contact_flag L17: r2_mean=1.000 std=0.000 18.5s
+
+[2026-04-28 14:20:13] [probe] peg_insert A contact_flag L18: r2_mean=1.000 std=0.000 18.6s
+
+[2026-04-28 14:20:34] [probe] peg_insert A contact_flag L19: r2_mean=1.000 std=0.000 18.6s
+
+[2026-04-28 14:20:55] [probe] peg_insert A contact_flag L20: r2_mean=1.000 std=0.000 19.3s
+
+[2026-04-28 14:21:18] [probe] peg_insert A contact_flag L21: r2_mean=1.000 std=0.000 20.3s
+
+[2026-04-28 14:21:39] [probe] peg_insert A contact_flag L22: r2_mean=1.000 std=0.000 19.5s
+
+[2026-04-28 14:22:00] [probe] peg_insert A contact_flag L23: r2_mean=1.000 std=0.000 18.5s
+
+[2026-04-28 14:22:23] [probe] peg_insert A contact_force L00: r2_mean=0.105 std=0.006 21.2s
+
+[2026-04-28 14:22:44] [probe] peg_insert A contact_force L01: r2_mean=0.247 std=0.003 18.9s
+
+[2026-04-28 14:23:09] [probe] peg_insert A contact_force L02: r2_mean=0.274 std=0.003 22.7s
+
+[2026-04-28 14:23:33] [probe] peg_insert A contact_force L03: r2_mean=0.309 std=0.005 21.9s
+
+[2026-04-28 14:23:56] [probe] peg_insert A contact_force L04: r2_mean=0.331 std=0.005 21.4s
+
+[2026-04-28 14:24:18] [probe] peg_insert A contact_force L05: r2_mean=0.342 std=0.002 19.5s
+
+[2026-04-28 14:24:41] [probe] peg_insert A contact_force L06: r2_mean=0.351 std=0.001 21.0s
+
+[2026-04-28 14:25:03] [probe] peg_insert A contact_force L07: r2_mean=0.358 std=0.007 20.1s
+
+[2026-04-28 14:25:26] [probe] peg_insert A contact_force L08: r2_mean=0.364 std=0.008 21.1s
+
+[2026-04-28 14:25:51] [probe] peg_insert A contact_force L09: r2_mean=0.366 std=0.002 22.1s
+
+[2026-04-28 14:26:11] [probe] peg_insert A contact_force L10: r2_mean=0.367 std=0.008 18.8s
+
+[2026-04-28 14:26:34] [probe] peg_insert A contact_force L11: r2_mean=0.376 std=0.006 20.5s
+
+[2026-04-28 14:26:54] [probe] peg_insert A contact_force L12: r2_mean=0.380 std=0.002 18.0s
+
+[2026-04-28 14:27:18] [probe] peg_insert A contact_force L13: r2_mean=0.389 std=0.002 21.7s
+
+[2026-04-28 14:27:40] [probe] peg_insert A contact_force L14: r2_mean=0.397 std=0.002 20.4s
+
+[2026-04-28 14:28:01] [probe] peg_insert A contact_force L15: r2_mean=0.405 std=0.002 18.6s
+
+[2026-04-28 14:28:24] [probe] peg_insert A contact_force L16: r2_mean=0.389 std=0.025 20.8s
+
+[2026-04-28 14:28:46] [probe] peg_insert A contact_force L17: r2_mean=0.410 std=0.005 20.2s
+
+[2026-04-28 14:29:09] [probe] peg_insert A contact_force L18: r2_mean=0.401 std=0.018 21.1s
+
+[2026-04-28 14:29:33] [probe] peg_insert A contact_force L19: r2_mean=0.376 std=0.035 21.3s
+
+[2026-04-28 14:29:56] [probe] peg_insert A contact_force L20: r2_mean=-0.121 std=0.703 20.8s
+
+[2026-04-28 14:30:20] [probe] peg_insert A contact_force L21: r2_mean=0.397 std=0.027 22.1s
+
+[2026-04-28 14:30:42] [probe] peg_insert A contact_force L22: r2_mean=0.383 std=0.020 20.4s
+
+[2026-04-28 14:31:09] [probe] peg_insert A contact_force L23: r2_mean=0.353 std=0.038 23.5s
+
+[2026-04-28 14:31:31] [probe] peg_insert A contact_force_mag L00: r2_mean=0.082 std=0.011 19.9s
+
+[2026-04-28 14:31:53] [probe] peg_insert A contact_force_mag L01: r2_mean=0.146 std=0.009 18.9s
+
+[2026-04-28 14:32:14] [probe] peg_insert A contact_force_mag L02: r2_mean=0.157 std=0.008 19.0s
+
+[2026-04-28 14:32:35] [probe] peg_insert A contact_force_mag L03: r2_mean=0.171 std=0.009 18.6s
+
+[2026-04-28 14:32:55] [probe] peg_insert A contact_force_mag L04: r2_mean=0.177 std=0.006 17.7s
+
+[2026-04-28 14:33:17] [probe] peg_insert A contact_force_mag L05: r2_mean=0.181 std=0.009 20.1s
+
+[2026-04-28 14:33:39] [probe] peg_insert A contact_force_mag L06: r2_mean=0.191 std=0.008 20.1s
+
+[2026-04-28 14:34:02] [probe] peg_insert A contact_force_mag L07: r2_mean=0.200 std=0.007 20.2s
+
+[2026-04-28 14:34:26] [probe] peg_insert A contact_force_mag L08: r2_mean=0.205 std=0.007 22.2s
+
+[2026-04-28 14:34:46] [probe] peg_insert A contact_force_mag L09: r2_mean=0.204 std=0.006 18.3s
+
+[2026-04-28 14:35:10] [probe] peg_insert A contact_force_mag L10: r2_mean=0.205 std=0.007 21.8s
+
+[2026-04-28 14:35:34] [probe] peg_insert A contact_force_mag L11: r2_mean=0.207 std=0.005 21.6s
+
+[2026-04-28 14:35:58] [probe] peg_insert A contact_force_mag L12: r2_mean=0.213 std=0.006 21.7s
+
+[2026-04-28 14:36:20] [probe] peg_insert A contact_force_mag L13: r2_mean=0.227 std=0.006 20.1s
+
+[2026-04-28 14:36:42] [probe] peg_insert A contact_force_mag L14: r2_mean=0.231 std=0.007 19.9s
+
+[2026-04-28 14:37:03] [probe] peg_insert A contact_force_mag L15: r2_mean=0.241 std=0.008 18.5s
+
+[2026-04-28 14:37:25] [probe] peg_insert A contact_force_mag L16: r2_mean=0.238 std=0.006 20.0s
+
+[2026-04-28 14:37:47] [probe] peg_insert A contact_force_mag L17: r2_mean=0.244 std=0.007 20.4s
+
+[2026-04-28 14:38:10] [probe] peg_insert A contact_force_mag L18: r2_mean=0.246 std=0.007 20.8s
+
+[2026-04-28 14:38:32] [probe] peg_insert A contact_force_mag L19: r2_mean=0.227 std=0.009 20.2s
+
+[2026-04-28 14:38:55] [probe] peg_insert A contact_force_mag L20: r2_mean=0.240 std=0.011 20.6s
+
+[2026-04-28 14:39:18] [probe] peg_insert A contact_force_mag L21: r2_mean=0.240 std=0.008 20.5s
+
+[2026-04-28 14:39:39] [probe] peg_insert A contact_force_mag L22: r2_mean=0.232 std=0.005 19.0s
+
+[2026-04-28 14:40:00] [probe] peg_insert A contact_force_mag L23: r2_mean=0.224 std=0.009 18.6s
+
+[2026-04-28 14:40:24] [probe] peg_insert A contact_force_log1p_mag L00: r2_mean=0.231 std=0.014 21.8s
+
+[2026-04-28 14:40:47] [probe] peg_insert A contact_force_log1p_mag L01: r2_mean=0.364 std=0.011 20.2s
+
+[2026-04-28 14:41:08] [probe] peg_insert A contact_force_log1p_mag L02: r2_mean=0.377 std=0.010 19.3s
+
+[2026-04-28 14:41:28] [probe] peg_insert A contact_force_log1p_mag L03: r2_mean=0.392 std=0.013 18.0s
+
+[2026-04-28 14:41:49] [probe] peg_insert A contact_force_log1p_mag L04: r2_mean=0.399 std=0.010 19.0s
+
+[2026-04-28 14:42:12] [probe] peg_insert A contact_force_log1p_mag L05: r2_mean=0.399 std=0.011 20.4s
+
+[2026-04-28 14:42:35] [probe] peg_insert A contact_force_log1p_mag L06: r2_mean=0.406 std=0.011 21.9s
+
+[2026-04-28 14:42:59] [probe] peg_insert A contact_force_log1p_mag L07: r2_mean=0.419 std=0.010 21.4s
+
+[2026-04-28 14:43:21] [probe] peg_insert A contact_force_log1p_mag L08: r2_mean=0.431 std=0.011 19.9s
+
+[2026-04-28 14:43:39] [probe] peg_insert A contact_force_log1p_mag L09: r2_mean=0.433 std=0.009 15.8s
+
+[2026-04-28 14:44:01] [probe] peg_insert A contact_force_log1p_mag L10: r2_mean=0.436 std=0.008 20.0s
+
+[2026-04-28 14:44:20] [probe] peg_insert A contact_force_log1p_mag L11: r2_mean=0.442 std=0.009 16.8s
+
+[2026-04-28 14:44:41] [probe] peg_insert A contact_force_log1p_mag L12: r2_mean=0.446 std=0.009 19.1s
+
+[2026-04-28 14:45:05] [probe] peg_insert A contact_force_log1p_mag L13: r2_mean=0.457 std=0.009 22.0s
+
+[2026-04-28 14:45:27] [probe] peg_insert A contact_force_log1p_mag L14: r2_mean=0.461 std=0.009 19.6s
+
+[2026-04-28 14:45:50] [probe] peg_insert A contact_force_log1p_mag L15: r2_mean=0.470 std=0.010 20.9s
+
+[2026-04-28 14:46:12] [probe] peg_insert A contact_force_log1p_mag L16: r2_mean=0.471 std=0.008 19.9s
+
+[2026-04-28 14:46:33] [probe] peg_insert A contact_force_log1p_mag L17: r2_mean=0.473 std=0.011 18.7s
+
+[2026-04-28 14:46:54] [probe] peg_insert A contact_force_log1p_mag L18: r2_mean=0.472 std=0.015 20.1s
+
+[2026-04-28 14:47:17] [probe] peg_insert A contact_force_log1p_mag L19: r2_mean=0.464 std=0.011 19.9s
+
+[2026-04-28 14:47:37] [probe] peg_insert A contact_force_log1p_mag L20: r2_mean=0.468 std=0.015 17.9s
+
+[2026-04-28 14:47:59] [probe] peg_insert A contact_force_log1p_mag L21: r2_mean=0.474 std=0.012 20.5s
+
+[2026-04-28 14:48:22] [probe] peg_insert A contact_force_log1p_mag L22: r2_mean=0.467 std=0.011 20.5s
+
+[2026-04-28 14:48:42] [probe] peg_insert A contact_force_log1p_mag L23: r2_mean=0.462 std=0.009 18.3s
+
+[2026-04-28 14:49:07] [probe] peg_insert A contact_point L00: r2_mean=0.242 std=0.008 22.4s
+
+[2026-04-28 14:49:32] [probe] peg_insert A contact_point L01: r2_mean=0.405 std=0.011 22.8s
+
+[2026-04-28 14:49:57] [probe] peg_insert A contact_point L02: r2_mean=0.389 std=0.033 22.6s
+
+[2026-04-28 14:50:22] [probe] peg_insert A contact_point L03: r2_mean=0.538 std=0.037 23.1s
+
+[2026-04-28 14:50:47] [probe] peg_insert A contact_point L04: r2_mean=0.683 std=0.006 22.8s
+
+[2026-04-28 14:51:10] [probe] peg_insert A contact_point L05: r2_mean=0.753 std=0.003 21.4s
+
+[2026-04-28 14:51:34] [probe] peg_insert A contact_point L06: r2_mean=0.785 std=0.004 21.9s
+
+[2026-04-28 14:51:58] [probe] peg_insert A contact_point L07: r2_mean=0.820 std=0.011 21.5s
+
+[2026-04-28 14:52:20] [probe] peg_insert A contact_point L08: r2_mean=0.846 std=0.006 21.1s
+
+[2026-04-28 14:52:44] [probe] peg_insert A contact_point L09: r2_mean=0.813 std=0.007 21.2s
+
+[2026-04-28 14:53:06] [probe] peg_insert A contact_point L10: r2_mean=0.834 std=0.003 20.7s
+
+[2026-04-28 14:53:31] [probe] peg_insert A contact_point L11: r2_mean=0.789 std=0.040 22.5s
+
+[2026-04-28 14:53:54] [probe] peg_insert A contact_point L12: r2_mean=0.745 std=0.030 21.0s
+
+[2026-04-28 14:54:16] [probe] peg_insert A contact_point L13: r2_mean=0.732 std=0.022 20.2s
+
+[2026-04-28 14:54:40] [probe] peg_insert A contact_point L14: r2_mean=0.720 std=0.014 22.1s
+
+[2026-04-28 14:55:05] [probe] peg_insert A contact_point L15: r2_mean=0.691 std=0.009 22.8s
+
+[2026-04-28 14:55:28] [probe] peg_insert A contact_point L16: r2_mean=0.625 std=0.053 21.7s
+
+[2026-04-28 14:55:51] [probe] peg_insert A contact_point L17: r2_mean=0.632 std=0.005 20.8s
+
+[2026-04-28 14:56:14] [probe] peg_insert A contact_point L18: r2_mean=0.550 std=0.043 21.4s
+
+[2026-04-28 14:56:39] [probe] peg_insert A contact_point L19: r2_mean=0.428 std=0.203 22.1s
+
+[2026-04-28 14:57:04] [probe] peg_insert A contact_point L20: r2_mean=0.409 std=0.138 22.8s
+
+[2026-04-28 14:57:27] [probe] peg_insert A contact_point L21: r2_mean=0.507 std=0.058 21.4s
+
+[2026-04-28 14:57:50] [probe] peg_insert A contact_point L22: r2_mean=0.326 std=0.204 20.9s
+
+[2026-04-28 14:58:14] [probe] peg_insert A contact_point L23: r2_mean=0.455 std=0.103 21.2s
+
+[2026-04-28 14:58:35] [probe] peg_insert A phase L00: r2_mean=1.000 std=0.000 19.6s
+
+[2026-04-28 14:58:59] [probe] peg_insert A phase L01: r2_mean=1.000 std=0.000 20.9s
+
+[2026-04-28 14:59:21] [probe] peg_insert A phase L02: r2_mean=1.000 std=0.000 20.2s
+
+[2026-04-28 14:59:42] [probe] peg_insert A phase L03: r2_mean=1.000 std=0.000 19.4s
+
+[2026-04-28 15:00:05] [probe] peg_insert A phase L04: r2_mean=1.000 std=0.000 21.4s
+
+[2026-04-28 15:00:26] [probe] peg_insert A phase L05: r2_mean=1.000 std=0.000 18.2s
+
+[2026-04-28 15:00:45] [probe] peg_insert A phase L06: r2_mean=1.000 std=0.000 17.5s
+
+[2026-04-28 15:01:06] [probe] peg_insert A phase L07: r2_mean=1.000 std=0.000 18.3s
+
+[2026-04-28 15:01:27] [probe] peg_insert A phase L08: r2_mean=1.000 std=0.000 19.3s
+
+[2026-04-28 15:01:51] [probe] peg_insert A phase L09: r2_mean=1.000 std=0.000 22.2s
+
+[2026-04-28 15:02:14] [probe] peg_insert A phase L10: r2_mean=1.000 std=0.000 21.5s
+
+[2026-04-28 15:02:38] [probe] peg_insert A phase L11: r2_mean=1.000 std=0.000 21.7s
+
+[2026-04-28 15:03:01] [probe] peg_insert A phase L12: r2_mean=1.000 std=0.000 20.4s
+
+[2026-04-28 15:03:24] [probe] peg_insert A phase L13: r2_mean=1.000 std=0.000 21.6s
+
+[2026-04-28 15:03:46] [probe] peg_insert A phase L14: r2_mean=1.000 std=0.000 20.0s
+
+[2026-04-28 15:04:09] [probe] peg_insert A phase L15: r2_mean=1.000 std=0.000 20.7s
+
+[2026-04-28 15:04:32] [probe] peg_insert A phase L16: r2_mean=1.000 std=0.000 21.3s
+
+[2026-04-28 15:04:54] [probe] peg_insert A phase L17: r2_mean=1.000 std=0.000 19.7s
+
+[2026-04-28 15:05:14] [probe] peg_insert A phase L18: r2_mean=1.000 std=0.000 17.6s
+
+[2026-04-28 15:05:37] [probe] peg_insert A phase L19: r2_mean=1.000 std=0.000 21.1s
+
+[2026-04-28 15:05:58] [probe] peg_insert A phase L20: r2_mean=1.000 std=0.000 19.7s
+
+[2026-04-28 15:06:20] [probe] peg_insert A phase L21: r2_mean=1.000 std=0.000 20.1s
+
+[2026-04-28 15:06:43] [probe] peg_insert A phase L22: r2_mean=1.000 std=0.000 20.3s
+
+[2026-04-28 15:07:03] [probe] peg_insert A phase L23: r2_mean=1.000 std=0.000 18.2s
+
+[2026-04-28 15:07:23] [probe] peg_insert A insertion_depth L00: r2_mean=0.309 std=0.029 17.7s
+
+[2026-04-28 15:07:46] [probe] peg_insert A insertion_depth L01: r2_mean=0.535 std=0.035 21.2s
+
+[2026-04-28 15:08:08] [probe] peg_insert A insertion_depth L02: r2_mean=0.572 std=0.025 20.0s
+
+[2026-04-28 15:08:30] [probe] peg_insert A insertion_depth L03: r2_mean=0.591 std=0.024 19.7s
+
+[2026-04-28 15:08:51] [probe] peg_insert A insertion_depth L04: r2_mean=0.591 std=0.029 18.9s
+
+[2026-04-28 15:09:12] [probe] peg_insert A insertion_depth L05: r2_mean=0.600 std=0.019 19.5s
+
+[2026-04-28 15:09:33] [probe] peg_insert A insertion_depth L06: r2_mean=0.605 std=0.022 19.1s
+
+[2026-04-28 15:09:54] [probe] peg_insert A insertion_depth L07: r2_mean=0.621 std=0.017 18.8s
+
+[2026-04-28 15:10:14] [probe] peg_insert A insertion_depth L08: r2_mean=0.697 std=0.017 18.6s
+
+[2026-04-28 15:10:37] [probe] peg_insert A insertion_depth L09: r2_mean=0.702 std=0.010 20.7s
+
+[2026-04-28 15:10:58] [probe] peg_insert A insertion_depth L10: r2_mean=0.723 std=0.017 19.5s
+
+[2026-04-28 15:11:20] [probe] peg_insert A insertion_depth L11: r2_mean=0.744 std=0.018 19.1s
+
+[2026-04-28 15:11:40] [probe] peg_insert A insertion_depth L12: r2_mean=0.774 std=0.019 18.2s
+
+[2026-04-28 15:12:01] [probe] peg_insert A insertion_depth L13: r2_mean=0.796 std=0.017 18.6s
+
+[2026-04-28 15:12:22] [probe] peg_insert A insertion_depth L14: r2_mean=0.822 std=0.014 19.5s
+
+[2026-04-28 15:12:44] [probe] peg_insert A insertion_depth L15: r2_mean=0.832 std=0.010 20.1s
+
+[2026-04-28 15:13:06] [probe] peg_insert A insertion_depth L16: r2_mean=0.840 std=0.011 20.3s
+
+[2026-04-28 15:13:28] [probe] peg_insert A insertion_depth L17: r2_mean=0.849 std=0.011 19.6s
+
+[2026-04-28 15:13:50] [probe] peg_insert A insertion_depth L18: r2_mean=0.850 std=0.012 19.7s
+
+[2026-04-28 15:14:12] [probe] peg_insert A insertion_depth L19: r2_mean=0.844 std=0.023 19.9s
+
+[2026-04-28 15:14:35] [probe] peg_insert A insertion_depth L20: r2_mean=0.809 std=0.047 21.5s
+
+[2026-04-28 15:14:55] [probe] peg_insert A insertion_depth L21: r2_mean=0.856 std=0.015 18.1s
+
+[2026-04-28 15:15:16] [probe] peg_insert A insertion_depth L22: r2_mean=0.844 std=0.017 18.5s
+
+[2026-04-28 15:15:39] [probe] peg_insert A insertion_depth L23: r2_mean=0.837 std=0.019 21.5s
+
+[2026-04-28 15:16:00] [probe] peg_insert A peg_hole_lateral_error L00: r2_mean=0.102 std=0.028 18.6s
+
+[2026-04-28 15:16:23] [probe] peg_insert A peg_hole_lateral_error L01: r2_mean=0.168 std=0.027 20.7s
+
+[2026-04-28 15:16:45] [probe] peg_insert A peg_hole_lateral_error L02: r2_mean=0.189 std=0.024 20.2s
+
+[2026-04-28 15:17:05] [probe] peg_insert A peg_hole_lateral_error L03: r2_mean=0.223 std=0.018 18.0s
+
+[2026-04-28 15:17:25] [probe] peg_insert A peg_hole_lateral_error L04: r2_mean=0.230 std=0.021 18.3s
+
+[2026-04-28 15:17:48] [probe] peg_insert A peg_hole_lateral_error L05: r2_mean=0.251 std=0.020 20.7s
+
+[2026-04-28 15:18:08] [probe] peg_insert A peg_hole_lateral_error L06: r2_mean=0.249 std=0.019 17.9s
+
+[2026-04-28 15:18:30] [probe] peg_insert A peg_hole_lateral_error L07: r2_mean=0.273 std=0.026 19.8s
+
+[2026-04-28 15:18:51] [probe] peg_insert A peg_hole_lateral_error L08: r2_mean=0.298 std=0.023 19.2s
+
+[2026-04-28 15:19:12] [probe] peg_insert A peg_hole_lateral_error L09: r2_mean=0.326 std=0.023 19.4s
+
+[2026-04-28 15:19:35] [probe] peg_insert A peg_hole_lateral_error L10: r2_mean=0.350 std=0.023 20.5s
+
+[2026-04-28 15:19:55] [probe] peg_insert A peg_hole_lateral_error L11: r2_mean=0.346 std=0.020 18.4s
+
+[2026-04-28 15:20:17] [probe] peg_insert A peg_hole_lateral_error L12: r2_mean=0.382 std=0.025 19.4s
+
+[2026-04-28 15:20:38] [probe] peg_insert A peg_hole_lateral_error L13: r2_mean=0.405 std=0.024 19.3s
+
+[2026-04-28 15:20:59] [probe] peg_insert A peg_hole_lateral_error L14: r2_mean=0.441 std=0.034 18.5s
+
+[2026-04-28 15:21:17] [probe] peg_insert A peg_hole_lateral_error L15: r2_mean=0.453 std=0.034 16.4s
+
+[2026-04-28 15:21:41] [probe] peg_insert A peg_hole_lateral_error L16: r2_mean=0.457 std=0.045 21.4s
+
+[2026-04-28 15:22:01] [probe] peg_insert A peg_hole_lateral_error L17: r2_mean=0.450 std=0.032 18.5s
+
+[2026-04-28 15:22:23] [probe] peg_insert A peg_hole_lateral_error L18: r2_mean=0.488 std=0.029 19.3s
+
+[2026-04-28 15:22:44] [probe] peg_insert A peg_hole_lateral_error L19: r2_mean=0.473 std=0.044 19.7s
+
+[2026-04-28 15:23:06] [probe] peg_insert A peg_hole_lateral_error L20: r2_mean=0.485 std=0.037 19.8s
+
+[2026-04-28 15:23:29] [probe] peg_insert A peg_hole_lateral_error L21: r2_mean=0.494 std=0.030 21.0s
+
+[2026-04-28 15:23:49] [probe] peg_insert A peg_hole_lateral_error L22: r2_mean=0.485 std=0.018 17.9s
+
+[2026-04-28 15:24:10] [probe] peg_insert A peg_hole_lateral_error L23: r2_mean=0.466 std=0.033 18.6s
+
+[2026-04-28 15:24:10] [probe] peg_insert A DONE in 108.5min
+
+[2026-04-28 15:24:15] [probe] task=strike variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'ee_to_object_distance', 'object_to_target_distance', 'ball_planar_travel_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 15:25:14] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 59.4s
+
+[2026-04-28 15:25:42] [probe] strike A ee_orientation L00: r2_mean=0.443 std=0.026 24.9s
+
+[2026-04-28 15:26:08] [probe] strike A ee_orientation L01: r2_mean=0.550 std=0.036 24.1s
+
+[2026-04-28 15:26:33] [probe] strike A ee_orientation L02: r2_mean=0.574 std=0.031 22.3s
+
+[2026-04-28 15:26:58] [probe] strike A ee_orientation L03: r2_mean=0.599 std=0.015 22.6s
+
+[2026-04-28 15:27:21] [probe] strike A ee_orientation L04: r2_mean=0.602 std=0.027 21.6s
+
+[2026-04-28 15:27:47] [probe] strike A ee_orientation L05: r2_mean=0.610 std=0.027 23.4s
+
+[2026-04-28 15:28:11] [probe] strike A ee_orientation L06: r2_mean=0.606 std=0.017 21.9s
+
+[2026-04-28 15:28:36] [probe] strike A ee_orientation L07: r2_mean=0.607 std=0.020 22.4s
+
+[2026-04-28 15:29:00] [probe] strike A ee_orientation L08: r2_mean=0.603 std=0.025 23.0s
+
+[2026-04-28 15:29:25] [probe] strike A ee_orientation L09: r2_mean=0.593 std=0.027 22.4s
+
+[2026-04-28 15:29:48] [probe] strike A ee_orientation L10: r2_mean=0.607 std=0.026 21.3s
+
+[2026-04-28 15:30:14] [probe] strike A ee_orientation L11: r2_mean=0.620 std=0.035 22.9s
+
+[2026-04-28 15:30:38] [probe] strike A ee_orientation L12: r2_mean=0.608 std=0.024 21.6s
+
+[2026-04-28 15:31:02] [probe] strike A ee_orientation L13: r2_mean=0.629 std=0.027 22.5s
+
+[2026-04-28 15:31:26] [probe] strike A ee_orientation L14: r2_mean=0.617 std=0.054 22.1s
+
+[2026-04-28 15:31:50] [probe] strike A ee_orientation L15: r2_mean=0.608 std=0.055 21.8s
+
+[2026-04-28 15:32:15] [probe] strike A ee_orientation L16: r2_mean=0.640 std=0.028 22.7s
+
+[2026-04-28 15:32:40] [probe] strike A ee_orientation L17: r2_mean=0.610 std=0.043 23.0s
+
+[2026-04-28 15:33:04] [probe] strike A ee_orientation L18: r2_mean=0.638 std=0.020 22.1s
+
+[2026-04-28 15:33:30] [probe] strike A ee_orientation L19: r2_mean=0.637 std=0.025 22.7s
+
+[2026-04-28 15:33:55] [probe] strike A ee_orientation L20: r2_mean=0.618 std=0.033 22.8s
+
+[2026-04-28 15:34:21] [probe] strike A ee_orientation L21: r2_mean=0.639 std=0.028 23.1s
+
+[2026-04-28 15:34:45] [probe] strike A ee_orientation L22: r2_mean=0.655 std=0.024 21.9s
+
+[2026-04-28 15:35:10] [probe] strike A ee_orientation L23: r2_mean=0.639 std=0.029 22.7s
+
+[2026-04-28 15:35:35] [probe] strike A ee_angular_velocity L00: r2_mean=0.405 std=0.019 21.7s
+
+[2026-04-28 15:35:57] [probe] strike A ee_angular_velocity L01: r2_mean=0.575 std=0.027 20.6s
+
+[2026-04-28 15:36:21] [probe] strike A ee_angular_velocity L02: r2_mean=0.610 std=0.026 21.5s
+
+[2026-04-28 15:36:45] [probe] strike A ee_angular_velocity L03: r2_mean=0.638 std=0.024 21.5s
+
+[2026-04-28 15:37:08] [probe] strike A ee_angular_velocity L04: r2_mean=0.642 std=0.029 21.6s
+
+[2026-04-28 15:37:33] [probe] strike A ee_angular_velocity L05: r2_mean=0.658 std=0.029 22.5s
+
+[2026-04-28 15:37:56] [probe] strike A ee_angular_velocity L06: r2_mean=0.661 std=0.029 20.8s
+
+[2026-04-28 15:38:21] [probe] strike A ee_angular_velocity L07: r2_mean=0.686 std=0.032 22.2s
+
+[2026-04-28 15:38:44] [probe] strike A ee_angular_velocity L08: r2_mean=0.683 std=0.032 21.9s
+
+[2026-04-28 15:39:09] [probe] strike A ee_angular_velocity L09: r2_mean=0.676 std=0.042 22.6s
+
+[2026-04-28 15:39:32] [probe] strike A ee_angular_velocity L10: r2_mean=0.700 std=0.037 21.3s
+
+[2026-04-28 15:39:58] [probe] strike A ee_angular_velocity L11: r2_mean=0.710 std=0.029 23.3s
+
+[2026-04-28 15:40:22] [probe] strike A ee_angular_velocity L12: r2_mean=0.673 std=0.021 21.7s
+
+[2026-04-28 15:40:46] [probe] strike A ee_angular_velocity L13: r2_mean=0.713 std=0.042 22.0s
+
+[2026-04-28 15:41:10] [probe] strike A ee_angular_velocity L14: r2_mean=0.722 std=0.035 22.6s
+
+[2026-04-28 15:41:33] [probe] strike A ee_angular_velocity L15: r2_mean=0.732 std=0.032 20.7s
+
+[2026-04-28 15:41:56] [probe] strike A ee_angular_velocity L16: r2_mean=0.735 std=0.034 20.7s
+
+[2026-04-28 15:42:20] [probe] strike A ee_angular_velocity L17: r2_mean=0.718 std=0.038 21.5s
+
+[2026-04-28 15:42:42] [probe] strike A ee_angular_velocity L18: r2_mean=0.738 std=0.044 20.4s
+
+[2026-04-28 15:43:06] [probe] strike A ee_angular_velocity L19: r2_mean=0.724 std=0.066 22.1s
+
+[2026-04-28 15:43:30] [probe] strike A ee_angular_velocity L20: r2_mean=0.739 std=0.029 21.5s
+
+[2026-04-28 15:43:55] [probe] strike A ee_angular_velocity L21: r2_mean=0.748 std=0.040 22.7s
+
+[2026-04-28 15:44:20] [probe] strike A ee_angular_velocity L22: r2_mean=0.764 std=0.035 23.0s
+
+[2026-04-28 15:44:45] [probe] strike A ee_angular_velocity L23: r2_mean=0.760 std=0.043 22.8s
+
+[2026-04-28 15:45:10] [probe] strike A obj_orientation L00: r2_mean=0.006 std=0.002 22.6s
+
+[2026-04-28 15:45:34] [probe] strike A obj_orientation L01: r2_mean=0.021 std=0.002 22.2s
+
+[2026-04-28 15:45:59] [probe] strike A obj_orientation L02: r2_mean=0.024 std=0.002 22.4s
+
+[2026-04-28 15:46:24] [probe] strike A obj_orientation L03: r2_mean=0.026 std=0.002 22.6s
+
+[2026-04-28 15:46:48] [probe] strike A obj_orientation L04: r2_mean=0.028 std=0.002 22.0s
+
+[2026-04-28 15:47:13] [probe] strike A obj_orientation L05: r2_mean=0.031 std=0.001 21.9s
+
+[2026-04-28 15:47:36] [probe] strike A obj_orientation L06: r2_mean=0.030 std=0.001 21.5s
+
+[2026-04-28 15:48:02] [probe] strike A obj_orientation L07: r2_mean=0.028 std=0.001 23.5s
+
+[2026-04-28 15:48:25] [probe] strike A obj_orientation L08: r2_mean=0.031 std=0.002 21.7s
+
+[2026-04-28 15:48:51] [probe] strike A obj_orientation L09: r2_mean=0.026 std=0.001 23.1s
+
+[2026-04-28 15:49:16] [probe] strike A obj_orientation L10: r2_mean=0.029 std=0.003 22.7s
+
+[2026-04-28 15:49:40] [probe] strike A obj_orientation L11: r2_mean=0.032 std=0.002 22.8s
+
+[2026-04-28 15:50:06] [probe] strike A obj_orientation L12: r2_mean=0.035 std=0.005 23.1s
+
+[2026-04-28 15:50:30] [probe] strike A obj_orientation L13: r2_mean=0.038 std=0.003 22.1s
+
+[2026-04-28 15:50:54] [probe] strike A obj_orientation L14: r2_mean=0.038 std=0.004 22.1s
+
+[2026-04-28 15:51:20] [probe] strike A obj_orientation L15: r2_mean=0.037 std=0.004 23.4s
+
+[2026-04-28 15:51:43] [probe] strike A obj_orientation L16: r2_mean=0.039 std=0.005 22.0s
+
+[2026-04-28 15:52:08] [probe] strike A obj_orientation L17: r2_mean=0.039 std=0.006 22.0s
+
+[2026-04-28 15:52:31] [probe] strike A obj_orientation L18: r2_mean=0.039 std=0.004 22.1s
+
+[2026-04-28 15:52:57] [probe] strike A obj_orientation L19: r2_mean=0.041 std=0.004 23.1s
+
+[2026-04-28 15:53:21] [probe] strike A obj_orientation L20: r2_mean=0.041 std=0.003 21.9s
+
+[2026-04-28 15:53:45] [probe] strike A obj_orientation L21: r2_mean=0.039 std=0.003 22.1s
+
+[2026-04-28 15:54:09] [probe] strike A obj_orientation L22: r2_mean=0.036 std=0.003 21.8s
+
+[2026-04-28 15:54:34] [probe] strike A obj_orientation L23: r2_mean=0.036 std=0.002 22.6s
+
+[2026-04-28 15:54:57] [probe] strike A obj_angular_velocity L00: r2_mean=0.086 std=0.004 21.1s
+
+[2026-04-28 15:55:21] [probe] strike A obj_angular_velocity L01: r2_mean=0.239 std=0.008 21.5s
+
+[2026-04-28 15:55:43] [probe] strike A obj_angular_velocity L02: r2_mean=0.288 std=0.011 20.5s
+
+[2026-04-28 15:56:08] [probe] strike A obj_angular_velocity L03: r2_mean=0.357 std=0.010 23.1s
+
+[2026-04-28 15:56:33] [probe] strike A obj_angular_velocity L04: r2_mean=0.380 std=0.010 22.1s
+
+[2026-04-28 15:56:57] [probe] strike A obj_angular_velocity L05: r2_mean=0.423 std=0.005 21.6s
+
+[2026-04-28 15:57:21] [probe] strike A obj_angular_velocity L06: r2_mean=0.441 std=0.015 22.0s
+
+[2026-04-28 15:57:44] [probe] strike A obj_angular_velocity L07: r2_mean=0.446 std=0.006 21.1s
+
+[2026-04-28 15:58:07] [probe] strike A obj_angular_velocity L08: r2_mean=0.480 std=0.010 21.1s
+
+[2026-04-28 15:58:30] [probe] strike A obj_angular_velocity L09: r2_mean=0.499 std=0.005 21.0s
+
+[2026-04-28 15:58:54] [probe] strike A obj_angular_velocity L10: r2_mean=0.518 std=0.011 22.4s
+
+[2026-04-28 15:59:18] [probe] strike A obj_angular_velocity L11: r2_mean=0.522 std=0.008 21.3s
+
+[2026-04-28 15:59:41] [probe] strike A obj_angular_velocity L12: r2_mean=0.545 std=0.010 21.5s
+
+[2026-04-28 16:00:05] [probe] strike A obj_angular_velocity L13: r2_mean=0.556 std=0.013 21.7s
+
+[2026-04-28 16:00:27] [probe] strike A obj_angular_velocity L14: r2_mean=0.544 std=0.010 19.8s
+
+[2026-04-28 16:00:50] [probe] strike A obj_angular_velocity L15: r2_mean=0.536 std=0.008 20.7s
+
+[2026-04-28 16:01:13] [probe] strike A obj_angular_velocity L16: r2_mean=0.535 std=0.004 20.9s
+
+[2026-04-28 16:01:35] [probe] strike A obj_angular_velocity L17: r2_mean=0.542 std=0.006 20.8s
+
+[2026-04-28 16:01:59] [probe] strike A obj_angular_velocity L18: r2_mean=0.538 std=0.006 21.2s
+
+[2026-04-28 16:02:23] [probe] strike A obj_angular_velocity L19: r2_mean=0.548 std=0.008 22.0s
+
+[2026-04-28 16:02:48] [probe] strike A obj_angular_velocity L20: r2_mean=0.536 std=0.004 22.1s
+
+[2026-04-28 16:03:12] [probe] strike A obj_angular_velocity L21: r2_mean=0.553 std=0.011 21.6s
+
+[2026-04-28 16:03:34] [probe] strike A obj_angular_velocity L22: r2_mean=0.548 std=0.006 20.3s
+
+[2026-04-28 16:03:59] [probe] strike A obj_angular_velocity L23: r2_mean=0.547 std=0.015 22.3s
+
+[2026-04-28 16:04:21] [probe] strike A contact_flag L00: r2_mean=0.436 std=0.013 19.5s
+
+[2026-04-28 16:04:43] [probe] strike A contact_flag L01: r2_mean=0.632 std=0.013 19.6s
+
+[2026-04-28 16:05:05] [probe] strike A contact_flag L02: r2_mean=0.673 std=0.013 19.7s
+
+[2026-04-28 16:05:28] [probe] strike A contact_flag L03: r2_mean=0.683 std=0.014 20.3s
+
+[2026-04-28 16:05:49] [probe] strike A contact_flag L04: r2_mean=0.703 std=0.012 19.0s
+
+[2026-04-28 16:06:11] [probe] strike A contact_flag L05: r2_mean=0.714 std=0.012 20.1s
+
+[2026-04-28 16:06:33] [probe] strike A contact_flag L06: r2_mean=0.729 std=0.009 20.0s
+
+[2026-04-28 16:06:55] [probe] strike A contact_flag L07: r2_mean=0.747 std=0.009 18.9s
+
+[2026-04-28 16:07:17] [probe] strike A contact_flag L08: r2_mean=0.742 std=0.017 20.0s
+
+[2026-04-28 16:07:40] [probe] strike A contact_flag L09: r2_mean=0.759 std=0.010 20.7s
+
+[2026-04-28 16:08:00] [probe] strike A contact_flag L10: r2_mean=0.767 std=0.012 18.7s
+
+[2026-04-28 16:08:22] [probe] strike A contact_flag L11: r2_mean=0.770 std=0.010 20.2s
+
+[2026-04-28 16:08:45] [probe] strike A contact_flag L12: r2_mean=0.782 std=0.011 20.9s
+
+[2026-04-28 16:09:06] [probe] strike A contact_flag L13: r2_mean=0.795 std=0.009 18.8s
+
+[2026-04-28 16:09:28] [probe] strike A contact_flag L14: r2_mean=0.796 std=0.006 19.7s
+
+[2026-04-28 16:09:49] [probe] strike A contact_flag L15: r2_mean=0.804 std=0.009 19.3s
+
+[2026-04-28 16:10:10] [probe] strike A contact_flag L16: r2_mean=0.817 std=0.009 19.3s
+
+[2026-04-28 16:10:33] [probe] strike A contact_flag L17: r2_mean=0.822 std=0.009 21.0s
+
+[2026-04-28 16:10:56] [probe] strike A contact_flag L18: r2_mean=0.823 std=0.011 20.1s
+
+[2026-04-28 16:11:17] [probe] strike A contact_flag L19: r2_mean=0.825 std=0.009 19.2s
+
+[2026-04-28 16:11:39] [probe] strike A contact_flag L20: r2_mean=0.822 std=0.011 20.0s
+
+[2026-04-28 16:12:01] [probe] strike A contact_flag L21: r2_mean=0.824 std=0.007 20.2s
+
+[2026-04-28 16:12:24] [probe] strike A contact_flag L22: r2_mean=0.824 std=0.011 20.0s
+
+[2026-04-28 16:12:47] [probe] strike A contact_flag L23: r2_mean=0.823 std=0.010 21.3s
+
+[2026-04-28 16:13:10] [probe] strike A contact_force L00: r2_mean=0.136 std=0.027 20.5s
+
+[2026-04-28 16:13:36] [probe] strike A contact_force L01: r2_mean=0.305 std=0.030 23.0s
+
+[2026-04-28 16:13:59] [probe] strike A contact_force L02: r2_mean=0.341 std=0.024 21.1s
+
+[2026-04-28 16:14:25] [probe] strike A contact_force L03: r2_mean=0.352 std=0.029 22.9s
+
+[2026-04-28 16:14:49] [probe] strike A contact_force L04: r2_mean=0.372 std=0.026 21.9s
+
+[2026-04-28 16:15:13] [probe] strike A contact_force L05: r2_mean=0.381 std=0.027 21.5s
+
+[2026-04-28 16:15:36] [probe] strike A contact_force L06: r2_mean=0.398 std=0.028 21.5s
+
+[2026-04-28 16:16:01] [probe] strike A contact_force L07: r2_mean=0.411 std=0.028 21.9s
+
+[2026-04-28 16:16:24] [probe] strike A contact_force L08: r2_mean=0.442 std=0.034 20.7s
+
+[2026-04-28 16:16:48] [probe] strike A contact_force L09: r2_mean=0.454 std=0.026 21.0s
+
+[2026-04-28 16:17:12] [probe] strike A contact_force L10: r2_mean=0.468 std=0.030 21.7s
+
+[2026-04-28 16:17:36] [probe] strike A contact_force L11: r2_mean=0.476 std=0.034 21.5s
+
+[2026-04-28 16:18:00] [probe] strike A contact_force L12: r2_mean=0.522 std=0.032 21.7s
+
+[2026-04-28 16:18:24] [probe] strike A contact_force L13: r2_mean=0.527 std=0.031 22.0s
+
+[2026-04-28 16:18:48] [probe] strike A contact_force L14: r2_mean=0.525 std=0.029 21.5s
+
+[2026-04-28 16:19:10] [probe] strike A contact_force L15: r2_mean=0.524 std=0.031 20.7s
+
+[2026-04-28 16:19:34] [probe] strike A contact_force L16: r2_mean=0.538 std=0.029 22.5s
+
+[2026-04-28 16:20:01] [probe] strike A contact_force L17: r2_mean=0.537 std=0.028 24.3s
+
+[2026-04-28 16:20:25] [probe] strike A contact_force L18: r2_mean=0.543 std=0.032 21.1s
+
+[2026-04-28 16:20:50] [probe] strike A contact_force L19: r2_mean=0.548 std=0.031 23.3s
+
+[2026-04-28 16:21:13] [probe] strike A contact_force L20: r2_mean=0.543 std=0.032 20.4s
+
+[2026-04-28 16:21:37] [probe] strike A contact_force L21: r2_mean=0.568 std=0.038 21.4s
+
+[2026-04-28 16:21:59] [probe] strike A contact_force L22: r2_mean=0.560 std=0.030 20.1s
+
+[2026-04-28 16:22:23] [probe] strike A contact_force L23: r2_mean=0.558 std=0.036 20.8s
+
+[2026-04-28 16:22:45] [probe] strike A contact_force_mag L00: r2_mean=0.251 std=0.028 19.7s
+
+[2026-04-28 16:23:07] [probe] strike A contact_force_mag L01: r2_mean=0.455 std=0.027 19.5s
+
+[2026-04-28 16:23:27] [probe] strike A contact_force_mag L02: r2_mean=0.499 std=0.023 18.7s
+
+[2026-04-28 16:23:49] [probe] strike A contact_force_mag L03: r2_mean=0.515 std=0.027 19.6s
+
+[2026-04-28 16:24:10] [probe] strike A contact_force_mag L04: r2_mean=0.530 std=0.025 18.7s
+
+[2026-04-28 16:24:31] [probe] strike A contact_force_mag L05: r2_mean=0.534 std=0.022 19.2s
+
+[2026-04-28 16:24:53] [probe] strike A contact_force_mag L06: r2_mean=0.555 std=0.024 20.1s
+
+[2026-04-28 16:25:14] [probe] strike A contact_force_mag L07: r2_mean=0.568 std=0.025 19.2s
+
+[2026-04-28 16:25:36] [probe] strike A contact_force_mag L08: r2_mean=0.576 std=0.036 19.6s
+
+[2026-04-28 16:25:58] [probe] strike A contact_force_mag L09: r2_mean=0.593 std=0.025 19.6s
+
+[2026-04-28 16:26:19] [probe] strike A contact_force_mag L10: r2_mean=0.604 std=0.032 18.9s
+
+[2026-04-28 16:26:41] [probe] strike A contact_force_mag L11: r2_mean=0.603 std=0.035 20.0s
+
+[2026-04-28 16:27:02] [probe] strike A contact_force_mag L12: r2_mean=0.642 std=0.031 19.4s
+
+[2026-04-28 16:27:24] [probe] strike A contact_force_mag L13: r2_mean=0.640 std=0.035 19.6s
+
+[2026-04-28 16:27:45] [probe] strike A contact_force_mag L14: r2_mean=0.643 std=0.029 19.1s
+
+[2026-04-28 16:28:07] [probe] strike A contact_force_mag L15: r2_mean=0.648 std=0.034 19.9s
+
+[2026-04-28 16:28:27] [probe] strike A contact_force_mag L16: r2_mean=0.659 std=0.031 18.2s
+
+[2026-04-28 16:28:49] [probe] strike A contact_force_mag L17: r2_mean=0.669 std=0.033 19.0s
+
+[2026-04-28 16:29:09] [probe] strike A contact_force_mag L18: r2_mean=0.672 std=0.031 18.4s
+
+[2026-04-28 16:29:30] [probe] strike A contact_force_mag L19: r2_mean=0.680 std=0.030 19.3s
+
+[2026-04-28 16:29:52] [probe] strike A contact_force_mag L20: r2_mean=0.681 std=0.032 19.5s
+
+[2026-04-28 16:30:13] [probe] strike A contact_force_mag L21: r2_mean=0.688 std=0.024 18.7s
+
+[2026-04-28 16:30:33] [probe] strike A contact_force_mag L22: r2_mean=0.692 std=0.028 18.8s
+
+[2026-04-28 16:30:56] [probe] strike A contact_force_mag L23: r2_mean=0.686 std=0.031 20.4s
+
+[2026-04-28 16:31:18] [probe] strike A contact_force_log1p_mag L00: r2_mean=0.413 std=0.019 19.4s
+
+[2026-04-28 16:31:40] [probe] strike A contact_force_log1p_mag L01: r2_mean=0.633 std=0.016 19.6s
+
+[2026-04-28 16:32:02] [probe] strike A contact_force_log1p_mag L02: r2_mean=0.682 std=0.013 20.4s
+
+[2026-04-28 16:32:26] [probe] strike A contact_force_log1p_mag L03: r2_mean=0.694 std=0.015 20.8s
+
+[2026-04-28 16:32:48] [probe] strike A contact_force_log1p_mag L04: r2_mean=0.715 std=0.012 20.4s
+
+[2026-04-28 16:33:11] [probe] strike A contact_force_log1p_mag L05: r2_mean=0.726 std=0.013 20.4s
+
+[2026-04-28 16:33:33] [probe] strike A contact_force_log1p_mag L06: r2_mean=0.742 std=0.010 20.0s
+
+[2026-04-28 16:33:55] [probe] strike A contact_force_log1p_mag L07: r2_mean=0.756 std=0.011 19.3s
+
+[2026-04-28 16:34:15] [probe] strike A contact_force_log1p_mag L08: r2_mean=0.756 std=0.019 18.8s
+
+[2026-04-28 16:34:35] [probe] strike A contact_force_log1p_mag L09: r2_mean=0.768 std=0.009 17.5s
+
+[2026-04-28 16:34:57] [probe] strike A contact_force_log1p_mag L10: r2_mean=0.775 std=0.016 20.1s
+
+[2026-04-28 16:35:19] [probe] strike A contact_force_log1p_mag L11: r2_mean=0.781 std=0.011 19.6s
+
+[2026-04-28 16:35:41] [probe] strike A contact_force_log1p_mag L12: r2_mean=0.796 std=0.010 20.9s
+
+[2026-04-28 16:36:04] [probe] strike A contact_force_log1p_mag L13: r2_mean=0.800 std=0.016 20.4s
+
+[2026-04-28 16:36:27] [probe] strike A contact_force_log1p_mag L14: r2_mean=0.803 std=0.009 20.6s
+
+[2026-04-28 16:36:52] [probe] strike A contact_force_log1p_mag L15: r2_mean=0.809 std=0.012 22.3s
+
+[2026-04-28 16:37:16] [probe] strike A contact_force_log1p_mag L16: r2_mean=0.818 std=0.012 20.2s
+
+[2026-04-28 16:37:43] [probe] strike A contact_force_log1p_mag L17: r2_mean=0.825 std=0.012 21.1s
+
+[2026-04-28 16:38:04] [probe] strike A contact_force_log1p_mag L18: r2_mean=0.826 std=0.014 18.3s
+
+[2026-04-28 16:38:27] [probe] strike A contact_force_log1p_mag L19: r2_mean=0.831 std=0.011 20.7s
+
+[2026-04-28 16:38:48] [probe] strike A contact_force_log1p_mag L20: r2_mean=0.830 std=0.013 18.8s
+
+[2026-04-28 16:39:13] [probe] strike A contact_force_log1p_mag L21: r2_mean=0.834 std=0.006 20.7s
+
+[2026-04-28 16:39:34] [probe] strike A contact_force_log1p_mag L22: r2_mean=0.834 std=0.014 18.9s
+
+[2026-04-28 16:39:57] [probe] strike A contact_force_log1p_mag L23: r2_mean=0.831 std=0.011 19.3s
+
+[2026-04-28 16:40:22] [probe] strike A contact_point L00: r2_mean=-0.024 std=0.020 22.2s
+
+[2026-04-28 16:40:49] [probe] strike A contact_point L01: r2_mean=0.013 std=0.015 22.2s
+
+[2026-04-28 16:41:11] [probe] strike A contact_point L02: r2_mean=0.007 std=0.015 20.4s
+
+[2026-04-28 16:41:35] [probe] strike A contact_point L03: r2_mean=0.011 std=0.012 20.1s
+
+[2026-04-28 16:41:58] [probe] strike A contact_point L04: r2_mean=0.007 std=0.012 20.7s
+
+[2026-04-28 16:42:24] [probe] strike A contact_point L05: r2_mean=0.019 std=0.006 22.3s
+
+[2026-04-28 16:42:46] [probe] strike A contact_point L06: r2_mean=0.019 std=0.005 20.6s
+
+[2026-04-28 16:43:11] [probe] strike A contact_point L07: r2_mean=0.016 std=0.006 21.3s
+
+[2026-04-28 16:43:34] [probe] strike A contact_point L08: r2_mean=0.021 std=0.008 20.8s
+
+[2026-04-28 16:44:00] [probe] strike A contact_point L09: r2_mean=0.016 std=0.005 22.4s
+
+[2026-04-28 16:44:23] [probe] strike A contact_point L10: r2_mean=0.015 std=0.007 20.8s
+
+[2026-04-28 16:44:48] [probe] strike A contact_point L11: r2_mean=0.021 std=0.009 22.0s
+
+[2026-04-28 16:45:11] [probe] strike A contact_point L12: r2_mean=0.016 std=0.011 20.6s
+
+[2026-04-28 16:45:38] [probe] strike A contact_point L13: r2_mean=0.014 std=0.013 21.6s
+
+[2026-04-28 16:46:02] [probe] strike A contact_point L14: r2_mean=0.012 std=0.013 21.3s
+
+[2026-04-28 16:46:27] [probe] strike A contact_point L15: r2_mean=0.009 std=0.014 22.6s
+
+[2026-04-28 16:46:49] [probe] strike A contact_point L16: r2_mean=0.011 std=0.011 20.6s
+
+[2026-04-28 16:47:13] [probe] strike A contact_point L17: r2_mean=0.008 std=0.013 21.0s
+
+[2026-04-28 16:47:36] [probe] strike A contact_point L18: r2_mean=0.004 std=0.006 21.3s
+
+[2026-04-28 16:48:02] [probe] strike A contact_point L19: r2_mean=0.002 std=0.009 23.4s
+
+[2026-04-28 16:48:27] [probe] strike A contact_point L20: r2_mean=0.003 std=0.009 22.4s
+
+[2026-04-28 16:48:53] [probe] strike A contact_point L21: r2_mean=0.000 std=0.014 23.0s
+
+[2026-04-28 16:49:14] [probe] strike A contact_point L22: r2_mean=-0.001 std=0.016 19.0s
+
+[2026-04-28 16:49:39] [probe] strike A contact_point L23: r2_mean=-0.003 std=0.014 21.3s
+
+[2026-04-28 16:50:00] [probe] strike A phase L00: r2_mean=0.777 std=0.005 18.9s
+
+[2026-04-28 16:50:23] [probe] strike A phase L01: r2_mean=0.859 std=0.002 20.0s
+
+[2026-04-28 16:50:42] [probe] strike A phase L02: r2_mean=0.884 std=0.004 17.5s
+
+[2026-04-28 16:51:04] [probe] strike A phase L03: r2_mean=0.894 std=0.003 18.8s
+
+[2026-04-28 16:51:26] [probe] strike A phase L04: r2_mean=0.904 std=0.005 19.6s
+
+[2026-04-28 16:51:47] [probe] strike A phase L05: r2_mean=0.911 std=0.003 19.1s
+
+[2026-04-28 16:52:09] [probe] strike A phase L06: r2_mean=0.921 std=0.002 19.3s
+
+[2026-04-28 16:52:30] [probe] strike A phase L07: r2_mean=0.927 std=0.003 18.6s
+
+[2026-04-28 16:52:51] [probe] strike A phase L08: r2_mean=0.929 std=0.003 19.4s
+
+[2026-04-28 16:53:14] [probe] strike A phase L09: r2_mean=0.933 std=0.002 20.2s
+
+[2026-04-28 16:53:35] [probe] strike A phase L10: r2_mean=0.939 std=0.004 18.4s
+
+[2026-04-28 16:53:58] [probe] strike A phase L11: r2_mean=0.940 std=0.004 20.4s
+
+[2026-04-28 16:54:18] [probe] strike A phase L12: r2_mean=0.947 std=0.002 18.1s
+
+[2026-04-28 16:54:40] [probe] strike A phase L13: r2_mean=0.953 std=0.003 20.3s
+
+[2026-04-28 16:55:02] [probe] strike A phase L14: r2_mean=0.954 std=0.002 19.1s
+
+[2026-04-28 16:55:23] [probe] strike A phase L15: r2_mean=0.955 std=0.001 19.1s
+
+[2026-04-28 16:55:45] [probe] strike A phase L16: r2_mean=0.958 std=0.004 19.5s
+
+[2026-04-28 16:56:08] [probe] strike A phase L17: r2_mean=0.961 std=0.002 20.6s
+
+[2026-04-28 16:56:29] [probe] strike A phase L18: r2_mean=0.961 std=0.002 19.3s
+
+[2026-04-28 16:56:50] [probe] strike A phase L19: r2_mean=0.962 std=0.002 19.1s
+
+[2026-04-28 16:57:11] [probe] strike A phase L20: r2_mean=0.962 std=0.002 19.7s
+
+[2026-04-28 16:57:33] [probe] strike A phase L21: r2_mean=0.963 std=0.002 19.6s
+
+[2026-04-28 16:57:57] [probe] strike A phase L22: r2_mean=0.964 std=0.001 21.1s
+
+[2026-04-28 16:58:19] [probe] strike A phase L23: r2_mean=0.963 std=0.001 19.5s
+
+[2026-04-28 16:58:40] [probe] strike A ee_to_object_distance L00: r2_mean=0.029 std=0.019 19.2s
+
+[2026-04-28 16:59:03] [probe] strike A ee_to_object_distance L01: r2_mean=0.139 std=0.014 20.6s
+
+[2026-04-28 16:59:24] [probe] strike A ee_to_object_distance L02: r2_mean=0.116 std=0.013 18.9s
+
+[2026-04-28 16:59:48] [probe] strike A ee_to_object_distance L03: r2_mean=0.171 std=0.009 21.2s
+
+[2026-04-28 17:00:08] [probe] strike A ee_to_object_distance L04: r2_mean=0.194 std=0.011 18.2s
+
+[2026-04-28 17:00:32] [probe] strike A ee_to_object_distance L05: r2_mean=0.289 std=0.006 21.5s
+
+[2026-04-28 17:00:53] [probe] strike A ee_to_object_distance L06: r2_mean=0.288 std=0.014 19.1s
+
+[2026-04-28 17:01:15] [probe] strike A ee_to_object_distance L07: r2_mean=0.272 std=0.021 19.5s
+
+[2026-04-28 17:01:36] [probe] strike A ee_to_object_distance L08: r2_mean=0.233 std=0.013 18.8s
+
+[2026-04-28 17:01:55] [probe] strike A ee_to_object_distance L09: r2_mean=0.172 std=0.020 17.2s
+
+[2026-04-28 17:02:13] [probe] strike A ee_to_object_distance L10: r2_mean=0.177 std=0.006 16.7s
+
+[2026-04-28 17:02:36] [probe] strike A ee_to_object_distance L11: r2_mean=0.185 std=0.014 20.1s
+
+[2026-04-28 17:02:57] [probe] strike A ee_to_object_distance L12: r2_mean=0.204 std=0.007 19.5s
+
+[2026-04-28 17:03:20] [probe] strike A ee_to_object_distance L13: r2_mean=0.171 std=0.004 20.2s
+
+[2026-04-28 17:03:42] [probe] strike A ee_to_object_distance L14: r2_mean=0.167 std=0.009 19.5s
+
+[2026-04-28 17:04:04] [probe] strike A ee_to_object_distance L15: r2_mean=0.144 std=0.006 19.9s
+
+[2026-04-28 17:04:25] [probe] strike A ee_to_object_distance L16: r2_mean=0.144 std=0.012 19.4s
+
+[2026-04-28 17:04:48] [probe] strike A ee_to_object_distance L17: r2_mean=0.119 std=0.007 20.8s
+
+[2026-04-28 17:05:10] [probe] strike A ee_to_object_distance L18: r2_mean=0.121 std=0.007 19.9s
+
+[2026-04-28 17:05:31] [probe] strike A ee_to_object_distance L19: r2_mean=0.113 std=0.013 18.7s
+
+[2026-04-28 17:05:52] [probe] strike A ee_to_object_distance L20: r2_mean=0.096 std=0.016 18.6s
+
+[2026-04-28 17:06:12] [probe] strike A ee_to_object_distance L21: r2_mean=0.087 std=0.012 18.5s
+
+[2026-04-28 17:06:35] [probe] strike A ee_to_object_distance L22: r2_mean=0.060 std=0.012 20.3s
+
+[2026-04-28 17:06:57] [probe] strike A ee_to_object_distance L23: r2_mean=0.052 std=0.007 19.5s
+
+[2026-04-28 17:06:58] [probe] strike A object_to_target_distance: only 0 valid windows — skipping
+
+[2026-04-28 17:07:19] [probe] strike A ball_planar_travel_distance L00: r2_mean=0.697 std=0.019 19.0s
+
+[2026-04-28 17:07:41] [probe] strike A ball_planar_travel_distance L01: r2_mean=0.785 std=0.012 19.9s
+
+[2026-04-28 17:08:02] [probe] strike A ball_planar_travel_distance L02: r2_mean=0.787 std=0.013 18.9s
+
+[2026-04-28 17:08:23] [probe] strike A ball_planar_travel_distance L03: r2_mean=0.802 std=0.012 18.5s
+
+[2026-04-28 17:08:45] [probe] strike A ball_planar_travel_distance L04: r2_mean=0.808 std=0.010 20.3s
+
+[2026-04-28 17:09:08] [probe] strike A ball_planar_travel_distance L05: r2_mean=0.815 std=0.010 20.9s
+
+[2026-04-28 17:09:28] [probe] strike A ball_planar_travel_distance L06: r2_mean=0.823 std=0.010 18.0s
+
+[2026-04-28 17:09:50] [probe] strike A ball_planar_travel_distance L07: r2_mean=0.838 std=0.010 19.7s
+
+[2026-04-28 17:10:13] [probe] strike A ball_planar_travel_distance L08: r2_mean=0.849 std=0.010 20.9s
+
+[2026-04-28 17:10:35] [probe] strike A ball_planar_travel_distance L09: r2_mean=0.855 std=0.011 20.1s
+
+[2026-04-28 17:10:57] [probe] strike A ball_planar_travel_distance L10: r2_mean=0.864 std=0.012 20.0s
+
+[2026-04-28 17:11:19] [probe] strike A ball_planar_travel_distance L11: r2_mean=0.868 std=0.010 19.0s
+
+[2026-04-28 17:11:40] [probe] strike A ball_planar_travel_distance L12: r2_mean=0.884 std=0.012 19.3s
+
+[2026-04-28 17:12:02] [probe] strike A ball_planar_travel_distance L13: r2_mean=0.890 std=0.009 20.2s
+
+[2026-04-28 17:12:25] [probe] strike A ball_planar_travel_distance L14: r2_mean=0.889 std=0.012 20.1s
+
+[2026-04-28 17:12:46] [probe] strike A ball_planar_travel_distance L15: r2_mean=0.888 std=0.010 18.5s
+
+[2026-04-28 17:13:08] [probe] strike A ball_planar_travel_distance L16: r2_mean=0.893 std=0.010 20.5s
+
+[2026-04-28 17:13:30] [probe] strike A ball_planar_travel_distance L17: r2_mean=0.894 std=0.007 19.9s
+
+[2026-04-28 17:13:51] [probe] strike A ball_planar_travel_distance L18: r2_mean=0.894 std=0.008 18.6s
+
+[2026-04-28 17:14:13] [probe] strike A ball_planar_travel_distance L19: r2_mean=0.891 std=0.009 20.3s
+
+[2026-04-28 17:14:35] [probe] strike A ball_planar_travel_distance L20: r2_mean=0.890 std=0.009 20.1s
+
+[2026-04-28 17:14:57] [probe] strike A ball_planar_travel_distance L21: r2_mean=0.892 std=0.013 19.4s
+
+[2026-04-28 17:15:17] [probe] strike A ball_planar_travel_distance L22: r2_mean=0.891 std=0.009 18.7s
+
+[2026-04-28 17:15:39] [probe] strike A ball_planar_travel_distance L23: r2_mean=0.889 std=0.011 19.3s
+
+[2026-04-28 17:15:39] [probe] strike A DONE in 111.4min
+
+[2026-04-28 17:15:46] [probe] task=reach variant=A targets=['ee_orientation', 'ee_angular_velocity', 'phase', 'ee_to_target_distance'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 17:16:02] [probe] reach: features [(141000, 24, 1024)] eps 600 loaded 15.9s
+
+[2026-04-28 17:16:20] [probe] reach A ee_orientation L00: r2_mean=-0.779 std=1.001 17.6s
+
+[2026-04-28 17:16:38] [probe] reach A ee_orientation L01: r2_mean=0.365 std=0.076 16.4s
+
+[2026-04-28 17:16:55] [probe] reach A ee_orientation L02: r2_mean=0.424 std=0.095 16.0s
+
+[2026-04-28 17:17:12] [probe] reach A ee_orientation L03: r2_mean=0.448 std=0.085 15.6s
+
+[2026-04-28 17:17:31] [probe] reach A ee_orientation L04: r2_mean=0.499 std=0.083 18.3s
+
+[2026-04-28 17:17:51] [probe] reach A ee_orientation L05: r2_mean=0.480 std=0.087 17.7s
+
+[2026-04-28 17:18:11] [probe] reach A ee_orientation L06: r2_mean=0.478 std=0.087 19.2s
+
+[2026-04-28 17:18:27] [probe] reach A ee_orientation L07: r2_mean=0.486 std=0.082 14.3s
+
+[2026-04-28 17:18:45] [probe] reach A ee_orientation L08: r2_mean=0.469 std=0.091 16.9s
+
+[2026-04-28 17:19:04] [probe] reach A ee_orientation L09: r2_mean=0.487 std=0.046 17.4s
+
+[2026-04-28 17:19:20] [probe] reach A ee_orientation L10: r2_mean=0.492 std=0.053 15.6s
+
+[2026-04-28 17:19:40] [probe] reach A ee_orientation L11: r2_mean=0.539 std=0.068 18.1s
+
+[2026-04-28 17:19:56] [probe] reach A ee_orientation L12: r2_mean=0.544 std=0.071 15.0s
+
+[2026-04-28 17:20:11] [probe] reach A ee_orientation L13: r2_mean=0.561 std=0.065 13.2s
+
+[2026-04-28 17:20:28] [probe] reach A ee_orientation L14: r2_mean=0.576 std=0.049 16.3s
+
+[2026-04-28 17:20:47] [probe] reach A ee_orientation L15: r2_mean=0.585 std=0.063 17.9s
+
+[2026-04-28 17:21:07] [probe] reach A ee_orientation L16: r2_mean=0.568 std=0.070 18.7s
+
+[2026-04-28 17:21:24] [probe] reach A ee_orientation L17: r2_mean=0.565 std=0.074 15.6s
+
+[2026-04-28 17:21:44] [probe] reach A ee_orientation L18: r2_mean=0.575 std=0.073 18.7s
+
+[2026-04-28 17:22:03] [probe] reach A ee_orientation L19: r2_mean=0.558 std=0.076 17.6s
+
+[2026-04-28 17:22:22] [probe] reach A ee_orientation L20: r2_mean=-0.362 std=0.381 17.9s
+
+[2026-04-28 17:22:39] [probe] reach A ee_orientation L21: r2_mean=0.229 std=0.157 15.7s
+
+[2026-04-28 17:22:58] [probe] reach A ee_orientation L22: r2_mean=0.599 std=0.070 18.0s
+
+[2026-04-28 17:23:17] [probe] reach A ee_orientation L23: r2_mean=0.564 std=0.094 18.0s
+
+[2026-04-28 17:23:36] [probe] reach A ee_angular_velocity L00: r2_mean=-0.223 std=0.291 17.3s
+
+[2026-04-28 17:23:54] [probe] reach A ee_angular_velocity L01: r2_mean=0.122 std=0.009 17.1s
+
+[2026-04-28 17:24:11] [probe] reach A ee_angular_velocity L02: r2_mean=0.173 std=0.012 16.7s
+
+[2026-04-28 17:24:29] [probe] reach A ee_angular_velocity L03: r2_mean=0.189 std=0.009 16.0s
+
+[2026-04-28 17:24:46] [probe] reach A ee_angular_velocity L04: r2_mean=0.202 std=0.005 16.1s
+
+[2026-04-28 17:25:06] [probe] reach A ee_angular_velocity L05: r2_mean=0.216 std=0.005 19.5s
+
+[2026-04-28 17:25:25] [probe] reach A ee_angular_velocity L06: r2_mean=0.219 std=0.008 17.9s
+
+[2026-04-28 17:25:43] [probe] reach A ee_angular_velocity L07: r2_mean=0.220 std=0.002 17.4s
+
+[2026-04-28 17:25:58] [probe] reach A ee_angular_velocity L08: r2_mean=0.192 std=0.015 13.9s
+
+[2026-04-28 17:26:18] [probe] reach A ee_angular_velocity L09: r2_mean=0.187 std=0.024 18.8s
+
+[2026-04-28 17:26:31] [probe] reach A ee_angular_velocity L10: r2_mean=0.176 std=0.011 12.0s
+
+[2026-04-28 17:26:49] [probe] reach A ee_angular_velocity L11: r2_mean=0.190 std=0.006 16.8s
+
+[2026-04-28 17:27:07] [probe] reach A ee_angular_velocity L12: r2_mean=0.206 std=0.014 17.6s
+
+[2026-04-28 17:27:25] [probe] reach A ee_angular_velocity L13: r2_mean=0.216 std=0.018 17.2s
+
+[2026-04-28 17:27:41] [probe] reach A ee_angular_velocity L14: r2_mean=0.243 std=0.015 14.9s
+
+[2026-04-28 17:27:59] [probe] reach A ee_angular_velocity L15: r2_mean=0.277 std=0.007 16.9s
+
+[2026-04-28 17:28:19] [probe] reach A ee_angular_velocity L16: r2_mean=0.304 std=0.022 19.5s
+
+[2026-04-28 17:28:39] [probe] reach A ee_angular_velocity L17: r2_mean=0.313 std=0.022 18.0s
+
+[2026-04-28 17:28:58] [probe] reach A ee_angular_velocity L18: r2_mean=0.364 std=0.013 18.0s
+
+[2026-04-28 17:29:13] [probe] reach A ee_angular_velocity L19: r2_mean=0.368 std=0.035 14.1s
+
+[2026-04-28 17:29:31] [probe] reach A ee_angular_velocity L20: r2_mean=-0.354 std=0.662 17.0s
+
+[2026-04-28 17:29:47] [probe] reach A ee_angular_velocity L21: r2_mean=-0.040 std=0.173 15.4s
+
+[2026-04-28 17:30:03] [probe] reach A ee_angular_velocity L22: r2_mean=0.365 std=0.068 15.1s
+
+[2026-04-28 17:30:22] [probe] reach A ee_angular_velocity L23: r2_mean=0.388 std=0.037 17.4s
+
+[2026-04-28 17:30:41] [probe] reach A phase L00: r2_mean=-0.042 std=0.137 18.2s
+
+[2026-04-28 17:31:00] [probe] reach A phase L01: r2_mean=0.192 std=0.049 17.2s
+
+[2026-04-28 17:31:13] [probe] reach A phase L02: r2_mean=0.209 std=0.048 12.0s
+
+[2026-04-28 17:31:30] [probe] reach A phase L03: r2_mean=0.252 std=0.048 16.2s
+
+[2026-04-28 17:31:47] [probe] reach A phase L04: r2_mean=0.296 std=0.065 16.4s
+
+[2026-04-28 17:32:04] [probe] reach A phase L05: r2_mean=0.340 std=0.026 15.9s
+
+[2026-04-28 17:32:21] [probe] reach A phase L06: r2_mean=0.380 std=0.041 16.0s
+
+[2026-04-28 17:32:40] [probe] reach A phase L07: r2_mean=0.393 std=0.032 17.6s
+
+[2026-04-28 17:32:57] [probe] reach A phase L08: r2_mean=0.414 std=0.033 16.1s
+
+[2026-04-28 17:33:14] [probe] reach A phase L09: r2_mean=0.494 std=0.024 16.1s
+
+[2026-04-28 17:33:32] [probe] reach A phase L10: r2_mean=0.496 std=0.026 16.9s
+
+[2026-04-28 17:33:49] [probe] reach A phase L11: r2_mean=0.516 std=0.033 15.7s
+
+[2026-04-28 17:34:08] [probe] reach A phase L12: r2_mean=0.548 std=0.041 18.9s
+
+[2026-04-28 17:34:26] [probe] reach A phase L13: r2_mean=0.566 std=0.038 17.0s
+
+[2026-04-28 17:34:43] [probe] reach A phase L14: r2_mean=0.572 std=0.019 15.3s
+
+[2026-04-28 17:34:59] [probe] reach A phase L15: r2_mean=0.561 std=0.044 14.7s
+
+[2026-04-28 17:35:17] [probe] reach A phase L16: r2_mean=0.578 std=0.040 17.6s
+
+[2026-04-28 17:35:33] [probe] reach A phase L17: r2_mean=0.589 std=0.041 15.4s
+
+[2026-04-28 17:35:48] [probe] reach A phase L18: r2_mean=0.598 std=0.051 13.3s
+
+[2026-04-28 17:36:04] [probe] reach A phase L19: r2_mean=0.598 std=0.041 15.4s
+
+[2026-04-28 17:36:23] [probe] reach A phase L20: r2_mean=0.545 std=0.054 17.8s
+
+[2026-04-28 17:36:38] [probe] reach A phase L21: r2_mean=0.617 std=0.057 14.3s
+
+[2026-04-28 17:36:54] [probe] reach A phase L22: r2_mean=0.618 std=0.061 15.6s
+
+[2026-04-28 17:37:13] [probe] reach A phase L23: r2_mean=0.610 std=0.067 17.8s
+
+[2026-04-28 17:37:30] [probe] reach A ee_to_target_distance L00: r2_mean=0.035 std=0.033 16.3s
+
+[2026-04-28 17:37:48] [probe] reach A ee_to_target_distance L01: r2_mean=0.486 std=0.020 16.6s
+
+[2026-04-28 17:38:07] [probe] reach A ee_to_target_distance L02: r2_mean=0.533 std=0.018 17.7s
+
+[2026-04-28 17:38:23] [probe] reach A ee_to_target_distance L03: r2_mean=0.591 std=0.025 15.3s
+
+[2026-04-28 17:38:39] [probe] reach A ee_to_target_distance L04: r2_mean=0.644 std=0.018 14.5s
+
+[2026-04-28 17:38:54] [probe] reach A ee_to_target_distance L05: r2_mean=0.679 std=0.024 14.2s
+
+[2026-04-28 17:39:07] [probe] reach A ee_to_target_distance L06: r2_mean=0.703 std=0.017 12.7s
+
+[2026-04-28 17:39:25] [probe] reach A ee_to_target_distance L07: r2_mean=0.723 std=0.013 16.6s
+
+[2026-04-28 17:39:43] [probe] reach A ee_to_target_distance L08: r2_mean=0.703 std=0.022 17.3s
+
+[2026-04-28 17:40:01] [probe] reach A ee_to_target_distance L09: r2_mean=0.726 std=0.006 16.1s
+
+[2026-04-28 17:40:18] [probe] reach A ee_to_target_distance L10: r2_mean=0.754 std=0.011 16.9s
+
+[2026-04-28 17:40:38] [probe] reach A ee_to_target_distance L11: r2_mean=0.762 std=0.005 18.6s
+
+[2026-04-28 17:40:52] [probe] reach A ee_to_target_distance L12: r2_mean=0.779 std=0.008 12.4s
+
+[2026-04-28 17:41:08] [probe] reach A ee_to_target_distance L13: r2_mean=0.798 std=0.008 15.1s
+
+[2026-04-28 17:41:26] [probe] reach A ee_to_target_distance L14: r2_mean=0.813 std=0.008 17.2s
+
+[2026-04-28 17:41:41] [probe] reach A ee_to_target_distance L15: r2_mean=0.832 std=0.007 13.9s
+
+[2026-04-28 17:41:58] [probe] reach A ee_to_target_distance L16: r2_mean=0.838 std=0.009 16.1s
+
+[2026-04-28 17:42:14] [probe] reach A ee_to_target_distance L17: r2_mean=0.848 std=0.007 15.0s
+
+[2026-04-28 17:42:32] [probe] reach A ee_to_target_distance L18: r2_mean=0.845 std=0.009 16.8s
+
+[2026-04-28 17:42:47] [probe] reach A ee_to_target_distance L19: r2_mean=0.842 std=0.007 14.5s
+
+[2026-04-28 17:43:05] [probe] reach A ee_to_target_distance L20: r2_mean=0.769 std=0.104 17.0s
+
+[2026-04-28 17:43:23] [probe] reach A ee_to_target_distance L21: r2_mean=0.809 std=0.042 16.9s
+
+[2026-04-28 17:43:42] [probe] reach A ee_to_target_distance L22: r2_mean=0.835 std=0.017 17.9s
+
+[2026-04-28 17:43:59] [probe] reach A ee_to_target_distance L23: r2_mean=0.838 std=0.012 16.5s
+
+[2026-04-28 17:43:59] [probe] reach A DONE in 28.2min
+
+[2026-04-28 17:44:04] [probe] task=nut_thread variant=A targets=['ee_orientation', 'ee_angular_velocity', 'obj_orientation', 'obj_angular_velocity', 'contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point', 'phase', 'axial_progress', 'nut_bolt_relative_angle'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-04-28 17:44:38] [probe] nut_thread: features [(322500, 24, 1024)] eps 2500 loaded 34.2s
+
+[2026-04-28 17:45:04] [probe] nut_thread A ee_orientation L00: r2_mean=-0.016 std=0.005 23.6s
+
+[2026-04-28 17:45:27] [probe] nut_thread A ee_orientation L01: r2_mean=-0.145 std=0.200 21.6s
+
+[2026-04-28 17:45:52] [probe] nut_thread A ee_orientation L02: r2_mean=0.049 std=0.008 22.3s
+
+[2026-04-28 17:46:17] [probe] nut_thread A ee_orientation L03: r2_mean=0.052 std=0.009 22.7s
+
+[2026-04-28 17:46:38] [probe] nut_thread A ee_orientation L04: r2_mean=0.053 std=0.004 19.4s
+
+[2026-04-28 17:47:02] [probe] nut_thread A ee_orientation L05: r2_mean=0.063 std=0.008 22.4s
+
+[2026-04-28 17:47:26] [probe] nut_thread A ee_orientation L06: r2_mean=-0.336 std=0.683 20.8s
+
+[2026-04-28 17:47:50] [probe] nut_thread A ee_orientation L07: r2_mean=-0.251 std=0.173 22.0s
+
+[2026-04-28 17:48:16] [probe] nut_thread A ee_orientation L08: r2_mean=-0.042 std=0.167 23.7s
+
+[2026-04-28 17:48:39] [probe] nut_thread A ee_orientation L09: r2_mean=-1.681 std=3.368 21.2s
+
+[2026-04-28 17:49:03] [probe] nut_thread A ee_orientation L10: r2_mean=-0.003 std=0.067 22.2s
+
+[2026-04-28 17:49:27] [probe] nut_thread A ee_orientation L11: r2_mean=0.090 std=0.010 21.4s
+
+[2026-04-28 17:49:50] [probe] nut_thread A ee_orientation L12: r2_mean=0.099 std=0.012 21.1s
+
+[2026-04-28 17:50:15] [probe] nut_thread A ee_orientation L13: r2_mean=0.115 std=0.013 22.8s
+
+[2026-04-28 17:50:37] [probe] nut_thread A ee_orientation L14: r2_mean=0.124 std=0.018 19.7s
+
+[2026-04-28 17:51:02] [probe] nut_thread A ee_orientation L15: r2_mean=0.131 std=0.015 23.1s
+
+[2026-04-28 17:51:23] [probe] nut_thread A ee_orientation L16: r2_mean=0.139 std=0.011 19.0s
+
+[2026-04-28 17:51:46] [probe] nut_thread A ee_orientation L17: r2_mean=0.134 std=0.024 21.1s
+
+[2026-04-28 17:52:09] [probe] nut_thread A ee_orientation L18: r2_mean=0.134 std=0.019 20.8s
+
+[2026-04-28 17:52:33] [probe] nut_thread A ee_orientation L19: r2_mean=0.126 std=0.023 21.9s
+
+[2026-04-28 17:52:56] [probe] nut_thread A ee_orientation L20: r2_mean=0.144 std=0.014 20.4s
+
+[2026-04-28 17:53:18] [probe] nut_thread A ee_orientation L21: r2_mean=0.126 std=0.023 20.5s
+
+[2026-04-28 17:53:41] [probe] nut_thread A ee_orientation L22: r2_mean=0.138 std=0.012 20.6s
+
+[2026-04-28 17:54:04] [probe] nut_thread A ee_orientation L23: r2_mean=0.116 std=0.033 21.1s
+
+[2026-04-28 17:54:28] [probe] nut_thread A ee_angular_velocity L00: r2_mean=-0.000 std=0.004 22.0s
+
+[2026-04-28 17:54:52] [probe] nut_thread A ee_angular_velocity L01: r2_mean=-0.462 std=0.560 21.9s
+
+[2026-04-28 17:55:16] [probe] nut_thread A ee_angular_velocity L02: r2_mean=0.029 std=0.002 21.6s
+
+[2026-04-28 17:55:41] [probe] nut_thread A ee_angular_velocity L03: r2_mean=0.031 std=0.002 22.6s
+
+[2026-04-28 17:55:59] [probe] nut_thread A ee_angular_velocity L04: r2_mean=0.032 std=0.003 16.7s
+
+[2026-04-28 17:56:19] [probe] nut_thread A ee_angular_velocity L05: r2_mean=0.035 std=0.003 18.1s
+
+[2026-04-28 17:56:43] [probe] nut_thread A ee_angular_velocity L06: r2_mean=-0.136 std=0.311 21.9s
+
+[2026-04-28 17:57:08] [probe] nut_thread A ee_angular_velocity L07: r2_mean=-0.207 std=0.137 22.6s
+
+[2026-04-28 17:57:29] [probe] nut_thread A ee_angular_velocity L08: r2_mean=-0.295 std=0.660 18.9s
+
+[2026-04-28 17:57:51] [probe] nut_thread A ee_angular_velocity L09: r2_mean=-0.094 std=0.176 19.6s
+
+[2026-04-28 17:58:14] [probe] nut_thread A ee_angular_velocity L10: r2_mean=-0.187 std=0.338 21.5s
+
+[2026-04-28 17:58:37] [probe] nut_thread A ee_angular_velocity L11: r2_mean=0.046 std=0.012 20.6s
+
+[2026-04-28 17:59:01] [probe] nut_thread A ee_angular_velocity L12: r2_mean=0.048 std=0.003 22.4s
+
+[2026-04-28 17:59:22] [probe] nut_thread A ee_angular_velocity L13: r2_mean=0.049 std=0.007 19.4s
+
+[2026-04-28 17:59:42] [probe] nut_thread A ee_angular_velocity L14: r2_mean=0.060 std=0.005 17.7s
+
+[2026-04-28 18:00:05] [probe] nut_thread A ee_angular_velocity L15: r2_mean=0.067 std=0.003 20.5s
+
+[2026-04-28 18:00:26] [probe] nut_thread A ee_angular_velocity L16: r2_mean=0.086 std=0.007 20.0s
+
+[2026-04-28 18:00:49] [probe] nut_thread A ee_angular_velocity L17: r2_mean=0.102 std=0.010 20.6s
+
+[2026-04-28 18:01:11] [probe] nut_thread A ee_angular_velocity L18: r2_mean=0.106 std=0.003 20.4s
+
+[2026-04-28 18:01:37] [probe] nut_thread A ee_angular_velocity L19: r2_mean=0.098 std=0.009 22.9s
+
+[2026-04-28 18:02:01] [probe] nut_thread A ee_angular_velocity L20: r2_mean=0.096 std=0.004 22.1s
+
+[2026-04-28 18:02:25] [probe] nut_thread A ee_angular_velocity L21: r2_mean=0.086 std=0.015 22.2s
+
+[2026-04-28 18:02:49] [probe] nut_thread A ee_angular_velocity L22: r2_mean=0.087 std=0.006 22.0s
+
+[2026-04-28 18:03:14] [probe] nut_thread A ee_angular_velocity L23: r2_mean=0.054 std=0.067 22.7s
+
+[2026-04-28 18:03:37] [probe] nut_thread A obj_orientation L00: r2_mean=0.527 std=0.031 20.6s
+
+[2026-04-28 18:03:59] [probe] nut_thread A obj_orientation L01: r2_mean=0.454 std=0.296 20.5s
+
+[2026-04-28 18:04:22] [probe] nut_thread A obj_orientation L02: r2_mean=0.800 std=0.004 20.7s
+
+[2026-04-28 18:04:45] [probe] nut_thread A obj_orientation L03: r2_mean=0.855 std=0.005 20.5s
+
+[2026-04-28 18:05:09] [probe] nut_thread A obj_orientation L04: r2_mean=0.891 std=0.004 22.2s
+
+[2026-04-28 18:05:34] [probe] nut_thread A obj_orientation L05: r2_mean=0.916 std=0.008 22.9s
+
+[2026-04-28 18:05:58] [probe] nut_thread A obj_orientation L06: r2_mean=0.399 std=0.611 21.6s
+
+[2026-04-28 18:06:22] [probe] nut_thread A obj_orientation L07: r2_mean=0.488 std=0.638 21.5s
+
+[2026-04-28 18:06:45] [probe] nut_thread A obj_orientation L08: r2_mean=0.945 std=0.015 21.4s
+
+[2026-04-28 18:07:08] [probe] nut_thread A obj_orientation L09: r2_mean=0.083 std=1.708 20.9s
+
+[2026-04-28 18:07:34] [probe] nut_thread A obj_orientation L10: r2_mean=0.934 std=0.020 23.3s
+
+[2026-04-28 18:07:58] [probe] nut_thread A obj_orientation L11: r2_mean=0.954 std=0.006 22.7s
+
+[2026-04-28 18:08:20] [probe] nut_thread A obj_orientation L12: r2_mean=0.961 std=0.006 19.9s
+
+[2026-04-28 18:08:45] [probe] nut_thread A obj_orientation L13: r2_mean=0.964 std=0.005 22.5s
+
+[2026-04-28 18:09:07] [probe] nut_thread A obj_orientation L14: r2_mean=0.966 std=0.003 20.3s
+
+[2026-04-28 18:09:32] [probe] nut_thread A obj_orientation L15: r2_mean=0.969 std=0.003 23.3s
+
+[2026-04-28 18:09:56] [probe] nut_thread A obj_orientation L16: r2_mean=0.971 std=0.003 21.3s
+
+[2026-04-28 18:10:16] [probe] nut_thread A obj_orientation L17: r2_mean=0.973 std=0.003 17.8s
+
+[2026-04-28 18:10:40] [probe] nut_thread A obj_orientation L18: r2_mean=0.974 std=0.002 22.8s
+
+[2026-04-28 18:11:04] [probe] nut_thread A obj_orientation L19: r2_mean=0.967 std=0.005 21.9s
+
+[2026-04-28 18:11:29] [probe] nut_thread A obj_orientation L20: r2_mean=0.963 std=0.006 22.8s
+
+[2026-04-28 18:11:53] [probe] nut_thread A obj_orientation L21: r2_mean=0.968 std=0.006 21.6s
+
+[2026-04-28 18:12:17] [probe] nut_thread A obj_orientation L22: r2_mean=0.971 std=0.005 22.0s
+
+[2026-04-28 18:12:40] [probe] nut_thread A obj_orientation L23: r2_mean=0.966 std=0.005 20.6s
+
+[2026-04-28 18:13:02] [probe] nut_thread A obj_angular_velocity L00: r2_mean=0.003 std=0.013 20.4s
+
+[2026-04-28 18:13:25] [probe] nut_thread A obj_angular_velocity L01: r2_mean=-0.052 std=0.067 20.2s
+
+[2026-04-28 18:13:49] [probe] nut_thread A obj_angular_velocity L02: r2_mean=0.027 std=0.001 22.8s
+
+[2026-04-28 18:14:14] [probe] nut_thread A obj_angular_velocity L03: r2_mean=0.029 std=0.002 22.5s
+
+[2026-04-28 18:14:38] [probe] nut_thread A obj_angular_velocity L04: r2_mean=0.030 std=0.002 22.1s
+
+[2026-04-28 18:15:03] [probe] nut_thread A obj_angular_velocity L05: r2_mean=0.029 std=0.001 22.8s
+
+[2026-04-28 18:15:27] [probe] nut_thread A obj_angular_velocity L06: r2_mean=0.012 std=0.028 22.5s
+
+[2026-04-28 18:15:50] [probe] nut_thread A obj_angular_velocity L07: r2_mean=-0.261 std=0.301 20.9s
+
+[2026-04-28 18:16:11] [probe] nut_thread A obj_angular_velocity L08: r2_mean=0.016 std=0.017 19.1s
+
+[2026-04-28 18:16:34] [probe] nut_thread A obj_angular_velocity L09: r2_mean=-0.123 std=0.145 20.6s
+
+[2026-04-28 18:16:57] [probe] nut_thread A obj_angular_velocity L10: r2_mean=-0.298 std=0.410 21.4s
+
+[2026-04-28 18:17:20] [probe] nut_thread A obj_angular_velocity L11: r2_mean=0.021 std=0.010 21.3s
+
+[2026-04-28 18:17:43] [probe] nut_thread A obj_angular_velocity L12: r2_mean=0.033 std=0.003 20.7s
+
+[2026-04-28 18:18:06] [probe] nut_thread A obj_angular_velocity L13: r2_mean=0.033 std=0.002 20.7s
+
+[2026-04-28 18:18:27] [probe] nut_thread A obj_angular_velocity L14: r2_mean=0.035 std=0.002 19.9s
+
+[2026-04-28 18:18:51] [probe] nut_thread A obj_angular_velocity L15: r2_mean=0.033 std=0.002 21.6s
+
+[2026-04-28 18:19:16] [probe] nut_thread A obj_angular_velocity L16: r2_mean=0.036 std=0.002 23.1s
+
+[2026-04-28 18:19:40] [probe] nut_thread A obj_angular_velocity L17: r2_mean=0.036 std=0.002 21.6s
+
+[2026-04-28 18:20:03] [probe] nut_thread A obj_angular_velocity L18: r2_mean=0.037 std=0.002 21.4s
+
+[2026-04-28 18:20:28] [probe] nut_thread A obj_angular_velocity L19: r2_mean=0.036 std=0.002 23.0s
+
+[2026-04-28 18:20:52] [probe] nut_thread A obj_angular_velocity L20: r2_mean=0.036 std=0.001 21.3s
+
+[2026-04-28 18:21:15] [probe] nut_thread A obj_angular_velocity L21: r2_mean=0.036 std=0.001 20.6s
+
+[2026-04-28 18:21:38] [probe] nut_thread A obj_angular_velocity L22: r2_mean=0.036 std=0.003 21.0s
+
+[2026-04-28 18:22:02] [probe] nut_thread A obj_angular_velocity L23: r2_mean=0.007 std=0.055 21.7s
+
+[2026-04-28 18:22:24] [probe] nut_thread A contact_flag L00: r2_mean=1.000 std=0.000 19.3s
+
+[2026-04-28 18:22:49] [probe] nut_thread A contact_flag L01: r2_mean=1.000 std=0.000 22.2s
+
+[2026-04-28 18:23:12] [probe] nut_thread A contact_flag L02: r2_mean=1.000 std=0.000 21.5s
+
+[2026-04-28 18:23:35] [probe] nut_thread A contact_flag L03: r2_mean=1.000 std=0.000 20.5s
+
+[2026-04-28 18:23:57] [probe] nut_thread A contact_flag L04: r2_mean=1.000 std=0.000 20.3s
+
+[2026-04-28 18:24:18] [probe] nut_thread A contact_flag L05: r2_mean=1.000 std=0.000 18.9s
+
+[2026-04-28 18:24:37] [probe] nut_thread A contact_flag L06: r2_mean=1.000 std=0.000 17.2s
+
+[2026-04-28 18:24:57] [probe] nut_thread A contact_flag L07: r2_mean=1.000 std=0.000 18.1s
+
+[2026-04-28 18:25:18] [probe] nut_thread A contact_flag L08: r2_mean=1.000 std=0.000 18.8s
+
+[2026-04-28 18:25:41] [probe] nut_thread A contact_flag L09: r2_mean=1.000 std=0.000 20.6s
+
+[2026-04-28 18:26:04] [probe] nut_thread A contact_flag L10: r2_mean=1.000 std=0.000 21.5s
+
+[2026-04-28 18:26:27] [probe] nut_thread A contact_flag L11: r2_mean=1.000 std=0.000 20.9s
+
+[2026-04-28 18:26:46] [probe] nut_thread A contact_flag L12: r2_mean=1.000 std=0.000 17.0s
+
+[2026-04-28 18:27:09] [probe] nut_thread A contact_flag L13: r2_mean=1.000 std=0.000 20.8s
+
+[2026-04-28 18:27:32] [probe] nut_thread A contact_flag L14: r2_mean=1.000 std=0.000 20.6s
+
+[2026-04-28 18:27:55] [probe] nut_thread A contact_flag L15: r2_mean=1.000 std=0.000 21.2s
+
+[2026-04-28 18:28:19] [probe] nut_thread A contact_flag L16: r2_mean=1.000 std=0.000 22.3s
+
+[2026-04-28 18:28:41] [probe] nut_thread A contact_flag L17: r2_mean=1.000 std=0.000 20.3s
+
+[2026-04-28 18:29:03] [probe] nut_thread A contact_flag L18: r2_mean=1.000 std=0.000 20.3s
+
+[2026-04-28 18:29:26] [probe] nut_thread A contact_flag L19: r2_mean=1.000 std=0.000 20.2s
+
+[2026-04-28 18:29:48] [probe] nut_thread A contact_flag L20: r2_mean=1.000 std=0.000 20.8s
+
+[2026-04-28 18:30:10] [probe] nut_thread A contact_flag L21: r2_mean=1.000 std=0.000 19.6s
+
+[2026-04-28 18:30:34] [probe] nut_thread A contact_flag L22: r2_mean=1.000 std=0.000 21.7s
+
+[2026-04-28 18:30:58] [probe] nut_thread A contact_flag L23: r2_mean=1.000 std=0.000 21.5s
+
+[2026-04-28 18:31:20] [probe] nut_thread A contact_force L00: r2_mean=0.089 std=0.006 20.0s
+
+[2026-04-28 18:31:43] [probe] nut_thread A contact_force L01: r2_mean=0.006 std=0.116 20.2s
+
+[2026-04-28 18:32:02] [probe] nut_thread A contact_force L02: r2_mean=0.137 std=0.005 17.2s
+
+[2026-04-28 18:32:27] [probe] nut_thread A contact_force L03: r2_mean=0.143 std=0.005 22.5s
+
+[2026-04-28 18:32:50] [probe] nut_thread A contact_force L04: r2_mean=0.148 std=0.005 21.8s
+
+[2026-04-28 18:33:12] [probe] nut_thread A contact_force L05: r2_mean=0.150 std=0.006 20.0s
+
+[2026-04-28 18:33:38] [probe] nut_thread A contact_force L06: r2_mean=0.078 std=0.067 23.3s
+
+[2026-04-28 18:34:02] [probe] nut_thread A contact_force L07: r2_mean=-0.078 std=0.148 22.1s
+
+[2026-04-28 18:34:24] [probe] nut_thread A contact_force L08: r2_mean=0.150 std=0.008 20.3s
+
+[2026-04-28 18:34:49] [probe] nut_thread A contact_force L09: r2_mean=0.127 std=0.029 22.7s
+
+[2026-04-28 18:35:11] [probe] nut_thread A contact_force L10: r2_mean=0.027 std=0.127 20.3s
+
+[2026-04-28 18:35:35] [probe] nut_thread A contact_force L11: r2_mean=0.150 std=0.008 21.5s
+
+[2026-04-28 18:35:59] [probe] nut_thread A contact_force L12: r2_mean=0.161 std=0.006 22.1s
+
+[2026-04-28 18:36:23] [probe] nut_thread A contact_force L13: r2_mean=0.158 std=0.007 21.9s
+
+[2026-04-28 18:36:47] [probe] nut_thread A contact_force L14: r2_mean=0.164 std=0.007 22.0s
+
+[2026-04-28 18:37:10] [probe] nut_thread A contact_force L15: r2_mean=0.163 std=0.008 20.3s
+
+[2026-04-28 18:37:32] [probe] nut_thread A contact_force L16: r2_mean=0.166 std=0.008 20.6s
+
+[2026-04-28 18:37:57] [probe] nut_thread A contact_force L17: r2_mean=0.167 std=0.006 22.5s
+
+[2026-04-28 18:38:19] [probe] nut_thread A contact_force L18: r2_mean=0.168 std=0.007 19.5s
+
+[2026-04-28 18:38:43] [probe] nut_thread A contact_force L19: r2_mean=0.167 std=0.007 22.1s
+
+[2026-04-28 18:39:04] [probe] nut_thread A contact_force L20: r2_mean=0.166 std=0.008 19.4s
+
+[2026-04-28 18:39:24] [probe] nut_thread A contact_force L21: r2_mean=0.166 std=0.005 17.2s
+
+[2026-04-28 18:39:44] [probe] nut_thread A contact_force L22: r2_mean=0.162 std=0.007 18.3s
+
+[2026-04-28 18:40:08] [probe] nut_thread A contact_force L23: r2_mean=0.158 std=0.007 21.6s
+
+[2026-04-28 18:40:28] [probe] nut_thread A contact_force_mag L00: r2_mean=0.022 std=0.002 18.0s
+
+[2026-04-28 18:40:50] [probe] nut_thread A contact_force_mag L01: r2_mean=0.033 std=0.004 19.4s
+
+[2026-04-28 18:41:10] [probe] nut_thread A contact_force_mag L02: r2_mean=0.042 std=0.003 18.6s
+
+[2026-04-28 18:41:31] [probe] nut_thread A contact_force_mag L03: r2_mean=0.042 std=0.004 19.1s
+
+[2026-04-28 18:41:55] [probe] nut_thread A contact_force_mag L04: r2_mean=0.045 std=0.004 21.5s
+
+[2026-04-28 18:42:16] [probe] nut_thread A contact_force_mag L05: r2_mean=0.044 std=0.004 19.5s
+
+[2026-04-28 18:42:36] [probe] nut_thread A contact_force_mag L06: r2_mean=0.038 std=0.008 17.7s
+
+[2026-04-28 18:42:58] [probe] nut_thread A contact_force_mag L07: r2_mean=0.031 std=0.013 19.5s
+
+[2026-04-28 18:43:18] [probe] nut_thread A contact_force_mag L08: r2_mean=0.044 std=0.005 18.7s
+
+[2026-04-28 18:43:38] [probe] nut_thread A contact_force_mag L09: r2_mean=0.038 std=0.005 17.8s
+
+[2026-04-28 18:43:59] [probe] nut_thread A contact_force_mag L10: r2_mean=0.037 std=0.012 18.7s
+
+[2026-04-28 18:44:22] [probe] nut_thread A contact_force_mag L11: r2_mean=0.047 std=0.003 21.5s
+
+[2026-04-28 18:44:43] [probe] nut_thread A contact_force_mag L12: r2_mean=0.048 std=0.004 18.7s
+
+[2026-04-28 18:45:02] [probe] nut_thread A contact_force_mag L13: r2_mean=0.049 std=0.004 17.1s
+
+[2026-04-28 18:45:22] [probe] nut_thread A contact_force_mag L14: r2_mean=0.051 std=0.004 18.5s
+
+[2026-04-28 18:45:44] [probe] nut_thread A contact_force_mag L15: r2_mean=0.051 std=0.003 19.0s
+
+[2026-04-28 18:46:06] [probe] nut_thread A contact_force_mag L16: r2_mean=0.051 std=0.002 20.7s
+
+[2026-04-28 18:46:28] [probe] nut_thread A contact_force_mag L17: r2_mean=0.052 std=0.003 20.4s
+
+[2026-04-28 18:46:49] [probe] nut_thread A contact_force_mag L18: r2_mean=0.052 std=0.003 18.4s
+
+[2026-04-28 18:47:08] [probe] nut_thread A contact_force_mag L19: r2_mean=0.052 std=0.003 17.7s
+
+[2026-04-28 18:47:29] [probe] nut_thread A contact_force_mag L20: r2_mean=0.052 std=0.003 19.1s
+
+[2026-04-28 18:47:53] [probe] nut_thread A contact_force_mag L21: r2_mean=0.052 std=0.004 21.6s
+
+[2026-04-28 18:48:13] [probe] nut_thread A contact_force_mag L22: r2_mean=0.053 std=0.003 18.4s
+
+[2026-04-28 18:48:34] [probe] nut_thread A contact_force_mag L23: r2_mean=0.051 std=0.005 18.9s
+
+[2026-04-28 18:48:56] [probe] nut_thread A contact_force_log1p_mag L00: r2_mean=0.032 std=0.003 19.3s
+
+[2026-04-28 18:49:17] [probe] nut_thread A contact_force_log1p_mag L01: r2_mean=0.049 std=0.009 19.1s
+
+[2026-04-28 18:49:36] [probe] nut_thread A contact_force_log1p_mag L02: r2_mean=0.063 std=0.002 17.2s
+
+[2026-04-28 18:49:57] [probe] nut_thread A contact_force_log1p_mag L03: r2_mean=0.064 std=0.003 18.7s
+
+[2026-04-28 18:50:18] [probe] nut_thread A contact_force_log1p_mag L04: r2_mean=0.067 std=0.003 19.9s
+
+[2026-04-28 18:50:39] [probe] nut_thread A contact_force_log1p_mag L05: r2_mean=0.067 std=0.003 18.3s
+
+[2026-04-28 18:51:01] [probe] nut_thread A contact_force_log1p_mag L06: r2_mean=0.061 std=0.007 20.8s
+
+[2026-04-28 18:51:24] [probe] nut_thread A contact_force_log1p_mag L07: r2_mean=-0.019 std=0.104 20.4s
+
+[2026-04-28 18:51:46] [probe] nut_thread A contact_force_log1p_mag L08: r2_mean=0.070 std=0.003 20.6s
+
+[2026-04-28 18:52:08] [probe] nut_thread A contact_force_log1p_mag L09: r2_mean=0.065 std=0.002 19.9s
+
+[2026-04-28 18:52:29] [probe] nut_thread A contact_force_log1p_mag L10: r2_mean=0.066 std=0.005 19.0s
+
+[2026-04-28 18:52:53] [probe] nut_thread A contact_force_log1p_mag L11: r2_mean=0.071 std=0.004 21.0s
+
+[2026-04-28 18:53:16] [probe] nut_thread A contact_force_log1p_mag L12: r2_mean=0.073 std=0.003 21.7s
+
+[2026-04-28 18:53:38] [probe] nut_thread A contact_force_log1p_mag L13: r2_mean=0.075 std=0.004 19.5s
+
+[2026-04-28 18:54:00] [probe] nut_thread A contact_force_log1p_mag L14: r2_mean=0.076 std=0.003 20.5s
+
+[2026-04-28 18:54:23] [probe] nut_thread A contact_force_log1p_mag L15: r2_mean=0.078 std=0.002 20.5s
+
+[2026-04-28 18:54:45] [probe] nut_thread A contact_force_log1p_mag L16: r2_mean=0.077 std=0.003 20.5s
+
+[2026-04-28 18:55:08] [probe] nut_thread A contact_force_log1p_mag L17: r2_mean=0.077 std=0.004 20.1s
+
+[2026-04-28 18:55:29] [probe] nut_thread A contact_force_log1p_mag L18: r2_mean=0.079 std=0.003 19.8s
+
+[2026-04-28 18:55:52] [probe] nut_thread A contact_force_log1p_mag L19: r2_mean=0.078 std=0.003 20.7s
+
+[2026-04-28 18:56:12] [probe] nut_thread A contact_force_log1p_mag L20: r2_mean=0.078 std=0.003 18.2s
+
+[2026-04-28 18:56:31] [probe] nut_thread A contact_force_log1p_mag L21: r2_mean=0.077 std=0.004 17.0s
+
+[2026-04-28 18:56:54] [probe] nut_thread A contact_force_log1p_mag L22: r2_mean=0.078 std=0.003 20.9s
+
+[2026-04-28 18:57:14] [probe] nut_thread A contact_force_log1p_mag L23: r2_mean=0.077 std=0.004 18.3s
+
+[2026-04-28 18:57:38] [probe] nut_thread A contact_point L00: r2_mean=0.257 std=0.019 21.5s
+
+[2026-04-28 18:58:02] [probe] nut_thread A contact_point L01: r2_mean=0.417 std=0.062 22.5s
+
+[2026-04-28 18:58:25] [probe] nut_thread A contact_point L02: r2_mean=0.538 std=0.006 21.1s
+
+[2026-04-28 18:58:45] [probe] nut_thread A contact_point L03: r2_mean=0.620 std=0.035 17.9s
+
+[2026-04-28 18:59:09] [probe] nut_thread A contact_point L04: r2_mean=0.761 std=0.017 22.0s
+
+[2026-04-28 18:59:32] [probe] nut_thread A contact_point L05: r2_mean=0.808 std=0.019 20.7s
+
+[2026-04-28 18:59:57] [probe] nut_thread A contact_point L06: r2_mean=0.716 std=0.068 22.8s
+
+[2026-04-28 19:00:20] [probe] nut_thread A contact_point L07: r2_mean=0.724 std=0.069 21.4s
+
+[2026-04-28 19:00:42] [probe] nut_thread A contact_point L08: r2_mean=0.813 std=0.050 20.2s
+
+[2026-04-28 19:01:04] [probe] nut_thread A contact_point L09: r2_mean=0.709 std=0.174 19.5s
+
+[2026-04-28 19:01:29] [probe] nut_thread A contact_point L10: r2_mean=0.623 std=0.204 23.0s
+
+[2026-04-28 19:01:51] [probe] nut_thread A contact_point L11: r2_mean=0.843 std=0.053 19.9s
+
+[2026-04-28 19:02:15] [probe] nut_thread A contact_point L12: r2_mean=0.835 std=0.005 22.4s
+
+[2026-04-28 19:02:37] [probe] nut_thread A contact_point L13: r2_mean=0.806 std=0.010 20.1s
+
+[2026-04-28 19:03:00] [probe] nut_thread A contact_point L14: r2_mean=0.783 std=0.004 20.5s
+
+[2026-04-28 19:03:22] [probe] nut_thread A contact_point L15: r2_mean=0.743 std=0.002 20.5s
+
+[2026-04-28 19:03:47] [probe] nut_thread A contact_point L16: r2_mean=0.717 std=0.007 22.5s
+
+[2026-04-28 19:04:11] [probe] nut_thread A contact_point L17: r2_mean=0.672 std=0.003 22.0s
+
+[2026-04-28 19:04:35] [probe] nut_thread A contact_point L18: r2_mean=0.622 std=0.034 21.9s
+
+[2026-04-28 19:04:59] [probe] nut_thread A contact_point L19: r2_mean=0.600 std=0.032 22.2s
+
+[2026-04-28 19:05:22] [probe] nut_thread A contact_point L20: r2_mean=0.573 std=0.036 21.2s
+
+[2026-04-28 19:05:46] [probe] nut_thread A contact_point L21: r2_mean=0.574 std=0.005 21.7s
+
+[2026-04-28 19:06:07] [probe] nut_thread A contact_point L22: r2_mean=0.506 std=0.039 19.0s
+
+[2026-04-28 19:06:29] [probe] nut_thread A contact_point L23: r2_mean=0.506 std=0.049 20.1s
+
+[2026-04-28 19:06:46] [probe] nut_thread A phase L00: r2_mean=1.000 std=0.000 15.0s
+
+[2026-04-28 19:07:05] [probe] nut_thread A phase L01: r2_mean=1.000 std=0.000 16.6s
+
+[2026-04-28 19:07:27] [probe] nut_thread A phase L02: r2_mean=1.000 std=0.000 19.8s
+
+[2026-04-28 19:07:46] [probe] nut_thread A phase L03: r2_mean=1.000 std=0.000 17.5s
+
+[2026-04-28 19:08:09] [probe] nut_thread A phase L04: r2_mean=1.000 std=0.000 20.7s
+
+[2026-04-28 19:08:29] [probe] nut_thread A phase L05: r2_mean=1.000 std=0.000 18.4s
+
+[2026-04-28 19:08:52] [probe] nut_thread A phase L06: r2_mean=1.000 std=0.000 21.1s
+
+[2026-04-28 19:09:15] [probe] nut_thread A phase L07: r2_mean=1.000 std=0.000 21.3s
+
+[2026-04-28 19:09:38] [probe] nut_thread A phase L08: r2_mean=1.000 std=0.000 21.1s
+
+[2026-04-28 19:09:57] [probe] nut_thread A phase L09: r2_mean=1.000 std=0.000 17.1s
+
+[2026-04-28 19:10:17] [probe] nut_thread A phase L10: r2_mean=1.000 std=0.000 18.2s
+
+[2026-04-28 19:10:40] [probe] nut_thread A phase L11: r2_mean=1.000 std=0.000 20.5s
+
+[2026-04-28 19:11:02] [probe] nut_thread A phase L12: r2_mean=1.000 std=0.000 20.4s
+
+[2026-04-28 19:11:25] [probe] nut_thread A phase L13: r2_mean=1.000 std=0.000 21.0s
+
+[2026-04-28 19:11:42] [probe] nut_thread A phase L14: r2_mean=1.000 std=0.000 14.9s
+
+[2026-04-28 19:12:01] [probe] nut_thread A phase L15: r2_mean=1.000 std=0.000 16.7s
+
+[2026-04-28 19:12:22] [probe] nut_thread A phase L16: r2_mean=1.000 std=0.000 19.1s
+
+[2026-04-28 19:12:44] [probe] nut_thread A phase L17: r2_mean=1.000 std=0.000 20.7s
+
+[2026-04-28 19:13:04] [probe] nut_thread A phase L18: r2_mean=1.000 std=0.000 18.1s
+
+[2026-04-28 19:13:26] [probe] nut_thread A phase L19: r2_mean=1.000 std=0.000 20.1s
+
+[2026-04-28 19:13:48] [probe] nut_thread A phase L20: r2_mean=1.000 std=0.000 19.5s
+
+[2026-04-28 19:14:09] [probe] nut_thread A phase L21: r2_mean=1.000 std=0.000 19.1s
+
+[2026-04-28 19:14:32] [probe] nut_thread A phase L22: r2_mean=1.000 std=0.000 20.8s
+
+[2026-04-28 19:14:55] [probe] nut_thread A phase L23: r2_mean=1.000 std=0.000 20.9s
+
+[2026-04-28 19:15:15] [probe] nut_thread A axial_progress L00: r2_mean=0.017 std=0.008 18.4s
+
+[2026-04-28 19:15:36] [probe] nut_thread A axial_progress L01: r2_mean=0.116 std=0.012 18.8s
+
+[2026-04-28 19:15:57] [probe] nut_thread A axial_progress L02: r2_mean=0.150 std=0.009 18.6s
+
+[2026-04-28 19:16:18] [probe] nut_thread A axial_progress L03: r2_mean=0.154 std=0.011 19.1s
+
+[2026-04-28 19:16:41] [probe] nut_thread A axial_progress L04: r2_mean=0.176 std=0.017 20.9s
+
+[2026-04-28 19:17:01] [probe] nut_thread A axial_progress L05: r2_mean=0.192 std=0.022 18.5s
+
+[2026-04-28 19:17:22] [probe] nut_thread A axial_progress L06: r2_mean=0.196 std=0.022 19.1s
+
+[2026-04-28 19:17:44] [probe] nut_thread A axial_progress L07: r2_mean=0.152 std=0.119 19.5s
+
+[2026-04-28 19:18:05] [probe] nut_thread A axial_progress L08: r2_mean=0.255 std=0.018 19.0s
+
+[2026-04-28 19:18:26] [probe] nut_thread A axial_progress L09: r2_mean=0.274 std=0.025 19.1s
+
+[2026-04-28 19:18:48] [probe] nut_thread A axial_progress L10: r2_mean=0.290 std=0.025 19.7s
+
+[2026-04-28 19:19:09] [probe] nut_thread A axial_progress L11: r2_mean=0.299 std=0.020 19.2s
+
+[2026-04-28 19:19:30] [probe] nut_thread A axial_progress L12: r2_mean=0.308 std=0.019 19.2s
+
+[2026-04-28 19:19:51] [probe] nut_thread A axial_progress L13: r2_mean=0.323 std=0.018 18.9s
+
+[2026-04-28 19:20:12] [probe] nut_thread A axial_progress L14: r2_mean=0.362 std=0.017 19.9s
+
+[2026-04-28 19:20:34] [probe] nut_thread A axial_progress L15: r2_mean=0.372 std=0.016 19.6s
+
+[2026-04-28 19:20:57] [probe] nut_thread A axial_progress L16: r2_mean=0.368 std=0.013 20.8s
+
+[2026-04-28 19:21:18] [probe] nut_thread A axial_progress L17: r2_mean=0.383 std=0.022 18.5s
+
+[2026-04-28 19:21:38] [probe] nut_thread A axial_progress L18: r2_mean=0.383 std=0.027 18.4s
+
+[2026-04-28 19:22:00] [probe] nut_thread A axial_progress L19: r2_mean=0.381 std=0.017 20.2s
+
+[2026-04-28 19:22:23] [probe] nut_thread A axial_progress L20: r2_mean=0.378 std=0.020 20.3s
+
+[2026-04-28 19:22:44] [probe] nut_thread A axial_progress L21: r2_mean=0.370 std=0.019 19.0s
+
+[2026-04-28 19:23:03] [probe] nut_thread A axial_progress L22: r2_mean=0.353 std=0.021 17.8s
+
+[2026-04-28 19:23:24] [probe] nut_thread A axial_progress L23: r2_mean=0.349 std=0.020 18.8s
+
+[2026-04-28 19:23:41] [probe] nut_thread A nut_bolt_relative_angle L00: r2_mean=0.131 std=0.013 14.2s
+
+[2026-04-28 19:24:01] [probe] nut_thread A nut_bolt_relative_angle L01: r2_mean=0.167 std=0.023 18.5s
+
+[2026-04-28 19:24:23] [probe] nut_thread A nut_bolt_relative_angle L02: r2_mean=0.203 std=0.013 20.6s
+
+[2026-04-28 19:24:44] [probe] nut_thread A nut_bolt_relative_angle L03: r2_mean=0.227 std=0.014 18.2s
+
+[2026-04-28 19:25:02] [probe] nut_thread A nut_bolt_relative_angle L04: r2_mean=0.240 std=0.015 16.0s
+
+[2026-04-28 19:25:23] [probe] nut_thread A nut_bolt_relative_angle L05: r2_mean=0.250 std=0.012 19.7s
+
+[2026-04-28 19:25:44] [probe] nut_thread A nut_bolt_relative_angle L06: r2_mean=0.252 std=0.019 18.8s
+
+[2026-04-28 19:26:06] [probe] nut_thread A nut_bolt_relative_angle L07: r2_mean=0.260 std=0.018 19.4s
+
+[2026-04-28 19:26:27] [probe] nut_thread A nut_bolt_relative_angle L08: r2_mean=0.271 std=0.014 19.1s
+
+[2026-04-28 19:26:47] [probe] nut_thread A nut_bolt_relative_angle L09: r2_mean=0.265 std=0.010 18.2s
+
+[2026-04-28 19:27:08] [probe] nut_thread A nut_bolt_relative_angle L10: r2_mean=0.274 std=0.014 19.0s
+
+[2026-04-28 19:27:31] [probe] nut_thread A nut_bolt_relative_angle L11: r2_mean=0.291 std=0.012 20.4s
+
+[2026-04-28 19:27:54] [probe] nut_thread A nut_bolt_relative_angle L12: r2_mean=0.303 std=0.011 21.1s
+
+[2026-04-28 19:28:15] [probe] nut_thread A nut_bolt_relative_angle L13: r2_mean=0.309 std=0.015 19.2s
+
+[2026-04-28 19:28:36] [probe] nut_thread A nut_bolt_relative_angle L14: r2_mean=0.320 std=0.019 19.2s
+
+[2026-04-28 19:28:59] [probe] nut_thread A nut_bolt_relative_angle L15: r2_mean=0.325 std=0.020 20.9s
+
+[2026-04-28 19:29:22] [probe] nut_thread A nut_bolt_relative_angle L16: r2_mean=0.334 std=0.017 20.7s
+
+[2026-04-28 19:29:42] [probe] nut_thread A nut_bolt_relative_angle L17: r2_mean=0.339 std=0.016 18.3s
+
+[2026-04-28 19:30:03] [probe] nut_thread A nut_bolt_relative_angle L18: r2_mean=0.345 std=0.014 18.8s
+
+[2026-04-28 19:30:24] [probe] nut_thread A nut_bolt_relative_angle L19: r2_mean=0.342 std=0.019 19.7s
+
+[2026-04-28 19:30:48] [probe] nut_thread A nut_bolt_relative_angle L20: r2_mean=0.350 std=0.018 21.3s
+
+[2026-04-28 19:31:09] [probe] nut_thread A nut_bolt_relative_angle L21: r2_mean=0.348 std=0.018 19.4s
+
+[2026-04-28 19:31:31] [probe] nut_thread A nut_bolt_relative_angle L22: r2_mean=0.346 std=0.015 20.0s
+
+[2026-04-28 19:31:54] [probe] nut_thread A nut_bolt_relative_angle L23: r2_mean=0.343 std=0.017 21.1s
+
+[2026-04-28 19:31:55] [probe] nut_thread A DONE in 107.8min
+
+[2026-04-28 19:32:00] [probe] task=push variant=B targets=['contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-28 19:36:13] [probe] push B layer 00: loaded [(340283, 8192)] in 253.0s
+
+[2026-04-28 19:38:07] [probe] push B contact_flag L00: r2_mean=0.403 std=0.029 102.8s
+
+[2026-04-28 19:40:09] [probe] push B contact_force L00: r2_mean=0.075 std=0.022 108.3s
+
+[2026-04-28 19:42:05] [probe] push B contact_force_mag L00: r2_mean=0.143 std=0.027 103.2s
+
+[2026-04-28 19:44:01] [probe] push B contact_force_log1p_mag L00: r2_mean=0.362 std=0.036 103.0s
+
+[2026-04-28 19:46:01] [probe] push B contact_point L00: r2_mean=-0.020 std=0.006 106.3s
+
+[2026-04-28 19:48:24] [probe] push B layer 01: loaded [(340283, 8192)] in 141.9s
+
+[2026-04-28 19:50:19] [probe] push B contact_flag L00: r2_mean=0.582 std=0.024 103.7s
+
+[2026-04-28 19:52:23] [probe] push B contact_force L00: r2_mean=0.169 std=0.019 110.6s
+
+[2026-04-28 19:54:27] [probe] push B contact_force_mag L00: r2_mean=0.274 std=0.031 110.9s
+
+[2026-04-28 19:56:28] [probe] push B contact_force_log1p_mag L00: r2_mean=0.553 std=0.011 107.3s
+
+[2026-04-28 19:58:29] [probe] push B contact_point L00: r2_mean=0.003 std=0.003 108.1s
+
+[2026-04-28 20:00:49] [probe] push B layer 02: loaded [(340283, 8192)] in 138.9s
+
+[2026-04-28 20:02:38] [probe] push B contact_flag L00: r2_mean=0.565 std=0.055 97.0s
+
+[2026-04-28 20:04:33] [probe] push B contact_force L00: r2_mean=0.192 std=0.018 103.4s
+
+[2026-04-28 20:06:35] [probe] push B contact_force_mag L00: r2_mean=0.286 std=0.016 107.7s
+
+[2026-04-28 20:08:29] [probe] push B contact_force_log1p_mag L00: r2_mean=0.550 std=0.034 101.1s
+
+[2026-04-28 20:10:29] [probe] push B contact_point L00: r2_mean=0.007 std=0.006 106.8s
+
+[2026-04-28 20:12:50] [probe] push B layer 03: loaded [(340283, 8192)] in 140.2s
+
+[2026-04-28 20:14:40] [probe] push B contact_flag L00: r2_mean=0.606 std=0.025 97.6s
+
+[2026-04-28 20:16:37] [probe] push B contact_force L00: r2_mean=0.211 std=0.015 104.3s
+
+[2026-04-28 20:18:30] [probe] push B contact_force_mag L00: r2_mean=0.304 std=0.037 99.4s
+
+[2026-04-28 20:20:23] [probe] push B contact_force_log1p_mag L00: r2_mean=0.574 std=0.027 99.2s
+
+[2026-04-28 20:22:22] [probe] push B contact_point L00: r2_mean=-0.002 std=0.017 105.5s
+
+[2026-04-28 20:24:42] [probe] push B layer 04: loaded [(340283, 8192)] in 139.5s
+
+[2026-04-28 20:26:34] [probe] push B contact_flag L00: r2_mean=0.502 std=0.209 100.8s
+
+[2026-04-28 20:28:32] [probe] push B contact_force L00: r2_mean=0.223 std=0.020 105.5s
+
+[2026-04-28 20:30:30] [probe] push B contact_force_mag L00: r2_mean=0.279 std=0.069 105.0s
+
+[2026-04-28 20:32:32] [probe] push B contact_force_log1p_mag L00: r2_mean=0.509 std=0.107 108.2s
+
+[2026-04-28 20:34:35] [probe] push B contact_point L00: r2_mean=0.008 std=0.005 109.5s
+
+[2026-04-28 20:36:58] [probe] push B layer 05: loaded [(340283, 8192)] in 141.7s
+
+[2026-04-28 20:38:50] [probe] push B contact_flag L00: r2_mean=0.500 std=0.139 100.4s
+
+[2026-04-28 20:40:48] [probe] push B contact_force L00: r2_mean=0.235 std=0.020 105.8s
+
+[2026-04-28 20:42:42] [probe] push B contact_force_mag L00: r2_mean=0.228 std=0.160 100.3s
+
+[2026-04-28 20:44:37] [probe] push B contact_force_log1p_mag L00: r2_mean=0.323 std=0.393 102.1s
+
+[2026-04-28 20:46:38] [probe] push B contact_point L00: r2_mean=0.025 std=0.008 107.7s
+
+[2026-04-28 20:49:02] [probe] push B layer 06: loaded [(340283, 8192)] in 142.5s
+
+[2026-04-28 20:50:52] [probe] push B contact_flag L00: r2_mean=0.292 std=0.326 97.7s
+
+[2026-04-28 20:52:49] [probe] push B contact_force L00: r2_mean=0.251 std=0.024 103.7s
+
+[2026-04-28 20:54:40] [probe] push B contact_force_mag L00: r2_mean=0.203 std=0.162 97.9s
+
+[2026-04-28 20:56:34] [probe] push B contact_force_log1p_mag L00: r2_mean=0.309 std=0.293 100.5s
+
+[2026-04-28 20:58:34] [probe] push B contact_point L00: r2_mean=0.024 std=0.008 106.4s
+
+[2026-04-28 21:00:57] [probe] push B layer 07: loaded [(340283, 8192)] in 142.2s
+
+[2026-04-28 21:02:46] [probe] push B contact_flag L00: r2_mean=0.393 std=0.316 97.5s
+
+[2026-04-28 21:04:44] [probe] push B contact_force L00: r2_mean=0.268 std=0.023 104.8s
+
+[2026-04-28 21:06:36] [probe] push B contact_force_mag L00: r2_mean=0.320 std=0.097 99.4s
+
+[2026-04-28 21:08:29] [probe] push B contact_force_log1p_mag L00: r2_mean=0.493 std=0.183 98.9s
+
+[2026-04-28 21:10:32] [probe] push B contact_point L00: r2_mean=0.027 std=0.008 109.1s
+
+[2026-04-28 21:12:55] [probe] push B layer 08: loaded [(340283, 8192)] in 141.8s
+
+[2026-04-28 21:14:44] [probe] push B contact_flag L00: r2_mean=0.595 std=0.147 96.7s
+
+[2026-04-28 21:16:41] [probe] push B contact_force L00: r2_mean=0.284 std=0.021 105.4s
+
+[2026-04-28 21:18:33] [probe] push B contact_force_mag L00: r2_mean=0.386 std=0.041 97.7s
+
+[2026-04-28 21:20:24] [probe] push B contact_force_log1p_mag L00: r2_mean=0.622 std=0.064 97.5s
+
+[2026-04-28 21:22:23] [probe] push B contact_point L00: r2_mean=0.035 std=0.009 105.0s
+
+[2026-04-28 21:24:48] [probe] push B layer 09: loaded [(340283, 8192)] in 144.1s
+
+[2026-04-28 21:26:38] [probe] push B contact_flag L00: r2_mean=0.653 std=0.088 97.7s
+
+[2026-04-28 21:28:35] [probe] push B contact_force L00: r2_mean=0.292 std=0.023 103.8s
+
+[2026-04-28 21:30:27] [probe] push B contact_force_mag L00: r2_mean=0.377 std=0.081 98.4s
+
+[2026-04-28 21:32:19] [probe] push B contact_force_log1p_mag L00: r2_mean=0.657 std=0.078 97.7s
+
+[2026-04-28 21:34:16] [probe] push B contact_point L00: r2_mean=0.023 std=0.009 103.8s
+
+[2026-04-28 21:36:40] [probe] push B layer 10: loaded [(340283, 8192)] in 143.1s
+
+[2026-04-28 21:38:30] [probe] push B contact_flag L00: r2_mean=0.633 std=0.108 97.5s
+
+[2026-04-28 21:40:25] [probe] push B contact_force L00: r2_mean=0.296 std=0.024 101.9s
+
+[2026-04-28 21:42:18] [probe] push B contact_force_mag L00: r2_mean=0.370 std=0.082 99.1s
+
+[2026-04-28 21:44:10] [probe] push B contact_force_log1p_mag L00: r2_mean=0.637 std=0.093 98.5s
+
+[2026-04-28 21:46:08] [probe] push B contact_point L00: r2_mean=0.029 std=0.014 104.0s
+
+[2026-04-28 21:48:33] [probe] push B layer 11: loaded [(340283, 8192)] in 144.3s
+
+[2026-04-28 21:50:29] [probe] push B contact_flag L00: r2_mean=0.568 std=0.159 103.8s
+
+[2026-04-28 21:52:30] [probe] push B contact_force L00: r2_mean=0.305 std=0.023 107.9s
+
+[2026-04-28 21:54:25] [probe] push B contact_force_mag L00: r2_mean=0.398 std=0.038 101.8s
+
+[2026-04-28 21:56:21] [probe] push B contact_force_log1p_mag L00: r2_mean=0.604 std=0.051 102.3s
+
+[2026-04-28 21:58:22] [probe] push B contact_point L00: r2_mean=0.036 std=0.013 107.0s
+
+[2026-04-28 22:00:45] [probe] push B layer 12: loaded [(340283, 8192)] in 142.5s
+
+[2026-04-28 22:02:39] [probe] push B contact_flag L00: r2_mean=0.693 std=0.015 101.9s
+
+[2026-04-28 22:04:37] [probe] push B contact_force L00: r2_mean=0.318 std=0.029 105.4s
+
+[2026-04-28 22:06:31] [probe] push B contact_force_mag L00: r2_mean=0.408 std=0.059 100.1s
+
+[2026-04-28 22:08:25] [probe] push B contact_force_log1p_mag L00: r2_mean=0.641 std=0.072 99.8s
+
+[2026-04-28 22:10:25] [probe] push B contact_point L00: r2_mean=0.027 std=0.015 105.9s
+
+[2026-04-28 22:12:54] [probe] push B layer 13: loaded [(340283, 8192)] in 147.7s
+
+[2026-04-28 22:14:45] [probe] push B contact_flag L00: r2_mean=0.699 std=0.061 99.0s
+
+[2026-04-28 22:16:42] [probe] push B contact_force L00: r2_mean=0.327 std=0.027 103.1s
+
+[2026-04-28 22:18:32] [probe] push B contact_force_mag L00: r2_mean=0.404 std=0.076 96.0s
+
+[2026-04-28 22:20:23] [probe] push B contact_force_log1p_mag L00: r2_mean=0.633 std=0.121 97.6s
+
+[2026-04-28 22:22:18] [probe] push B contact_point L00: r2_mean=0.024 std=0.009 102.1s
+
+[2026-04-28 22:24:42] [probe] push B layer 14: loaded [(340283, 8192)] in 142.5s
+
+[2026-04-28 22:26:32] [probe] push B contact_flag L00: r2_mean=0.667 std=0.051 98.3s
+
+[2026-04-28 22:28:28] [probe] push B contact_force L00: r2_mean=0.319 std=0.022 102.9s
+
+[2026-04-28 22:30:18] [probe] push B contact_force_mag L00: r2_mean=0.384 std=0.064 97.0s
+
+[2026-04-28 22:32:10] [probe] push B contact_force_log1p_mag L00: r2_mean=0.638 std=0.075 98.2s
+
+[2026-04-28 22:34:06] [probe] push B contact_point L00: r2_mean=0.034 std=0.012 103.5s
+
+[2026-04-28 22:36:29] [probe] push B layer 15: loaded [(340283, 8192)] in 142.0s
+
+[2026-04-28 22:38:19] [probe] push B contact_flag L00: r2_mean=0.706 std=0.062 97.3s
+
+[2026-04-28 22:40:14] [probe] push B contact_force L00: r2_mean=0.328 std=0.035 102.6s
+
+[2026-04-28 22:42:05] [probe] push B contact_force_mag L00: r2_mean=0.401 std=0.069 96.8s
+
+[2026-04-28 22:43:54] [probe] push B contact_force_log1p_mag L00: r2_mean=0.673 std=0.055 97.0s
+
+[2026-04-28 22:45:50] [probe] push B contact_point L00: r2_mean=0.037 std=0.013 103.0s
+
+[2026-04-28 22:48:14] [probe] push B layer 16: loaded [(340283, 8192)] in 142.3s
+
+[2026-04-28 22:50:02] [probe] push B contact_flag L00: r2_mean=0.722 std=0.064 96.3s
+
+[2026-04-28 22:52:00] [probe] push B contact_force L00: r2_mean=0.334 std=0.025 105.1s
+
+[2026-04-28 22:53:52] [probe] push B contact_force_mag L00: r2_mean=0.417 std=0.072 98.3s
+
+[2026-04-28 22:55:44] [probe] push B contact_force_log1p_mag L00: r2_mean=0.726 std=0.034 98.6s
+
+[2026-04-28 22:57:47] [probe] push B contact_point L00: r2_mean=0.031 std=0.012 108.0s
+
+[2026-04-28 23:00:15] [probe] push B layer 17: loaded [(340283, 8192)] in 146.7s
+
+[2026-04-28 23:02:05] [probe] push B contact_flag L00: r2_mean=0.741 std=0.029 98.5s
+
+[2026-04-28 23:04:01] [probe] push B contact_force L00: r2_mean=0.337 std=0.026 102.9s
+
+[2026-04-28 23:05:53] [probe] push B contact_force_mag L00: r2_mean=0.448 std=0.043 98.2s
+
+[2026-04-28 23:07:46] [probe] push B contact_force_log1p_mag L00: r2_mean=0.727 std=0.026 98.9s
+
+[2026-04-28 23:09:45] [probe] push B contact_point L00: r2_mean=0.029 std=0.011 104.8s
+
+[2026-04-28 23:12:12] [probe] push B layer 18: loaded [(340283, 8192)] in 146.0s
+
+[2026-04-28 23:14:01] [probe] push B contact_flag L00: r2_mean=0.754 std=0.054 96.8s
+
+[2026-04-28 23:16:04] [probe] push B contact_force L00: r2_mean=0.347 std=0.025 106.3s
+
+[2026-04-28 23:18:00] [probe] push B contact_force_mag L00: r2_mean=0.436 std=0.054 101.1s
+
+[2026-04-28 23:20:00] [probe] push B contact_force_log1p_mag L00: r2_mean=0.741 std=0.046 104.3s
+
+[2026-04-28 23:22:12] [probe] push B contact_point L00: r2_mean=0.026 std=0.011 113.8s
+
+[2026-04-28 23:24:36] [probe] push B layer 19: loaded [(340283, 8192)] in 143.4s
+
+[2026-04-28 23:26:29] [probe] push B contact_flag L00: r2_mean=0.767 std=0.015 101.0s
+
+[2026-04-28 23:28:28] [probe] push B contact_force L00: r2_mean=0.350 std=0.020 106.1s
+
+[2026-04-28 23:30:23] [probe] push B contact_force_mag L00: r2_mean=0.460 std=0.045 101.5s
+
+[2026-04-28 23:32:17] [probe] push B contact_force_log1p_mag L00: r2_mean=0.745 std=0.025 100.5s
+
+[2026-04-28 23:34:19] [probe] push B contact_point L00: r2_mean=0.019 std=0.008 108.9s
+
+[2026-04-28 23:36:46] [probe] push B layer 20: loaded [(340283, 8192)] in 145.5s
+
+[2026-04-28 23:38:40] [probe] push B contact_flag L00: r2_mean=0.750 std=0.029 102.2s
+
+[2026-04-28 23:40:40] [probe] push B contact_force L00: r2_mean=0.354 std=0.028 107.2s
+
+[2026-04-28 23:42:34] [probe] push B contact_force_mag L00: r2_mean=0.452 std=0.043 100.2s
+
+[2026-04-28 23:44:28] [probe] push B contact_force_log1p_mag L00: r2_mean=0.731 std=0.039 100.2s
+
+[2026-04-28 23:46:29] [probe] push B contact_point L00: r2_mean=0.008 std=0.009 106.4s
+
+[2026-04-28 23:48:55] [probe] push B layer 21: loaded [(340283, 8192)] in 144.7s
+
+[2026-04-28 23:50:55] [probe] push B contact_flag L00: r2_mean=0.772 std=0.013 108.0s
+
+[2026-04-28 23:52:54] [probe] push B contact_force L00: r2_mean=0.363 std=0.017 106.0s
+
+[2026-04-28 23:54:49] [probe] push B contact_force_mag L00: r2_mean=0.456 std=0.044 102.0s
+
+[2026-04-28 23:56:44] [probe] push B contact_force_log1p_mag L00: r2_mean=0.741 std=0.026 100.9s
+
+[2026-04-28 23:58:46] [probe] push B contact_point L00: r2_mean=0.010 std=0.004 108.2s
+
+[2026-04-29 00:01:14] [probe] push B layer 22: loaded [(340283, 8192)] in 146.5s
+
+[2026-04-29 00:03:08] [probe] push B contact_flag L00: r2_mean=0.779 std=0.007 102.0s
+
+[2026-04-29 00:05:07] [probe] push B contact_force L00: r2_mean=0.367 std=0.019 106.6s
+
+[2026-04-29 00:07:03] [probe] push B contact_force_mag L00: r2_mean=0.474 std=0.034 102.0s
+
+[2026-04-29 00:08:57] [probe] push B contact_force_log1p_mag L00: r2_mean=0.760 std=0.013 100.8s
+
+[2026-04-29 00:10:57] [probe] push B contact_point L00: r2_mean=0.008 std=0.012 106.4s
+
+[2026-04-29 00:13:24] [probe] push B layer 23: loaded [(340283, 8192)] in 145.9s
+
+[2026-04-29 00:15:16] [probe] push B contact_flag L00: r2_mean=0.776 std=0.010 100.5s
+
+[2026-04-29 00:17:18] [probe] push B contact_force L00: r2_mean=0.357 std=0.024 107.8s
+
+[2026-04-29 00:19:13] [probe] push B contact_force_mag L00: r2_mean=0.475 std=0.033 100.7s
+
+[2026-04-29 00:21:10] [probe] push B contact_force_log1p_mag L00: r2_mean=0.766 std=0.010 103.2s
+
+[2026-04-29 00:23:14] [probe] push B contact_point L00: r2_mean=0.001 std=0.012 110.6s
+
+[2026-04-29 00:23:16] [probe] push B DONE in 291.3min
+
+[2026-04-29 00:23:20] [probe] task=strike variant=B targets=['contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-29 00:30:00] [probe] strike B layer 00: loaded [(535779, 8192)] in 400.2s
+
+[2026-04-29 00:33:05] [probe] strike B contact_flag L00: r2_mean=0.472 std=0.014 165.9s
+
+[2026-04-29 00:36:12] [probe] strike B contact_force L00: r2_mean=0.162 std=0.029 165.5s
+
+[2026-04-29 00:39:17] [probe] strike B contact_force_mag L00: r2_mean=0.280 std=0.029 164.2s
+
+[2026-04-29 00:42:24] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.447 std=0.017 165.4s
+
+[2026-04-29 00:45:36] [probe] strike B contact_point L00: r2_mean=-0.029 std=0.020 170.5s
+
+[2026-04-29 00:49:20] [probe] strike B layer 01: loaded [(535779, 8192)] in 222.0s
+
+[2026-04-29 00:52:19] [probe] strike B contact_flag L00: r2_mean=0.613 std=0.095 160.0s
+
+[2026-04-29 00:55:26] [probe] strike B contact_force L00: r2_mean=0.322 std=0.033 166.5s
+
+[2026-04-29 00:58:30] [probe] strike B contact_force_mag L00: r2_mean=0.426 std=0.089 163.6s
+
+[2026-04-29 01:01:36] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.579 std=0.100 164.5s
+
+[2026-04-29 01:04:45] [probe] strike B contact_point L00: r2_mean=-0.000 std=0.018 169.1s
+
+[2026-04-29 01:08:10] [probe] strike B layer 02: loaded [(535779, 8192)] in 203.9s
+
+[2026-04-29 01:11:08] [probe] strike B contact_flag L00: r2_mean=0.689 std=0.007 159.8s
+
+[2026-04-29 01:14:15] [probe] strike B contact_force L00: r2_mean=0.358 std=0.029 166.2s
+
+[2026-04-29 01:17:17] [probe] strike B contact_force_mag L00: r2_mean=0.506 std=0.019 160.8s
+
+[2026-04-29 01:20:19] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.680 std=0.008 162.3s
+
+[2026-04-29 01:23:32] [probe] strike B contact_point L00: r2_mean=0.003 std=0.016 171.7s
+
+[2026-04-29 01:26:57] [probe] strike B layer 03: loaded [(535779, 8192)] in 203.5s
+
+[2026-04-29 01:29:53] [probe] strike B contact_flag L00: r2_mean=0.704 std=0.053 157.9s
+
+[2026-04-29 01:33:05] [probe] strike B contact_force L00: r2_mean=0.372 std=0.026 170.6s
+
+[2026-04-29 01:36:12] [probe] strike B contact_force_mag L00: r2_mean=0.511 std=0.048 166.3s
+
+[2026-04-29 01:39:16] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.695 std=0.047 163.9s
+
+[2026-04-29 01:42:26] [probe] strike B contact_point L00: r2_mean=0.007 std=0.010 169.2s
+
+[2026-04-29 01:45:51] [probe] strike B layer 04: loaded [(535779, 8192)] in 203.4s
+
+[2026-04-29 01:48:49] [probe] strike B contact_flag L00: r2_mean=0.627 std=0.130 159.2s
+
+[2026-04-29 01:51:55] [probe] strike B contact_force L00: r2_mean=0.398 std=0.024 165.8s
+
+[2026-04-29 01:55:05] [probe] strike B contact_force_mag L00: r2_mean=0.471 std=0.066 168.4s
+
+[2026-04-29 01:58:14] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.593 std=0.152 167.4s
+
+[2026-04-29 02:01:28] [probe] strike B contact_point L00: r2_mean=-0.001 std=0.013 173.2s
+
+[2026-04-29 02:04:57] [probe] strike B layer 05: loaded [(535779, 8192)] in 207.8s
+
+[2026-04-29 02:07:53] [probe] strike B contact_flag L00: r2_mean=0.595 std=0.194 157.9s
+
+[2026-04-29 02:10:57] [probe] strike B contact_force L00: r2_mean=0.410 std=0.027 164.1s
+
+[2026-04-29 02:14:00] [probe] strike B contact_force_mag L00: r2_mean=0.395 std=0.227 162.8s
+
+[2026-04-29 02:17:02] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.572 std=0.211 161.3s
+
+[2026-04-29 02:20:10] [probe] strike B contact_point L00: r2_mean=0.011 std=0.010 166.5s
+
+[2026-04-29 02:23:34] [probe] strike B layer 06: loaded [(535779, 8192)] in 202.9s
+
+[2026-04-29 02:26:33] [probe] strike B contact_flag L00: r2_mean=0.488 std=0.279 160.2s
+
+[2026-04-29 02:29:41] [probe] strike B contact_force L00: r2_mean=0.426 std=0.028 167.3s
+
+[2026-04-29 02:32:49] [probe] strike B contact_force_mag L00: r2_mean=0.348 std=0.326 166.0s
+
+[2026-04-29 02:35:56] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.501 std=0.308 165.2s
+
+[2026-04-29 02:39:15] [probe] strike B contact_point L00: r2_mean=0.014 std=0.008 176.2s
+
+[2026-04-29 02:42:48] [probe] strike B layer 07: loaded [(535779, 8192)] in 211.0s
+
+[2026-04-29 02:45:48] [probe] strike B contact_flag L00: r2_mean=0.648 std=0.125 160.7s
+
+[2026-04-29 02:48:56] [probe] strike B contact_force L00: r2_mean=0.437 std=0.034 167.0s
+
+[2026-04-29 02:52:03] [probe] strike B contact_force_mag L00: r2_mean=0.471 std=0.133 165.3s
+
+[2026-04-29 02:55:15] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.629 std=0.156 169.9s
+
+[2026-04-29 02:58:29] [probe] strike B contact_point L00: r2_mean=0.016 std=0.007 172.2s
+
+[2026-04-29 03:01:59] [probe] strike B layer 08: loaded [(535779, 8192)] in 208.3s
+
+[2026-04-29 03:04:59] [probe] strike B contact_flag L00: r2_mean=0.611 std=0.238 160.5s
+
+[2026-04-29 03:08:11] [probe] strike B contact_force L00: r2_mean=0.471 std=0.029 172.4s
+
+[2026-04-29 03:11:23] [probe] strike B contact_force_mag L00: r2_mean=0.532 std=0.091 169.7s
+
+[2026-04-29 03:14:32] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.633 std=0.182 166.1s
+
+[2026-04-29 03:17:45] [probe] strike B contact_point L00: r2_mean=0.019 std=0.004 171.5s
+
+[2026-04-29 03:21:17] [probe] strike B layer 09: loaded [(535779, 8192)] in 210.1s
+
+[2026-04-29 03:24:17] [probe] strike B contact_flag L00: r2_mean=0.563 std=0.248 161.1s
+
+[2026-04-29 03:27:30] [probe] strike B contact_force L00: r2_mean=0.494 std=0.029 171.3s
+
+[2026-04-29 03:30:37] [probe] strike B contact_force_mag L00: r2_mean=0.478 std=0.171 165.5s
+
+[2026-04-29 03:33:47] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.596 std=0.192 167.0s
+
+[2026-04-29 03:37:05] [probe] strike B contact_point L00: r2_mean=0.018 std=0.006 175.2s
+
+[2026-04-29 03:40:34] [probe] strike B layer 10: loaded [(535779, 8192)] in 207.9s
+
+[2026-04-29 03:43:36] [probe] strike B contact_flag L00: r2_mean=0.611 std=0.187 162.0s
+
+[2026-04-29 03:46:49] [probe] strike B contact_force L00: r2_mean=0.503 std=0.030 171.5s
+
+[2026-04-29 03:49:56] [probe] strike B contact_force_mag L00: r2_mean=0.447 std=0.216 165.4s
+
+[2026-04-29 03:53:10] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.581 std=0.231 171.9s
+
+[2026-04-29 03:56:24] [probe] strike B contact_point L00: r2_mean=0.016 std=0.008 171.8s
+
+[2026-04-29 03:59:56] [probe] strike B layer 11: loaded [(535779, 8192)] in 211.2s
+
+[2026-04-29 04:02:57] [probe] strike B contact_flag L00: r2_mean=0.714 std=0.046 161.1s
+
+[2026-04-29 04:06:07] [probe] strike B contact_force L00: r2_mean=0.514 std=0.033 170.3s
+
+[2026-04-29 04:09:14] [probe] strike B contact_force_mag L00: r2_mean=0.591 std=0.052 164.9s
+
+[2026-04-29 04:12:24] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.714 std=0.048 167.7s
+
+[2026-04-29 04:15:40] [probe] strike B contact_point L00: r2_mean=0.024 std=0.006 172.6s
+
+[2026-04-29 04:19:09] [probe] strike B layer 12: loaded [(535779, 8192)] in 207.9s
+
+[2026-04-29 04:22:10] [probe] strike B contact_flag L00: r2_mean=0.742 std=0.063 162.2s
+
+[2026-04-29 04:25:23] [probe] strike B contact_force L00: r2_mean=0.559 std=0.034 169.9s
+
+[2026-04-29 04:28:34] [probe] strike B contact_force_mag L00: r2_mean=0.584 std=0.113 168.6s
+
+[2026-04-29 04:31:41] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.739 std=0.062 164.9s
+
+[2026-04-29 04:34:54] [probe] strike B contact_point L00: r2_mean=0.022 std=0.008 171.2s
+
+[2026-04-29 04:38:41] [probe] strike B layer 13: loaded [(535779, 8192)] in 225.6s
+
+[2026-04-29 04:41:54] [probe] strike B contact_flag L00: r2_mean=0.736 std=0.165 168.4s
+
+[2026-04-29 04:45:11] [probe] strike B contact_force L00: r2_mean=0.564 std=0.036 174.7s
+
+[2026-04-29 04:48:24] [probe] strike B contact_force_mag L00: r2_mean=0.610 std=0.111 170.3s
+
+[2026-04-29 04:51:28] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.753 std=0.116 160.4s
+
+[2026-04-29 04:54:43] [probe] strike B contact_point L00: r2_mean=0.021 std=0.011 171.9s
+
+[2026-04-29 04:58:25] [probe] strike B layer 14: loaded [(535779, 8192)] in 220.4s
+
+[2026-04-29 05:01:35] [probe] strike B contact_flag L00: r2_mean=0.681 std=0.137 171.4s
+
+[2026-04-29 05:04:50] [probe] strike B contact_force L00: r2_mean=0.553 std=0.030 173.4s
+
+[2026-04-29 05:08:00] [probe] strike B contact_force_mag L00: r2_mean=0.570 std=0.104 167.2s
+
+[2026-04-29 05:11:15] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.672 std=0.125 170.4s
+
+[2026-04-29 05:14:35] [probe] strike B contact_point L00: r2_mean=0.022 std=0.010 177.2s
+
+[2026-04-29 05:18:09] [probe] strike B layer 15: loaded [(535779, 8192)] in 212.9s
+
+[2026-04-29 05:21:09] [probe] strike B contact_flag L00: r2_mean=0.717 std=0.110 161.1s
+
+[2026-04-29 05:24:22] [probe] strike B contact_force L00: r2_mean=0.558 std=0.036 170.8s
+
+[2026-04-29 05:27:30] [probe] strike B contact_force_mag L00: r2_mean=0.585 std=0.131 165.7s
+
+[2026-04-29 05:30:41] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.705 std=0.138 168.9s
+
+[2026-04-29 05:33:57] [probe] strike B contact_point L00: r2_mean=0.022 std=0.010 173.1s
+
+[2026-04-29 05:37:41] [probe] strike B layer 16: loaded [(535779, 8192)] in 222.2s
+
+[2026-04-29 05:40:41] [probe] strike B contact_flag L00: r2_mean=0.792 std=0.056 160.7s
+
+[2026-04-29 05:43:51] [probe] strike B contact_force L00: r2_mean=0.560 std=0.030 167.6s
+
+[2026-04-29 05:47:04] [probe] strike B contact_force_mag L00: r2_mean=0.670 std=0.043 170.5s
+
+[2026-04-29 05:50:15] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.798 std=0.048 167.5s
+
+[2026-04-29 05:53:32] [probe] strike B contact_point L00: r2_mean=0.023 std=0.010 174.2s
+
+[2026-04-29 05:57:03] [probe] strike B layer 17: loaded [(535779, 8192)] in 209.6s
+
+[2026-04-29 06:00:08] [probe] strike B contact_flag L00: r2_mean=0.690 std=0.137 166.1s
+
+[2026-04-29 06:03:24] [probe] strike B contact_force L00: r2_mean=0.569 std=0.033 172.1s
+
+[2026-04-29 06:06:40] [probe] strike B contact_force_mag L00: r2_mean=0.582 std=0.119 173.7s
+
+[2026-04-29 06:09:51] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.668 std=0.159 167.1s
+
+[2026-04-29 06:13:14] [probe] strike B contact_point L00: r2_mean=0.023 std=0.010 181.2s
+
+[2026-04-29 06:16:49] [probe] strike B layer 18: loaded [(535779, 8192)] in 212.9s
+
+[2026-04-29 06:19:49] [probe] strike B contact_flag L00: r2_mean=0.789 std=0.064 161.0s
+
+[2026-04-29 06:22:58] [probe] strike B contact_force L00: r2_mean=0.565 std=0.036 167.2s
+
+[2026-04-29 06:26:13] [probe] strike B contact_force_mag L00: r2_mean=0.648 std=0.071 171.1s
+
+[2026-04-29 06:29:20] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.780 std=0.077 164.0s
+
+[2026-04-29 06:32:41] [probe] strike B contact_point L00: r2_mean=0.022 std=0.011 177.8s
+
+[2026-04-29 06:36:09] [probe] strike B layer 19: loaded [(535779, 8192)] in 206.4s
+
+[2026-04-29 06:39:06] [probe] strike B contact_flag L00: r2_mean=0.645 std=0.198 158.6s
+
+[2026-04-29 06:42:21] [probe] strike B contact_force L00: r2_mean=0.566 std=0.031 172.7s
+
+[2026-04-29 06:45:25] [probe] strike B contact_force_mag L00: r2_mean=0.561 std=0.153 162.6s
+
+[2026-04-29 06:48:28] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.632 std=0.227 162.4s
+
+[2026-04-29 06:51:48] [probe] strike B contact_point L00: r2_mean=0.019 std=0.011 178.6s
+
+[2026-04-29 06:55:22] [probe] strike B layer 20: loaded [(535779, 8192)] in 211.9s
+
+[2026-04-29 06:58:27] [probe] strike B contact_flag L00: r2_mean=0.729 std=0.154 164.8s
+
+[2026-04-29 07:02:01] [probe] strike B contact_force L00: r2_mean=0.569 std=0.026 192.4s
+
+[2026-04-29 07:05:25] [probe] strike B contact_force_mag L00: r2_mean=0.567 std=0.232 181.9s
+
+[2026-04-29 07:08:50] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.772 std=0.076 183.1s
+
+[2026-04-29 07:12:22] [probe] strike B contact_point L00: r2_mean=0.017 std=0.011 189.8s
+
+[2026-04-29 07:16:04] [probe] strike B layer 21: loaded [(535779, 8192)] in 220.1s
+
+[2026-04-29 07:20:00] [probe] strike B contact_flag L00: r2_mean=0.759 std=0.070 213.6s
+
+[2026-04-29 07:23:51] [probe] strike B contact_force L00: r2_mean=0.584 std=0.031 204.7s
+
+[2026-04-29 07:27:09] [probe] strike B contact_force_mag L00: r2_mean=0.631 std=0.102 175.3s
+
+[2026-04-29 07:30:28] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.785 std=0.038 172.1s
+
+[2026-04-29 07:33:52] [probe] strike B contact_point L00: r2_mean=0.013 std=0.015 182.5s
+
+[2026-04-29 07:37:39] [probe] strike B layer 22: loaded [(535779, 8192)] in 225.0s
+
+[2026-04-29 07:40:49] [probe] strike B contact_flag L00: r2_mean=0.731 std=0.069 170.2s
+
+[2026-04-29 07:44:08] [probe] strike B contact_force L00: r2_mean=0.599 std=0.036 178.3s
+
+[2026-04-29 07:47:23] [probe] strike B contact_force_mag L00: r2_mean=0.614 std=0.058 173.2s
+
+[2026-04-29 07:50:41] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.757 std=0.073 176.4s
+
+[2026-04-29 07:54:02] [probe] strike B contact_point L00: r2_mean=0.007 std=0.015 179.1s
+
+[2026-04-29 07:57:22] [probe] strike B layer 23: loaded [(535779, 8192)] in 199.1s
+
+[2026-04-29 08:00:24] [probe] strike B contact_flag L00: r2_mean=0.807 std=0.056 163.6s
+
+[2026-04-29 08:03:35] [probe] strike B contact_force L00: r2_mean=0.599 std=0.037 170.0s
+
+[2026-04-29 08:06:50] [probe] strike B contact_force_mag L00: r2_mean=0.668 std=0.072 173.1s
+
+[2026-04-29 08:10:03] [probe] strike B contact_force_log1p_mag L00: r2_mean=0.800 std=0.048 171.5s
+
+[2026-04-29 08:13:17] [probe] strike B contact_point L00: r2_mean=0.004 std=0.017 172.6s
+
+[2026-04-29 08:13:19] [probe] strike B DONE in 470.0min
+
+[2026-04-29 08:13:24] [probe] task=drawer variant=B targets=['contact_flag', 'contact_force', 'contact_force_mag', 'contact_force_log1p_mag', 'contact_point'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=True
+
+[2026-04-29 08:20:11] [probe] drawer B layer 00: loaded [(560000, 8192)] in 406.9s
+
+[2026-04-29 08:23:31] [probe] drawer B contact_flag L00: r2_mean=0.675 std=0.005 180.4s
+
+[2026-04-29 08:26:55] [probe] drawer B contact_force L00: r2_mean=0.700 std=0.014 180.9s
+
+[2026-04-29 08:30:20] [probe] drawer B contact_force_mag L00: r2_mean=0.737 std=0.007 182.8s
+
+[2026-04-29 08:33:41] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.681 std=0.007 178.1s
+
+[2026-04-29 08:37:07] [probe] drawer B contact_point L00: r2_mean=0.039 std=0.003 183.6s
+
+[2026-04-29 08:40:59] [probe] drawer B layer 01: loaded [(560000, 8192)] in 230.9s
+
+[2026-04-29 08:44:06] [probe] drawer B contact_flag L00: r2_mean=0.676 std=0.040 167.8s
+
+[2026-04-29 08:47:28] [probe] drawer B contact_force L00: r2_mean=0.756 std=0.009 181.5s
+
+[2026-04-29 08:50:50] [probe] drawer B contact_force_mag L00: r2_mean=0.777 std=0.008 179.4s
+
+[2026-04-29 08:54:08] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.730 std=0.013 175.2s
+
+[2026-04-29 08:57:38] [probe] drawer B contact_point L00: r2_mean=0.159 std=0.018 187.8s
+
+[2026-04-29 09:01:31] [probe] drawer B layer 02: loaded [(560000, 8192)] in 231.2s
+
+[2026-04-29 09:04:52] [probe] drawer B contact_flag L00: r2_mean=0.718 std=0.011 181.2s
+
+[2026-04-29 09:08:24] [probe] drawer B contact_force L00: r2_mean=0.752 std=0.012 189.2s
+
+[2026-04-29 09:11:48] [probe] drawer B contact_force_mag L00: r2_mean=0.776 std=0.007 181.3s
+
+[2026-04-29 09:15:20] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.737 std=0.009 188.9s
+
+[2026-04-29 09:18:54] [probe] drawer B contact_point L00: r2_mean=0.177 std=0.008 191.1s
+
+[2026-04-29 09:23:23] [probe] drawer B layer 03: loaded [(560000, 8192)] in 267.3s
+
+[2026-04-29 09:26:55] [probe] drawer B contact_flag L00: r2_mean=0.735 std=0.014 191.8s
+
+[2026-04-29 09:30:24] [probe] drawer B contact_force L00: r2_mean=0.775 std=0.013 185.9s
+
+[2026-04-29 09:33:59] [probe] drawer B contact_force_mag L00: r2_mean=0.807 std=0.004 193.1s
+
+[2026-04-29 09:37:28] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.770 std=0.005 185.5s
+
+[2026-04-29 09:41:01] [probe] drawer B contact_point L00: r2_mean=0.176 std=0.014 190.5s
+
+[2026-04-29 09:45:22] [probe] drawer B layer 04: loaded [(560000, 8192)] in 259.8s
+
+[2026-04-29 09:48:33] [probe] drawer B contact_flag L00: r2_mean=0.758 std=0.026 171.2s
+
+[2026-04-29 09:51:53] [probe] drawer B contact_force L00: r2_mean=0.814 std=0.008 177.8s
+
+[2026-04-29 09:55:05] [probe] drawer B contact_force_mag L00: r2_mean=0.842 std=0.006 169.2s
+
+[2026-04-29 09:58:21] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.811 std=0.007 172.6s
+
+[2026-04-29 10:01:44] [probe] drawer B contact_point L00: r2_mean=0.167 std=0.005 182.0s
+
+[2026-04-29 10:06:05] [probe] drawer B layer 05: loaded [(560000, 8192)] in 259.5s
+
+[2026-04-29 10:09:10] [probe] drawer B contact_flag L00: r2_mean=0.752 std=0.017 165.4s
+
+[2026-04-29 10:12:22] [probe] drawer B contact_force L00: r2_mean=0.816 std=0.007 171.7s
+
+[2026-04-29 10:15:28] [probe] drawer B contact_force_mag L00: r2_mean=0.827 std=0.024 165.0s
+
+[2026-04-29 10:18:37] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.791 std=0.032 166.9s
+
+[2026-04-29 10:21:50] [probe] drawer B contact_point L00: r2_mean=0.208 std=0.016 172.6s
+
+[2026-04-29 10:26:11] [probe] drawer B layer 06: loaded [(560000, 8192)] in 259.1s
+
+[2026-04-29 10:29:20] [probe] drawer B contact_flag L00: r2_mean=0.720 std=0.066 169.5s
+
+[2026-04-29 10:32:35] [probe] drawer B contact_force L00: r2_mean=0.814 std=0.006 174.1s
+
+[2026-04-29 10:35:46] [probe] drawer B contact_force_mag L00: r2_mean=0.798 std=0.052 168.7s
+
+[2026-04-29 10:39:05] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.743 std=0.076 175.6s
+
+[2026-04-29 10:42:29] [probe] drawer B contact_point L00: r2_mean=0.216 std=0.014 181.6s
+
+[2026-04-29 10:46:47] [probe] drawer B layer 07: loaded [(560000, 8192)] in 256.4s
+
+[2026-04-29 10:50:00] [probe] drawer B contact_flag L00: r2_mean=0.652 std=0.178 172.8s
+
+[2026-04-29 10:53:21] [probe] drawer B contact_force L00: r2_mean=0.824 std=0.007 178.5s
+
+[2026-04-29 10:56:49] [probe] drawer B contact_force_mag L00: r2_mean=0.827 std=0.030 184.8s
+
+[2026-04-29 11:00:08] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.742 std=0.088 175.8s
+
+[2026-04-29 11:03:31] [probe] drawer B contact_point L00: r2_mean=0.237 std=0.010 180.1s
+
+[2026-04-29 11:07:55] [probe] drawer B layer 08: loaded [(560000, 8192)] in 262.6s
+
+[2026-04-29 11:11:06] [probe] drawer B contact_flag L00: r2_mean=0.779 std=0.007 170.9s
+
+[2026-04-29 11:14:24] [probe] drawer B contact_force L00: r2_mean=0.827 std=0.010 176.9s
+
+[2026-04-29 11:17:41] [probe] drawer B contact_force_mag L00: r2_mean=0.841 std=0.020 173.5s
+
+[2026-04-29 11:20:57] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.778 std=0.072 172.4s
+
+[2026-04-29 11:24:14] [probe] drawer B contact_point L00: r2_mean=0.262 std=0.015 176.0s
+
+[2026-04-29 11:28:38] [probe] drawer B layer 09: loaded [(560000, 8192)] in 262.1s
+
+[2026-04-29 11:31:45] [probe] drawer B contact_flag L00: r2_mean=0.767 std=0.021 167.1s
+
+[2026-04-29 11:35:01] [probe] drawer B contact_force L00: r2_mean=0.824 std=0.007 175.0s
+
+[2026-04-29 11:38:13] [probe] drawer B contact_force_mag L00: r2_mean=0.849 std=0.009 168.2s
+
+[2026-04-29 11:41:25] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.798 std=0.036 167.9s
+
+[2026-04-29 11:44:39] [probe] drawer B contact_point L00: r2_mean=0.258 std=0.010 173.0s
+
+[2026-04-29 11:49:01] [probe] drawer B layer 10: loaded [(560000, 8192)] in 260.5s
+
+[2026-04-29 11:52:02] [probe] drawer B contact_flag L00: r2_mean=0.765 std=0.022 160.6s
+
+[2026-04-29 11:55:10] [probe] drawer B contact_force L00: r2_mean=0.832 std=0.008 164.3s
+
+[2026-04-29 11:58:14] [probe] drawer B contact_force_mag L00: r2_mean=0.856 std=0.011 160.5s
+
+[2026-04-29 12:01:17] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.810 std=0.020 160.3s
+
+[2026-04-29 12:04:27] [probe] drawer B contact_point L00: r2_mean=0.281 std=0.012 168.4s
+
+[2026-04-29 12:08:49] [probe] drawer B layer 11: loaded [(560000, 8192)] in 260.4s
+
+[2026-04-29 12:11:46] [probe] drawer B contact_flag L00: r2_mean=0.760 std=0.023 157.1s
+
+[2026-04-29 12:14:53] [probe] drawer B contact_force L00: r2_mean=0.834 std=0.006 165.5s
+
+[2026-04-29 12:17:53] [probe] drawer B contact_force_mag L00: r2_mean=0.867 std=0.005 157.7s
+
+[2026-04-29 12:20:57] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.826 std=0.014 160.0s
+
+[2026-04-29 12:24:19] [probe] drawer B contact_point L00: r2_mean=0.310 std=0.010 178.6s
+
+[2026-04-29 12:28:42] [probe] drawer B layer 12: loaded [(560000, 8192)] in 261.5s
+
+[2026-04-29 12:31:57] [probe] drawer B contact_flag L00: r2_mean=0.796 std=0.016 175.1s
+
+[2026-04-29 12:35:20] [probe] drawer B contact_force L00: r2_mean=0.839 std=0.007 180.7s
+
+[2026-04-29 12:38:33] [probe] drawer B contact_force_mag L00: r2_mean=0.871 std=0.008 170.3s
+
+[2026-04-29 12:41:46] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.833 std=0.019 168.5s
+
+[2026-04-29 12:45:05] [probe] drawer B contact_point L00: r2_mean=0.306 std=0.014 178.0s
+
+[2026-04-29 12:49:33] [probe] drawer B layer 13: loaded [(560000, 8192)] in 265.5s
+
+[2026-04-29 12:52:46] [probe] drawer B contact_flag L00: r2_mean=0.774 std=0.022 173.0s
+
+[2026-04-29 12:56:06] [probe] drawer B contact_force L00: r2_mean=0.841 std=0.009 174.9s
+
+[2026-04-29 12:59:18] [probe] drawer B contact_force_mag L00: r2_mean=0.863 std=0.022 170.0s
+
+[2026-04-29 13:02:36] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.813 std=0.034 174.3s
+
+[2026-04-29 13:05:56] [probe] drawer B contact_point L00: r2_mean=0.305 std=0.010 177.2s
+
+[2026-04-29 13:10:24] [probe] drawer B layer 14: loaded [(560000, 8192)] in 266.3s
+
+[2026-04-29 13:13:38] [probe] drawer B contact_flag L00: r2_mean=0.765 std=0.049 172.8s
+
+[2026-04-29 13:17:03] [probe] drawer B contact_force L00: r2_mean=0.843 std=0.005 181.0s
+
+[2026-04-29 13:20:18] [probe] drawer B contact_force_mag L00: r2_mean=0.866 std=0.021 171.6s
+
+[2026-04-29 13:23:31] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.824 std=0.037 170.4s
+
+[2026-04-29 13:26:50] [probe] drawer B contact_point L00: r2_mean=0.306 std=0.004 174.9s
+
+[2026-04-29 13:31:24] [probe] drawer B layer 15: loaded [(560000, 8192)] in 272.4s
+
+[2026-04-29 13:35:07] [probe] drawer B contact_flag L00: r2_mean=0.796 std=0.017 200.7s
+
+[2026-04-29 13:38:44] [probe] drawer B contact_force L00: r2_mean=0.848 std=0.005 189.2s
+
+[2026-04-29 13:42:16] [probe] drawer B contact_force_mag L00: r2_mean=0.875 std=0.005 188.4s
+
+[2026-04-29 13:45:38] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.832 std=0.031 178.9s
+
+[2026-04-29 13:49:05] [probe] drawer B contact_point L00: r2_mean=0.285 std=0.013 182.9s
+
+[2026-04-29 13:53:25] [probe] drawer B layer 16: loaded [(560000, 8192)] in 257.4s
+
+[2026-04-29 13:56:38] [probe] drawer B contact_flag L00: r2_mean=0.768 std=0.039 173.6s
+
+[2026-04-29 14:00:03] [probe] drawer B contact_force L00: r2_mean=0.847 std=0.008 182.6s
+
+[2026-04-29 14:03:21] [probe] drawer B contact_force_mag L00: r2_mean=0.872 std=0.011 174.9s
+
+[2026-04-29 14:06:36] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.841 std=0.012 173.4s
+
+[2026-04-29 14:10:04] [probe] drawer B contact_point L00: r2_mean=0.283 std=0.013 185.2s
+
+[2026-04-29 14:14:27] [probe] drawer B layer 17: loaded [(560000, 8192)] in 262.0s
+
+[2026-04-29 14:17:40] [probe] drawer B contact_flag L00: r2_mean=0.758 std=0.063 172.2s
+
+[2026-04-29 14:21:07] [probe] drawer B contact_force L00: r2_mean=0.853 std=0.004 185.4s
+
+[2026-04-29 14:24:30] [probe] drawer B contact_force_mag L00: r2_mean=0.860 std=0.034 179.1s
+
+[2026-04-29 14:27:49] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.834 std=0.025 176.7s
+
+[2026-04-29 14:31:15] [probe] drawer B contact_point L00: r2_mean=0.273 std=0.011 182.7s
+
+[2026-04-29 14:35:37] [probe] drawer B layer 18: loaded [(560000, 8192)] in 261.1s
+
+[2026-04-29 14:38:57] [probe] drawer B contact_flag L00: r2_mean=0.783 std=0.046 179.7s
+
+[2026-04-29 14:42:18] [probe] drawer B contact_force L00: r2_mean=0.847 std=0.005 178.8s
+
+[2026-04-29 14:45:47] [probe] drawer B contact_force_mag L00: r2_mean=0.876 std=0.007 186.4s
+
+[2026-04-29 14:49:19] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.835 std=0.034 187.9s
+
+[2026-04-29 14:53:00] [probe] drawer B contact_point L00: r2_mean=0.259 std=0.012 197.6s
+
+[2026-04-29 14:57:30] [probe] drawer B layer 19: loaded [(560000, 8192)] in 268.8s
+
+[2026-04-29 15:00:47] [probe] drawer B contact_flag L00: r2_mean=0.754 std=0.034 175.2s
+
+[2026-04-29 15:04:11] [probe] drawer B contact_force L00: r2_mean=0.846 std=0.005 181.1s
+
+[2026-04-29 15:07:29] [probe] drawer B contact_force_mag L00: r2_mean=0.864 std=0.036 175.2s
+
+[2026-04-29 15:10:49] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.822 std=0.053 177.5s
+
+[2026-04-29 15:14:15] [probe] drawer B contact_point L00: r2_mean=0.261 std=0.005 183.5s
+
+[2026-04-29 15:18:36] [probe] drawer B layer 20: loaded [(560000, 8192)] in 259.4s
+
+[2026-04-29 15:21:50] [probe] drawer B contact_flag L00: r2_mean=0.793 std=0.009 174.5s
+
+[2026-04-29 15:25:05] [probe] drawer B contact_force L00: r2_mean=0.849 std=0.007 171.9s
+
+[2026-04-29 15:28:13] [probe] drawer B contact_force_mag L00: r2_mean=0.870 std=0.019 167.7s
+
+[2026-04-29 15:31:35] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.831 std=0.031 179.6s
+
+[2026-04-29 15:35:03] [probe] drawer B contact_point L00: r2_mean=0.262 std=0.007 185.2s
+
+[2026-04-29 15:39:26] [probe] drawer B layer 21: loaded [(560000, 8192)] in 260.9s
+
+[2026-04-29 15:42:42] [probe] drawer B contact_flag L00: r2_mean=0.779 std=0.026 176.1s
+
+[2026-04-29 15:46:06] [probe] drawer B contact_force L00: r2_mean=0.845 std=0.010 181.4s
+
+[2026-04-29 15:49:23] [probe] drawer B contact_force_mag L00: r2_mean=0.866 std=0.018 174.2s
+
+[2026-04-29 15:52:44] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.828 std=0.037 178.4s
+
+[2026-04-29 15:56:12] [probe] drawer B contact_point L00: r2_mean=0.255 std=0.006 185.8s
+
+[2026-04-29 16:00:34] [probe] drawer B layer 22: loaded [(560000, 8192)] in 260.0s
+
+[2026-04-29 16:03:44] [probe] drawer B contact_flag L00: r2_mean=0.763 std=0.054 169.9s
+
+[2026-04-29 16:07:11] [probe] drawer B contact_force L00: r2_mean=0.845 std=0.005 184.5s
+
+[2026-04-29 16:10:38] [probe] drawer B contact_force_mag L00: r2_mean=0.852 std=0.045 185.0s
+
+[2026-04-29 16:14:10] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.827 std=0.020 187.9s
+
+[2026-04-29 16:17:49] [probe] drawer B contact_point L00: r2_mean=0.244 std=0.007 196.2s
+
+[2026-04-29 16:22:15] [probe] drawer B layer 23: loaded [(560000, 8192)] in 263.9s
+
+[2026-04-29 16:25:40] [probe] drawer B contact_flag L00: r2_mean=0.785 std=0.014 184.5s
+
+[2026-04-29 16:29:18] [probe] drawer B contact_force L00: r2_mean=0.846 std=0.007 194.4s
+
+[2026-04-29 16:32:45] [probe] drawer B contact_force_mag L00: r2_mean=0.869 std=0.008 183.6s
+
+[2026-04-29 16:36:07] [probe] drawer B contact_force_log1p_mag L00: r2_mean=0.824 std=0.018 178.9s
+
+[2026-04-29 16:39:44] [probe] drawer B contact_point L00: r2_mean=0.235 std=0.007 194.5s
+
+[2026-04-29 16:39:45] [probe] drawer B DONE in 506.4min

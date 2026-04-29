@@ -199,13 +199,19 @@ def main():
     p.add_argument("--variant", default="A")
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--targets", default="all", help="comma-separated, or 'all'")
+    p.add_argument("--tier", default="kinematic",
+                   choices=["kinematic", "rotational", "contact", "progress", "all_extended"],
+                   help="which target tier to use (default kinematic = spec § 4)")
     p.add_argument("--layers", default="all", help="comma-separated, or 'all'")
     p.add_argument("--per-layer-load", action="store_true",
                    help="Load one layer at a time (smaller peak memory). Default for variant B.")
     args = p.parse_args()
 
     common = load_common()
-    targets = task_target_keys(args.task) if args.targets == "all" else args.targets.split(",")
+    if args.targets == "all":
+        targets = task_target_keys(args.task, tier=args.tier)
+    else:
+        targets = args.targets.split(",")
     layers = list(range(24)) if args.layers == "all" else [int(x) for x in args.layers.split(",")]
     per_layer = args.per_layer_load or args.variant == "B"
 

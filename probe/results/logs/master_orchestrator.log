@@ -73,3 +73,1081 @@ wrote 19 plots to /home/solee/physrepa_tasks/probe/results/plots
   /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_acceleration.png
   /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_accel_mag.png
   /home/solee/physrepa_tasks/probe/results/plots/heatmap_r2.png
+[main 00534a3] Repair Variant B all divergent layers; final clean B sweep
+ 75 files changed, 8323 insertions(+), 6542 deletions(-)
+ create mode 100644 probe/results/.gpu0_rerun_done
+ create mode 100644 probe/results/.variantB_all_done
+ create mode 100644 probe/results/logs/master_orchestrator.log
+ create mode 100644 probe/results/logs/nut_thread_rerun_v2.log
+ create mode 100644 probe/results/logs/push_rerun_v2.log
+ create mode 100644 probe/results/logs/rerun_finalize.log
+ create mode 100644 probe/results/logs/rerun_gpu0.log
+ create mode 100644 probe/results/logs/rerun_gpu1.log
+ create mode 100644 probe/results/logs/strike_rerun_v2.log
+ rewrite probe/results/nut_thread/variant_B/ee_accel_mag.csv (94%)
+ rewrite probe/results/nut_thread/variant_B/ee_acceleration.csv (95%)
+ rewrite probe/results/nut_thread/variant_B/ee_direction.csv (95%)
+ rewrite probe/results/nut_thread/variant_B/ee_position.csv (89%)
+ rewrite probe/results/nut_thread/variant_B/ee_speed.csv (89%)
+ rewrite probe/results/nut_thread/variant_B/ee_velocity.csv (92%)
+ rewrite probe/results/nut_thread/variant_B/obj_accel_mag.csv (96%)
+ rewrite probe/results/nut_thread/variant_B/obj_acceleration.csv (97%)
+ rewrite probe/results/nut_thread/variant_B/obj_direction.csv (94%)
+ rewrite probe/results/nut_thread/variant_B/obj_position.csv (91%)
+ rewrite probe/results/nut_thread/variant_B/obj_speed.csv (97%)
+ rewrite probe/results/nut_thread/variant_B/obj_velocity.csv (96%)
+ create mode 100644 probe/results/peg_insert/variant_B/_summary.csv
+ rewrite probe/results/peg_insert/variant_B/ee_accel_mag.csv (91%)
+ rewrite probe/results/peg_insert/variant_B/ee_acceleration.csv (91%)
+ rewrite probe/results/peg_insert/variant_B/ee_direction.csv (95%)
+ rewrite probe/results/peg_insert/variant_B/ee_position.csv (92%)
+ rewrite probe/results/peg_insert/variant_B/ee_speed.csv (87%)
+ rewrite probe/results/peg_insert/variant_B/ee_velocity.csv (87%)
+ rewrite probe/results/peg_insert/variant_B/obj_accel_mag.csv (96%)
+ rewrite probe/results/peg_insert/variant_B/obj_acceleration.csv (96%)
+ rewrite probe/results/peg_insert/variant_B/obj_direction.csv (97%)
+ rewrite probe/results/peg_insert/variant_B/obj_position.csv (91%)
+ rewrite probe/results/peg_insert/variant_B/obj_speed.csv (87%)
+ rewrite probe/results/peg_insert/variant_B/obj_velocity.csv (90%)
+ rewrite probe/results/push/variant_B/ee_accel_mag.csv (82%)
+ rewrite probe/results/push/variant_B/ee_acceleration.csv (88%)
+ rewrite probe/results/push/variant_B/ee_direction.csv (87%)
+ rewrite probe/results/push/variant_B/ee_position.csv (91%)
+ rewrite probe/results/push/variant_B/ee_speed.csv (94%)
+ rewrite probe/results/push/variant_B/ee_velocity.csv (90%)
+ rewrite probe/results/push/variant_B/obj_accel_mag.csv (88%)
+ rewrite probe/results/push/variant_B/obj_acceleration.csv (93%)
+ rewrite probe/results/push/variant_B/obj_direction.csv (92%)
+ rewrite probe/results/push/variant_B/obj_position.csv (88%)
+ rewrite probe/results/push/variant_B/obj_speed.csv (90%)
+ rewrite probe/results/push/variant_B/obj_velocity.csv (90%)
+ rewrite probe/results/reach/variant_B/ee_accel_mag.csv (90%)
+ rewrite probe/results/reach/variant_B/ee_acceleration.csv (90%)
+ rewrite probe/results/reach/variant_B/ee_direction.csv (88%)
+ rewrite probe/results/reach/variant_B/ee_position.csv (88%)
+ rewrite probe/results/reach/variant_B/ee_speed.csv (90%)
+ rewrite probe/results/reach/variant_B/ee_velocity.csv (91%)
+ rewrite probe/results/strike/variant_B/ee_accel_mag.csv (87%)
+ rewrite probe/results/strike/variant_B/ee_acceleration.csv (81%)
+ rewrite probe/results/strike/variant_B/ee_direction.csv (88%)
+ rewrite probe/results/strike/variant_B/ee_position.csv (93%)
+ rewrite probe/results/strike/variant_B/ee_speed.csv (95%)
+ rewrite probe/results/strike/variant_B/ee_velocity.csv (92%)
+ rewrite probe/results/strike/variant_B/obj_accel_mag.csv (89%)
+ rewrite probe/results/strike/variant_B/obj_acceleration.csv (90%)
+ rewrite probe/results/strike/variant_B/obj_direction.csv (92%)
+ rewrite probe/results/strike/variant_B/obj_position.csv (91%)
+ rewrite probe/results/strike/variant_B/obj_speed.csv (92%)
+ rewrite probe/results/strike/variant_B/obj_velocity.csv (85%)
+ create mode 100644 probe/scripts/03c_rerun_layers.py
+To https://github.com/Leesangoh/PhysREPA_Tasks.git
+   d08bc64..00534a3  main -> main
+[03:52:32Z] variant B clean run done
+[03:52:32Z] === trajectory analysis start ===
+[03:52:32Z] running 01_trajectory_stats.py
+[01_stats] push: loading trajectories...
+[01_stats] push: 30 episodes
+[01_stats] strike: loading trajectories...
+[01_stats] strike: 30 episodes
+[01_stats] reach: loading trajectories...
+[01_stats] reach: 30 episodes
+[01_stats] drawer: loading trajectories...
+[01_stats] drawer: 30 episodes
+[01_stats] peg_insert: loading trajectories...
+[01_stats] peg_insert: 30 episodes
+[01_stats] nut_thread: loading trajectories...
+[01_stats] nut_thread: 30 episodes
+[01_stats] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/trajectory_stats.csv (4320 rows)
+[01_stats] wrote summary (144 rows)
+[01_stats] wrote speed profiles (29448 rows)
+[03:52:52Z] running 02_pca_visualization.py
+[02_pca] push ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_push.png
+[02_pca] strike ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_strike.png
+[02_pca] reach ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_reach.png
+[02_pca] drawer ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_drawer.png
+[02_pca] peg_insert ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_peg_insert.png
+[02_pca] nut_thread ...
+[02_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/pca_nut_thread.png
+[03:54:04Z] running 03_intrinsic_dimensionality.py
+[03_dim] push ...
+[03_dim] strike ...
+[03_dim] reach ...
+[03_dim] drawer ...
+[03_dim] peg_insert ...
+[03_dim] nut_thread ...
+[03_dim] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/intrinsic_dim.csv (144 rows)
+[03_dim] wrote intrinsic_dim_per_layer.png
+[03:58:45Z] running 04_cross_layer_cka.py
+[04_cka] push loading ...
+[04_cka] wrote heatmap for push
+[04_cka] strike loading ...
+[04_cka] wrote heatmap for strike
+[04_cka] reach loading ...
+[04_cka] wrote heatmap for reach
+[04_cka] drawer loading ...
+[04_cka] wrote heatmap for drawer
+[04_cka] peg_insert loading ...
+[04_cka] wrote heatmap for peg_insert
+[04_cka] nut_thread loading ...
+[04_cka] wrote heatmap for nut_thread
+[04:01:34Z] running 05_cross_task_cka.py
+[05_cross_task] loading per-task trajectories...
+[05_cross_task] wrote heatmap for L00
+[05_cross_task] wrote heatmap for L06
+[05_cross_task] wrote heatmap for L12
+[05_cross_task] wrote heatmap for L18
+[05_cross_task] wrote heatmap for L23
+[05_cross_task] wrote evolution plot
+[04:02:00Z] running 06_physics_correlation.py
+[06_physics] push loading ...
+Traceback (most recent call last):
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis/scripts/06_physics_correlation.py", line 173, in <module>
+    main()
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis/scripts/06_physics_correlation.py", line 90, in main
+    present = set.intersection(*(set(p.keys()) for p in ep_physics if p))
+TypeError: unbound method set.intersection() needs an argument
+There was an error running python
+[04:02:03Z] running 07_event_locked_geometry.py
+[07_event] push loading ...
+[07_event] push: kept 30/30 eps with detectable event
+[07_event] strike loading ...
+[07_event] strike: kept 30/30 eps with detectable event
+[07_event] drawer loading ...
+[07_event] drawer: kept 30/30 eps with detectable event
+[07_event] wrote stats (4896 rows)
+[07_event] wrote event_locked_push.png
+[07_event] wrote event_locked_strike.png
+[07_event] wrote event_locked_drawer.png
+[04:02:27Z] running 08_partial_rsa.py
+[08_partial_rsa] push loading ...
+[08_partial_rsa] push L00 acc=0.080 ct=0.258
+[08_partial_rsa] push L01 acc=0.126 ct=0.166
+[08_partial_rsa] push L02 acc=0.276 ct=0.084
+[08_partial_rsa] push L03 acc=0.265 ct=0.081
+[08_partial_rsa] push L04 acc=0.235 ct=0.217
+[08_partial_rsa] push L05 acc=0.236 ct=0.203
+[08_partial_rsa] push L06 acc=0.188 ct=0.220
+[08_partial_rsa] push L07 acc=0.210 ct=0.199
+[08_partial_rsa] push L08 acc=0.218 ct=0.206
+[08_partial_rsa] push L09 acc=0.241 ct=0.204
+[08_partial_rsa] push L10 acc=0.228 ct=0.195
+[08_partial_rsa] push L11 acc=0.202 ct=0.171
+[08_partial_rsa] push L12 acc=0.248 ct=0.148
+[08_partial_rsa] push L13 acc=0.264 ct=0.158
+[08_partial_rsa] push L14 acc=0.274 ct=0.118
+[08_partial_rsa] push L15 acc=0.308 ct=0.145
+[08_partial_rsa] push L16 acc=0.310 ct=0.148
+[08_partial_rsa] push L17 acc=0.330 ct=0.156
+[08_partial_rsa] push L18 acc=0.327 ct=0.182
+[08_partial_rsa] push L19 acc=0.333 ct=0.158
+[08_partial_rsa] push L20 acc=0.327 ct=0.155
+[08_partial_rsa] push L21 acc=0.334 ct=0.163
+[08_partial_rsa] push L22 acc=0.332 ct=0.165
+[08_partial_rsa] push L23 acc=0.296 ct=0.138
+[08_partial_rsa] strike loading ...
+[08_partial_rsa] strike L00 acc=0.270 ct=0.106
+[08_partial_rsa] strike L01 acc=0.317 ct=0.123
+[08_partial_rsa] strike L02 acc=0.374 ct=0.139
+[08_partial_rsa] strike L03 acc=0.329 ct=0.149
+[08_partial_rsa] strike L04 acc=0.272 ct=0.181
+[08_partial_rsa] strike L05 acc=0.238 ct=0.177
+[08_partial_rsa] strike L06 acc=0.145 ct=0.193
+[08_partial_rsa] strike L07 acc=0.165 ct=0.180
+[08_partial_rsa] strike L08 acc=0.152 ct=0.167
+[08_partial_rsa] strike L09 acc=0.207 ct=0.093
+[08_partial_rsa] strike L10 acc=0.238 ct=0.074
+[08_partial_rsa] strike L11 acc=0.215 ct=0.044
+[08_partial_rsa] strike L12 acc=0.263 ct=0.039
+[08_partial_rsa] strike L13 acc=0.275 ct=0.033
+[08_partial_rsa] strike L14 acc=0.285 ct=0.042
+[08_partial_rsa] strike L15 acc=0.282 ct=0.091
+[08_partial_rsa] strike L16 acc=0.292 ct=0.095
+[08_partial_rsa] strike L17 acc=0.303 ct=0.113
+[08_partial_rsa] strike L18 acc=0.299 ct=0.120
+[08_partial_rsa] strike L19 acc=0.313 ct=0.127
+[08_partial_rsa] strike L20 acc=0.312 ct=0.150
+[08_partial_rsa] strike L21 acc=0.329 ct=0.134
+[08_partial_rsa] strike L22 acc=0.361 ct=0.161
+[08_partial_rsa] strike L23 acc=0.351 ct=0.173
+[08_partial_rsa] reach loading ...
+[08_partial_rsa] reach L00 acc=0.015 ct=0.043
+[08_partial_rsa] reach L01 acc=0.067 ct=0.040
+[08_partial_rsa] reach L02 acc=0.098 ct=0.051
+[08_partial_rsa] reach L03 acc=0.109 ct=0.062
+[08_partial_rsa] reach L04 acc=0.196 ct=0.090
+[08_partial_rsa] reach L05 acc=0.193 ct=0.089
+[08_partial_rsa] reach L06 acc=0.194 ct=0.081
+[08_partial_rsa] reach L07 acc=0.193 ct=0.079
+[08_partial_rsa] reach L08 acc=0.193 ct=0.086
+[08_partial_rsa] reach L09 acc=0.191 ct=0.107
+[08_partial_rsa] reach L10 acc=0.200 ct=0.104
+[08_partial_rsa] reach L11 acc=0.212 ct=0.094
+[08_partial_rsa] reach L12 acc=0.203 ct=0.100
+[08_partial_rsa] reach L13 acc=0.213 ct=0.092
+[08_partial_rsa] reach L14 acc=0.212 ct=0.086
+[08_partial_rsa] reach L15 acc=0.222 ct=0.076
+[08_partial_rsa] reach L16 acc=0.235 ct=0.084
+[08_partial_rsa] reach L17 acc=0.240 ct=0.091
+[08_partial_rsa] reach L18 acc=0.248 ct=0.089
+[08_partial_rsa] reach L19 acc=0.252 ct=0.094
+[08_partial_rsa] reach L20 acc=0.250 ct=0.095
+[08_partial_rsa] reach L21 acc=0.250 ct=0.092
+[08_partial_rsa] reach L22 acc=0.246 ct=0.093
+[08_partial_rsa] reach L23 acc=0.226 ct=0.094
+[08_partial_rsa] drawer loading ...
+[08_partial_rsa] drawer L00 acc=0.025 ct=0.056
+[08_partial_rsa] drawer L01 acc=0.141 ct=0.057
+[08_partial_rsa] drawer L02 acc=0.122 ct=0.079
+[08_partial_rsa] drawer L03 acc=0.135 ct=0.065
+[08_partial_rsa] drawer L04 acc=0.000 ct=0.030
+[08_partial_rsa] drawer L05 acc=0.041 ct=0.027
+[08_partial_rsa] drawer L06 acc=0.005 ct=0.020
+[08_partial_rsa] drawer L07 acc=0.007 ct=0.021
+[08_partial_rsa] drawer L08 acc=0.020 ct=0.019
+[08_partial_rsa] drawer L09 acc=-0.018 ct=0.037
+[08_partial_rsa] drawer L10 acc=-0.001 ct=0.036
+[08_partial_rsa] drawer L11 acc=-0.011 ct=0.031
+[08_partial_rsa] drawer L12 acc=-0.014 ct=0.038
+[08_partial_rsa] drawer L13 acc=0.009 ct=0.038
+[08_partial_rsa] drawer L14 acc=0.015 ct=0.038
+[08_partial_rsa] drawer L15 acc=0.051 ct=0.047
+[08_partial_rsa] drawer L16 acc=0.072 ct=0.052
+[08_partial_rsa] drawer L17 acc=0.061 ct=0.049
+[08_partial_rsa] drawer L18 acc=0.061 ct=0.042
+[08_partial_rsa] drawer L19 acc=0.073 ct=0.033
+[08_partial_rsa] drawer L20 acc=0.049 ct=0.032
+[08_partial_rsa] drawer L21 acc=0.062 ct=0.027
+[08_partial_rsa] drawer L22 acc=0.062 ct=0.031
+[08_partial_rsa] drawer L23 acc=0.037 ct=0.026
+[08_partial_rsa] peg_insert loading ...
+[08_partial_rsa] peg_insert L00 acc=-0.058 ct=-0.017
+[08_partial_rsa] peg_insert L01 acc=0.036 ct=0.077
+[08_partial_rsa] peg_insert L02 acc=0.058 ct=0.107
+[08_partial_rsa] peg_insert L03 acc=0.068 ct=0.126
+[08_partial_rsa] peg_insert L04 acc=0.066 ct=0.112
+[08_partial_rsa] peg_insert L05 acc=0.105 ct=0.184
+[08_partial_rsa] peg_insert L06 acc=0.129 ct=0.198
+[08_partial_rsa] peg_insert L07 acc=0.138 ct=0.206
+[08_partial_rsa] peg_insert L08 acc=0.136 ct=0.188
+[08_partial_rsa] peg_insert L09 acc=0.150 ct=0.199
+[08_partial_rsa] peg_insert L10 acc=0.149 ct=0.206
+[08_partial_rsa] peg_insert L11 acc=0.149 ct=0.214
+[08_partial_rsa] peg_insert L12 acc=0.150 ct=0.217
+[08_partial_rsa] peg_insert L13 acc=0.167 ct=0.223
+[08_partial_rsa] peg_insert L14 acc=0.161 ct=0.223
+[08_partial_rsa] peg_insert L15 acc=0.165 ct=0.241
+[08_partial_rsa] peg_insert L16 acc=0.159 ct=0.234
+[08_partial_rsa] peg_insert L17 acc=0.158 ct=0.240
+[08_partial_rsa] peg_insert L18 acc=0.147 ct=0.232
+[08_partial_rsa] peg_insert L19 acc=0.157 ct=0.231
+[08_partial_rsa] peg_insert L20 acc=0.162 ct=0.232
+[08_partial_rsa] peg_insert L21 acc=0.166 ct=0.233
+[08_partial_rsa] peg_insert L22 acc=0.166 ct=0.241
+[08_partial_rsa] peg_insert L23 acc=0.162 ct=0.238
+[08_partial_rsa] nut_thread loading ...
+[08_partial_rsa] nut_thread L00 acc=-0.025 ct=0.025
+[08_partial_rsa] nut_thread L01 acc=-0.010 ct=0.033
+[08_partial_rsa] nut_thread L02 acc=-0.014 ct=0.013
+[08_partial_rsa] nut_thread L03 acc=0.000 ct=0.016
+[08_partial_rsa] nut_thread L04 acc=0.032 ct=0.019
+[08_partial_rsa] nut_thread L05 acc=0.035 ct=0.015
+[08_partial_rsa] nut_thread L06 acc=0.042 ct=0.025
+[08_partial_rsa] nut_thread L07 acc=0.053 ct=0.010
+[08_partial_rsa] nut_thread L08 acc=0.051 ct=0.006
+[08_partial_rsa] nut_thread L09 acc=0.061 ct=0.010
+[08_partial_rsa] nut_thread L10 acc=0.065 ct=0.004
+[08_partial_rsa] nut_thread L11 acc=0.069 ct=0.008
+[08_partial_rsa] nut_thread L12 acc=0.059 ct=-0.002
+[08_partial_rsa] nut_thread L13 acc=0.057 ct=0.008
+[08_partial_rsa] nut_thread L14 acc=0.067 ct=0.020
+[08_partial_rsa] nut_thread L15 acc=0.064 ct=0.020
+[08_partial_rsa] nut_thread L16 acc=0.072 ct=0.028
+[08_partial_rsa] nut_thread L17 acc=0.062 ct=0.029
+[08_partial_rsa] nut_thread L18 acc=0.066 ct=0.021
+[08_partial_rsa] nut_thread L19 acc=0.082 ct=0.025
+[08_partial_rsa] nut_thread L20 acc=0.077 ct=0.028
+[08_partial_rsa] nut_thread L21 acc=0.061 ct=0.033
+[08_partial_rsa] nut_thread L22 acc=0.060 ct=0.033
+[08_partial_rsa] nut_thread L23 acc=0.050 ct=0.018
+[08_partial_rsa] wrote stats (144 rows)
+[04:06:26Z] running 09_tangent_rsa.py
+[09_tangent_rsa] push loading ...
+[09_tangent] push L00 vel_tan=0.181 acc_tan=0.091 acc|p+v=0.063
+[09_tangent] push L01 vel_tan=0.408 acc_tan=0.254 acc|p+v=0.145
+[09_tangent] push L02 vel_tan=0.379 acc_tan=0.378 acc|p+v=0.315
+[09_tangent] push L03 vel_tan=0.374 acc_tan=0.381 acc|p+v=0.319
+[09_tangent] push L04 vel_tan=0.158 acc_tan=0.280 acc|p+v=0.221
+[09_tangent] push L05 vel_tan=0.146 acc_tan=0.263 acc|p+v=0.207
+[09_tangent] push L06 vel_tan=-0.136 acc_tan=0.016 acc|p+v=0.043
+[09_tangent] push L07 vel_tan=-0.055 acc_tan=0.066 acc|p+v=0.068
+[09_tangent] push L08 vel_tan=-0.126 acc_tan=-0.031 acc|p+v=-0.010
+[09_tangent] push L09 vel_tan=-0.025 acc_tan=-0.015 acc|p+v=-0.024
+[09_tangent] push L10 vel_tan=-0.039 acc_tan=-0.030 acc|p+v=-0.035
+[09_tangent] push L11 vel_tan=-0.160 acc_tan=-0.129 acc|p+v=-0.101
+[09_tangent] push L12 vel_tan=-0.093 acc_tan=-0.075 acc|p+v=-0.058
+[09_tangent] push L13 vel_tan=-0.068 acc_tan=-0.053 acc|p+v=-0.031
+[09_tangent] push L14 vel_tan=-0.098 acc_tan=-0.054 acc|p+v=-0.025
+[09_tangent] push L15 vel_tan=-0.082 acc_tan=-0.007 acc|p+v=0.020
+[09_tangent] push L16 vel_tan=-0.076 acc_tan=-0.017 acc|p+v=0.010
+[09_tangent] push L17 vel_tan=-0.072 acc_tan=0.004 acc|p+v=0.042
+[09_tangent] push L18 vel_tan=-0.060 acc_tan=0.013 acc|p+v=0.044
+[09_tangent] push L19 vel_tan=-0.055 acc_tan=0.006 acc|p+v=0.041
+[09_tangent] push L20 vel_tan=-0.059 acc_tan=0.004 acc|p+v=0.038
+[09_tangent] push L21 vel_tan=0.003 acc_tan=0.028 acc|p+v=0.045
+[09_tangent] push L22 vel_tan=0.074 acc_tan=0.097 acc|p+v=0.096
+[09_tangent] push L23 vel_tan=0.099 acc_tan=0.102 acc|p+v=0.094
+[09_tangent_rsa] strike loading ...
+[09_tangent] strike L00 vel_tan=0.489 acc_tan=0.486 acc|p+v=0.307
+[09_tangent] strike L01 vel_tan=0.582 acc_tan=0.685 acc|p+v=0.487
+[09_tangent] strike L02 vel_tan=0.458 acc_tan=0.646 acc|p+v=0.500
+[09_tangent] strike L03 vel_tan=0.442 acc_tan=0.634 acc|p+v=0.494
+[09_tangent] strike L04 vel_tan=0.318 acc_tan=0.475 acc|p+v=0.371
+[09_tangent] strike L05 vel_tan=0.304 acc_tan=0.430 acc|p+v=0.322
+[09_tangent] strike L06 vel_tan=-0.197 acc_tan=-0.104 acc|p+v=0.026
+[09_tangent] strike L07 vel_tan=-0.058 acc_tan=0.030 acc|p+v=0.078
+[09_tangent] strike L08 vel_tan=-0.146 acc_tan=-0.098 acc|p+v=-0.012
+[09_tangent] strike L09 vel_tan=-0.008 acc_tan=0.006 acc|p+v=-0.001
+[09_tangent] strike L10 vel_tan=0.004 acc_tan=0.024 acc|p+v=0.004
+[09_tangent] strike L11 vel_tan=-0.122 acc_tan=-0.110 acc|p+v=-0.069
+[09_tangent] strike L12 vel_tan=0.070 acc_tan=0.072 acc|p+v=0.021
+[09_tangent] strike L13 vel_tan=0.183 acc_tan=0.174 acc|p+v=0.069
+[09_tangent] strike L14 vel_tan=0.148 acc_tan=0.155 acc|p+v=0.077
+[09_tangent] strike L15 vel_tan=0.199 acc_tan=0.226 acc|p+v=0.137
+[09_tangent] strike L16 vel_tan=0.194 acc_tan=0.224 acc|p+v=0.149
+[09_tangent] strike L17 vel_tan=0.177 acc_tan=0.192 acc|p+v=0.136
+[09_tangent] strike L18 vel_tan=0.216 acc_tan=0.224 acc|p+v=0.141
+[09_tangent] strike L19 vel_tan=0.209 acc_tan=0.214 acc|p+v=0.140
+[09_tangent] strike L20 vel_tan=0.202 acc_tan=0.190 acc|p+v=0.122
+[09_tangent] strike L21 vel_tan=0.242 acc_tan=0.237 acc|p+v=0.154
+[09_tangent] strike L22 vel_tan=0.364 acc_tan=0.344 acc|p+v=0.200
+[09_tangent] strike L23 vel_tan=0.340 acc_tan=0.320 acc|p+v=0.183
+[09_tangent_rsa] reach loading ...
+[09_tangent] reach L00 vel_tan=0.257 acc_tan=0.196 acc|p+v=0.049
+[09_tangent] reach L01 vel_tan=0.663 acc_tan=0.661 acc|p+v=0.252
+[09_tangent] reach L02 vel_tan=0.691 acc_tan=0.698 acc|p+v=0.276
+[09_tangent] reach L03 vel_tan=0.695 acc_tan=0.709 acc|p+v=0.290
+[09_tangent] reach L04 vel_tan=0.734 acc_tan=0.744 acc|p+v=0.287
+[09_tangent] reach L05 vel_tan=0.717 acc_tan=0.729 acc|p+v=0.284
+[09_tangent] reach L06 vel_tan=0.642 acc_tan=0.658 acc|p+v=0.233
+[09_tangent] reach L07 vel_tan=0.681 acc_tan=0.696 acc|p+v=0.251
+[09_tangent] reach L08 vel_tan=0.661 acc_tan=0.677 acc|p+v=0.252
+[09_tangent] reach L09 vel_tan=0.646 acc_tan=0.655 acc|p+v=0.225
+[09_tangent] reach L10 vel_tan=0.682 acc_tan=0.687 acc|p+v=0.248
+[09_tangent] reach L11 vel_tan=0.647 acc_tan=0.665 acc|p+v=0.252
+[09_tangent] reach L12 vel_tan=0.687 acc_tan=0.701 acc|p+v=0.267
+[09_tangent] reach L13 vel_tan=0.721 acc_tan=0.727 acc|p+v=0.283
+[09_tangent] reach L14 vel_tan=0.723 acc_tan=0.721 acc|p+v=0.271
+[09_tangent] reach L15 vel_tan=0.757 acc_tan=0.755 acc|p+v=0.302
+[09_tangent] reach L16 vel_tan=0.755 acc_tan=0.749 acc|p+v=0.300
+[09_tangent] reach L17 vel_tan=0.739 acc_tan=0.730 acc|p+v=0.296
+[09_tangent] reach L18 vel_tan=0.748 acc_tan=0.740 acc|p+v=0.300
+[09_tangent] reach L19 vel_tan=0.739 acc_tan=0.729 acc|p+v=0.289
+[09_tangent] reach L20 vel_tan=0.732 acc_tan=0.722 acc|p+v=0.285
+[09_tangent] reach L21 vel_tan=0.737 acc_tan=0.726 acc|p+v=0.286
+[09_tangent] reach L22 vel_tan=0.718 acc_tan=0.706 acc|p+v=0.278
+[09_tangent] reach L23 vel_tan=0.625 acc_tan=0.586 acc|p+v=0.209
+[09_tangent_rsa] drawer loading ...
+[09_tangent] drawer L00 vel_tan=0.107 acc_tan=0.074 acc|p+v=0.029
+[09_tangent] drawer L01 vel_tan=0.593 acc_tan=0.528 acc|p+v=0.222
+[09_tangent] drawer L02 vel_tan=0.452 acc_tan=0.533 acc|p+v=0.345
+[09_tangent] drawer L03 vel_tan=0.374 acc_tan=0.458 acc|p+v=0.309
+[09_tangent] drawer L04 vel_tan=-0.193 acc_tan=-0.120 acc|p+v=-0.007
+[09_tangent] drawer L05 vel_tan=-0.169 acc_tan=-0.100 acc|p+v=-0.000
+[09_tangent] drawer L06 vel_tan=-0.263 acc_tan=-0.195 acc|p+v=-0.050
+[09_tangent] drawer L07 vel_tan=-0.242 acc_tan=-0.174 acc|p+v=-0.036
+[09_tangent] drawer L08 vel_tan=-0.213 acc_tan=-0.142 acc|p+v=-0.018
+[09_tangent] drawer L09 vel_tan=0.011 acc_tan=-0.041 acc|p+v=-0.059
+[09_tangent] drawer L10 vel_tan=0.055 acc_tan=0.003 acc|p+v=-0.034
+[09_tangent] drawer L11 vel_tan=0.064 acc_tan=-0.008 acc|p+v=-0.044
+[09_tangent] drawer L12 vel_tan=0.142 acc_tan=0.057 acc|p+v=-0.017
+[09_tangent] drawer L13 vel_tan=0.274 acc_tan=0.192 acc|p+v=0.055
+[09_tangent] drawer L14 vel_tan=0.260 acc_tan=0.195 acc|p+v=0.083
+[09_tangent] drawer L15 vel_tan=0.370 acc_tan=0.301 acc|p+v=0.128
+[09_tangent] drawer L16 vel_tan=0.381 acc_tan=0.323 acc|p+v=0.154
+[09_tangent] drawer L17 vel_tan=0.391 acc_tan=0.326 acc|p+v=0.152
+[09_tangent] drawer L18 vel_tan=0.419 acc_tan=0.359 acc|p+v=0.187
+[09_tangent] drawer L19 vel_tan=0.437 acc_tan=0.383 acc|p+v=0.199
+[09_tangent] drawer L20 vel_tan=0.413 acc_tan=0.372 acc|p+v=0.206
+[09_tangent] drawer L21 vel_tan=0.424 acc_tan=0.387 acc|p+v=0.209
+[09_tangent] drawer L22 vel_tan=0.483 acc_tan=0.439 acc|p+v=0.225
+[09_tangent] drawer L23 vel_tan=0.468 acc_tan=0.411 acc|p+v=0.201
+[09_tangent_rsa] peg_insert loading ...
+[09_tangent] peg_insert L00 vel_tan=0.009 acc_tan=0.032 acc|p+v=0.028
+[09_tangent] peg_insert L01 vel_tan=0.106 acc_tan=0.152 acc|p+v=0.127
+[09_tangent] peg_insert L02 vel_tan=0.112 acc_tan=0.145 acc|p+v=0.119
+[09_tangent] peg_insert L03 vel_tan=0.111 acc_tan=0.148 acc|p+v=0.122
+[09_tangent] peg_insert L04 vel_tan=0.060 acc_tan=0.096 acc|p+v=0.082
+[09_tangent] peg_insert L05 vel_tan=0.092 acc_tan=0.126 acc|p+v=0.105
+[09_tangent] peg_insert L06 vel_tan=0.103 acc_tan=0.149 acc|p+v=0.125
+[09_tangent] peg_insert L07 vel_tan=0.106 acc_tan=0.151 acc|p+v=0.128
+[09_tangent] peg_insert L08 vel_tan=0.121 acc_tan=0.151 acc|p+v=0.123
+[09_tangent] peg_insert L09 vel_tan=0.095 acc_tan=0.124 acc|p+v=0.105
+[09_tangent] peg_insert L10 vel_tan=0.076 acc_tan=0.110 acc|p+v=0.096
+[09_tangent] peg_insert L11 vel_tan=0.096 acc_tan=0.122 acc|p+v=0.102
+[09_tangent] peg_insert L12 vel_tan=0.109 acc_tan=0.125 acc|p+v=0.101
+[09_tangent] peg_insert L13 vel_tan=0.136 acc_tan=0.149 acc|p+v=0.114
+[09_tangent] peg_insert L14 vel_tan=0.143 acc_tan=0.150 acc|p+v=0.111
+[09_tangent] peg_insert L15 vel_tan=0.162 acc_tan=0.176 acc|p+v=0.131
+[09_tangent] peg_insert L16 vel_tan=0.160 acc_tan=0.176 acc|p+v=0.132
+[09_tangent] peg_insert L17 vel_tan=0.165 acc_tan=0.177 acc|p+v=0.129
+[09_tangent] peg_insert L18 vel_tan=0.171 acc_tan=0.153 acc|p+v=0.105
+[09_tangent] peg_insert L19 vel_tan=0.169 acc_tan=0.174 acc|p+v=0.127
+[09_tangent] peg_insert L20 vel_tan=0.172 acc_tan=0.146 acc|p+v=0.098
+[09_tangent] peg_insert L21 vel_tan=0.175 acc_tan=0.154 acc|p+v=0.106
+[09_tangent] peg_insert L22 vel_tan=0.170 acc_tan=0.155 acc|p+v=0.107
+[09_tangent] peg_insert L23 vel_tan=0.179 acc_tan=0.159 acc|p+v=0.110
+[09_tangent_rsa] nut_thread loading ...
+[09_tangent] nut_thread L00 vel_tan=0.015 acc_tan=0.023 acc|p+v=0.020
+[09_tangent] nut_thread L01 vel_tan=0.022 acc_tan=0.042 acc|p+v=0.038
+[09_tangent] nut_thread L02 vel_tan=0.027 acc_tan=0.053 acc|p+v=0.049
+[09_tangent] nut_thread L03 vel_tan=0.038 acc_tan=0.065 acc|p+v=0.058
+[09_tangent] nut_thread L04 vel_tan=0.022 acc_tan=0.067 acc|p+v=0.063
+[09_tangent] nut_thread L05 vel_tan=0.030 acc_tan=0.075 acc|p+v=0.070
+[09_tangent] nut_thread L06 vel_tan=0.042 acc_tan=0.082 acc|p+v=0.074
+[09_tangent] nut_thread L07 vel_tan=0.047 acc_tan=0.084 acc|p+v=0.074
+[09_tangent] nut_thread L08 vel_tan=0.054 acc_tan=0.091 acc|p+v=0.081
+[09_tangent] nut_thread L09 vel_tan=0.098 acc_tan=0.106 acc|p+v=0.088
+[09_tangent] nut_thread L10 vel_tan=0.093 acc_tan=0.089 acc|p+v=0.072
+[09_tangent] nut_thread L11 vel_tan=0.095 acc_tan=0.095 acc|p+v=0.082
+[09_tangent] nut_thread L12 vel_tan=0.105 acc_tan=0.088 acc|p+v=0.071
+[09_tangent] nut_thread L13 vel_tan=0.114 acc_tan=0.093 acc|p+v=0.074
+[09_tangent] nut_thread L14 vel_tan=0.101 acc_tan=0.086 acc|p+v=0.066
+[09_tangent] nut_thread L15 vel_tan=0.120 acc_tan=0.090 acc|p+v=0.070
+[09_tangent] nut_thread L16 vel_tan=0.113 acc_tan=0.079 acc|p+v=0.059
+[09_tangent] nut_thread L17 vel_tan=0.126 acc_tan=0.091 acc|p+v=0.070
+[09_tangent] nut_thread L18 vel_tan=0.115 acc_tan=0.087 acc|p+v=0.065
+[09_tangent] nut_thread L19 vel_tan=0.132 acc_tan=0.098 acc|p+v=0.076
+[09_tangent] nut_thread L20 vel_tan=0.123 acc_tan=0.093 acc|p+v=0.070
+[09_tangent] nut_thread L21 vel_tan=0.128 acc_tan=0.109 acc|p+v=0.082
+[09_tangent] nut_thread L22 vel_tan=0.127 acc_tan=0.110 acc|p+v=0.085
+[09_tangent] nut_thread L23 vel_tan=0.118 acc_tan=0.098 acc|p+v=0.076
+[09_tangent] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/rsa_tangent.csv (144 rows)
+[04:12:14Z] running 10_cca_subspace.py
+[10_cca] push loading ...
+[10_cca] push L00 done
+[10_cca] push L01 done
+[10_cca] push L02 done
+[10_cca] push L03 done
+[10_cca] push L04 done
+[10_cca] push L05 done
+[10_cca] push L06 done
+[10_cca] push L07 done
+[10_cca] push L08 done
+[10_cca] push L09 done
+[10_cca] push L10 done
+[10_cca] push L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L12 done
+[10_cca] push L13 done
+[10_cca] push L14 done
+[10_cca] push L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L16 done
+[10_cca] push L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] push L20 done
+[10_cca] push L21 done
+[10_cca] push L22 done
+[10_cca] push L23 done
+[10_cca] strike loading ...
+[10_cca] strike L00 done
+[10_cca] strike L01 done
+[10_cca] strike L02 done
+[10_cca] strike L03 done
+[10_cca] strike L04 done
+[10_cca] strike L05 done
+[10_cca] strike L06 done
+[10_cca] strike L07 done
+[10_cca] strike L08 done
+[10_cca] strike L09 done
+[10_cca] strike L10 done
+[10_cca] strike L11 done
+[10_cca] strike L12 done
+[10_cca] strike L13 done
+[10_cca] strike L14 done
+[10_cca] strike L15 done
+[10_cca] strike L16 done
+[10_cca] strike L17 done
+[10_cca] strike L18 done
+[10_cca] strike L19 done
+[10_cca] strike L20 done
+[10_cca] strike L21 done
+[10_cca] strike L22 done
+[10_cca] strike L23 done
+[10_cca] reach loading ...
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L00 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L01 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L02 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L03 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L04 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L05 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L06 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L07 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L08 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L09 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L10 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L12 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L13 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L14 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L16 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L21 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 0
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] reach L23 done
+[10_cca] drawer loading ...
+[10_cca] drawer L00 done
+[10_cca] drawer L01 done
+[10_cca] drawer L02 done
+[10_cca] drawer L03 done
+[10_cca] drawer L04 done
+[10_cca] drawer L05 done
+[10_cca] drawer L06 done
+[10_cca] drawer L07 done
+[10_cca] drawer L08 done
+[10_cca] drawer L09 done
+[10_cca] drawer L10 done
+[10_cca] drawer L11 done
+[10_cca] drawer L12 done
+[10_cca] drawer L13 done
+[10_cca] drawer L14 done
+[10_cca] drawer L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] drawer L16 done
+[10_cca] drawer L17 done
+[10_cca] drawer L18 done
+[10_cca] drawer L19 done
+[10_cca] drawer L20 done
+[10_cca] drawer L21 done
+[10_cca] drawer L22 done
+[10_cca] drawer L23 done
+[10_cca] peg_insert loading ...
+[10_cca] peg_insert L00 done
+[10_cca] peg_insert L01 done
+[10_cca] peg_insert L02 done
+[10_cca] peg_insert L03 done
+[10_cca] peg_insert L04 done
+[10_cca] peg_insert L05 done
+[10_cca] peg_insert L06 done
+[10_cca] peg_insert L07 done
+[10_cca] peg_insert L08 done
+[10_cca] peg_insert L09 done
+[10_cca] peg_insert L10 done
+[10_cca] peg_insert L11 done
+[10_cca] peg_insert L12 done
+[10_cca] peg_insert L13 done
+[10_cca] peg_insert L14 done
+[10_cca] peg_insert L15 done
+[10_cca] peg_insert L16 done
+[10_cca] peg_insert L17 done
+[10_cca] peg_insert L18 done
+[10_cca] peg_insert L19 done
+[10_cca] peg_insert L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] peg_insert L21 done
+[10_cca] peg_insert L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] peg_insert L23 done
+[10_cca] nut_thread loading ...
+[10_cca] nut_thread L00 done
+[10_cca] nut_thread L01 done
+[10_cca] nut_thread L02 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L03 done
+[10_cca] nut_thread L04 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L05 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L06 done
+[10_cca] nut_thread L07 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L08 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L09 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L10 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L11 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L12 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L13 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L14 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L15 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L16 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L17 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L18 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L19 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L20 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:308: UserWarning: y residual is constant at iteration 4
+  warnings.warn(f"y residual is constant at iteration {k}")
+/isaac-sim/kit/python/lib/python3.10/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+[10_cca] nut_thread L21 done
+[10_cca] nut_thread L22 done
+/isaac-sim/kit/python/lib/python3.10/site-packages/sklearn/cross_decomposition/_pls.py:104: ConvergenceWarning: Maximum number of iterations reached
+  warnings.warn("Maximum number of iterations reached", ConvergenceWarning)
+[10_cca] nut_thread L23 done
+[10_cca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/cca_subspace.csv (576 rows)
+[04:19:47Z] running 11_shared_pca_procrustes.py
+[11_shared_pca] push loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_push.png
+[11_shared_pca] strike loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_strike.png
+[11_shared_pca] reach loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_reach.png
+[11_shared_pca] drawer loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_drawer.png
+[11_shared_pca] peg_insert loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_peg_insert.png
+[11_shared_pca] nut_thread loading ...
+[11_shared_pca] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/plots/shared_pca_nut_thread.png
+[04:24:03Z] running 13_koopman_dynamics.py
+[13_koopman] push loading ...
+[13_koopman] push L00 self=0.950 delta=+0.022 ee_pos_next=0.573 ee_vel_next=0.199 ee_acc_next=-0.016 obj_vel_next=-0.159
+[13_koopman] push L01 self=0.687 delta=+0.120 ee_pos_next=0.854 ee_vel_next=0.594 ee_acc_next=0.019 obj_vel_next=-0.002
+[13_koopman] push L02 self=0.496 delta=+0.175 ee_pos_next=0.790 ee_vel_next=0.706 ee_acc_next=0.079 obj_vel_next=0.278
+[13_koopman] push L03 self=0.560 delta=+0.136 ee_pos_next=0.863 ee_vel_next=0.739 ee_acc_next=0.079 obj_vel_next=0.299
+[13_koopman] push L04 self=0.434 delta=+0.204 ee_pos_next=0.878 ee_vel_next=0.791 ee_acc_next=0.079 obj_vel_next=0.349
+[13_koopman] push L05 self=0.510 delta=+0.161 ee_pos_next=0.909 ee_vel_next=0.804 ee_acc_next=0.082 obj_vel_next=0.394
+[13_koopman] push L06 self=0.525 delta=+0.171 ee_pos_next=0.938 ee_vel_next=0.818 ee_acc_next=0.080 obj_vel_next=0.460
+[13_koopman] push L07 self=0.573 delta=+0.117 ee_pos_next=0.946 ee_vel_next=0.826 ee_acc_next=0.071 obj_vel_next=0.516
+[13_koopman] push L08 self=0.651 delta=+0.090 ee_pos_next=0.948 ee_vel_next=0.813 ee_acc_next=0.048 obj_vel_next=0.531
+[13_koopman] push L09 self=0.719 delta=+0.059 ee_pos_next=0.935 ee_vel_next=0.839 ee_acc_next=0.072 obj_vel_next=0.601
+[13_koopman] push L10 self=0.713 delta=+0.058 ee_pos_next=0.956 ee_vel_next=0.833 ee_acc_next=0.065 obj_vel_next=0.591
+[13_koopman] push L11 self=0.714 delta=+0.055 ee_pos_next=0.967 ee_vel_next=0.834 ee_acc_next=0.064 obj_vel_next=0.598
+[13_koopman] push L12 self=0.740 delta=+0.050 ee_pos_next=0.956 ee_vel_next=0.808 ee_acc_next=0.054 obj_vel_next=0.612
+[13_koopman] push L13 self=0.726 delta=+0.059 ee_pos_next=0.970 ee_vel_next=0.821 ee_acc_next=0.085 obj_vel_next=0.651
+[13_koopman] push L14 self=0.711 delta=+0.052 ee_pos_next=0.971 ee_vel_next=0.824 ee_acc_next=0.086 obj_vel_next=0.600
+[13_koopman] push L15 self=0.694 delta=+0.058 ee_pos_next=0.974 ee_vel_next=0.847 ee_acc_next=0.103 obj_vel_next=0.640
+[13_koopman] push L16 self=0.699 delta=+0.054 ee_pos_next=0.976 ee_vel_next=0.885 ee_acc_next=0.116 obj_vel_next=0.700
+[13_koopman] push L17 self=0.703 delta=+0.046 ee_pos_next=0.972 ee_vel_next=0.877 ee_acc_next=0.111 obj_vel_next=0.700
+[13_koopman] push L18 self=0.715 delta=+0.047 ee_pos_next=0.975 ee_vel_next=0.893 ee_acc_next=0.098 obj_vel_next=0.721
+[13_koopman] push L19 self=0.723 delta=+0.033 ee_pos_next=0.979 ee_vel_next=0.890 ee_acc_next=0.093 obj_vel_next=0.701
+[13_koopman] push L20 self=0.737 delta=+0.029 ee_pos_next=0.976 ee_vel_next=0.895 ee_acc_next=0.097 obj_vel_next=0.710
+[13_koopman] push L21 self=0.756 delta=+0.024 ee_pos_next=0.977 ee_vel_next=0.882 ee_acc_next=0.065 obj_vel_next=0.703
+[13_koopman] push L22 self=0.777 delta=+0.015 ee_pos_next=0.980 ee_vel_next=0.895 ee_acc_next=-0.013 obj_vel_next=0.725
+[13_koopman] push L23 self=0.793 delta=+0.008 ee_pos_next=0.972 ee_vel_next=0.892 ee_acc_next=0.063 obj_vel_next=0.709
+[13_koopman] strike loading ...
+[13_koopman] strike L00 self=0.859 delta=+0.053 ee_pos_next=0.731 ee_vel_next=-0.243 ee_acc_next=0.020 obj_vel_next=-0.680
+[13_koopman] strike L01 self=0.522 delta=+0.206 ee_pos_next=0.855 ee_vel_next=0.292 ee_acc_next=0.023 obj_vel_next=-0.466
+[13_koopman] strike L02 self=0.467 delta=+0.264 ee_pos_next=0.834 ee_vel_next=0.600 ee_acc_next=0.119 obj_vel_next=0.178
+[13_koopman] strike L03 self=0.495 delta=+0.205 ee_pos_next=0.897 ee_vel_next=0.626 ee_acc_next=0.131 obj_vel_next=0.190
+[13_koopman] strike L04 self=0.450 delta=+0.224 ee_pos_next=0.924 ee_vel_next=0.682 ee_acc_next=0.145 obj_vel_next=0.240
+[13_koopman] strike L05 self=0.562 delta=+0.152 ee_pos_next=0.928 ee_vel_next=0.654 ee_acc_next=0.156 obj_vel_next=0.274
+[13_koopman] strike L06 self=0.501 delta=+0.243 ee_pos_next=0.944 ee_vel_next=0.693 ee_acc_next=0.165 obj_vel_next=0.279
+[13_koopman] strike L07 self=0.569 delta=+0.179 ee_pos_next=0.953 ee_vel_next=0.745 ee_acc_next=0.147 obj_vel_next=0.330
+[13_koopman] strike L08 self=0.601 delta=+0.129 ee_pos_next=0.957 ee_vel_next=0.742 ee_acc_next=0.167 obj_vel_next=0.205
+[13_koopman] strike L09 self=0.626 delta=+0.075 ee_pos_next=0.957 ee_vel_next=0.788 ee_acc_next=0.129 obj_vel_next=0.275
+[13_koopman] strike L10 self=0.625 delta=+0.074 ee_pos_next=0.954 ee_vel_next=0.773 ee_acc_next=0.164 obj_vel_next=0.297
+[13_koopman] strike L11 self=0.612 delta=+0.080 ee_pos_next=0.956 ee_vel_next=0.763 ee_acc_next=0.164 obj_vel_next=0.360
+[13_koopman] strike L12 self=0.638 delta=+0.060 ee_pos_next=0.963 ee_vel_next=0.746 ee_acc_next=0.157 obj_vel_next=0.340
+[13_koopman] strike L13 self=0.623 delta=+0.068 ee_pos_next=0.966 ee_vel_next=0.789 ee_acc_next=0.158 obj_vel_next=0.430
+[13_koopman] strike L14 self=0.607 delta=+0.070 ee_pos_next=0.975 ee_vel_next=0.797 ee_acc_next=0.178 obj_vel_next=0.329
+[13_koopman] strike L15 self=0.588 delta=+0.078 ee_pos_next=0.976 ee_vel_next=0.821 ee_acc_next=0.182 obj_vel_next=0.356
+[13_koopman] strike L16 self=0.587 delta=+0.072 ee_pos_next=0.980 ee_vel_next=0.877 ee_acc_next=0.193 obj_vel_next=0.346
+[13_koopman] strike L17 self=0.600 delta=+0.066 ee_pos_next=0.979 ee_vel_next=0.859 ee_acc_next=0.224 obj_vel_next=0.420
+[13_koopman] strike L18 self=0.598 delta=+0.044 ee_pos_next=0.984 ee_vel_next=0.866 ee_acc_next=0.188 obj_vel_next=0.381
+[13_koopman] strike L19 self=0.625 delta=+0.046 ee_pos_next=0.985 ee_vel_next=0.853 ee_acc_next=0.197 obj_vel_next=0.416
+[13_koopman] strike L20 self=0.646 delta=+0.040 ee_pos_next=0.982 ee_vel_next=0.871 ee_acc_next=0.194 obj_vel_next=0.386
+[13_koopman] strike L21 self=0.654 delta=+0.032 ee_pos_next=0.985 ee_vel_next=0.883 ee_acc_next=0.185 obj_vel_next=0.423
+[13_koopman] strike L22 self=0.655 delta=+0.010 ee_pos_next=0.986 ee_vel_next=0.876 ee_acc_next=0.241 obj_vel_next=0.476
+[13_koopman] strike L23 self=0.688 delta=+0.009 ee_pos_next=0.982 ee_vel_next=0.876 ee_acc_next=0.127 obj_vel_next=0.352
+[13_koopman] reach loading ...
+[13_koopman] reach L00 self=0.926 delta=-0.005 ee_pos_next=-0.407 ee_vel_next=-0.368 ee_acc_next=-0.035
+[13_koopman] reach L01 self=0.347 delta=-0.249 ee_pos_next=-0.075 ee_vel_next=-0.199 ee_acc_next=-0.060
+[13_koopman] reach L02 self=0.463 delta=+0.066 ee_pos_next=0.254 ee_vel_next=0.011 ee_acc_next=-0.003
+[13_koopman] reach L03 self=0.502 delta=-0.003 ee_pos_next=0.160 ee_vel_next=-0.040 ee_acc_next=0.011
+[13_koopman] reach L04 self=0.404 delta=+0.146 ee_pos_next=0.538 ee_vel_next=0.009 ee_acc_next=0.028
+[13_koopman] reach L05 self=0.481 delta=+0.119 ee_pos_next=0.571 ee_vel_next=0.018 ee_acc_next=0.023
+[13_koopman] reach L06 self=0.408 delta=+0.151 ee_pos_next=0.640 ee_vel_next=0.010 ee_acc_next=0.035
+[13_koopman] reach L07 self=0.420 delta=+0.060 ee_pos_next=0.692 ee_vel_next=0.001 ee_acc_next=-0.007
+[13_koopman] reach L08 self=0.453 delta=+0.022 ee_pos_next=0.804 ee_vel_next=-0.013 ee_acc_next=-0.014
+[13_koopman] reach L09 self=0.585 delta=+0.020 ee_pos_next=0.741 ee_vel_next=-0.029 ee_acc_next=0.017
+[13_koopman] reach L10 self=0.561 delta=+0.002 ee_pos_next=0.749 ee_vel_next=-0.029 ee_acc_next=-0.006
+[13_koopman] reach L11 self=0.526 delta=-0.005 ee_pos_next=0.700 ee_vel_next=-0.033 ee_acc_next=-0.006
+[13_koopman] reach L12 self=0.515 delta=-0.033 ee_pos_next=0.730 ee_vel_next=-0.068 ee_acc_next=-0.072
+[13_koopman] reach L13 self=0.520 delta=-0.005 ee_pos_next=0.751 ee_vel_next=-0.027 ee_acc_next=0.009
+[13_koopman] reach L14 self=0.497 delta=-0.004 ee_pos_next=0.833 ee_vel_next=-0.030 ee_acc_next=0.048
+[13_koopman] reach L15 self=0.490 delta=-0.001 ee_pos_next=0.832 ee_vel_next=-0.043 ee_acc_next=0.009
+[13_koopman] reach L16 self=0.489 delta=+0.007 ee_pos_next=0.845 ee_vel_next=-0.026 ee_acc_next=0.057
+[13_koopman] reach L17 self=0.491 delta=-0.002 ee_pos_next=0.828 ee_vel_next=-0.006 ee_acc_next=0.073
+[13_koopman] reach L18 self=0.496 delta=-0.024 ee_pos_next=0.818 ee_vel_next=0.003 ee_acc_next=0.083
+[13_koopman] reach L19 self=0.500 delta=-0.041 ee_pos_next=0.861 ee_vel_next=0.001 ee_acc_next=0.012
+[13_koopman] reach L20 self=0.525 delta=-0.030 ee_pos_next=0.866 ee_vel_next=-0.007 ee_acc_next=-0.020
+[13_koopman] reach L21 self=0.510 delta=-0.064 ee_pos_next=0.832 ee_vel_next=0.016 ee_acc_next=0.003
+[13_koopman] reach L22 self=0.517 delta=-0.076 ee_pos_next=0.853 ee_vel_next=0.013 ee_acc_next=-0.061
+[13_koopman] reach L23 self=0.550 delta=-0.085 ee_pos_next=0.805 ee_vel_next=0.023 ee_acc_next=-0.169
+[13_koopman] drawer loading ...
+[13_koopman] drawer L00 self=0.944 delta=+0.069 ee_pos_next=0.888 ee_vel_next=0.156 ee_acc_next=0.007 obj_vel_next=0.627
+[13_koopman] drawer L01 self=0.544 delta=+0.363 ee_pos_next=0.909 ee_vel_next=0.197 ee_acc_next=0.016 obj_vel_next=0.730
+[13_koopman] drawer L02 self=0.550 delta=+0.231 ee_pos_next=0.897 ee_vel_next=0.187 ee_acc_next=0.015 obj_vel_next=0.695
+[13_koopman] drawer L03 self=0.556 delta=+0.290 ee_pos_next=0.910 ee_vel_next=0.190 ee_acc_next=0.020 obj_vel_next=0.698
+[13_koopman] drawer L04 self=0.397 delta=+0.353 ee_pos_next=0.935 ee_vel_next=0.220 ee_acc_next=0.045 obj_vel_next=0.739
+[13_koopman] drawer L05 self=0.432 delta=+0.310 ee_pos_next=0.949 ee_vel_next=0.253 ee_acc_next=0.107 obj_vel_next=0.744
+[13_koopman] drawer L06 self=0.452 delta=+0.293 ee_pos_next=0.949 ee_vel_next=0.299 ee_acc_next=0.174 obj_vel_next=0.781
+[13_koopman] drawer L07 self=0.494 delta=+0.241 ee_pos_next=0.956 ee_vel_next=0.352 ee_acc_next=0.246 obj_vel_next=0.795
+[13_koopman] drawer L08 self=0.551 delta=+0.177 ee_pos_next=0.958 ee_vel_next=0.327 ee_acc_next=0.204 obj_vel_next=0.789
+[13_koopman] drawer L09 self=0.600 delta=+0.124 ee_pos_next=0.959 ee_vel_next=0.285 ee_acc_next=0.171 obj_vel_next=0.756
+[13_koopman] drawer L10 self=0.598 delta=+0.126 ee_pos_next=0.958 ee_vel_next=0.278 ee_acc_next=0.170 obj_vel_next=0.751
+[13_koopman] drawer L11 self=0.612 delta=+0.113 ee_pos_next=0.963 ee_vel_next=0.304 ee_acc_next=0.176 obj_vel_next=0.781
+[13_koopman] drawer L12 self=0.593 delta=+0.122 ee_pos_next=0.963 ee_vel_next=0.334 ee_acc_next=0.190 obj_vel_next=0.769
+[13_koopman] drawer L13 self=0.581 delta=+0.125 ee_pos_next=0.965 ee_vel_next=0.359 ee_acc_next=0.211 obj_vel_next=0.791
+[13_koopman] drawer L14 self=0.559 delta=+0.122 ee_pos_next=0.965 ee_vel_next=0.321 ee_acc_next=0.184 obj_vel_next=0.770
+[13_koopman] drawer L15 self=0.543 delta=+0.116 ee_pos_next=0.969 ee_vel_next=0.323 ee_acc_next=0.199 obj_vel_next=0.784
+[13_koopman] drawer L16 self=0.533 delta=+0.121 ee_pos_next=0.969 ee_vel_next=0.340 ee_acc_next=0.184 obj_vel_next=0.807
+[13_koopman] drawer L17 self=0.538 delta=+0.109 ee_pos_next=0.969 ee_vel_next=0.356 ee_acc_next=0.208 obj_vel_next=0.846
+[13_koopman] drawer L18 self=0.533 delta=+0.103 ee_pos_next=0.969 ee_vel_next=0.368 ee_acc_next=0.240 obj_vel_next=0.845
+[13_koopman] drawer L19 self=0.520 delta=+0.106 ee_pos_next=0.971 ee_vel_next=0.355 ee_acc_next=0.248 obj_vel_next=0.850
+[13_koopman] drawer L20 self=0.516 delta=+0.108 ee_pos_next=0.971 ee_vel_next=0.383 ee_acc_next=0.245 obj_vel_next=0.840
+[13_koopman] drawer L21 self=0.508 delta=+0.108 ee_pos_next=0.974 ee_vel_next=0.383 ee_acc_next=0.254 obj_vel_next=0.831
+[13_koopman] drawer L22 self=0.490 delta=+0.115 ee_pos_next=0.976 ee_vel_next=0.394 ee_acc_next=0.284 obj_vel_next=0.842
+[13_koopman] drawer L23 self=0.478 delta=+0.119 ee_pos_next=0.973 ee_vel_next=0.389 ee_acc_next=0.265 obj_vel_next=0.850
+[13_koopman] peg_insert loading ...
+[13_koopman] peg_insert L00 self=0.969 delta=+0.009 ee_pos_next=-0.078 ee_vel_next=-0.008 ee_acc_next=-0.064 obj_vel_next=-0.004
+[13_koopman] peg_insert L01 self=0.750 delta=+0.058 ee_pos_next=0.580 ee_vel_next=0.029 ee_acc_next=-0.003 obj_vel_next=-0.014
+[13_koopman] peg_insert L02 self=0.643 delta=+0.135 ee_pos_next=0.775 ee_vel_next=0.157 ee_acc_next=0.046 obj_vel_next=0.036
+[13_koopman] peg_insert L03 self=0.663 delta=+0.085 ee_pos_next=0.760 ee_vel_next=0.114 ee_acc_next=0.040 obj_vel_next=0.001
+[13_koopman] peg_insert L04 self=0.465 delta=+0.056 ee_pos_next=0.797 ee_vel_next=0.173 ee_acc_next=0.054 obj_vel_next=0.042
+[13_koopman] peg_insert L05 self=0.525 delta=+0.004 ee_pos_next=0.872 ee_vel_next=0.133 ee_acc_next=0.067 obj_vel_next=0.032
+[13_koopman] peg_insert L06 self=0.560 delta=+0.014 ee_pos_next=0.900 ee_vel_next=0.129 ee_acc_next=0.098 obj_vel_next=0.053
+[13_koopman] peg_insert L07 self=0.606 delta=+0.005 ee_pos_next=0.907 ee_vel_next=0.369 ee_acc_next=0.090 obj_vel_next=0.123
+[13_koopman] peg_insert L08 self=0.632 delta=-0.007 ee_pos_next=0.892 ee_vel_next=0.242 ee_acc_next=0.113 obj_vel_next=0.067
+[13_koopman] peg_insert L09 self=0.593 delta=-0.006 ee_pos_next=0.908 ee_vel_next=0.349 ee_acc_next=0.057 obj_vel_next=0.087
+[13_koopman] peg_insert L10 self=0.599 delta=-0.003 ee_pos_next=0.912 ee_vel_next=0.335 ee_acc_next=0.079 obj_vel_next=0.111
+[13_koopman] peg_insert L11 self=0.610 delta=-0.015 ee_pos_next=0.932 ee_vel_next=0.343 ee_acc_next=0.119 obj_vel_next=0.105
+[13_koopman] peg_insert L12 self=0.650 delta=-0.008 ee_pos_next=0.930 ee_vel_next=0.246 ee_acc_next=0.070 obj_vel_next=0.045
+[13_koopman] peg_insert L13 self=0.647 delta=-0.019 ee_pos_next=0.911 ee_vel_next=0.415 ee_acc_next=0.064 obj_vel_next=0.113
+[13_koopman] peg_insert L14 self=0.630 delta=-0.020 ee_pos_next=0.906 ee_vel_next=0.429 ee_acc_next=0.066 obj_vel_next=0.133
+[13_koopman] peg_insert L15 self=0.621 delta=-0.018 ee_pos_next=0.925 ee_vel_next=0.487 ee_acc_next=0.064 obj_vel_next=0.150
+[13_koopman] peg_insert L16 self=0.616 delta=-0.018 ee_pos_next=0.936 ee_vel_next=0.544 ee_acc_next=0.110 obj_vel_next=0.168
+[13_koopman] peg_insert L17 self=0.638 delta=-0.015 ee_pos_next=0.934 ee_vel_next=0.515 ee_acc_next=0.131 obj_vel_next=0.170
+[13_koopman] peg_insert L18 self=0.634 delta=-0.023 ee_pos_next=0.946 ee_vel_next=0.512 ee_acc_next=0.112 obj_vel_next=0.168
+[13_koopman] peg_insert L19 self=0.640 delta=-0.019 ee_pos_next=0.940 ee_vel_next=0.532 ee_acc_next=0.157 obj_vel_next=0.169
+[13_koopman] peg_insert L20 self=0.644 delta=-0.023 ee_pos_next=0.933 ee_vel_next=0.490 ee_acc_next=0.132 obj_vel_next=0.135
+[13_koopman] peg_insert L21 self=0.655 delta=-0.031 ee_pos_next=0.938 ee_vel_next=0.455 ee_acc_next=0.014 obj_vel_next=0.131
+[13_koopman] peg_insert L22 self=0.670 delta=-0.020 ee_pos_next=0.937 ee_vel_next=0.520 ee_acc_next=0.099 obj_vel_next=0.163
+[13_koopman] peg_insert L23 self=0.670 delta=-0.021 ee_pos_next=0.942 ee_vel_next=0.532 ee_acc_next=0.110 obj_vel_next=0.146
+[13_koopman] nut_thread loading ...
+[13_koopman] nut_thread L00 self=0.958 delta=+0.018 ee_pos_next=-0.347 ee_vel_next=-0.084 ee_acc_next=-0.005 obj_vel_next=-0.138
+[13_koopman] nut_thread L01 self=0.867 delta=+0.020 ee_pos_next=0.333 ee_vel_next=-0.085 ee_acc_next=-0.015 obj_vel_next=-0.146
+[13_koopman] nut_thread L02 self=0.742 delta=+0.056 ee_pos_next=0.421 ee_vel_next=-0.035 ee_acc_next=-0.008 obj_vel_next=-0.134
+[13_koopman] nut_thread L03 self=0.734 delta=-0.012 ee_pos_next=0.678 ee_vel_next=-0.083 ee_acc_next=-0.027 obj_vel_next=-0.190
+[13_koopman] nut_thread L04 self=0.424 delta=+0.094 ee_pos_next=0.795 ee_vel_next=-0.091 ee_acc_next=-0.030 obj_vel_next=-0.082
+[13_koopman] nut_thread L05 self=0.483 delta=+0.046 ee_pos_next=0.782 ee_vel_next=-0.158 ee_acc_next=-0.020 obj_vel_next=-0.116
+[13_koopman] nut_thread L06 self=0.487 delta=+0.018 ee_pos_next=0.840 ee_vel_next=-0.144 ee_acc_next=-0.034 obj_vel_next=-0.103
+[13_koopman] nut_thread L07 self=0.542 delta=-0.018 ee_pos_next=0.816 ee_vel_next=-0.129 ee_acc_next=-0.038 obj_vel_next=-0.133
+[13_koopman] nut_thread L08 self=0.626 delta=-0.018 ee_pos_next=0.862 ee_vel_next=-0.143 ee_acc_next=-0.059 obj_vel_next=-0.155
+[13_koopman] nut_thread L09 self=0.665 delta=-0.006 ee_pos_next=0.882 ee_vel_next=-0.055 ee_acc_next=-0.048 obj_vel_next=-0.111
+[13_koopman] nut_thread L10 self=0.646 delta=-0.013 ee_pos_next=0.908 ee_vel_next=-0.039 ee_acc_next=-0.038 obj_vel_next=-0.081
+[13_koopman] nut_thread L11 self=0.641 delta=-0.013 ee_pos_next=0.921 ee_vel_next=-0.085 ee_acc_next=-0.034 obj_vel_next=-0.093
+[13_koopman] nut_thread L12 self=0.646 delta=-0.010 ee_pos_next=0.901 ee_vel_next=-0.117 ee_acc_next=-0.035 obj_vel_next=-0.133
+[13_koopman] nut_thread L13 self=0.641 delta=+0.000 ee_pos_next=0.930 ee_vel_next=-0.074 ee_acc_next=-0.020 obj_vel_next=-0.074
+[13_koopman] nut_thread L14 self=0.611 delta=+0.002 ee_pos_next=0.921 ee_vel_next=-0.086 ee_acc_next=-0.035 obj_vel_next=-0.069
+[13_koopman] nut_thread L15 self=0.596 delta=+0.004 ee_pos_next=0.916 ee_vel_next=-0.067 ee_acc_next=-0.030 obj_vel_next=-0.090
+[13_koopman] nut_thread L16 self=0.589 delta=+0.007 ee_pos_next=0.916 ee_vel_next=-0.051 ee_acc_next=-0.057 obj_vel_next=-0.096
+[13_koopman] nut_thread L17 self=0.604 delta=-0.001 ee_pos_next=0.916 ee_vel_next=-0.088 ee_acc_next=-0.060 obj_vel_next=-0.089
+[13_koopman] nut_thread L18 self=0.603 delta=-0.001 ee_pos_next=0.919 ee_vel_next=-0.066 ee_acc_next=-0.018 obj_vel_next=-0.123
+[13_koopman] nut_thread L19 self=0.612 delta=-0.003 ee_pos_next=0.930 ee_vel_next=-0.045 ee_acc_next=-0.033 obj_vel_next=-0.112
+[13_koopman] nut_thread L20 self=0.609 delta=-0.003 ee_pos_next=0.933 ee_vel_next=-0.071 ee_acc_next=-0.017 obj_vel_next=-0.090
+[13_koopman] nut_thread L21 self=0.622 delta=-0.001 ee_pos_next=0.938 ee_vel_next=-0.038 ee_acc_next=-0.045 obj_vel_next=-0.066
+[13_koopman] nut_thread L22 self=0.628 delta=+0.002 ee_pos_next=0.945 ee_vel_next=-0.026 ee_acc_next=-0.022 obj_vel_next=-0.085
+[13_koopman] nut_thread L23 self=0.633 delta=-0.001 ee_pos_next=0.936 ee_vel_next=-0.076 ee_acc_next=-0.034 obj_vel_next=-0.089
+[13_koopman] wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/stats/koopman.csv (144 rows)
+[04:30:23Z] running 12_write_report.py
+wrote /home/solee/physrepa_tasks/probe/trajectory_analysis/results/TRAJECTORY_REPORT.md
+[main 9f25bff] Add latent trajectory analysis (V-JEPA 2 ViT-L PhysProbe)
+ 108 files changed, 43915 insertions(+)
+ create mode 100644 probe/trajectory_analysis/results/TRAJECTORY_REPORT.md
+ create mode 100644 probe/trajectory_analysis/results/logs/01_trajectory_stats.log
+ create mode 100644 probe/trajectory_analysis/results/logs/02_pca_visualization.log
+ create mode 100644 probe/trajectory_analysis/results/logs/03_intrinsic_dimensionality.log
+ create mode 100644 probe/trajectory_analysis/results/logs/04_cross_layer_cka.log
+ create mode 100644 probe/trajectory_analysis/results/logs/05_cross_task_cka.log
+ create mode 100644 probe/trajectory_analysis/results/logs/06_physics_correlation.log
+ create mode 100644 probe/trajectory_analysis/results/logs/07_event_locked_geometry.log
+ create mode 100644 probe/trajectory_analysis/results/logs/08_partial_rsa.log
+ create mode 100644 probe/trajectory_analysis/results/logs/09_tangent_rsa.log
+ create mode 100644 probe/trajectory_analysis/results/logs/10_cca_subspace.log
+ create mode 100644 probe/trajectory_analysis/results/logs/11_shared_pca_procrustes.log
+ create mode 100644 probe/trajectory_analysis/results/logs/12_write_report.log
+ create mode 100644 probe/trajectory_analysis/results/logs/13_koopman_dynamics.log
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_energy_acc.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_energy_ct.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_energy_pos.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_energy_vel.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rank90_acc.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rank90_ct.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rank90_pos.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rank90_vel.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rho1_acc.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rho1_ct.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rho1_pos.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cca_rho1_vel.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_nut_thread.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_peg_insert.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_reach.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_layer_cka_strike.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_evolution.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_layer00.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_layer06.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_layer12.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_layer18.png
+ create mode 100644 probe/trajectory_analysis/results/plots/cross_task_cka_layer23.png
+ create mode 100644 probe/trajectory_analysis/results/plots/event_locked_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/event_locked_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/event_locked_strike.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_nut_thread.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_peg_insert.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_reach.png
+ create mode 100644 probe/trajectory_analysis/results/plots/evr_spectrum_strike.png
+ create mode 100644 probe/trajectory_analysis/results/plots/intrinsic_dim_per_layer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/koopman_ee_acc_next.png
+ create mode 100644 probe/trajectory_analysis/results/plots/koopman_ee_pos_next.png
+ create mode 100644 probe/trajectory_analysis/results/plots/koopman_ee_vel_next.png
+ create mode 100644 probe/trajectory_analysis/results/plots/koopman_obj_vel_next.png
+ create mode 100644 probe/trajectory_analysis/results/plots/koopman_r2_self_delta.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_nut_thread.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_peg_insert.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_reach.png
+ create mode 100644 probe/trajectory_analysis/results/plots/pca_strike.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_acc_tan.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_acc_tan_partial.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_heatmap_acc.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_heatmap_ct.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_nut_thread.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_peg_insert.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_reach.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_partial_strike.png
+ create mode 100644 probe/trajectory_analysis/results/plots/rsa_vel_tan.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_drawer.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_nut_thread.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_peg_insert.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_push.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_reach.png
+ create mode 100644 probe/trajectory_analysis/results/plots/shared_pca_strike.png
+ create mode 100644 probe/trajectory_analysis/results/stats/cca_subspace.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_drawer.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_nut_thread.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_peg_insert.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_push.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_reach.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_layer_cka_strike.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_task_cka_avg_per_layer.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/cross_task_cka_layerwise.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/event_locked.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/intrinsic_dim.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/koopman.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/rsa_partial.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/rsa_tangent.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/speed_profiles.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/trajectory_stats.csv
+ create mode 100644 probe/trajectory_analysis/results/stats/trajectory_stats_summary.csv
+ create mode 100644 probe/trajectory_analysis/scripts/01_trajectory_stats.py
+ create mode 100644 probe/trajectory_analysis/scripts/02_pca_visualization.py
+ create mode 100644 probe/trajectory_analysis/scripts/03_intrinsic_dimensionality.py
+ create mode 100644 probe/trajectory_analysis/scripts/04_cross_layer_cka.py
+ create mode 100644 probe/trajectory_analysis/scripts/05_cross_task_cka.py
+ create mode 100644 probe/trajectory_analysis/scripts/06_physics_correlation.py
+ create mode 100644 probe/trajectory_analysis/scripts/07_event_locked_geometry.py
+ create mode 100644 probe/trajectory_analysis/scripts/08_partial_rsa.py
+ create mode 100644 probe/trajectory_analysis/scripts/09_tangent_rsa.py
+ create mode 100644 probe/trajectory_analysis/scripts/10_cca_subspace.py
+ create mode 100644 probe/trajectory_analysis/scripts/11_shared_pca_procrustes.py
+ create mode 100644 probe/trajectory_analysis/scripts/12_write_report.py
+ create mode 100644 probe/trajectory_analysis/scripts/13_koopman_dynamics.py
+ create mode 100644 probe/trajectory_analysis/ta_utils/__init__.py
+ create mode 100644 probe/trajectory_analysis/ta_utils/loader.py
+To https://github.com/Leesangoh/PhysREPA_Tasks.git
+   00534a3..9f25bff  main -> main
+[04:30:30Z] === master orchestrator done ===
