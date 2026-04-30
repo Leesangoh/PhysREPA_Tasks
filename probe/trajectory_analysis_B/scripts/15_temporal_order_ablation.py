@@ -43,7 +43,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import Ridge
+import torch
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GroupKFold
 
@@ -68,7 +68,7 @@ SLOT_DIM = 1024
 TASKS = ["push", "strike", "drawer"]
 TARGETS = ["ee_acceleration", "obj_acceleration", "contact_flag", "contact_force_log1p_mag"]
 # Subsample windows for tractable Ridge fitting on 8192-d features
-N_SUBSAMPLE = 50000
+N_SUBSAMPLE = 20000   # reduced from 50000 to fit on contended GPU
 # Restrict layers to a representative subset for the heavy ablation (still 12 layers)
 LAYERS_TO_ABLATE = [0, 2, 5, 8, 11, 13, 15, 17, 19, 20, 22, 23]
 # Limit schemes (per Codex's "very clean panel" rec)
@@ -77,8 +77,41 @@ SINGLE_SLOTS_TO_TEST = [0, 3, 7]
 PREFIX_K_TO_TEST = [0, 3, 7]
 
 
-def fold_r2(X: np.ndarray, y: np.ndarray, groups: np.ndarray, n_splits: int = 5) -> tuple[float, float]:
-    """5-fold GroupKFold Ridge; returns (R²_mean, R²_std)."""
+def _gpu_ridge_solve(Xtr_n, ytr_n, Xte_n, alpha=1.0, device="cuda:0"):
+    """GPU ridge with OOM fallback to CPU sklearn."""
+    try:
+        with torch.no_grad():
+            Xt = torch.as_tensor(Xtr_n, dtype=torch.float32, device=device)
+            yt = torch.as_tensor(ytr_n, dtype=torch.float32, device=device)
+            if yt.ndim == 1:
+                yt = yt.unsqueeze(-1)
+            n, p = Xt.shape
+            XtX = Xt.T @ Xt
+            XtX += alpha * torch.eye(p, device=device, dtype=torch.float32)
+            Xty = Xt.T @ yt
+            w = torch.linalg.solve(XtX, Xty)
+            del Xt, yt, XtX, Xty
+            Xe = torch.as_tensor(Xte_n, dtype=torch.float32, device=device)
+            pred_n = (Xe @ w).cpu().numpy()
+            del Xe, w
+            torch.cuda.empty_cache()
+        return pred_n
+    except (torch.OutOfMemoryError, RuntimeError) as e:
+        torch.cuda.empty_cache()
+        # CPU fallback via sklearn
+        from sklearn.linear_model import Ridge
+        m = Ridge(alpha=alpha)
+        m.fit(Xtr_n, ytr_n)
+        pred_n = m.predict(Xte_n)
+        if pred_n.ndim == 1:
+            pred_n = pred_n[:, None]
+        return pred_n
+
+
+def fold_r2(X: np.ndarray, y: np.ndarray, groups: np.ndarray, n_splits: int = 5,
+            device: str = "cuda:0", alpha: float = 1.0) -> tuple[float, float]:
+    """5-fold GroupKFold GPU Ridge with CPU fallback on OOM.
+    Returns (R²_mean, R²_std)."""
     if y.ndim == 1:
         ok = np.isfinite(y)
     else:
@@ -90,19 +123,20 @@ def fold_r2(X: np.ndarray, y: np.ndarray, groups: np.ndarray, n_splits: int = 5)
     gkf = GroupKFold(n_splits=n_splits)
     r2s = []
     for tr, te in gkf.split(X, y, groups=groups):
-        Xtr, Xte = X[tr], X[te]
-        ytr, yte = y[tr], y[te]
+        Xtr, Xte = X[tr], X[te]; ytr, yte = y[tr], y[te]
+        # Within-fold standardization
         mu_x = Xtr.mean(0); sd_x = Xtr.std(0) + 1e-9
-        Xtr_n = (Xtr - mu_x) / sd_x
-        Xte_n = (Xte - mu_x) / sd_x
-        if y.ndim == 1:
+        if ytr.ndim == 1:
             mu_y, sd_y = ytr.mean(), ytr.std() + 1e-9
         else:
             mu_y, sd_y = ytr.mean(0), ytr.std(0) + 1e-9
+        Xtr_n = (Xtr - mu_x) / sd_x
+        Xte_n = (Xte - mu_x) / sd_x
         ytr_n = (ytr - mu_y) / sd_y
-        m = Ridge(alpha=1.0)
-        m.fit(Xtr_n, ytr_n)
-        pred = m.predict(Xte_n) * sd_y + mu_y
+        pred_n = _gpu_ridge_solve(Xtr_n, ytr_n, Xte_n, alpha=alpha, device=device)
+        if pred_n.shape[1] == 1:
+            pred_n = pred_n.squeeze(-1)
+        pred = pred_n * sd_y + mu_y
         r2s.append(r2_score(yte, pred, multioutput="variance_weighted") if yte.ndim > 1 else r2_score(yte, pred))
     return float(np.mean(r2s)), float(np.std(r2s))
 
@@ -187,7 +221,7 @@ def main():
             tL = time.time()
             X_layer = feats_full[:, L, :]   # [N_total, 8192]
             for tk in TARGETS:
-                if tk not in tgt.files:
+                if tk not in tgt:
                     continue
                 y = tgt[tk][rows_idx]
 
@@ -228,9 +262,11 @@ def main():
                 Xt = transform_feature(X_layer, "random_per_sample", seed=42)
                 r2_m, r2_s = fold_r2(Xt, y, eps_arr)
                 rows.append({"task": task, "layer": L, "target": tk, "scheme": "random_per_sample",
-                             "scheme_param": -1, "r2_mean": r2_m, "r2_std": r2_s})
+                             "scheme_param": -2, "r2_mean": r2_m, "r2_std": r2_s})
             print(f"[15_temporal_order] {task} L{L:02d}: {time.time()-tL:.1f}s", flush=True)
-
+        # Incremental save after each task
+        pd.DataFrame(rows).to_csv(STATS / "temporal_order_ablation.csv", index=False)
+        print(f"[15_temporal_order] {task} DONE — saved {len(rows)} rows so far", flush=True)
     df = pd.DataFrame(rows)
     df.to_csv(STATS / "temporal_order_ablation.csv", index=False)
     print(f"[15_temporal_order] wrote stats ({len(df)} rows)", flush=True)

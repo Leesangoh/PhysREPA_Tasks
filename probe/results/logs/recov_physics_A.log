@@ -1,0 +1,28 @@
+[07_physics] push: using 200 episodes
+[07_physics] push: params with variation = ['object_0_mass', 'object_0_static_friction', 'object_0_dynamic_friction', 'surface_static_friction', 'surface_dynamic_friction']
+[07_physics] push: loading episode-mean features...
+[07_physics] push: X (200, 24, 1024), Y (200, 5)
+[07_physics] push: wrote summary (120 rows)
+[07_physics] strike: using 200 episodes
+[07_physics] strike: params with variation = ['object_0_mass', 'object_0_static_friction', 'object_0_dynamic_friction', 'surface_static_friction', 'surface_dynamic_friction', 'object_0_restitution']
+[07_physics] strike: loading episode-mean features...
+[07_physics] strike: X (200, 24, 1024), Y (200, 6)
+[07_physics] strike: wrote summary (144 rows)
+[07_physics] reach: no physics params declared, skipping
+[07_physics] drawer: using 200 episodes
+[07_physics] drawer: params with variation = ['drawer_joint_damping']
+[07_physics] drawer: loading episode-mean features...
+[07_physics] drawer: X (200, 24, 1024), Y (200, 1)
+[07_physics] drawer: wrote summary (24 rows)
+[07_physics] peg_insert: using 200 episodes
+[07_physics] peg_insert: params with variation = ['peg_static_friction', 'peg_dynamic_friction', 'peg_mass', 'hole_static_friction', 'hole_dynamic_friction']
+[07_physics] peg_insert: 3 eps with NaN physics — dropped
+[07_physics] peg_insert: loading episode-mean features...
+[07_physics] peg_insert: X (197, 24, 1024), Y (197, 5)
+[07_physics] peg_insert: wrote summary (120 rows)
+[07_physics] nut_thread: using 200 episodes
+[07_physics] nut_thread: params with variation = ['nut_static_friction', 'nut_dynamic_friction', 'nut_mass', 'bolt_static_friction', 'bolt_dynamic_friction']
+[07_physics] nut_thread: 4 eps with NaN physics — dropped
+[07_physics] nut_thread: loading episode-mean features...
+[07_physics] nut_thread: X (196, 24, 1024), Y (196, 5)
+[07_physics] nut_thread: wrote summary (120 rows)

@@ -31,6 +31,16 @@ def run_task(task: str) -> dict[str, float]:
     save_targets(task, win)
     n_win = int(win["t_last"].size)
     n_ep = int(np.unique(win["episode_id"]).size)
+    # Diagnostics for contact-related rare-event targets (per Codex)
+    if "contact_flag" in win:
+        cf = win["contact_flag"].reshape(-1)
+        pos_rate = float((cf > 0.5).mean())
+        val["contact_pos_rate"] = pos_rate
+    if "contact_force_mag" in win:
+        m = win["contact_force_mag"]
+        val["force_mag_p50"] = float(np.median(m))
+        val["force_mag_p99"] = float(np.percentile(m, 99))
+        val["force_mag_max"] = float(m.max())
     elapsed = time.time() - t0
     progress(
         f"[targets] {task}: ep={n_ep} win={n_win} "

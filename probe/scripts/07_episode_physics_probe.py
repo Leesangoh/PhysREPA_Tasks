@@ -51,35 +51,46 @@ PLOTS.mkdir(parents=True, exist_ok=True)
 ALL_TASKS = ["push", "strike", "reach", "drawer", "peg_insert", "nut_thread"]
 
 
+"""Physics parameters live in meta/episodes.jsonl (per-episode), NOT in parquet
+per-frame data. Each task has different params:"""
 PHYSICS_PARAMS = {
-    "push":       ["physics_gt.mass", "physics_gt.obj_friction", "physics_gt.surface_friction"],
-    "strike":     ["physics_gt.mass", "physics_gt.friction", "physics_gt.surface_friction",
-                   "physics_gt.restitution"],
-    "drawer":     ["physics_gt.drawer_joint_damping"],
-    "peg_insert": ["physics_gt.held_friction", "physics_gt.fixed_friction", "physics_gt.held_mass"],
-    "nut_thread": ["physics_gt.held_friction", "physics_gt.fixed_friction", "physics_gt.held_mass"],
+    "push":       ["object_0_mass", "object_0_static_friction", "object_0_dynamic_friction",
+                   "surface_static_friction", "surface_dynamic_friction"],
+    "strike":     ["object_0_mass", "object_0_static_friction", "object_0_dynamic_friction",
+                   "surface_static_friction", "surface_dynamic_friction", "object_0_restitution"],
+    "drawer":     ["drawer_joint_damping", "drawer_handle_mass",
+                   "handle_static_friction", "handle_dynamic_friction"],
+    "peg_insert": ["peg_static_friction", "peg_dynamic_friction", "peg_mass",
+                   "hole_static_friction", "hole_dynamic_friction"],
+    "nut_thread": ["nut_static_friction", "nut_dynamic_friction", "nut_mass",
+                   "bolt_static_friction", "bolt_dynamic_friction"],
     "reach":      [],
 }
 
 
 def load_physics_param_per_episode(task: str, episode_ids: list[int]) -> tuple[np.ndarray, list[str]]:
-    """Returns Y [n_eps, n_params_present], list_of_param_names_present."""
+    """Read physics params from meta/episodes.jsonl. Returns
+    Y [n_eps, n_params_present], list_of_param_names_present."""
+    import json
     expected = PHYSICS_PARAMS.get(task, [])
     if not expected:
         return np.zeros((len(episode_ids), 0)), []
 
+    common = load_common()
+    jsonl_path = Path(common["dataset_root"]) / task / "meta" / "episodes.jsonl"
+    ep_to_phys: dict[int, dict[str, float]] = {}
+    if jsonl_path.exists():
+        with open(jsonl_path) as f:
+            for line in f:
+                d = json.loads(line)
+                ep_to_phys[int(d["episode_index"])] = {
+                    k: float(d[k]) for k in expected if k in d
+                }
     rows = []
     for ep in episode_ids:
-        try:
-            df = pq.read_table(parquet_for_episode(task, ep)).to_pandas()
-        except Exception:
-            rows.append({c: np.nan for c in expected})
-            continue
-        # Take first row (physics params constant within episode)
-        first = df.iloc[0]
-        rows.append({c: float(first[c]) if c in df.columns else np.nan for c in expected})
+        rec = ep_to_phys.get(ep, {})
+        rows.append({c: rec.get(c, np.nan) for c in expected})
     df_phys = pd.DataFrame(rows)
-    # Keep only columns with any variation across episodes
     keep_cols = [c for c in expected if df_phys[c].notna().any() and df_phys[c].std() > 1e-9]
     Y = df_phys[keep_cols].to_numpy(dtype=np.float32)
     return Y, keep_cols

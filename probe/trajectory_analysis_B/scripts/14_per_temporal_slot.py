@@ -143,7 +143,7 @@ def main():
         rows_idx = np.array([lut[(int(g), int(t))] for g, t in zip(eps_arr, t_last)], dtype=np.int64)
         target_data = {}
         for tk in KEY_TARGETS:
-            if tk in tgt.files:
+            if tk in tgt:
                 target_data[tk] = tgt[tk][rows_idx]
 
         # === Per (layer, slot) loop ===

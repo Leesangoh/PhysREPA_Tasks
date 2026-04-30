@@ -1,0 +1,40 @@
+[15_temporal_order] push loading ...
+[15_temporal_order] push L00: 118.1s
+[15_temporal_order] push L02: 117.2s
+[15_temporal_order] push L05: 117.0s
+[15_temporal_order] push L08: 117.7s
+[15_temporal_order] push L11: 117.5s
+[15_temporal_order] push L13: 117.3s
+[15_temporal_order] push L15: 116.7s
+[15_temporal_order] push L17: 117.0s
+[15_temporal_order] push L19: 116.7s
+[15_temporal_order] push L20: 116.8s
+[15_temporal_order] push L22: 116.1s
+[15_temporal_order] push L23: 116.2s
+[15_temporal_order] strike loading ...
+[15_temporal_order] strike L00: 91.9s
+[15_temporal_order] strike L02: 91.8s
+[15_temporal_order] strike L05: 91.3s
+[15_temporal_order] strike L08: 91.6s
+[15_temporal_order] strike L11: 91.6s
+[15_temporal_order] strike L13: 91.4s
+[15_temporal_order] strike L15: 91.6s
+[15_temporal_order] strike L17: 91.5s
+[15_temporal_order] strike L19: 92.3s
+[15_temporal_order] strike L20: 93.3s
+[15_temporal_order] strike L22: 93.2s
+[15_temporal_order] strike L23: 93.2s
+[15_temporal_order] drawer loading ...
+[15_temporal_order] drawer L00: 139.9s
+[15_temporal_order] drawer L02: 139.2s
+[15_temporal_order] drawer L05: 146.3s
+[15_temporal_order] drawer L08: 149.5s
+Traceback (most recent call last):
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis_B/scripts/15_temporal_order_ablation.py", line 288, in <module>
+    main()
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis_B/scripts/15_temporal_order_ablation.py", line 238, in main
+    r2_m, r2_s = fold_r2(Xt, y, eps_arr)
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis_B/scripts/15_temporal_order_ablation.py", line 114, in fold_r2
+    XtX += alpha * torch.eye(p, device=device, dtype=torch.float32)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 47.40 GiB of which 253.62 MiB is free. Including non-PyTorch memory, this process has 1.07 GiB memory in use. Of the allocated memory 730.15 MiB is allocated by PyTorch, and 13.85 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+There was an error running python

@@ -144,7 +144,7 @@ def main():
         keys_tgt = list(zip(tgt["episode_id"].tolist(), tgt["t_last"].tolist()))
         lut = {k: i for i, k in enumerate(keys_tgt)}
         rows_idx = np.array([lut[(int(g), int(t))] for g, t in zip(eps_arr, t_last)], dtype=np.int64)
-        target_data = {tk: tgt[tk][rows_idx] for tk in TARGETS if tk in tgt.files}
+        target_data = {tk: tgt[tk][rows_idx] for tk in TARGETS if tk in tgt}
 
         for L in range(24):
             X_layer = feats[:, L, :]

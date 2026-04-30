@@ -79,7 +79,7 @@ def load_task_arrays(task: str, n_eps: int = N_EPS, variant: str = "A"):
     keys = list(zip(tgt["episode_id"].tolist(), tgt["t_last"].tolist()))
     lut = {k: i for i, k in enumerate(keys)}
     rows = np.array([lut[(int(g), int(t))] for g, t in zip(eps_arr, t_last)], dtype=np.int64)
-    targets_dict = {tk: tgt[tk][rows] for tk in TARGETS if tk in tgt.files}
+    targets_dict = {tk: tgt[tk][rows] for tk in TARGETS if tk in tgt}
     return feats, eps_arr, targets_dict
 
 
