@@ -1,0 +1,11 @@
+[07_physics] push: using 200 episodes
+[07_physics] push: no varying physics params present, skipping
+[07_physics] strike: using 200 episodes
+[07_physics] strike: no varying physics params present, skipping
+[07_physics] reach: no physics params declared, skipping
+[07_physics] drawer: using 200 episodes
+[07_physics] drawer: no varying physics params present, skipping
+[07_physics] peg_insert: using 200 episodes
+[07_physics] peg_insert: no varying physics params present, skipping
+[07_physics] nut_thread: using 200 episodes
+[07_physics] nut_thread: no varying physics params present, skipping

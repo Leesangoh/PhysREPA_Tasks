@@ -1,0 +1,8 @@
+[15_temporal_order] push loading ...
+Traceback (most recent call last):
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis_B/scripts/15_temporal_order_ablation.py", line 269, in <module>
+    main()
+  File "/home/solee/physrepa_tasks/probe/trajectory_analysis_B/scripts/15_temporal_order_ablation.py", line 190, in main
+    if tk not in tgt.files:
+AttributeError: 'dict' object has no attribute 'files'
+There was an error running python

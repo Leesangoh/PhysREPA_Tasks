@@ -118,3 +118,107 @@ wrote 19 plots to /home/solee/physrepa_tasks/probe/results/plots
   /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_acceleration.png
   /home/solee/physrepa_tasks/probe/results/plots/cross_task_obj_accel_mag.png
   /home/solee/physrepa_tasks/probe/results/plots/heatmap_r2.png
+[main 982df63] Add extended probing — rotational, contact, progress targets
+ 114 files changed, 18265 insertions(+), 7 deletions(-)
+ create mode 100644 probe/results/.ext_gpu1_A_done
+ create mode 100644 probe/results/.trajectory_done
+ create mode 100644 probe/results/.variantB_clean_done
+ create mode 100644 probe/results/drawer/variant_A/contact_flag.csv
+ create mode 100644 probe/results/drawer/variant_A/contact_force.csv
+ create mode 100644 probe/results/drawer/variant_A/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/drawer/variant_A/contact_force_mag.csv
+ create mode 100644 probe/results/drawer/variant_A/contact_point.csv
+ create mode 100644 probe/results/drawer/variant_A/drawer_joint_pos.csv
+ create mode 100644 probe/results/drawer/variant_A/drawer_joint_vel.csv
+ create mode 100644 probe/results/drawer/variant_A/drawer_opening_extent.csv
+ create mode 100644 probe/results/drawer/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/drawer/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/drawer/variant_A/phase.csv
+ create mode 100644 probe/results/drawer/variant_B/contact_flag.csv
+ create mode 100644 probe/results/drawer/variant_B/contact_force.csv
+ create mode 100644 probe/results/drawer/variant_B/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/drawer/variant_B/contact_force_mag.csv
+ create mode 100644 probe/results/drawer/variant_B/contact_point.csv
+ create mode 100644 probe/results/logs/ext_A_drawer.log
+ create mode 100644 probe/results/logs/ext_A_nut_thread.log
+ create mode 100644 probe/results/logs/ext_A_peg_insert.log
+ create mode 100644 probe/results/logs/ext_A_push.log
+ create mode 100644 probe/results/logs/ext_A_reach.log
+ create mode 100644 probe/results/logs/ext_A_strike.log
+ create mode 100644 probe/results/logs/ext_B_drawer.log
+ create mode 100644 probe/results/logs/ext_B_push.log
+ create mode 100644 probe/results/logs/ext_B_strike.log
+ create mode 100644 probe/results/logs/extended_orchestrator.log
+ create mode 100644 probe/results/logs/extended_v2.log
+ create mode 100644 probe/results/logs/plan3_orchestrator.log
+ create mode 100644 probe/results/nut_thread/variant_A/axial_progress.csv
+ create mode 100644 probe/results/nut_thread/variant_A/contact_flag.csv
+ create mode 100644 probe/results/nut_thread/variant_A/contact_force.csv
+ create mode 100644 probe/results/nut_thread/variant_A/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/nut_thread/variant_A/contact_force_mag.csv
+ create mode 100644 probe/results/nut_thread/variant_A/contact_point.csv
+ create mode 100644 probe/results/nut_thread/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/nut_thread/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/nut_thread/variant_A/nut_bolt_relative_angle.csv
+ create mode 100644 probe/results/nut_thread/variant_A/obj_angular_velocity.csv
+ create mode 100644 probe/results/nut_thread/variant_A/obj_orientation.csv
+ create mode 100644 probe/results/nut_thread/variant_A/phase.csv
+ create mode 100644 probe/results/peg_insert/variant_A/contact_flag.csv
+ create mode 100644 probe/results/peg_insert/variant_A/contact_force.csv
+ create mode 100644 probe/results/peg_insert/variant_A/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/peg_insert/variant_A/contact_force_mag.csv
+ create mode 100644 probe/results/peg_insert/variant_A/contact_point.csv
+ create mode 100644 probe/results/peg_insert/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/peg_insert/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/peg_insert/variant_A/insertion_depth.csv
+ create mode 100644 probe/results/peg_insert/variant_A/obj_angular_velocity.csv
+ create mode 100644 probe/results/peg_insert/variant_A/obj_orientation.csv
+ create mode 100644 probe/results/peg_insert/variant_A/peg_hole_lateral_error.csv
+ create mode 100644 probe/results/peg_insert/variant_A/phase.csv
+ rewrite probe/results/plots/drawer_layer_vs_r2.png (96%)
+ rewrite probe/results/plots/heatmap_r2.png (94%)
+ rewrite probe/results/plots/nut_thread_layer_vs_r2.png (96%)
+ rewrite probe/results/plots/peg_insert_layer_vs_r2.png (94%)
+ rewrite probe/results/plots/push_layer_vs_r2.png (80%)
+ rewrite probe/results/plots/reach_layer_vs_r2.png (96%)
+ rewrite probe/results/plots/strike_layer_vs_r2.png (82%)
+ create mode 100644 probe/results/push/variant_A/contact_flag.csv
+ create mode 100644 probe/results/push/variant_A/contact_force.csv
+ create mode 100644 probe/results/push/variant_A/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/push/variant_A/contact_force_mag.csv
+ create mode 100644 probe/results/push/variant_A/contact_point.csv
+ create mode 100644 probe/results/push/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/push/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/push/variant_A/ee_to_object_distance.csv
+ create mode 100644 probe/results/push/variant_A/obj_angular_velocity.csv
+ create mode 100644 probe/results/push/variant_A/obj_orientation.csv
+ create mode 100644 probe/results/push/variant_A/phase.csv
+ create mode 100644 probe/results/push/variant_B/contact_flag.csv
+ create mode 100644 probe/results/push/variant_B/contact_force.csv
+ create mode 100644 probe/results/push/variant_B/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/push/variant_B/contact_force_mag.csv
+ create mode 100644 probe/results/push/variant_B/contact_point.csv
+ create mode 100644 probe/results/reach/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/reach/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/reach/variant_A/ee_to_target_distance.csv
+ create mode 100644 probe/results/reach/variant_A/phase.csv
+ create mode 100644 probe/results/strike/variant_A/ball_planar_travel_distance.csv
+ create mode 100644 probe/results/strike/variant_A/contact_flag.csv
+ create mode 100644 probe/results/strike/variant_A/contact_force.csv
+ create mode 100644 probe/results/strike/variant_A/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/strike/variant_A/contact_force_mag.csv
+ create mode 100644 probe/results/strike/variant_A/contact_point.csv
+ create mode 100644 probe/results/strike/variant_A/ee_angular_velocity.csv
+ create mode 100644 probe/results/strike/variant_A/ee_orientation.csv
+ create mode 100644 probe/results/strike/variant_A/ee_to_object_distance.csv
+ create mode 100644 probe/results/strike/variant_A/obj_angular_velocity.csv
+ create mode 100644 probe/results/strike/variant_A/obj_orientation.csv
+ create mode 100644 probe/results/strike/variant_A/phase.csv
+ create mode 100644 probe/results/strike/variant_B/contact_flag.csv
+ create mode 100644 probe/results/strike/variant_B/contact_force.csv
+ create mode 100644 probe/results/strike/variant_B/contact_force_log1p_mag.csv
+ create mode 100644 probe/results/strike/variant_B/contact_force_mag.csv
+ create mode 100644 probe/results/strike/variant_B/contact_point.csv
+To https://github.com/Leesangoh/PhysREPA_Tasks.git
+   9f25bff..982df63  main -> main
+=== extended v2 done: 2026-04-29T16:40:03Z ===
