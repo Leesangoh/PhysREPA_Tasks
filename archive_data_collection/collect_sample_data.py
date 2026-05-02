@@ -47,6 +47,7 @@ simulation_app = app_launcher.app
 # Post-launch imports
 import pandas as pd
 import imageio
+from concurrent.futures import ThreadPoolExecutor
 
 from isaaclab.envs import ManagerBasedRLEnv
 
@@ -157,6 +158,25 @@ def encode_video(frames: list[np.ndarray], output_path: str, fps: int = 50):
     writer.close()
 
 
+def _save_episode_async(output_dir, chunk_dir, ep_idx, df_data, frames_table, frames_wrist, fps):
+    """Worker fn for ThreadPoolExecutor: writes parquet + MP4s off the main thread.
+
+    GIL is released during pd.to_parquet (pyarrow C ext) and during imageio-ffmpeg subprocess I/O,
+    so 4 workers can genuinely parallelize.
+    """
+    parquet_dir = os.path.join(output_dir, "data", chunk_dir)
+    os.makedirs(parquet_dir, exist_ok=True)
+    df = pd.DataFrame(df_data)
+    parquet_path = os.path.join(parquet_dir, f"episode_{ep_idx:06d}.parquet")
+    df.to_parquet(parquet_path, index=False)
+    if frames_table:
+        video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_0")
+        encode_video(frames_table, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
+    if frames_wrist:
+        video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_1")
+        encode_video(frames_wrist, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
+
+
 def ee_state_to_8d(ee_pos_b: np.ndarray, ee_quat_b: np.ndarray, gripper_pos: float) -> np.ndarray:
     """Convert EE position + quaternion (both in base frame) to BridgeData-compatible 8D state.
 
@@ -201,6 +221,88 @@ def get_ee_pose_in_base_frame(env):
 def get_task_instruction(task_name: str, env) -> str:
     """Build language instruction from task name. Colors are fixed (no randomization)."""
     return TASK_INSTRUCTION_TEMPLATES[task_name]
+
+
+def _sensor_force_flag_point(sensor, env_idx: int, threshold: float = 0.5) -> tuple[np.ndarray, float, np.ndarray]:
+    """Read aggregate contact force/flag/point from a ContactSensor for one env."""
+    if sensor.data.force_matrix_w is not None:
+        force = sensor.data.force_matrix_w[env_idx, 0].sum(dim=0).cpu().numpy().astype(np.float32)
+    else:
+        force = sensor.data.net_forces_w[env_idx, 0].cpu().numpy().astype(np.float32)
+    flag = float(np.linalg.norm(force) > threshold)
+
+    point = np.zeros(3, dtype=np.float32)
+    if getattr(sensor.cfg, "track_contact_points", False) and sensor.data.contact_pos_w is not None:
+        contact_points = sensor.data.contact_pos_w[env_idx, 0].cpu().numpy()
+        valid = np.isfinite(contact_points).all(axis=1)
+        if valid.any():
+            point = np.nan_to_num(contact_points[valid][0], nan=0.0).astype(np.float32)
+
+    return force, flag, point
+
+
+def _aggregate_contact_measurements(
+    measurements: list[tuple[np.ndarray, float, np.ndarray]],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Aggregate multiple contact measurements into one generic contact tuple."""
+    total_force = np.zeros(3, dtype=np.float32)
+    total_flag = 0.0
+    contact_point = np.zeros(3, dtype=np.float32)
+
+    for force, flag, point in measurements:
+        total_force += force.astype(np.float32)
+        if flag > 0.5:
+            total_flag = 1.0
+            if not np.any(contact_point):
+                contact_point = point.astype(np.float32)
+
+    return np.array([total_flag], dtype=np.float32), total_force.astype(np.float32), contact_point.astype(np.float32)
+
+
+def _match_action_dim(action: torch.Tensor, target_dim: int) -> torch.Tensor:
+    """Adapt scripted-policy output to the environment's expected action dimension."""
+    if action.shape[1] == target_dim:
+        return action
+
+    if target_dim == 4 and action.shape[1] >= 4:
+        matched = torch.zeros(action.shape[0], 4, device=action.device, dtype=action.dtype)
+        matched[:, :3] = action[:, :3]
+        grip_source = action[:, 6] if action.shape[1] >= 7 else action[:, 3]
+        matched[:, 3] = grip_source
+        return matched
+
+    if target_dim == 6 and action.shape[1] >= 6:
+        return action[:, :6]
+
+    if target_dim == 7 and action.shape[1] >= 7:
+        return action[:, :7]
+
+    if target_dim == 8 and action.shape[1] >= 8:
+        return action[:, :8]
+
+    raise ValueError(f"Cannot adapt action shape {tuple(action.shape)} to target dim {target_dim}")
+
+
+def _build_factory_oracle_obs(task_name: str, phys: dict[str, torch.Tensor]) -> dict[str, dict[str, torch.Tensor]]:
+    """Convert direct Factory physics into the dict structure expected by scripted oracles."""
+    obs = {
+        "physics_gt": {
+            "ee_position_b": phys["ee_position"],
+            "ee_velocity": phys["ee_velocity"],
+        },
+        "policy": {},
+    }
+
+    if task_name == "peg_insert":
+        obs["policy"]["peg_position"] = phys["held_position"]
+        obs["policy"]["hole_position"] = phys["fixed_position"]
+    elif task_name == "nut_thread":
+        obs["policy"]["nut_position"] = phys["held_position"]
+        obs["policy"]["bolt_position"] = phys["fixed_position"]
+    else:
+        raise ValueError(f"Factory oracle obs is only defined for peg_insert/nut_thread, got {task_name}")
+
+    return obs
 
 
 def read_physics_params(env, task_name: str) -> dict:
@@ -381,8 +483,10 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                   rl_checkpoint: str | None = None, step0: bool = False, filter_success: bool = False):
     """Collect episodes for a single task and save in LeRobot V2 format."""
     is_factory = task_name in ("peg_insert", "nut_thread")
+    factory_direct = False
     is_rl_wrapped = False
     rl_policy = None
+    oracle_policy = None
     _drawer_env_wrapped = None
 
     if is_factory:
@@ -392,12 +496,15 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         cfg = PegInsertCameraCfg() if task_name == "peg_insert" else NutThreadCameraCfg()
         cfg.scene.num_envs = 1
         env = FactoryCameraEnv(cfg=cfg)
-
-        # Load RL-Games checkpoint for Factory tasks
+        factory_direct = True
         if rl_checkpoint is not None:
             from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
             rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
             print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+        else:
+            oracle_cls = TASK_POLICIES[task_name]
+            oracle_policy = oracle_cls(num_envs=1, device=env.device)
+            print(f"  Using scripted policy: {oracle_cls.__name__}")
     elif rl_checkpoint is not None and task_name == "drawer":
         # Drawer: use Isaac Lab official RL env with cameras added
         import gymnasium as gym
@@ -419,7 +526,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         if hasattr(cfg.scene, 'cabinet_frame'):
             cfg.scene.cabinet_frame.debug_vis = False
         # Add cameras to scene
-        from isaaclab.sensors import CameraCfg
+        from isaaclab.sensors import CameraCfg, ContactSensorCfg
         cfg.scene.table_cam = CameraCfg(
             prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
             data_types=["rgb"],
@@ -435,6 +542,24 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 2.0)),
             offset=CameraCfg.OffsetCfg(
                 pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
+        )
+        cfg.scene.contact_sensor = ContactSensorCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_leftfinger",
+            update_period=0.0,
+            history_length=1,
+            track_air_time=True,
+            track_contact_points=True,
+            force_threshold=0.5,
+            filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
+        )
+        cfg.scene.contact_sensor_r = ContactSensorCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_rightfinger",
+            update_period=0.0,
+            history_length=1,
+            track_air_time=False,
+            track_contact_points=True,
+            force_threshold=0.5,
+            filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
         )
         env = gym.make(gym_id, cfg=cfg)
         # Load RSL-RL policy
@@ -530,31 +655,30 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
     print(f"\n{'='*60}")
     print(f"Collecting {num_episodes} episodes for task: {task_name}")
-    if is_factory:
+    if factory_direct:
         print(f"  (Factory Direct env with cameras)")
     print(f"{'='*60}")
 
-    robot = env.scene["robot"] if not is_factory else env._robot
+    robot = env.scene["robot"] if not factory_direct else env._robot
     try:
-        finger_ids = robot.find_joints("panda_finger.*")[0] if not is_factory else None
+        finger_ids = robot.find_joints("panda_finger.*")[0] if not factory_direct else None
     except Exception:
         finger_ids = None  # UR10 has no fingers
 
     # Get EE frame sensor (not available in Factory env)
-    ee_frame = env.scene["ee_frame"] if not is_factory else None
+    ee_frame = env.scene["ee_frame"] if not factory_direct else None
 
     # Derive FPS and dt from config
     dt = cfg.sim.dt * cfg.decimation
     fps = int(1.0 / dt)
 
     # Oracle policy
-    oracle_policy = None
     if step0 and task_name in ("push", "strike"):
         step0_policies = {"push": Step0PushPolicy, "strike": Step0StrikePolicy}
         policy_cls = step0_policies[task_name]
         oracle_policy = policy_cls(num_envs=1, device=env.device)
         print(f"  Using Step 0 policy: {policy_cls.__name__} (no target, random direction)")
-    elif use_oracle:
+    elif use_oracle and oracle_policy is None:
         policy_cls = TASK_POLICIES[task_name]
         oracle_policy = policy_cls(num_envs=1, device=env.device)
         print(f"  Using oracle policy: {policy_cls.__name__}")
@@ -715,7 +839,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 env.reset()
             else:
                 obs, info = env.reset()
-            if task_name in ("pick_place", "push", "strike") and not is_factory:
+            if task_name in ("pick_place", "push", "strike") and not factory_direct:
                 # Read object/target positions (from obs or env.scene for RL)
                 if "physics_gt" in obs:
                     gt = obs["physics_gt"]
@@ -747,7 +871,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         print(f"  Instruction: {task_description}")
 
         # Randomize physics for Factory tasks (friction, mass) — PEZ probing
-        if is_factory and hasattr(env, 'randomize_physics'):
+        if factory_direct and hasattr(env, 'randomize_physics'):
             factory_phys = env.randomize_physics()
             print(f"  Factory physics randomized: {factory_phys}")
 
@@ -772,7 +896,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         ep_rewards = []
 
         # Sync target marker to command target position
-        if not is_factory:
+        if not factory_direct:
             if task_name in ("pick_place", "push", "strike"):
                 from physrepa_tasks.mdp.sync_marker import sync_target_marker
                 sync_target_marker(env, env_ids=None, command_name="object_pose")
@@ -781,17 +905,17 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 sync_target_marker(env, env_ids=None, command_name="ee_pose", fixed_z=None)
 
         # Warmup: 0.5 seconds of no-action steps for rendering stabilization
-        if task_name == "reach" or is_factory:
+        if factory_direct:
             action_dim = 6
+        elif hasattr(env, "action_manager"):
+            action_dim = env.action_manager.total_action_dim
         elif rl_checkpoint is not None and task_name == "drawer":
             action_dim = 8
-        elif step0 and task_name == "push":
-            action_dim = 4  # position-only IK (3D) + gripper (1D)
-        elif step0 and task_name == "strike":
-            action_dim = 4  # position-only IK (3D) + gripper (1D)
+        elif task_name == "reach":
+            action_dim = 6
         else:
             action_dim = 7
-        if is_factory:
+        if factory_direct:
             # Factory: render-only warmup (no physics step, no episode budget consumed)
             for _ in range(3):
                 env.sim.render()
@@ -822,10 +946,17 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
         ball_rolling_dist = 0.0
 
         for step in range(max_steps):
+            factory_phys = None
+            oracle_obs = obs
+            if factory_direct:
+                factory_phys = env.get_physics_data()
+                if oracle_policy is not None:
+                    oracle_obs = _build_factory_oracle_obs(task_name, factory_phys)
+
             # Generate action
             if rl_policy is not None:
                 with torch.inference_mode():
-                    if is_factory:
+                    if factory_direct:
                         # rl_games LSTM: takes flat obs from Factory env
                         flat_obs = obs["policy"] if isinstance(obs, dict) else obs
                         action = rl_policy(flat_obs)
@@ -839,10 +970,11 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     if action.dim() == 1:
                         action = action.unsqueeze(0)
             elif oracle_policy is not None:
-                action = oracle_policy.get_action(obs)
+                action = oracle_policy.get_action(oracle_obs)
+                action = _match_action_dim(action, action_dim)
             else:
                 action = torch.zeros(1, action_dim, device=env.device)
-                if is_factory:
+                if factory_direct:
                     action[0, :6] = torch.randn(6, device=env.device) * 0.5
                 else:
                     action[0, :6] = torch.randn(6, device=env.device) * 0.1
@@ -850,8 +982,8 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                         action[0, 6] = 1.0 if step < max_steps // 2 else -1.0
 
             # Build physics GT dict (BEFORE step — reads current state)
-            if is_factory:
-                phys = env.get_physics_data()
+            if factory_direct:
+                phys = factory_phys if factory_phys is not None else env.get_physics_data()
                 # Build a fake gt dict for uniform access below
                 gt = {
                     "ee_position": phys["ee_position"],
@@ -878,6 +1010,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     "held_fixed_contact_force": phys["held_fixed_contact_force"],
                     "contact_flag": phys["contact_flag"],
                     "contact_force": phys["contact_force"],
+                    "contact_point": phys["contact_point"],
                 }
             elif "physics_gt" in obs:
                 gt = obs["physics_gt"]
@@ -891,14 +1024,39 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 _ee_vel = _robot.data.body_lin_vel_w[0, _hand_idx]
                 _ee_angvel = _robot.data.body_ang_vel_w[0, _hand_idx]
                 # Read contact from contact_sensor if available, otherwise zeros
-                if "contact_sensor" in env.scene.sensors:
+                if task_name == "drawer":
+                    left_force = torch.zeros(3, device=env.device)
+                    left_flag = torch.tensor(0.0, device=env.device)
+                    right_force = torch.zeros(3, device=env.device)
+                    right_flag = torch.tensor(0.0, device=env.device)
+                    contact_point = torch.zeros(3, device=env.device)
+                    if "contact_sensor" in env.scene.sensors:
+                        _csensor = env.scene.sensors["contact_sensor"]
+                        left_force = _csensor.data.force_matrix_w[0, 0].sum(dim=0)
+                        left_flag = (torch.norm(left_force) > 0.5).float()
+                        if getattr(_csensor.cfg, "track_contact_points", False):
+                            pts = torch.nan_to_num(_csensor.data.contact_pos_w[0, 0, 0, :], nan=0.0)
+                            if left_flag.item() > 0.5:
+                                contact_point = pts
+                    if "contact_sensor_r" in env.scene.sensors:
+                        _csensor_r = env.scene.sensors["contact_sensor_r"]
+                        right_force = _csensor_r.data.force_matrix_w[0, 0].sum(dim=0)
+                        right_flag = (torch.norm(right_force) > 0.5).float()
+                        if contact_point.abs().sum().item() == 0.0 and getattr(_csensor_r.cfg, "track_contact_points", False):
+                            pts = torch.nan_to_num(_csensor_r.data.contact_pos_w[0, 0, 0, :], nan=0.0)
+                            if right_flag.item() > 0.5:
+                                contact_point = pts
+                    _cforce = left_force + right_force
+                    _cflag_val = ((left_flag + right_flag) > 0).float()
+                elif "contact_sensor" in env.scene.sensors:
                     _csensor = env.scene.sensors["contact_sensor"]
-                    _cflag_t = _csensor.data.net_forces_w[0, 0, :]
-                    _cflag_val = (torch.norm(_cflag_t) > 0.5).float()
-                    _cforce = _cflag_t
+                    _cforce = _csensor.data.force_matrix_w[0, 0].sum(dim=0)
+                    _cflag_val = (torch.norm(_cforce) > 0.5).float()
+                    contact_point = torch.nan_to_num(_csensor.data.contact_pos_w[0, 0, 0, :], nan=0.0)
                 else:
                     _cflag_val = torch.tensor(0.0, device=env.device)
                     _cforce = torch.zeros(3, device=env.device)
+                    contact_point = torch.zeros(3, device=env.device)
                 gt = {
                     "ee_position": _ee_pos.unsqueeze(0),
                     "ee_orientation": _ee_quat.unsqueeze(0),
@@ -906,6 +1064,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                     "ee_angular_velocity": _ee_angvel.unsqueeze(0),
                     "contact_flag": _cflag_val.unsqueeze(0).unsqueeze(0),
                     "contact_force": _cforce.unsqueeze(0),
+                    "contact_point": contact_point.unsqueeze(0),
                 }
                 if task_name in ("push", "strike"):
                     # Push/Strike RL fallback: read object state from env.scene
@@ -948,7 +1107,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                         gt["handle_velocity"] = _handle_vel.unsqueeze(0)
 
             # EE state: convert to BridgeData 8D format [x,y,z,roll,pitch,yaw,pad,gripper]
-            if is_factory:
+            if factory_direct:
                 ee_pos_b_np = phys["ee_position"][0].cpu().numpy()
                 # Factory fingertip quat
                 hand_idx = robot.body_names.index("panda_hand")
@@ -1027,15 +1186,44 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.peg_position"].append(peg_pos)
                 ep_physics_gt["physics_gt.peg_orientation"].append(gt["peg_orientation"][0].cpu().numpy())
                 ep_physics_gt["physics_gt.peg_velocity"].append(gt["peg_velocity"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.peg_angular_velocity"].append(gt["peg_angular_velocity"][0].cpu().numpy())
+                if "peg_angular_velocity" in gt:
+                    peg_angvel = gt["peg_angular_velocity"][0].cpu().numpy()
+                else:
+                    peg_angvel = env.scene["peg"].data.root_ang_vel_w[0].cpu().numpy()
+                ep_physics_gt["physics_gt.peg_angular_velocity"].append(peg_angvel)
                 ep_physics_gt["physics_gt.hole_position"].append(hole_pos)
-                # Pair-specific contacts
-                ep_physics_gt["physics_gt.contact_finger_l_peg_flag"].append(gt["finger_l_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_l_peg_force"].append(gt["finger_l_contact_force"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_r_peg_flag"].append(gt["finger_r_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_r_peg_force"].append(gt["finger_r_contact_force"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_peg_socket_flag"].append(gt["held_fixed_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_peg_socket_force"].append(gt["held_fixed_contact_force"][0].cpu().numpy())
+                if factory_direct:
+                    left_flag = gt["finger_l_contact_flag"][0].cpu().numpy()
+                    left_force = gt["finger_l_contact_force"][0].cpu().numpy()
+                    right_flag = gt["finger_r_contact_flag"][0].cpu().numpy()
+                    right_force = gt["finger_r_contact_force"][0].cpu().numpy()
+                    held_fixed_flag = gt["held_fixed_contact_flag"][0].cpu().numpy()
+                    held_fixed_force = gt["held_fixed_contact_force"][0].cpu().numpy()
+                else:
+                    left_flag = np.zeros(1, dtype=np.float32)
+                    left_force = np.zeros(3, dtype=np.float32)
+                    right_flag = np.zeros(1, dtype=np.float32)
+                    right_force = np.zeros(3, dtype=np.float32)
+                    held_fixed_flag = np.zeros(1, dtype=np.float32)
+                    held_fixed_force = np.zeros(3, dtype=np.float32)
+                    if "contact_sensor" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], 0)
+                        left_flag = np.array([flag], dtype=np.float32)
+                        left_force = force
+                    if "contact_sensor_r" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["contact_sensor_r"], 0)
+                        right_flag = np.array([flag], dtype=np.float32)
+                        right_force = force
+                    if "held_fixed_contact_sensor" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["held_fixed_contact_sensor"], 0)
+                        held_fixed_flag = np.array([flag], dtype=np.float32)
+                        held_fixed_force = force
+                ep_physics_gt["physics_gt.contact_finger_l_peg_flag"].append(left_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_l_peg_force"].append(left_force.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_r_peg_flag"].append(right_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_r_peg_force"].append(right_force.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_peg_socket_flag"].append(held_fixed_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_peg_socket_force"].append(held_fixed_force.astype(np.float32))
                 # Task-specific raw
                 # insertion_depth: positive = peg above hole, zero/negative = inserted
                 # peg descends from above, so peg_z > hole_z before insertion
@@ -1052,16 +1240,45 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.nut_position"].append(nut_pos)
                 ep_physics_gt["physics_gt.nut_orientation"].append(nut_quat)
                 ep_physics_gt["physics_gt.nut_velocity"].append(gt["nut_velocity"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.nut_angular_velocity"].append(gt["nut_angular_velocity"][0].cpu().numpy())
+                if "nut_angular_velocity" in gt:
+                    nut_angvel = gt["nut_angular_velocity"][0].cpu().numpy()
+                else:
+                    nut_angvel = env.scene["nut"].data.root_ang_vel_w[0].cpu().numpy()
+                ep_physics_gt["physics_gt.nut_angular_velocity"].append(nut_angvel)
                 ep_physics_gt["physics_gt.bolt_position"].append(bolt_pos)
                 ep_physics_gt["physics_gt.bolt_orientation"].append(bolt_quat)
-                # Pair-specific contacts
-                ep_physics_gt["physics_gt.contact_finger_l_nut_flag"].append(gt["finger_l_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_l_nut_force"].append(gt["finger_l_contact_force"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_r_nut_flag"].append(gt["finger_r_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_finger_r_nut_force"].append(gt["finger_r_contact_force"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_nut_bolt_flag"].append(gt["held_fixed_contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_nut_bolt_force"].append(gt["held_fixed_contact_force"][0].cpu().numpy())
+                if factory_direct:
+                    left_flag = gt["finger_l_contact_flag"][0].cpu().numpy()
+                    left_force = gt["finger_l_contact_force"][0].cpu().numpy()
+                    right_flag = gt["finger_r_contact_flag"][0].cpu().numpy()
+                    right_force = gt["finger_r_contact_force"][0].cpu().numpy()
+                    held_fixed_flag = gt["held_fixed_contact_flag"][0].cpu().numpy()
+                    held_fixed_force = gt["held_fixed_contact_force"][0].cpu().numpy()
+                else:
+                    left_flag = np.zeros(1, dtype=np.float32)
+                    left_force = np.zeros(3, dtype=np.float32)
+                    right_flag = np.zeros(1, dtype=np.float32)
+                    right_force = np.zeros(3, dtype=np.float32)
+                    held_fixed_flag = np.zeros(1, dtype=np.float32)
+                    held_fixed_force = np.zeros(3, dtype=np.float32)
+                    if "contact_sensor" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], 0)
+                        left_flag = np.array([flag], dtype=np.float32)
+                        left_force = force
+                    if "contact_sensor_r" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["contact_sensor_r"], 0)
+                        right_flag = np.array([flag], dtype=np.float32)
+                        right_force = force
+                    if "held_fixed_contact_sensor" in env.scene.sensors:
+                        force, flag, _ = _sensor_force_flag_point(env.scene.sensors["held_fixed_contact_sensor"], 0)
+                        held_fixed_flag = np.array([flag], dtype=np.float32)
+                        held_fixed_force = force
+                ep_physics_gt["physics_gt.contact_finger_l_nut_flag"].append(left_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_l_nut_force"].append(left_force.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_r_nut_flag"].append(right_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_finger_r_nut_force"].append(right_force.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_nut_bolt_flag"].append(held_fixed_flag.astype(np.float32))
+                ep_physics_gt["physics_gt.contact_nut_bolt_force"].append(held_fixed_force.astype(np.float32))
                 # Task-specific raw
                 axial_progress = float(nut_pos[2] - bolt_pos[2])
                 ep_physics_gt["physics_gt.axial_progress"].append(np.array([axial_progress], dtype=np.float32))
@@ -1250,18 +1467,34 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
 
             # Gripper contact (not for reach)
             if task_name not in ("reach",):
-                ep_physics_gt["physics_gt.contact_flag"].append(gt["contact_flag"][0].cpu().numpy())
-                ep_physics_gt["physics_gt.contact_force"].append(gt["contact_force"][0].cpu().numpy())
-
-                if "contact_sensor" in env.scene.sensors:
-                    sensor = env.scene.sensors["contact_sensor"]
-                    contact_points = sensor.data.contact_pos_w[0, 0].cpu().numpy()
-                    valid = np.isfinite(contact_points).all(axis=1)
-                    contact_pos = contact_points[valid][0] if valid.any() else np.zeros(3, dtype=np.float32)
-                    contact_pos = np.nan_to_num(contact_pos, nan=0.0)
-                    ep_physics_gt["physics_gt.contact_point"].append(contact_pos.astype(np.float32))
+                if task_name in ("peg_insert", "nut_thread"):
+                    measurements = []
+                    for sensor_name in ("contact_sensor", "contact_sensor_r", "held_fixed_contact_sensor"):
+                        if sensor_name in env.scene.sensors:
+                            measurements.append(_sensor_force_flag_point(env.scene.sensors[sensor_name], 0))
+                    flag, force, point = _aggregate_contact_measurements(measurements)
+                    ep_physics_gt["physics_gt.contact_flag"].append(flag)
+                    ep_physics_gt["physics_gt.contact_force"].append(force)
+                    ep_physics_gt["physics_gt.contact_point"].append(point)
+                elif task_name == "drawer":
+                    measurements = []
+                    for sensor_name in ("contact_sensor", "contact_sensor_r"):
+                        if sensor_name in env.scene.sensors:
+                            measurements.append(_sensor_force_flag_point(env.scene.sensors[sensor_name], 0))
+                    flag, force, point = _aggregate_contact_measurements(measurements)
+                    ep_physics_gt["physics_gt.contact_flag"].append(flag)
+                    ep_physics_gt["physics_gt.contact_force"].append(force)
+                    ep_physics_gt["physics_gt.contact_point"].append(point)
                 else:
-                    ep_physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
+                    ep_physics_gt["physics_gt.contact_flag"].append(gt["contact_flag"][0].cpu().numpy())
+                    ep_physics_gt["physics_gt.contact_force"].append(gt["contact_force"][0].cpu().numpy())
+                    if "contact_point" in gt:
+                        ep_physics_gt["physics_gt.contact_point"].append(gt["contact_point"][0].cpu().numpy().astype(np.float32))
+                    elif "contact_sensor" in env.scene.sensors:
+                        _, _, contact_pos = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], 0)
+                        ep_physics_gt["physics_gt.contact_point"].append(contact_pos)
+                    else:
+                        ep_physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
 
             # Phase label
             if oracle_policy is not None:
@@ -1278,7 +1511,7 @@ def collect_task(task_name: str, num_episodes: int, output_dir: str, use_oracle:
                 ep_physics_gt["physics_gt.target_position"].append(target_3d.astype(np.float32))
 
             # Camera frames
-            if is_factory:
+            if factory_direct:
                 table_rgb, wrist_rgb = env.get_camera_data()
                 ep_frames_table.append(table_rgb[0].cpu().numpy().astype(np.uint8))
                 ep_frames_wrist.append(wrist_rgb[0].cpu().numpy().astype(np.uint8))
@@ -1672,9 +1905,11 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     from scipy.spatial.transform import Rotation
 
     is_factory = task_name in ("peg_insert", "nut_thread")
+    factory_direct = False
     is_drawer = task_name == "drawer"
     _drawer_env_wrapped = None
     rl_policy = None
+    oracle_policy = None
 
     # --- Setup env ---
     if is_factory:
@@ -1687,11 +1922,15 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         if task_name == "nut_thread":
             cfg.episode_length_s = 10.0  # override 30s → 10s (sufficient for threading)
         env = FactoryCameraEnv(cfg=cfg)
-
+        factory_direct = True
         if rl_checkpoint is not None:
             from physrepa_tasks.utils.rl_games_policy import RlGamesPolicy
             rl_policy = RlGamesPolicy(rl_checkpoint, device=env.device)
             print(f"  Loaded RL-Games checkpoint: {rl_checkpoint}")
+        else:
+            oracle_cls = TASK_POLICIES[task_name]
+            oracle_policy = oracle_cls(num_envs=num_envs, device=env.device)
+            print(f"  Using scripted policy: {oracle_cls.__name__} ({num_envs} envs)")
 
     elif is_drawer:
         import gymnasium as gym
@@ -1712,6 +1951,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         cfg.observations.policy.enable_corruption = False
         if hasattr(cfg.scene, 'cabinet_frame'):
             cfg.scene.cabinet_frame.debug_vis = False
+        # Activate contact sensors on robot spawn (needed for finger↔handle contact_sensor below)
+        cfg.scene.robot.spawn = cfg.scene.robot.spawn.replace(activate_contact_sensors=True)
         # Override randomization: startup → reset AND add damping/mass randomization
         from isaaclab.managers import EventTermCfg as EventTerm
         from isaaclab.managers import SceneEntityCfg
@@ -1735,8 +1976,8 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         )
         # Shorten episode length: 10s → 5s (sufficient for drawer opening)
         cfg.episode_length_s = 5.0
-        # Add cameras
-        from isaaclab.sensors import CameraCfg
+        # Add cameras + handle contact sensors
+        from isaaclab.sensors import CameraCfg, ContactSensorCfg
         cfg.scene.table_cam = CameraCfg(
             prim_path="{ENV_REGEX_NS}/table_cam", update_period=0.0, height=384, width=384,
             data_types=["rgb"],
@@ -1752,6 +1993,24 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 focal_length=24.0, focus_distance=400.0, horizontal_aperture=20.955, clipping_range=(0.1, 2.0)),
             offset=CameraCfg.OffsetCfg(
                 pos=(0.13, 0.0, -0.15), rot=(-0.70614, 0.03701, 0.03701, -0.70614), convention="ros"),
+        )
+        cfg.scene.contact_sensor = ContactSensorCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_leftfinger",
+            update_period=0.0,
+            history_length=1,
+            track_air_time=True,
+            track_contact_points=True,
+            force_threshold=0.5,
+            filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
+        )
+        cfg.scene.contact_sensor_r = ContactSensorCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/panda_rightfinger",
+            update_period=0.0,
+            history_length=1,
+            track_air_time=False,
+            track_contact_points=True,
+            force_threshold=0.5,
+            filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
         )
         env = gym.make(gym_id, cfg=cfg)
         # Load RSL-RL policy
@@ -1827,6 +2086,10 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     all_episode_stats = {"observation.state": [], "action": [], "timestamp": []}
     all_episodes_physics_gt = []
 
+    # Async save: parquet + MP4 writes run in a thread pool so sim/rendering can continue.
+    save_executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix="save")
+    pending_saves = []
+
     # --- Reset all envs ---
     if is_drawer:
         obs_w, info = _drawer_env_wrapped.get_observations()
@@ -1834,7 +2097,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
         env.reset()
     else:
         obs, info = env.reset()
-    if is_step0:
+    if oracle_policy is not None and hasattr(oracle_policy, "reset"):
         oracle_policy.reset()
 
     # Render warmup (flush stale camera frames without consuming episode budget)
@@ -1860,8 +2123,22 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
     step = 0
     while saved_count < num_episodes:
         # --- Generate actions ---
-        if is_step0:
-            action = oracle_policy.get_action(obs)  # (num_envs, 4) for position-only IK
+        factory_phys = None
+        oracle_obs = obs
+        if factory_direct:
+            factory_phys = env.get_physics_data()
+            if oracle_policy is not None:
+                oracle_obs = _build_factory_oracle_obs(task_name, factory_phys)
+
+        if oracle_policy is not None:
+            action = oracle_policy.get_action(oracle_obs)
+            if is_factory:
+                action_dim = 6
+            elif hasattr(env, "action_manager"):
+                action_dim = env.action_manager.total_action_dim
+            else:
+                action_dim = action.shape[1]
+            action = _match_action_dim(action, action_dim)
         elif rl_policy is not None:
             with torch.inference_mode():
                 if is_drawer:
@@ -1896,9 +2173,31 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             }
             table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
             wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
-        elif is_factory:
-            phys = env.get_physics_data()
+        elif factory_direct:
+            phys = factory_phys if factory_phys is not None else env.get_physics_data()
             table_rgb, wrist_rgb = env.get_camera_data()
+        elif is_factory:
+            gt = obs["physics_gt"]
+            _robot = env.scene["robot"]
+            _hand_idx = _robot.body_names.index("panda_hand")
+            held_name = "peg" if task_name == "peg_insert" else "nut"
+            fixed_name = "hole" if task_name == "peg_insert" else "bolt"
+            held_asset = env.scene[held_name]
+            fixed_asset = env.scene[fixed_name]
+            phys = {
+                "ee_position": gt["ee_position"],
+                "ee_orientation": _robot.data.body_quat_w[:, _hand_idx],
+                "ee_velocity": gt["ee_velocity"],
+                "ee_angular_velocity": _robot.data.body_ang_vel_w[:, _hand_idx],
+                "held_position": gt[f"{held_name}_position"],
+                "held_orientation": gt[f"{held_name}_orientation"],
+                "held_velocity": gt[f"{held_name}_velocity"],
+                "held_angular_velocity": held_asset.data.root_ang_vel_w,
+                "fixed_position": gt[f"{fixed_name}_position"],
+                "fixed_orientation": gt[f"{fixed_name}_orientation"] if f"{fixed_name}_orientation" in gt else fixed_asset.data.root_quat_w,
+            }
+            table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
+            wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
         elif is_drawer:
             _robot = env.scene["robot"]
             _hand_idx = _robot.body_names.index("panda_hand")
@@ -1913,6 +2212,12 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             _jidx = _cabinet.find_joints("drawer_top_joint")[0]
             phys["drawer_joint_pos"] = _cabinet.data.joint_pos[:, _jidx]
             phys["drawer_joint_vel"] = _cabinet.data.joint_vel[:, _jidx]
+            if "cabinet_frame" in env.scene.sensors:
+                phys["handle_position"] = env.scene.sensors["cabinet_frame"].data.target_pos_w[:, 0, :] - env.scene.env_origins
+            else:
+                phys["handle_position"] = torch.zeros(num_envs, 3, device=env.device)
+            handle_body_idx = _cabinet.body_names.index("drawer_handle_top")
+            phys["handle_velocity"] = _cabinet.data.body_lin_vel_w[:, handle_body_idx]
             table_rgb = env.scene.sensors["table_cam"].data.output["rgb"][..., :3]
             wrist_rgb = env.scene.sensors["wrist_cam"].data.output["rgb"][..., :3]
 
@@ -1932,7 +2237,7 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             from scipy.spatial.transform import Rotation as R
             quat_xyzw = np.array([ee_quat[1], ee_quat[2], ee_quat[3], ee_quat[0]])
             rpy = R.from_quat(quat_xyzw).as_euler("xyz")
-            if is_factory:
+            if factory_direct:
                 gripper_val = env.joint_pos[i, -1].item() / 0.04
             else:
                 _robot = env.scene["robot"]
@@ -2040,16 +2345,49 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 buf.physics_gt["physics_gt.peg_velocity"].append(phys["held_velocity"][i].cpu().numpy())
                 buf.physics_gt["physics_gt.peg_angular_velocity"].append(phys["held_angular_velocity"][i].cpu().numpy())
                 buf.physics_gt["physics_gt.hole_position"].append(hole_pos)
-                # Contacts (zeros — ArticulationView limitation)
-                buf.physics_gt["physics_gt.contact_flag"].append(phys["contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_force"].append(phys["contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_peg_flag"].append(phys["finger_l_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_l_peg_force"].append(phys["finger_l_contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_r_peg_flag"].append(phys["finger_r_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_r_peg_force"].append(phys["finger_r_contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_peg_socket_flag"].append(phys["held_fixed_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_peg_socket_force"].append(phys["held_fixed_contact_force"][i].cpu().numpy())
+                if factory_direct:
+                    contact_flag = phys["contact_flag"][i].cpu().numpy()
+                    contact_force = phys["contact_force"][i].cpu().numpy()
+                    contact_point = phys["contact_point"][i].cpu().numpy()
+                    left_flag = phys["finger_l_contact_flag"][i].cpu().numpy()
+                    left_force = phys["finger_l_contact_force"][i].cpu().numpy()
+                    right_flag = phys["finger_r_contact_flag"][i].cpu().numpy()
+                    right_force = phys["finger_r_contact_force"][i].cpu().numpy()
+                    held_fixed_flag = phys["held_fixed_contact_flag"][i].cpu().numpy()
+                    held_fixed_force = phys["held_fixed_contact_force"][i].cpu().numpy()
+                else:
+                    measurements = []
+                    left_flag = np.zeros(1, dtype=np.float32)
+                    left_force = np.zeros(3, dtype=np.float32)
+                    right_flag = np.zeros(1, dtype=np.float32)
+                    right_force = np.zeros(3, dtype=np.float32)
+                    held_fixed_flag = np.zeros(1, dtype=np.float32)
+                    held_fixed_force = np.zeros(3, dtype=np.float32)
+                    if "contact_sensor" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], i)
+                        left_flag = np.array([flag], dtype=np.float32)
+                        left_force = force
+                        measurements.append((force, flag, point))
+                    if "contact_sensor_r" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor_r"], i)
+                        right_flag = np.array([flag], dtype=np.float32)
+                        right_force = force
+                        measurements.append((force, flag, point))
+                    if "held_fixed_contact_sensor" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["held_fixed_contact_sensor"], i)
+                        held_fixed_flag = np.array([flag], dtype=np.float32)
+                        held_fixed_force = force
+                        measurements.append((force, flag, point))
+                    contact_flag, contact_force, contact_point = _aggregate_contact_measurements(measurements)
+                buf.physics_gt["physics_gt.contact_flag"].append(contact_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(contact_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(contact_point.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_peg_flag"].append(left_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_peg_force"].append(left_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_peg_flag"].append(right_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_peg_force"].append(right_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_peg_socket_flag"].append(held_fixed_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_peg_socket_force"].append(held_fixed_force.astype(np.float32))
                 # Task-specific raw
                 insertion_depth = float(peg_pos[2] - hole_pos[2])
                 lateral_error = float(np.linalg.norm(peg_pos[:2] - hole_pos[:2]))
@@ -2066,15 +2404,49 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 buf.physics_gt["physics_gt.nut_angular_velocity"].append(phys["held_angular_velocity"][i].cpu().numpy())
                 buf.physics_gt["physics_gt.bolt_position"].append(bolt_pos)
                 buf.physics_gt["physics_gt.bolt_orientation"].append(bolt_quat)
-                buf.physics_gt["physics_gt.contact_flag"].append(phys["contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_force"].append(phys["contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_nut_flag"].append(phys["finger_l_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_l_nut_force"].append(phys["finger_l_contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_r_nut_flag"].append(phys["finger_r_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_finger_r_nut_force"].append(phys["finger_r_contact_force"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_nut_bolt_flag"].append(phys["held_fixed_contact_flag"][i].cpu().numpy())
-                buf.physics_gt["physics_gt.contact_nut_bolt_force"].append(phys["held_fixed_contact_force"][i].cpu().numpy())
+                if factory_direct:
+                    contact_flag = phys["contact_flag"][i].cpu().numpy()
+                    contact_force = phys["contact_force"][i].cpu().numpy()
+                    contact_point = phys["contact_point"][i].cpu().numpy()
+                    left_flag = phys["finger_l_contact_flag"][i].cpu().numpy()
+                    left_force = phys["finger_l_contact_force"][i].cpu().numpy()
+                    right_flag = phys["finger_r_contact_flag"][i].cpu().numpy()
+                    right_force = phys["finger_r_contact_force"][i].cpu().numpy()
+                    held_fixed_flag = phys["held_fixed_contact_flag"][i].cpu().numpy()
+                    held_fixed_force = phys["held_fixed_contact_force"][i].cpu().numpy()
+                else:
+                    measurements = []
+                    left_flag = np.zeros(1, dtype=np.float32)
+                    left_force = np.zeros(3, dtype=np.float32)
+                    right_flag = np.zeros(1, dtype=np.float32)
+                    right_force = np.zeros(3, dtype=np.float32)
+                    held_fixed_flag = np.zeros(1, dtype=np.float32)
+                    held_fixed_force = np.zeros(3, dtype=np.float32)
+                    if "contact_sensor" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], i)
+                        left_flag = np.array([flag], dtype=np.float32)
+                        left_force = force
+                        measurements.append((force, flag, point))
+                    if "contact_sensor_r" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor_r"], i)
+                        right_flag = np.array([flag], dtype=np.float32)
+                        right_force = force
+                        measurements.append((force, flag, point))
+                    if "held_fixed_contact_sensor" in env.scene.sensors:
+                        force, flag, point = _sensor_force_flag_point(env.scene.sensors["held_fixed_contact_sensor"], i)
+                        held_fixed_flag = np.array([flag], dtype=np.float32)
+                        held_fixed_force = force
+                        measurements.append((force, flag, point))
+                    contact_flag, contact_force, contact_point = _aggregate_contact_measurements(measurements)
+                buf.physics_gt["physics_gt.contact_flag"].append(contact_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(contact_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(contact_point.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_nut_flag"].append(left_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_nut_force"].append(left_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_nut_flag"].append(right_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_nut_force"].append(right_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_nut_bolt_flag"].append(held_fixed_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_nut_bolt_force"].append(held_fixed_force.astype(np.float32))
                 axial_progress = float(nut_pos[2] - bolt_pos[2])
                 buf.physics_gt["physics_gt.axial_progress"].append(np.array([axial_progress], dtype=np.float32))
                 nut_r = Rotation.from_quat([nut_quat[1], nut_quat[2], nut_quat[3], nut_quat[0]])
@@ -2087,21 +2459,43 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 jvel = phys["drawer_joint_vel"][i].cpu().numpy()
                 buf.physics_gt["physics_gt.drawer_joint_pos"].append(jpos)
                 buf.physics_gt["physics_gt.drawer_joint_vel"].append(jvel)
-                buf.physics_gt["physics_gt.contact_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_force"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_point"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_handle_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_l_handle_force"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_r_handle_flag"].append(np.zeros(1, dtype=np.float32))
-                buf.physics_gt["physics_gt.contact_finger_r_handle_force"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.handle_position"].append(np.zeros(3, dtype=np.float32))
-                buf.physics_gt["physics_gt.handle_velocity"].append(np.zeros(3, dtype=np.float32))
+                buf.physics_gt["physics_gt.handle_position"].append(phys["handle_position"][i].cpu().numpy().astype(np.float32))
+                buf.physics_gt["physics_gt.handle_velocity"].append(phys["handle_velocity"][i].cpu().numpy().astype(np.float32))
+                measurements = []
+                left_flag = np.zeros(1, dtype=np.float32)
+                left_force = np.zeros(3, dtype=np.float32)
+                right_flag = np.zeros(1, dtype=np.float32)
+                right_force = np.zeros(3, dtype=np.float32)
+                if "contact_sensor" in env.scene.sensors:
+                    force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor"], i)
+                    left_flag = np.array([flag], dtype=np.float32)
+                    left_force = force
+                    measurements.append((force, flag, point))
+                if "contact_sensor_r" in env.scene.sensors:
+                    force, flag, point = _sensor_force_flag_point(env.scene.sensors["contact_sensor_r"], i)
+                    right_flag = np.array([flag], dtype=np.float32)
+                    right_force = force
+                    measurements.append((force, flag, point))
+                contact_flag, contact_force, contact_point = _aggregate_contact_measurements(measurements)
+                buf.physics_gt["physics_gt.contact_flag"].append(contact_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_force"].append(contact_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_point"].append(contact_point.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_handle_flag"].append(left_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_l_handle_force"].append(left_force.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_handle_flag"].append(right_flag.astype(np.float32))
+                buf.physics_gt["physics_gt.contact_finger_r_handle_force"].append(right_force.astype(np.float32))
                 drawer_max = 0.39
                 opening_extent = float(np.clip(jpos[0] / drawer_max, 0.0, 1.0)) if jpos.size > 0 else 0.0
                 buf.physics_gt["physics_gt.drawer_opening_extent"].append(np.array([opening_extent], dtype=np.float32))
 
             # Phase (RL = idle)
-            buf.physics_gt["physics_gt.phase"].append(np.array([7], dtype=np.float32))
+            if oracle_policy is not None and hasattr(oracle_policy, "state"):
+                state_idx = oracle_policy.state[i].item()
+                phase_map = TASK_STATE_TO_PHASE.get(task_name, {})
+                phase = phase_map.get(state_idx, 7)
+            else:
+                phase = 7
+            buf.physics_gt["physics_gt.phase"].append(np.array([phase], dtype=np.float32))
             buf.step_count += 1
 
         # --- Step all envs ---
@@ -2152,19 +2546,19 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             if filter_success and not success:
                 print(f"  Env {i}: Episode FAILED — skipping")
                 buf.reset()
-                if is_factory and rl_policy is not None and hasattr(rl_policy, 'reset'):
+                if factory_direct and rl_policy is not None and hasattr(rl_policy, 'reset'):
                     rl_policy.reset(env_ids=[i])
+                if oracle_policy is not None and hasattr(oracle_policy, 'reset'):
+                    oracle_policy.reset(env_ids=torch.tensor([i], device=env.device))
                 continue
 
             ep_idx = saved_count
             _max_rew = max(buf.rewards) if buf.rewards else 0.0
             print(f"  Env {i}: Episode {ep_idx} complete: {ep_length} steps (max_rew={_max_rew:.2f})")
 
-            # --- Save parquet ---
+            # --- Save parquet + videos (submitted to thread pool to unblock sim/render) ---
             chunk_idx = ep_idx // CHUNKS_SIZE
             chunk_dir = f"chunk-{chunk_idx:03d}"
-            parquet_dir = os.path.join(output_dir, "data", chunk_dir)
-            os.makedirs(parquet_dir, exist_ok=True)
 
             physics_gt_keys = list(buf.physics_gt.keys())
             df_data = {
@@ -2181,17 +2575,14 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             for gt_key in physics_gt_keys:
                 df_data[gt_key] = [v.tolist() for v in buf.physics_gt[gt_key]]
 
-            df = pd.DataFrame(df_data)
-            parquet_path = os.path.join(parquet_dir, f"episode_{ep_idx:06d}.parquet")
-            df.to_parquet(parquet_path, index=False)
-
-            # --- Save videos ---
-            if buf.frames_table:
-                video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_0")
-                encode_video(buf.frames_table, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
-            if buf.frames_wrist:
-                video_dir = os.path.join(output_dir, "videos", chunk_dir, "observation.images.image_1")
-                encode_video(buf.frames_wrist, os.path.join(video_dir, f"episode_{ep_idx:06d}.mp4"), fps=fps)
+            # Hand off to save worker. buf.reset() below reassigns lists, so captured frames
+            # lists (from prior append()s) are already safe to pass by reference.
+            frames_table_ref = buf.frames_table
+            frames_wrist_ref = buf.frames_wrist
+            pending_saves.append(save_executor.submit(
+                _save_episode_async, output_dir, chunk_dir, ep_idx,
+                df_data, frames_table_ref, frames_wrist_ref, fps,
+            ))
 
             # --- Episode meta ---
             ep_meta = {
@@ -2219,14 +2610,14 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
             if hasattr(buf, '_prev_ball_pos'):
                 del buf._prev_ball_pos
                 del buf._rolling_dist
-            if is_factory and rl_policy is not None and hasattr(rl_policy, 'reset'):
+            if factory_direct and rl_policy is not None and hasattr(rl_policy, 'reset'):
                 rl_policy.reset(env_ids=[i])
-            if is_step0:
+            if oracle_policy is not None and hasattr(oracle_policy, 'reset'):
                 oracle_policy.reset(env_ids=torch.tensor([i], device=env.device))
 
             # Re-read physics params for this env after auto-reset
             # (Isaac Lab's _reset_idx already applied EventCfg randomization events)
-            if is_factory and hasattr(env, 'randomize_physics'):
+            if factory_direct and hasattr(env, 'randomize_physics'):
                 env.randomize_physics()  # Factory: explicit randomization
             buffers[i].physics_params = read_physics_params_for_env(env, task_name, env_idx=i)
 
@@ -2234,6 +2625,20 @@ def collect_task_parallel(task_name: str, num_episodes: int, num_envs: int, outp
                 break
 
         step += 1
+
+    # --- Wait for all async saves to finish before writing metadata ---
+    print(f"  Waiting for {len(pending_saves)} async save jobs to drain...")
+    n_failed = 0
+    for idx, fut in enumerate(pending_saves):
+        try:
+            fut.result()
+        except Exception as exc:
+            n_failed += 1
+            print(f"  [WARN] async save #{idx} failed: {exc}")
+    save_executor.shutdown(wait=True)
+    if n_failed:
+        print(f"  [WARN] {n_failed}/{len(pending_saves)} async saves failed")
+    print(f"  Async saves complete.")
 
     # --- Save metadata ---
     meta_dir = os.path.join(output_dir, "meta")

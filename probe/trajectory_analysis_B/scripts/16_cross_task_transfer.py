@@ -18,6 +18,8 @@ Variant: A (1024-d). Cheaper and matches earlier kinematic results to compare ag
 Outputs:
 - results/stats/cross_task_transfer.csv:
     src_task, tgt_task, layer, target, transfer_r2, within_tgt_r2, gap
+- results/stats/cross_task_transfer_per_fold.csv:
+    src_task, tgt_task, layer, target, fold, transfer_r2, within_tgt_r2, gap
 - results/plots/cross_task_transfer_<target>.png: layer × scheme heatmap
 """
 
@@ -50,6 +52,7 @@ PLOTS = ROOT / "results" / "plots"
 STATS = ROOT / "results" / "stats"
 PLOTS.mkdir(parents=True, exist_ok=True)
 STATS.mkdir(parents=True, exist_ok=True)
+PER_FOLD_CSV = STATS / "cross_task_transfer_per_fold.csv"
 
 
 N_EPS = 50
@@ -107,18 +110,19 @@ def transfer_r2(X_src: np.ndarray, y_src: np.ndarray, X_tgt: np.ndarray, y_tgt: 
     return r2_score(yt, pred, multioutput="variance_weighted") if yt.ndim > 1 else r2_score(yt, pred)
 
 
-def within_task_r2(X: np.ndarray, y: np.ndarray, groups: np.ndarray) -> float:
-    """5-fold GroupKFold Ridge mean R²."""
+def within_task_r2_with_folds(X: np.ndarray, y: np.ndarray, groups: np.ndarray) -> tuple[float, list[dict[str, float | int]]]:
+    """5-fold GroupKFold Ridge mean R² plus per-fold rows."""
     if y.ndim == 1:
         ok = np.isfinite(y)
     else:
         ok = np.isfinite(y).all(axis=1)
     if ok.sum() < 100:
-        return float("nan")
+        return float("nan"), []
     X = X[ok]; y = y[ok]; groups = groups[ok]
     gkf = GroupKFold(n_splits=5)
     r2s = []
-    for tr, te in gkf.split(X, y, groups=groups):
+    fold_rows = []
+    for fold, (tr, te) in enumerate(gkf.split(X, y, groups=groups)):
         Xtr, Xte = X[tr], X[te]; ytr, yte = y[tr], y[te]
         mu_x = Xtr.mean(0); sd_x = Xtr.std(0) + 1e-9
         if ytr.ndim == 1:
@@ -130,8 +134,10 @@ def within_task_r2(X: np.ndarray, y: np.ndarray, groups: np.ndarray) -> float:
         ytr_n = (ytr - mu_y) / sd_y
         m = Ridge(alpha=1.0); m.fit(Xtr_n, ytr_n)
         pred = m.predict(Xte_n) * sd_y + mu_y
-        r2s.append(r2_score(yte, pred, multioutput="variance_weighted") if yte.ndim > 1 else r2_score(yte, pred))
-    return float(np.mean(r2s))
+        r2 = r2_score(yte, pred, multioutput="variance_weighted") if yte.ndim > 1 else r2_score(yte, pred)
+        r2s.append(r2)
+        fold_rows.append({"fold": int(fold), "within_tgt_r2": float(r2)})
+    return float(np.mean(r2s)), fold_rows
 
 
 def main():
@@ -140,6 +146,7 @@ def main():
     cache = {task: load_task_arrays(task) for task in TASKS}
 
     rows = []
+    per_fold_rows = []
     for src, tgt_t in PAIRS:
         Xs_full, eps_s, ys_dict = cache[src]
         Xt_full, eps_t, yt_dict = cache[tgt_t]
@@ -152,14 +159,29 @@ def main():
                 y_s = ys_dict[tk]
                 y_t = yt_dict[tk]
                 tr_r2 = transfer_r2(Xs, y_s, Xt, y_t)
-                wn_r2 = within_task_r2(Xt, y_t, eps_t)
+                wn_r2, wn_fold_rows = within_task_r2_with_folds(Xt, y_t, eps_t)
                 gap = (wn_r2 - tr_r2) if (np.isfinite(wn_r2) and np.isfinite(tr_r2)) else float("nan")
                 rows.append({"src_task": src, "tgt_task": tgt_t, "layer": L, "target": tk,
                              "transfer_r2": tr_r2, "within_tgt_r2": wn_r2, "gap": gap})
+                for fr in wn_fold_rows:
+                    gap_fold = (fr["within_tgt_r2"] - tr_r2) if np.isfinite(tr_r2) else float("nan")
+                    per_fold_rows.append(
+                        {
+                            "src_task": src,
+                            "tgt_task": tgt_t,
+                            "layer": L,
+                            "target": tk,
+                            "fold": int(fr["fold"]),
+                            "transfer_r2": float(tr_r2),
+                            "within_tgt_r2": float(fr["within_tgt_r2"]),
+                            "gap": float(gap_fold),
+                        }
+                    )
             print(f"[16_cross_task] {src} → {tgt_t} / {tk} done", flush=True)
 
     df = pd.DataFrame(rows)
     df.to_csv(STATS / "cross_task_transfer.csv", index=False)
+    pd.DataFrame(per_fold_rows).to_csv(PER_FOLD_CSV, index=False)
     print(f"[16_cross_task] wrote stats ({len(df)} rows)", flush=True)
 
     # Plot: layer × pair gap heatmap per target

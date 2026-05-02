@@ -9,11 +9,11 @@ provenance under `archive_old_wrong_probe/`.
 
 ## Primary documents
 
-- [NIGHTSHIFT_FINAL_SUMMARY.md](./NIGHTSHIFT_FINAL_SUMMARY.md): historical
-  summary of the earlier experiment phases
-- [CONTACT_INFERENCE_ANALYSIS.md](./CONTACT_INFERENCE_ANALYSIS.md): contact-label
-  audit notes from the previous analysis phase
-- [REVISION_PLAN.md](./REVISION_PLAN.md): latest user-provided revision plan
+- This README is the entry point.
+- For historical context, see [`docs/archive/`](./docs/archive/) (planning
+  docs, post-mortem reports, and superseded experiment plans).
+- For the methodology incident that drove the 2026-04-23 cleanup, see
+  `archive_old_wrong_probe/README.md`.
 
 ## Active layout
 

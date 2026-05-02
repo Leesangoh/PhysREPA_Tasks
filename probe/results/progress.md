@@ -12510,3 +12510,1545 @@ Output: results/decision.json, results/peak_layers.csv, results/REPORT.md, resul
 [2026-04-29 16:39:44] [probe] drawer B contact_point L00: r2_mean=0.235 std=0.007 194.5s
 
 [2026-04-29 16:39:45] [probe] drawer B DONE in 506.4min
+
+[2026-05-01 10:53:30] [integrity] start task=push episode=0 gpu=0
+
+[2026-05-01 10:53:30] [integrity] 12a: {"shape_A": [230, 24, 1024], "shape_B": [230, 24, 8192], "nan_A": false, "inf_A": false, "nan_B": false, "inf_B": false, "layer0_mean": 0.2917134165763855, "layer23_mean": 0.14113199710845947, "layer0_std": 1.543881893157959, "layer23_std": 5.12397575378418, "layer0_vs_23_pass": true, "layer0_vs_23_mean_diff": 0.15058141946792603, "layer0_vs_23_std_ratio": 3.3188910484313965, "pool_identity_max_abs_diff": 0.09375, "pool_identity_max_rel_diff": 0.0003770739064856712, "pool_identity_max_abs_A": 248.625, "pool_identity_rel_tol": 0.001, "pool_identity_pass": true, "pass": true}
+
+[2026-05-01 10:53:30] [integrity] 12b: {"t_last_size": 230, "any_nan_ee_pos": false, "any_nan_ee_vel": false, "any_nan_ee_acc": false, "any_nan_ee_speed": false, "ee_direction_nan_frac": 0.2608695652173913, "pass": true}
+
+[2026-05-01 10:53:31] [integrity] 12c: pass=True folds=[(0, 1200, 300), (1, 1200, 300), (2, 1200, 300), (3, 1200, 300), (4, 1200, 300)]
+
+[2026-05-01 10:54:37] [integrity] 12d: {"n_episodes": 1500, "fold_r2_episode_shuffle": [0.4199415147304535, 0.4131546914577484, 0.39443209767341614, 0.43723979592323303, 0.38940757513046265], "r2_episode_shuffle_mean": 0.41083513498306273, "fold_r2_row_shuffle": [-0.002783401869237423, -0.0013499126071110368, -0.002642642939463258, -0.002590377815067768, -0.001656895037740469], "r2_row_shuffle_mean": -0.0022046460537239907, "threshold": 0.05, "pass_episode_strict": false, "pass_row": true, "pass": false}
+
+[2026-05-01 10:54:37] [integrity] HALT: failures {'12a': True, '12b': True, '12c': True, '12d': False}
+
+[2026-05-01 11:00:55] [extract] push loading model on cuda:0 (shuffle_frames=True)
+
+[2026-05-01 11:01:10] [extract] push model loaded 15.3s
+
+[2026-05-01 11:01:10] [extract] push shard 1/1 batch=4 variant=A_shuffled: total 3 todo 3
+
+[2026-05-01 11:01:34] [extract] push sh0 3/3 eps 690 win 28.4 win/s ETA 0.0min
+
+[2026-05-01 11:01:34] [extract] push sh0 DONE: 3 eps 690 win in 0.4min
+
+[2026-05-01 11:02:56] [extract] push loading model on cuda:0 (shuffle_frames=True)
+
+[2026-05-01 11:02:56] [extract] strike loading model on cuda:0 (shuffle_frames=True)
+
+[2026-05-01 11:03:11] [extract] strike model loaded 14.9s
+
+[2026-05-01 11:03:11] [extract] push model loaded 15.0s
+
+[2026-05-01 11:03:11] [extract] push shard 1/1 batch=8 variant=A_shuffled: total 1500 todo 1497
+
+[2026-05-01 11:03:11] [extract] strike shard 1/1 batch=8 variant=A_shuffled: total 3000 todo 3000
+
+[2026-05-01 11:05:49] [time_only] wrote 0 rows to /home/solee/physrepa_tasks/probe/results/time_only_baseline.csv
+
+[2026-05-01 11:06:12] [extract] push sh0 25/1497 eps 5462 win 30.1 win/s ETA 177.9min
+
+[2026-05-01 11:06:28] [extract] strike sh0 25/3000 eps 4645 win 23.6 win/s ETA 389.7min
+
+[2026-05-01 11:06:35] [time_only] wrote 48 rows to /home/solee/physrepa_tasks/probe/results/time_only_baseline.csv
+
+[2026-05-01 11:09:24] [extract] push sh0 50/1497 eps 11067 win 29.6 win/s ETA 180.1min
+
+[2026-05-01 11:10:00] [extract] strike sh0 50/3000 eps 9495 win 23.2 win/s ETA 402.3min
+
+[2026-05-01 11:12:51] [extract] push sh0 75/1497 eps 16817 win 29.0 win/s ETA 183.3min
+
+[2026-05-01 11:12:57] [extract] strike sh0 75/3000 eps 13782 win 23.5 win/s ETA 381.2min
+
+[2026-05-01 11:15:45] [extract] strike sh0 100/3000 eps 17862 win 23.7 win/s ETA 364.6min
+
+[2026-05-01 11:16:15] [extract] push sh0 100/1497 eps 22567 win 28.8 win/s ETA 182.5min
+
+[2026-05-01 11:18:50] [extract] strike sh0 125/3000 eps 22211 win 23.7 win/s ETA 359.9min
+
+[2026-05-01 11:19:40] [extract] push sh0 125/1497 eps 28317 win 28.6 win/s ETA 180.9min
+
+[2026-05-01 11:22:13] [extract] strike sh0 150/3000 eps 27061 win 23.7 win/s ETA 361.7min
+
+[2026-05-01 11:23:01] [extract] push sh0 150/1497 eps 33920 win 28.5 win/s ETA 178.1min
+
+[2026-05-01 11:25:21] [extract] strike sh0 175/3000 eps 31780 win 23.9 win/s ETA 357.9min
+
+[2026-05-01 11:26:21] [extract] push sh0 175/1497 eps 39670 win 28.5 win/s ETA 175.0min
+
+[2026-05-01 11:28:01] [extract] strike sh0 200/3000 eps 35850 win 24.1 win/s ETA 347.7min
+
+[2026-05-01 11:29:44] [extract] push sh0 200/1497 eps 45420 win 28.5 win/s ETA 172.2min
+
+[2026-05-01 11:30:45] [extract] strike sh0 225/3000 eps 39977 win 24.2 win/s ETA 340.0min
+
+[2026-05-01 11:33:08] [extract] push sh0 225/1497 eps 51170 win 28.5 win/s ETA 169.3min
+
+[2026-05-01 11:33:41] [extract] strike sh0 250/3000 eps 44603 win 24.4 win/s ETA 335.6min
+
+[2026-05-01 11:36:32] [extract] push sh0 250/1497 eps 56905 win 28.4 win/s ETA 166.3min
+
+[2026-05-01 11:36:45] [extract] strike sh0 275/3000 eps 49453 win 24.6 win/s ETA 332.7min
+
+[2026-05-01 11:39:40] [extract] strike sh0 300/3000 eps 53903 win 24.6 win/s ETA 328.4min
+
+[2026-05-01 11:40:03] [extract] push sh0 275/1497 eps 62655 win 28.3 win/s ETA 163.8min
+
+[2026-05-01 11:42:47] [extract] strike sh0 325/3000 eps 58053 win 24.4 win/s ETA 325.9min
+
+[2026-05-01 11:44:08] [extract] push sh0 300/1497 eps 68405 win 27.8 win/s ETA 163.4min
+
+[2026-05-01 11:45:54] [extract] strike sh0 350/3000 eps 62325 win 24.3 win/s ETA 323.4min
+
+[2026-05-01 11:47:47] [extract] push sh0 325/1497 eps 74155 win 27.7 win/s ETA 160.8min
+
+[2026-05-01 11:49:18] [extract] strike sh0 375/3000 eps 67175 win 24.3 win/s ETA 322.8min
+
+[2026-05-01 11:50:58] [extract] push sh0 350/1497 eps 79625 win 27.8 win/s ETA 156.6min
+
+[2026-05-01 11:52:13] [extract] strike sh0 400/3000 eps 71710 win 24.4 win/s ETA 318.7min
+
+[2026-05-01 11:54:17] [extract] push sh0 375/1497 eps 85375 win 27.8 win/s ETA 152.9min
+
+[2026-05-01 11:54:58] [extract] strike sh0 425/3000 eps 75960 win 24.4 win/s ETA 313.7min
+
+[2026-05-01 11:57:36] [extract] push sh0 400/1497 eps 91125 win 27.9 win/s ETA 149.3min
+
+[2026-05-01 11:57:44] [extract] strike sh0 450/3000 eps 80210 win 24.5 win/s ETA 309.2min
+
+[2026-05-01 12:00:40] [extract] strike sh0 475/3000 eps 84860 win 24.6 win/s ETA 305.6min
+
+[2026-05-01 12:00:56] [extract] push sh0 425/1497 eps 96748 win 27.9 win/s ETA 145.6min
+
+[2026-05-01 12:04:08] [extract] strike sh0 500/3000 eps 89674 win 24.5 win/s ETA 304.7min
+
+[2026-05-01 12:04:15] [extract] push sh0 450/1497 eps 102356 win 27.9 win/s ETA 142.1min
+
+[2026-05-01 12:07:03] [extract] strike sh0 525/3000 eps 93921 win 24.5 win/s ETA 301.1min
+
+[2026-05-01 12:07:42] [extract] push sh0 475/1497 eps 108106 win 27.9 win/s ETA 138.8min
+
+[2026-05-01 12:09:45] [extract] strike sh0 550/3000 eps 98371 win 24.6 win/s ETA 296.5min
+
+[2026-05-01 12:10:59] [extract] push sh0 500/1497 eps 113706 win 27.9 win/s ETA 135.2min
+
+[2026-05-01 12:12:23] [extract] strike sh0 575/3000 eps 102569 win 24.7 win/s ETA 291.9min
+
+[2026-05-01 12:14:24] [extract] push sh0 525/1497 eps 119456 win 28.0 win/s ETA 131.9min
+
+[2026-05-01 12:15:27] [extract] strike sh0 600/3000 eps 107326 win 24.8 win/s ETA 289.1min
+
+[2026-05-01 12:17:48] [extract] push sh0 550/1497 eps 125059 win 27.9 win/s ETA 128.5min
+
+[2026-05-01 12:18:46] [extract] strike sh0 625/3000 eps 111976 win 24.7 win/s ETA 287.2min
+
+[2026-05-01 12:21:18] [extract] push sh0 575/1497 eps 130809 win 27.9 win/s ETA 125.2min
+
+[2026-05-01 12:22:06] [extract] strike sh0 650/3000 eps 116274 win 24.6 win/s ETA 285.3min
+
+[2026-05-01 12:24:27] [extract] push sh0 600/1497 eps 136425 win 28.0 win/s ETA 121.5min
+
+[2026-05-01 12:25:03] [extract] strike sh0 675/3000 eps 120409 win 24.5 win/s ETA 282.0min
+
+[2026-05-01 12:27:40] [extract] push sh0 625/1497 eps 142175 win 28.0 win/s ETA 117.9min
+
+[2026-05-01 12:27:56] [extract] strike sh0 700/3000 eps 124973 win 24.6 win/s ETA 278.5min
+
+[2026-05-01 12:30:50] [extract] push sh0 650/1497 eps 147781 win 28.1 win/s ETA 114.2min
+
+[2026-05-01 12:31:19] [extract] strike sh0 725/3000 eps 129823 win 24.6 win/s ETA 276.5min
+
+[2026-05-01 12:34:04] [extract] push sh0 675/1497 eps 153531 win 28.2 win/s ETA 110.7min
+
+[2026-05-01 12:34:28] [extract] strike sh0 750/3000 eps 134114 win 24.5 win/s ETA 273.8min
+
+[2026-05-01 12:37:12] [extract] push sh0 700/1497 eps 159087 win 28.2 win/s ETA 107.0min
+
+[2026-05-01 12:37:28] [extract] strike sh0 775/3000 eps 138464 win 24.5 win/s ETA 270.7min
+
+[2026-05-01 12:40:11] [extract] strike sh0 800/3000 eps 142714 win 24.5 win/s ETA 266.7min
+
+[2026-05-01 12:40:21] [extract] push sh0 725/1497 eps 164701 win 28.3 win/s ETA 103.5min
+
+[2026-05-01 12:43:30] [extract] push sh0 750/1497 eps 170310 win 28.3 win/s ETA 99.9min
+
+[2026-05-01 12:43:42] [extract] strike sh0 825/3000 eps 147481 win 24.5 win/s ETA 265.0min
+
+[2026-05-01 12:46:45] [extract] push sh0 775/1497 eps 176060 win 28.3 win/s ETA 96.5min
+
+[2026-05-01 12:46:54] [extract] strike sh0 850/3000 eps 152070 win 24.4 win/s ETA 262.3min
+
+[2026-05-01 12:49:50] [extract] strike sh0 875/3000 eps 156520 win 24.5 win/s ETA 259.0min
+
+[2026-05-01 12:50:07] [extract] push sh0 800/1497 eps 181660 win 28.3 win/s ETA 93.2min
+
+[2026-05-01 12:52:29] [extract] strike sh0 900/3000 eps 160670 win 24.5 win/s ETA 255.0min
+
+[2026-05-01 12:53:35] [extract] push sh0 825/1497 eps 187266 win 28.3 win/s ETA 89.9min
+
+[2026-05-01 12:55:24] [extract] strike sh0 925/3000 eps 165220 win 24.5 win/s ETA 251.7min
+
+[2026-05-01 12:56:57] [extract] push sh0 850/1497 eps 192876 win 28.3 win/s ETA 86.6min
+
+[2026-05-01 12:58:35] [extract] strike sh0 950/3000 eps 170055 win 24.6 win/s ETA 249.0min
+
+[2026-05-01 13:00:17] [extract] push sh0 875/1497 eps 198486 win 28.2 win/s ETA 83.2min
+
+[2026-05-01 13:01:22] [extract] strike sh0 975/3000 eps 174367 win 24.6 win/s ETA 245.4min
+
+[2026-05-01 13:03:41] [extract] push sh0 900/1497 eps 204236 win 28.3 win/s ETA 79.9min
+
+[2026-05-01 13:04:08] [extract] strike sh0 1000/3000 eps 178752 win 24.6 win/s ETA 241.9min
+
+[2026-05-01 13:06:48] [extract] strike sh0 1025/3000 eps 182902 win 24.7 win/s ETA 238.2min
+
+[2026-05-01 13:07:04] [extract] push sh0 925/1497 eps 209986 win 28.3 win/s ETA 76.6min
+
+[2026-05-01 13:09:50] [extract] strike sh0 1050/3000 eps 187668 win 24.7 win/s ETA 235.2min
+
+[2026-05-01 13:10:32] [extract] push sh0 950/1497 eps 215736 win 28.2 win/s ETA 73.3min
+
+[2026-05-01 13:12:37] [extract] strike sh0 1075/3000 eps 192005 win 24.7 win/s ETA 231.8min
+
+[2026-05-01 13:13:58] [extract] push sh0 975/1497 eps 221486 win 28.2 win/s ETA 70.0min
+
+[2026-05-01 13:15:39] [extract] strike sh0 1100/3000 eps 196712 win 24.8 win/s ETA 228.8min
+
+[2026-05-01 13:17:19] [extract] push sh0 1000/1497 eps 227167 win 28.2 win/s ETA 66.7min
+
+[2026-05-01 13:18:19] [extract] strike sh0 1125/3000 eps 200862 win 24.8 win/s ETA 225.2min
+
+[2026-05-01 13:20:34] [extract] push sh0 1025/1497 eps 232651 win 28.2 win/s ETA 63.3min
+
+[2026-05-01 13:21:21] [extract] strike sh0 1150/3000 eps 205312 win 24.8 win/s ETA 222.3min
+
+[2026-05-01 13:24:10] [extract] push sh0 1050/1497 eps 238401 win 28.2 win/s ETA 60.0min
+
+[2026-05-01 13:24:52] [extract] strike sh0 1175/3000 eps 210162 win 24.7 win/s ETA 220.1min
+
+[2026-05-01 13:27:26] [extract] push sh0 1075/1497 eps 244018 win 28.2 win/s ETA 56.6min
+
+[2026-05-01 13:27:48] [extract] strike sh0 1200/3000 eps 214612 win 24.7 win/s ETA 216.9min
+
+[2026-05-01 13:30:21] [r3m_extract] push loading R3M ResNet50 on cuda:0
+
+[2026-05-01 13:30:24] [r3m_extract] push model loaded 3.3s
+
+[2026-05-01 13:30:24] [r3m_extract] push: total 1500 cached 0 todo 3
+
+[2026-05-01 13:30:28] [r3m_extract] push 3/3 eps 690 win 163.7 win/s ETA 0.0min
+
+[2026-05-01 13:30:28] [r3m_extract] push DONE: 3 eps 690 win in 0.1min
+
+[2026-05-01 13:30:41] [extract] strike sh0 1225/3000 eps 219038 win 24.7 win/s ETA 213.7min
+
+[2026-05-01 13:30:48] [extract] push sh0 1100/1497 eps 249768 win 28.2 win/s ETA 53.3min
+
+[2026-05-01 13:30:59] [extract] strike ep 1227: skipped (T<16)
+
+[2026-05-01 13:33:10] [extract] strike sh0 1250/3000 eps 222974 win 24.8 win/s ETA 210.0min
+
+[2026-05-01 13:34:05] [extract] push sh0 1125/1497 eps 255363 win 28.2 win/s ETA 49.9min
+
+[2026-05-01 13:34:39] [r3m_probe] task=push targets=['ee_acceleration'] stages=['stage_0'] gpu=0 dry_run=True
+
+[2026-05-01 13:34:53] [r3m_extract] push loading R3M ResNet50 on cuda:0
+
+[2026-05-01 13:34:56] [r3m_extract] push model loaded 3.2s
+
+[2026-05-01 13:34:56] [r3m_extract] push: total 1500 cached 0 todo 10
+
+[2026-05-01 13:35:09] [r3m_extract] push 10/10 eps 2300 win 180.4 win/s ETA 0.0min
+
+[2026-05-01 13:35:09] [r3m_extract] push DONE: 10 eps 2300 win in 0.2min
+
+[2026-05-01 13:35:20] [r3m_probe] task=push targets=['ee_acceleration'] stages=['stage_0'] gpu=0 dry_run=True
+
+[2026-05-01 13:35:21] [r3m_probe] push stage_0: loaded X=(1150, 64) eps=5 in 0.0s
+
+[2026-05-01 13:35:27] [r3m_probe] push stage_0 ee_acceleration: r2_mean=0.053 std=0.038 6.5s
+
+[2026-05-01 13:35:47] [r3m_extract] push loading R3M ResNet50 on cuda:0
+
+[2026-05-01 13:35:50] [r3m_extract] push model loaded 3.2s
+
+[2026-05-01 13:35:50] [r3m_extract] push: total 1500 cached 10 todo 1490
+
+[2026-05-01 13:36:11] [extract] strike sh0 1275/3000 eps 227724 win 24.8 win/s ETA 207.0min
+
+[2026-05-01 13:36:21] [r3m_extract] push 25/1490 eps 5462 win 177.4 win/s ETA 30.1min
+
+[2026-05-01 13:36:53] [r3m_extract] push 50/1490 eps 11067 win 175.8 win/s ETA 30.2min
+
+[2026-05-01 13:37:24] [r3m_extract] push 75/1490 eps 16817 win 180.2 win/s ETA 29.4min
+
+[2026-05-01 13:37:48] [extract] push sh0 1150/1497 eps 261113 win 28.1 win/s ETA 46.7min
+
+[2026-05-01 13:37:53] [r3m_extract] push 100/1490 eps 22567 win 183.6 win/s ETA 28.5min
+
+[2026-05-01 13:38:23] [r3m_extract] push 125/1490 eps 28317 win 185.7 win/s ETA 27.7min
+
+[2026-05-01 13:38:54] [r3m_extract] push 150/1490 eps 33920 win 185.0 win/s ETA 27.3min
+
+[2026-05-01 13:39:03] [extract] strike sh0 1300/3000 eps 232274 win 24.8 win/s ETA 203.8min
+
+[2026-05-01 13:39:24] [r3m_extract] push 175/1490 eps 39670 win 185.3 win/s ETA 26.8min
+
+[2026-05-01 13:39:55] [r3m_extract] push 200/1490 eps 45420 win 185.6 win/s ETA 26.3min
+
+[2026-05-01 13:40:26] [r3m_extract] push 225/1490 eps 51170 win 185.5 win/s ETA 25.8min
+
+[2026-05-01 13:40:56] [r3m_extract] push 250/1490 eps 56905 win 185.8 win/s ETA 25.3min
+
+[2026-05-01 13:41:28] [r3m_extract] push 275/1490 eps 62655 win 185.7 win/s ETA 24.8min
+
+[2026-05-01 13:41:40] [extract] push sh0 1175/1497 eps 266723 win 28.0 win/s ETA 43.4min
+
+[2026-05-01 13:41:59] [extract] strike sh0 1325/3000 eps 236816 win 24.9 win/s ETA 200.8min
+
+[2026-05-01 13:42:00] [r3m_extract] push 300/1490 eps 68405 win 184.9 win/s ETA 24.5min
+
+[2026-05-01 13:42:31] [r3m_extract] push 325/1490 eps 74155 win 185.0 win/s ETA 23.9min
+
+[2026-05-01 13:43:01] [r3m_extract] push 350/1490 eps 79625 win 184.8 win/s ETA 23.4min
+
+[2026-05-01 13:43:34] [r3m_extract] push 375/1490 eps 85375 win 184.1 win/s ETA 23.0min
+
+[2026-05-01 13:44:07] [r3m_extract] push 400/1490 eps 91125 win 183.6 win/s ETA 22.5min
+
+[2026-05-01 13:44:38] [r3m_extract] push 425/1490 eps 96748 win 183.3 win/s ETA 22.0min
+
+[2026-05-01 13:44:49] [extract] strike sh0 1350/3000 eps 241053 win 24.9 win/s ETA 197.6min
+
+[2026-05-01 13:45:10] [r3m_extract] push 450/1490 eps 102356 win 182.8 win/s ETA 21.6min
+
+[2026-05-01 13:45:21] [extract] push sh0 1200/1497 eps 272001 win 28.0 win/s ETA 40.1min
+
+[2026-05-01 13:45:43] [r3m_extract] push 475/1490 eps 108106 win 182.3 win/s ETA 21.1min
+
+[2026-05-01 13:46:15] [r3m_extract] push 500/1490 eps 113706 win 181.8 win/s ETA 20.6min
+
+[2026-05-01 13:46:49] [r3m_extract] push 525/1490 eps 119309 win 181.1 win/s ETA 20.2min
+
+[2026-05-01 13:47:22] [r3m_extract] push 550/1490 eps 125059 win 180.7 win/s ETA 19.7min
+
+[2026-05-01 13:47:55] [r3m_extract] push 575/1490 eps 130809 win 180.4 win/s ETA 19.2min
+
+[2026-05-01 13:47:59] [extract] strike sh0 1375/3000 eps 245284 win 24.8 win/s ETA 194.8min
+
+[2026-05-01 13:48:28] [r3m_extract] push 600/1490 eps 136425 win 180.0 win/s ETA 18.7min
+
+[2026-05-01 13:49:00] [r3m_extract] push 625/1490 eps 142031 win 179.7 win/s ETA 18.2min
+
+[2026-05-01 13:49:20] [extract] push sh0 1225/1497 eps 277751 win 27.9 win/s ETA 36.9min
+
+[2026-05-01 13:49:33] [r3m_extract] push 650/1490 eps 147781 win 179.7 win/s ETA 17.7min
+
+[2026-05-01 13:50:07] [r3m_extract] push 675/1490 eps 153531 win 179.2 win/s ETA 17.2min
+
+[2026-05-01 13:50:37] [r3m_extract] push 700/1490 eps 158951 win 179.1 win/s ETA 16.7min
+
+[2026-05-01 13:51:09] [r3m_extract] push 725/1490 eps 164701 win 179.2 win/s ETA 16.2min
+
+[2026-05-01 13:51:25] [extract] strike sh0 1400/3000 eps 249923 win 24.8 win/s ETA 192.3min
+
+[2026-05-01 13:51:41] [r3m_extract] push 750/1490 eps 170310 win 179.1 win/s ETA 15.6min
+
+[2026-05-01 13:52:14] [r3m_extract] push 775/1490 eps 176060 win 179.0 win/s ETA 15.1min
+
+[2026-05-01 13:52:50] [r3m_extract] push 800/1490 eps 181660 win 178.1 win/s ETA 14.7min
+
+[2026-05-01 13:53:06] [extract] push sh0 1250/1497 eps 283360 win 27.8 win/s ETA 33.6min
+
+[2026-05-01 13:53:28] [r3m_extract] push 825/1490 eps 187266 win 177.1 win/s ETA 14.2min
+
+[2026-05-01 13:54:07] [r3m_extract] push 850/1490 eps 192876 win 175.8 win/s ETA 13.8min
+
+[2026-05-01 13:54:45] [r3m_extract] push 875/1490 eps 198486 win 174.9 win/s ETA 13.3min
+
+[2026-05-01 13:54:53] [extract] strike sh0 1425/3000 eps 254673 win 24.7 win/s ETA 189.8min
+
+[2026-05-01 13:55:21] [r3m_extract] push 900/1490 eps 204236 win 174.4 win/s ETA 12.8min
+
+[2026-05-01 13:55:58] [r3m_extract] push 925/1490 eps 209986 win 173.9 win/s ETA 12.3min
+
+[2026-05-01 13:56:33] [r3m_extract] push 950/1490 eps 215736 win 173.6 win/s ETA 11.8min
+
+[2026-05-01 13:57:00] [extract] push sh0 1275/1497 eps 289110 win 27.7 win/s ETA 30.3min
+
+[2026-05-01 13:57:09] [r3m_extract] push 975/1490 eps 221486 win 173.2 win/s ETA 11.3min
+
+[2026-05-01 13:57:42] [r3m_extract] push 1000/1490 eps 227023 win 173.0 win/s ETA 10.7min
+
+[2026-05-01 13:57:56] [extract] strike sh0 1450/3000 eps 259013 win 24.7 win/s ETA 186.8min
+
+[2026-05-01 13:58:19] [r3m_extract] push 1025/1490 eps 232651 win 172.5 win/s ETA 10.2min
+
+[2026-05-01 13:58:56] [r3m_extract] push 1050/1490 eps 238401 win 172.1 win/s ETA 9.7min
+
+[2026-05-01 13:59:36] [r3m_extract] push 1075/1490 eps 244018 win 171.2 win/s ETA 9.2min
+
+[2026-05-01 14:00:18] [r3m_extract] push 1100/1490 eps 249613 win 170.1 win/s ETA 8.7min
+
+[2026-05-01 14:00:59] [extract] push sh0 1300/1497 eps 294860 win 27.6 win/s ETA 26.9min
+
+[2026-05-01 14:01:00] [extract] strike sh0 1475/3000 eps 263096 win 24.7 win/s ETA 183.8min
+
+[2026-05-01 14:01:04] [r3m_extract] push 1125/1490 eps 255363 win 168.7 win/s ETA 8.2min
+
+[2026-05-01 14:01:49] [r3m_extract] push 1150/1490 eps 261113 win 167.5 win/s ETA 7.7min
+
+[2026-05-01 14:02:33] [r3m_extract] push 1175/1490 eps 266555 win 166.3 win/s ETA 7.2min
+
+[2026-05-01 14:03:19] [r3m_extract] push 1200/1490 eps 272001 win 165.0 win/s ETA 6.6min
+
+[2026-05-01 14:04:02] [r3m_extract] push 1225/1490 eps 277610 win 164.1 win/s ETA 6.1min
+
+[2026-05-01 14:04:25] [extract] strike sh0 1500/3000 eps 267746 win 24.6 win/s ETA 181.2min
+
+[2026-05-01 14:04:38] [r3m_extract] push 1250/1490 eps 283360 win 164.0 win/s ETA 5.5min
+
+[2026-05-01 14:05:02] [extract] push sh0 1325/1497 eps 300464 win 27.5 win/s ETA 23.6min
+
+[2026-05-01 14:05:12] [r3m_extract] push 1275/1490 eps 289110 win 164.1 win/s ETA 5.0min
+
+[2026-05-01 14:05:43] [r3m_extract] push 1300/1490 eps 294860 win 164.4 win/s ETA 4.4min
+
+[2026-05-01 14:06:15] [r3m_extract] push 1325/1490 eps 300464 win 164.7 win/s ETA 3.8min
+
+[2026-05-01 14:06:46] [r3m_extract] push 1350/1490 eps 306084 win 164.9 win/s ETA 3.2min
+
+[2026-05-01 14:07:19] [r3m_extract] push 1375/1490 eps 311681 win 165.0 win/s ETA 2.6min
+
+[2026-05-01 14:07:25] [extract] strike sh0 1525/3000 eps 272396 win 24.6 win/s ETA 178.2min
+
+[2026-05-01 14:07:50] [r3m_extract] push 1400/1490 eps 317431 win 165.4 win/s ETA 2.1min
+
+[2026-05-01 14:08:22] [r3m_extract] push 1425/1490 eps 323181 win 165.6 win/s ETA 1.5min
+
+[2026-05-01 14:08:52] [r3m_extract] push 1450/1490 eps 328931 win 165.9 win/s ETA 0.9min
+
+[2026-05-01 14:08:54] [extract] push sh0 1350/1497 eps 306214 win 27.5 win/s ETA 20.2min
+
+[2026-05-01 14:09:24] [r3m_extract] push 1475/1490 eps 334681 win 166.2 win/s ETA 0.3min
+
+[2026-05-01 14:09:41] [r3m_extract] push 1490/1490 eps 337983 win 166.4 win/s ETA 0.0min
+
+[2026-05-01 14:09:41] [r3m_extract] push DONE: 1490 eps 337983 win in 33.9min
+
+[2026-05-01 14:09:48] [r3m_extract] strike loading R3M ResNet50 on cuda:0
+
+[2026-05-01 14:09:53] [r3m_extract] strike model loaded 5.2s
+
+[2026-05-01 14:09:53] [r3m_extract] strike: total 3000 cached 0 todo 3000
+
+[2026-05-01 14:10:20] [r3m_extract] strike 25/3000 eps 4645 win 171.4 win/s ETA 53.8min
+
+[2026-05-01 14:10:21] [extract] strike sh0 1550/3000 eps 277046 win 24.7 win/s ETA 175.1min
+
+[2026-05-01 14:10:37] [r3m_probe] task=push targets=['ee_acceleration', 'contact_flag', 'contact_force_log1p_mag'] stages=['stage_0', 'stage_1', 'stage_2', 'stage_3', 'stage_4'] gpu=0 dry_run=False
+
+[2026-05-01 14:10:44] [r3m_probe] push stage_0: loaded X=(340283, 64) eps=1500 in 6.4s
+
+[2026-05-01 14:10:48] [r3m_extract] strike 50/3000 eps 9495 win 172.5 win/s ETA 54.1min
+
+[2026-05-01 14:11:01] [r3m_probe] push stage_0 ee_acceleration: r2_mean=0.046 std=0.004 16.3s
+
+[2026-05-01 14:11:12] [r3m_extract] strike 75/3000 eps 13782 win 173.8 win/s ETA 51.5min
+
+[2026-05-01 14:11:13] [r3m_probe] push stage_0 contact_flag: r2_mean=0.524 std=0.010 11.8s
+
+[2026-05-01 14:11:26] [r3m_probe] push stage_0 contact_force_log1p_mag: r2_mean=0.493 std=0.019 12.0s
+
+[2026-05-01 14:11:33] [r3m_probe] push stage_1: loaded X=(340283, 256) eps=1500 in 7.4s
+
+[2026-05-01 14:11:35] [r3m_extract] strike 100/3000 eps 17862 win 175.0 win/s ETA 49.3min
+
+[2026-05-01 14:11:50] [r3m_probe] push stage_1 ee_acceleration: r2_mean=0.074 std=0.005 15.3s
+
+[2026-05-01 14:12:01] [r3m_extract] strike 125/3000 eps 22211 win 173.1 win/s ETA 49.2min
+
+[2026-05-01 14:12:04] [r3m_probe] push stage_1 contact_flag: r2_mean=0.666 std=0.014 14.1s
+
+[2026-05-01 14:12:20] [r3m_probe] push stage_1 contact_force_log1p_mag: r2_mean=0.622 std=0.023 14.5s
+
+[2026-05-01 14:12:29] [r3m_probe] push stage_2: loaded X=(340283, 512) eps=1500 in 9.2s
+
+[2026-05-01 14:12:29] [r3m_extract] strike 150/3000 eps 27061 win 173.5 win/s ETA 49.4min
+
+[2026-05-01 14:12:32] [extract] push sh0 1375/1497 eps 311681 win 27.4 win/s ETA 16.8min
+
+[2026-05-01 14:12:50] [r3m_probe] push stage_2 ee_acceleration: r2_mean=0.078 std=0.008 20.4s
+
+[2026-05-01 14:12:57] [r3m_extract] strike 175/3000 eps 31780 win 172.9 win/s ETA 49.5min
+
+[2026-05-01 14:13:10] [r3m_probe] push stage_2 contact_flag: r2_mean=0.671 std=0.011 18.8s
+
+[2026-05-01 14:13:21] [r3m_extract] strike 200/3000 eps 35850 win 172.5 win/s ETA 48.5min
+
+[2026-05-01 14:13:28] [r3m_probe] push stage_2 contact_force_log1p_mag: r2_mean=0.623 std=0.021 18.2s
+
+[2026-05-01 14:13:33] [extract] strike sh0 1575/3000 eps 281275 win 24.6 win/s ETA 172.2min
+
+[2026-05-01 14:13:40] [r3m_probe] push stage_3: loaded X=(340283, 1024) eps=1500 in 11.2s
+
+[2026-05-01 14:13:45] [r3m_extract] strike 225/3000 eps 39977 win 172.3 win/s ETA 47.7min
+
+[2026-05-01 14:14:11] [r3m_extract] strike 250/3000 eps 44603 win 173.0 win/s ETA 47.3min
+
+[2026-05-01 14:14:13] [r3m_probe] push stage_3 ee_acceleration: r2_mean=0.068 std=0.026 32.3s
+
+[2026-05-01 14:14:38] [r3m_extract] strike 275/3000 eps 49453 win 173.8 win/s ETA 47.0min
+
+[2026-05-01 14:14:42] [r3m_probe] push stage_3 contact_flag: r2_mean=0.677 std=0.008 28.8s
+
+[2026-05-01 14:15:02] [r3m_extract] strike 300/3000 eps 53903 win 174.5 win/s ETA 46.3min
+
+[2026-05-01 14:15:10] [r3m_probe] push stage_3 contact_force_log1p_mag: r2_mean=0.638 std=0.017 27.5s
+
+[2026-05-01 14:15:25] [r3m_extract] strike 325/3000 eps 58053 win 174.8 win/s ETA 45.6min
+
+[2026-05-01 14:15:28] [r3m_probe] push stage_4: loaded X=(340283, 2048) eps=1500 in 17.9s
+
+[2026-05-01 14:15:48] [r3m_extract] strike 350/3000 eps 62325 win 175.5 win/s ETA 44.8min
+
+[2026-05-01 14:16:16] [r3m_extract] strike 375/3000 eps 67175 win 175.6 win/s ETA 44.6min
+
+[2026-05-01 14:16:19] [r3m_probe] push stage_4 ee_acceleration: r2_mean=0.084 std=0.006 49.8s
+
+[2026-05-01 14:16:32] [extract] push sh0 1400/1497 eps 317431 win 27.4 win/s ETA 13.4min
+
+[2026-05-01 14:16:41] [r3m_extract] strike 400/3000 eps 71710 win 175.8 win/s ETA 44.2min
+
+[2026-05-01 14:17:05] [r3m_extract] strike 425/3000 eps 75960 win 175.8 win/s ETA 43.6min
+
+[2026-05-01 14:17:09] [r3m_probe] push stage_4 contact_flag: r2_mean=0.669 std=0.013 49.5s
+
+[2026-05-01 14:17:11] [extract] strike sh0 1600/3000 eps 285464 win 24.5 win/s ETA 169.8min
+
+[2026-05-01 14:17:29] [r3m_extract] strike 450/3000 eps 80210 win 176.0 win/s ETA 43.0min
+
+[2026-05-01 14:17:54] [r3m_extract] strike 475/3000 eps 84860 win 176.4 win/s ETA 42.6min
+
+[2026-05-01 14:18:00] [r3m_probe] push stage_4 contact_force_log1p_mag: r2_mean=0.638 std=0.020 50.0s
+
+[2026-05-01 14:18:00] [r3m_probe] push DONE; comparison updated at /home/solee/physrepa_tasks/probe/results/r3m_vs_vjepa_summary.csv
+
+[2026-05-01 14:18:21] [r3m_extract] strike 500/3000 eps 89674 win 176.7 win/s ETA 42.3min
+
+[2026-05-01 14:18:45] [r3m_extract] strike 525/3000 eps 93921 win 176.7 win/s ETA 41.8min
+
+[2026-05-01 14:19:10] [r3m_extract] strike 550/3000 eps 98371 win 176.7 win/s ETA 41.3min
+
+[2026-05-01 14:19:35] [r3m_extract] strike 575/3000 eps 102569 win 176.1 win/s ETA 40.9min
+
+[2026-05-01 14:20:03] [r3m_extract] strike 600/3000 eps 107326 win 175.9 win/s ETA 40.7min
+
+[2026-05-01 14:20:24] [extract] push sh0 1425/1497 eps 323181 win 27.3 win/s ETA 10.0min
+
+[2026-05-01 14:20:25] [extract] strike sh0 1625/3000 eps 289887 win 24.5 win/s ETA 166.9min
+
+[2026-05-01 14:20:31] [r3m_extract] strike 625/3000 eps 111976 win 175.5 win/s ETA 40.4min
+
+[2026-05-01 14:20:58] [r3m_extract] strike 650/3000 eps 116274 win 174.8 win/s ETA 40.1min
+
+[2026-05-01 14:21:26] [r3m_extract] strike 675/3000 eps 120409 win 173.8 win/s ETA 39.8min
+
+[2026-05-01 14:21:55] [r3m_extract] strike 700/3000 eps 124973 win 173.1 win/s ETA 39.5min
+
+[2026-05-01 14:22:26] [r3m_extract] strike 725/3000 eps 129823 win 172.5 win/s ETA 39.4min
+
+[2026-05-01 14:22:52] [r3m_extract] strike 750/3000 eps 134114 win 172.3 win/s ETA 38.9min
+
+[2026-05-01 14:23:10] [r3m_extract] strike 775/3000 eps 138464 win 173.7 win/s ETA 38.1min
+
+[2026-05-01 14:23:28] [r3m_extract] strike 800/3000 eps 142714 win 175.0 win/s ETA 37.4min
+
+[2026-05-01 14:23:47] [extract] strike sh0 1650/3000 eps 294537 win 24.5 win/s ETA 164.1min
+
+[2026-05-01 14:23:48] [r3m_extract] strike 825/3000 eps 147481 win 176.5 win/s ETA 36.7min
+
+[2026-05-01 14:24:09] [r3m_extract] strike 850/3000 eps 152070 win 177.8 win/s ETA 36.1min
+
+[2026-05-01 14:24:19] [extract] push sh0 1450/1497 eps 328931 win 27.3 win/s ETA 6.5min
+
+[2026-05-01 14:24:27] [r3m_extract] strike 875/3000 eps 156520 win 179.1 win/s ETA 35.4min
+
+[2026-05-01 14:24:45] [r3m_extract] strike 900/3000 eps 160670 win 180.1 win/s ETA 34.7min
+
+[2026-05-01 14:25:04] [r3m_extract] strike 925/3000 eps 165220 win 181.3 win/s ETA 34.1min
+
+[2026-05-01 14:25:24] [r3m_extract] strike 950/3000 eps 170055 win 182.6 win/s ETA 33.5min
+
+[2026-05-01 14:25:43] [r3m_extract] strike 975/3000 eps 174367 win 183.6 win/s ETA 32.9min
+
+[2026-05-01 14:26:02] [r3m_extract] strike 1000/3000 eps 178752 win 184.6 win/s ETA 32.3min
+
+[2026-05-01 14:26:19] [r3m_extract] strike 1025/3000 eps 182902 win 185.5 win/s ETA 31.7min
+
+[2026-05-01 14:26:39] [r3m_extract] strike 1050/3000 eps 187668 win 186.6 win/s ETA 31.1min
+
+[2026-05-01 14:26:57] [r3m_extract] strike 1075/3000 eps 192005 win 187.5 win/s ETA 30.6min
+
+[2026-05-01 14:27:06] [extract] strike sh0 1675/3000 eps 298820 win 24.4 win/s ETA 161.3min
+
+[2026-05-01 14:27:17] [r3m_extract] strike 1100/3000 eps 196712 win 188.5 win/s ETA 30.0min
+
+[2026-05-01 14:27:34] [r3m_extract] strike 1125/3000 eps 200862 win 189.3 win/s ETA 29.5min
+
+[2026-05-01 14:27:53] [r3m_extract] strike 1150/3000 eps 205312 win 190.1 win/s ETA 29.0min
+
+[2026-05-01 14:28:13] [r3m_extract] strike 1175/3000 eps 210162 win 191.1 win/s ETA 28.5min
+
+[2026-05-01 14:28:15] [extract] push sh0 1475/1497 eps 334681 win 27.2 win/s ETA 3.1min
+
+[2026-05-01 14:28:31] [r3m_extract] strike 1200/3000 eps 214612 win 191.9 win/s ETA 28.0min
+
+[2026-05-01 14:28:50] [r3m_extract] strike 1225/3000 eps 219038 win 192.7 win/s ETA 27.5min
+
+[2026-05-01 14:28:52] [r3m_extract] strike ep 1227: skipped (T<16)
+
+[2026-05-01 14:29:07] [r3m_extract] strike 1250/3000 eps 222974 win 193.3 win/s ETA 26.9min
+
+[2026-05-01 14:29:27] [r3m_extract] strike 1275/3000 eps 227724 win 194.1 win/s ETA 26.5min
+
+[2026-05-01 14:29:46] [r3m_extract] strike 1300/3000 eps 232274 win 194.7 win/s ETA 26.0min
+
+[2026-05-01 14:30:06] [r3m_extract] strike 1325/3000 eps 236816 win 195.3 win/s ETA 25.5min
+
+[2026-05-01 14:30:07] [extract] strike sh0 1700/3000 eps 303170 win 24.4 win/s ETA 158.2min
+
+[2026-05-01 14:30:24] [r3m_extract] strike 1350/3000 eps 241053 win 195.8 win/s ETA 25.1min
+
+[2026-05-01 14:30:43] [r3m_extract] strike 1375/3000 eps 245284 win 196.3 win/s ETA 24.6min
+
+[2026-05-01 14:31:02] [r3m_extract] strike 1400/3000 eps 249923 win 196.9 win/s ETA 24.2min
+
+[2026-05-01 14:31:23] [r3m_extract] strike 1425/3000 eps 254673 win 197.4 win/s ETA 23.8min
+
+[2026-05-01 14:31:35] [extract] push sh0 1497/1497 eps 339593 win 27.2 win/s ETA 0.0min
+
+[2026-05-01 14:31:35] [extract] push sh0 DONE: 1497 eps 339593 win in 208.4min
+
+[2026-05-01 14:31:41] [r3m_extract] strike 1450/3000 eps 259013 win 198.0 win/s ETA 23.3min
+
+[2026-05-01 14:31:58] [r3m_extract] strike 1475/3000 eps 263096 win 198.6 win/s ETA 22.8min
+
+[2026-05-01 14:32:08] [probe] task=push variant=A_shuffled targets=['ee_acceleration'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 14:32:08] [probe] task=push variant=A_shuffled targets=['ee_velocity'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 14:32:15] [r3m_extract] strike 1500/3000 eps 267746 win 199.5 win/s ETA 22.4min
+
+[2026-05-01 14:32:32] [r3m_extract] strike 1525/3000 eps 272396 win 200.4 win/s ETA 21.9min
+
+[2026-05-01 14:32:49] [r3m_extract] strike 1550/3000 eps 277046 win 201.3 win/s ETA 21.5min
+
+[2026-05-01 14:32:49] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 41.0s
+
+[2026-05-01 14:32:52] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 43.4s
+
+[2026-05-01 14:33:05] [r3m_extract] strike 1575/3000 eps 281275 win 202.0 win/s ETA 21.0min
+
+[2026-05-01 14:33:08] [probe] push A_shuffled ee_acceleration L00: r2_mean=0.026 std=0.004 17.1s
+
+[2026-05-01 14:33:11] [probe] push A_shuffled ee_velocity L00: r2_mean=0.306 std=0.012 17.2s
+
+[2026-05-01 14:33:22] [r3m_extract] strike 1600/3000 eps 285464 win 202.7 win/s ETA 20.5min
+
+[2026-05-01 14:33:25] [probe] push A_shuffled ee_acceleration L01: r2_mean=0.053 std=0.003 14.6s
+
+[2026-05-01 14:33:27] [probe] push A_shuffled ee_velocity L01: r2_mean=0.406 std=0.023 14.9s
+
+[2026-05-01 14:33:38] [r3m_extract] strike 1625/3000 eps 289887 win 203.4 win/s ETA 20.1min
+
+[2026-05-01 14:33:42] [probe] push A_shuffled ee_acceleration L02: r2_mean=0.063 std=0.004 14.9s
+
+[2026-05-01 14:33:43] [extract] strike sh0 1725/3000 eps 307669 win 24.4 win/s ETA 155.6min
+
+[2026-05-01 14:33:44] [probe] push A_shuffled ee_velocity L02: r2_mean=0.441 std=0.034 14.7s
+
+[2026-05-01 14:33:56] [r3m_extract] strike 1650/3000 eps 294537 win 204.2 win/s ETA 19.7min
+
+[2026-05-01 14:33:58] [probe] push A_shuffled ee_acceleration L03: r2_mean=0.073 std=0.004 14.3s
+
+[2026-05-01 14:34:01] [probe] push A_shuffled ee_velocity L03: r2_mean=0.499 std=0.024 15.2s
+
+[2026-05-01 14:34:12] [r3m_extract] strike 1675/3000 eps 298820 win 204.8 win/s ETA 19.2min
+
+[2026-05-01 14:34:15] [probe] push A_shuffled ee_acceleration L04: r2_mean=0.078 std=0.005 15.4s
+
+[2026-05-01 14:34:19] [probe] push A_shuffled ee_velocity L04: r2_mean=0.527 std=0.029 16.0s
+
+[2026-05-01 14:34:29] [r3m_extract] strike 1700/3000 eps 303170 win 205.5 win/s ETA 18.8min
+
+[2026-05-01 14:34:31] [probe] push A_shuffled ee_acceleration L05: r2_mean=0.086 std=0.006 14.6s
+
+[2026-05-01 14:34:37] [probe] push A_shuffled ee_velocity L05: r2_mean=0.569 std=0.031 15.6s
+
+[2026-05-01 14:34:45] [r3m_extract] strike 1725/3000 eps 307669 win 206.2 win/s ETA 18.4min
+
+[2026-05-01 14:34:48] [probe] push A_shuffled ee_acceleration L06: r2_mean=0.087 std=0.005 14.7s
+
+[2026-05-01 14:34:54] [probe] push A_shuffled ee_velocity L06: r2_mean=0.599 std=0.028 15.3s
+
+[2026-05-01 14:35:02] [r3m_extract] strike 1750/3000 eps 312132 win 206.8 win/s ETA 18.0min
+
+[2026-05-01 14:35:04] [probe] push A_shuffled ee_acceleration L07: r2_mean=0.092 std=0.005 14.6s
+
+[2026-05-01 14:35:12] [probe] push A_shuffled ee_velocity L07: r2_mean=0.623 std=0.011 16.1s
+
+[2026-05-01 14:35:20] [r3m_extract] strike 1775/3000 eps 316782 win 207.5 win/s ETA 17.6min
+
+[2026-05-01 14:35:21] [probe] push A_shuffled ee_acceleration L08: r2_mean=0.099 std=0.006 15.2s
+
+[2026-05-01 14:35:29] [probe] push A_shuffled ee_velocity L08: r2_mean=0.660 std=0.018 15.6s
+
+[2026-05-01 14:35:36] [r3m_extract] strike 1800/3000 eps 321063 win 208.1 win/s ETA 17.1min
+
+[2026-05-01 14:35:40] [probe] push A_shuffled ee_acceleration L09: r2_mean=0.098 std=0.005 17.0s
+
+[2026-05-01 14:35:47] [probe] push A_shuffled ee_velocity L09: r2_mean=0.652 std=0.017 15.3s
+
+[2026-05-01 14:35:53] [r3m_extract] strike 1825/3000 eps 325513 win 208.7 win/s ETA 16.7min
+
+[2026-05-01 14:35:57] [probe] push A_shuffled ee_acceleration L10: r2_mean=0.100 std=0.006 16.1s
+
+[2026-05-01 14:36:03] [probe] push A_shuffled ee_velocity L10: r2_mean=0.681 std=0.023 15.2s
+
+[2026-05-01 14:36:10] [r3m_extract] strike 1850/3000 eps 329989 win 209.3 win/s ETA 16.3min
+
+[2026-05-01 14:36:14] [probe] push A_shuffled ee_acceleration L11: r2_mean=0.103 std=0.006 15.0s
+
+[2026-05-01 14:36:21] [probe] push A_shuffled ee_velocity L11: r2_mean=0.695 std=0.011 15.6s
+
+[2026-05-01 14:36:27] [r3m_extract] strike 1875/3000 eps 334539 win 209.9 win/s ETA 15.9min
+
+[2026-05-01 14:36:32] [probe] push A_shuffled ee_acceleration L12: r2_mean=0.096 std=0.013 16.7s
+
+[2026-05-01 14:36:38] [probe] push A_shuffled ee_velocity L12: r2_mean=0.689 std=0.052 15.6s
+
+[2026-05-01 14:36:44] [r3m_extract] strike 1900/3000 eps 338937 win 210.4 win/s ETA 15.5min
+
+[2026-05-01 14:36:49] [probe] push A_shuffled ee_acceleration L13: r2_mean=0.106 std=0.008 15.2s
+
+[2026-05-01 14:36:56] [probe] push A_shuffled ee_velocity L13: r2_mean=0.709 std=0.023 15.4s
+
+[2026-05-01 14:37:02] [r3m_extract] strike 1925/3000 eps 343487 win 210.9 win/s ETA 15.2min
+
+[2026-05-01 14:37:04] [extract] strike sh0 1750/3000 eps 312132 win 24.3 win/s ETA 152.8min
+
+[2026-05-01 14:37:06] [probe] push A_shuffled ee_acceleration L14: r2_mean=0.108 std=0.005 15.4s
+
+[2026-05-01 14:37:13] [probe] push A_shuffled ee_velocity L14: r2_mean=0.696 std=0.013 15.6s
+
+[2026-05-01 14:37:19] [r3m_extract] strike 1950/3000 eps 347793 win 211.4 win/s ETA 14.8min
+
+[2026-05-01 14:37:23] [probe] push A_shuffled ee_acceleration L15: r2_mean=0.106 std=0.009 15.2s
+
+[2026-05-01 14:37:31] [probe] push A_shuffled ee_velocity L15: r2_mean=0.707 std=0.012 15.9s
+
+[2026-05-01 14:37:37] [r3m_extract] strike 1975/3000 eps 352395 win 211.8 win/s ETA 14.4min
+
+[2026-05-01 14:37:40] [probe] push A_shuffled ee_acceleration L16: r2_mean=0.105 std=0.008 15.2s
+
+[2026-05-01 14:37:49] [probe] push A_shuffled ee_velocity L16: r2_mean=0.704 std=0.023 15.4s
+
+[2026-05-01 14:37:54] [r3m_extract] strike 2000/3000 eps 356945 win 212.3 win/s ETA 14.0min
+
+[2026-05-01 14:37:56] [probe] push A_shuffled ee_acceleration L17: r2_mean=0.105 std=0.008 14.2s
+
+[2026-05-01 14:38:06] [probe] push A_shuffled ee_velocity L17: r2_mean=0.710 std=0.019 15.5s
+
+[2026-05-01 14:38:11] [r3m_extract] strike 2025/3000 eps 361295 win 212.8 win/s ETA 13.6min
+
+[2026-05-01 14:38:12] [probe] push A_shuffled ee_acceleration L18: r2_mean=0.108 std=0.005 14.6s
+
+[2026-05-01 14:38:23] [probe] push A_shuffled ee_velocity L18: r2_mean=0.716 std=0.016 15.5s
+
+[2026-05-01 14:38:28] [r3m_extract] strike 2050/3000 eps 365690 win 213.2 win/s ETA 13.2min
+
+[2026-05-01 14:38:28] [probe] push A_shuffled ee_acceleration L19: r2_mean=0.107 std=0.005 14.2s
+
+[2026-05-01 14:38:39] [probe] push A_shuffled ee_velocity L19: r2_mean=0.706 std=0.023 14.4s
+
+[2026-05-01 14:38:44] [probe] push A_shuffled ee_acceleration L20: r2_mean=0.108 std=0.005 14.4s
+
+[2026-05-01 14:38:45] [r3m_extract] strike 2075/3000 eps 370309 win 213.8 win/s ETA 12.9min
+
+[2026-05-01 14:38:56] [probe] push A_shuffled ee_velocity L20: r2_mean=0.707 std=0.016 15.5s
+
+[2026-05-01 14:39:00] [probe] push A_shuffled ee_acceleration L21: r2_mean=0.107 std=0.005 14.0s
+
+[2026-05-01 14:39:03] [r3m_extract] strike 2100/3000 eps 374859 win 214.3 win/s ETA 12.5min
+
+[2026-05-01 14:39:12] [probe] push A_shuffled ee_velocity L21: r2_mean=0.708 std=0.018 14.7s
+
+[2026-05-01 14:39:16] [probe] push A_shuffled ee_acceleration L22: r2_mean=0.102 std=0.005 14.8s
+
+[2026-05-01 14:39:19] [r3m_extract] strike 2125/3000 eps 379409 win 214.8 win/s ETA 12.1min
+
+[2026-05-01 14:39:28] [probe] push A_shuffled ee_velocity L22: r2_mean=0.712 std=0.008 13.9s
+
+[2026-05-01 14:39:32] [probe] push A_shuffled ee_acceleration L23: r2_mean=0.100 std=0.012 14.7s
+
+[2026-05-01 14:39:32] [probe] push A_shuffled DONE in 7.4min
+
+[2026-05-01 14:39:36] [r3m_extract] strike 2150/3000 eps 383859 win 215.3 win/s ETA 11.7min
+
+[2026-05-01 14:39:39] [probe] task=push variant=A_shuffled targets=['contact_force_log1p_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 14:39:45] [probe] push A_shuffled ee_velocity L23: r2_mean=0.699 std=0.033 15.0s
+
+[2026-05-01 14:39:45] [probe] push A_shuffled DONE in 7.6min
+
+[2026-05-01 14:39:51] [probe] task=push variant=A_shuffled targets=['contact_flag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 14:39:52] [r3m_extract] strike 2175/3000 eps 388128 win 215.8 win/s ETA 11.4min
+
+[2026-05-01 14:40:08] [r3m_extract] strike 2200/3000 eps 392678 win 216.3 win/s ETA 11.0min
+
+[2026-05-01 14:40:21] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 42.3s
+
+[2026-05-01 14:40:25] [r3m_extract] strike 2225/3000 eps 397328 win 216.8 win/s ETA 10.6min
+
+[2026-05-01 14:40:27] [extract] strike sh0 1775/3000 eps 316782 win 24.3 win/s ETA 149.9min
+
+[2026-05-01 14:40:33] [probe] push: features [(340283, 24, 1024)] eps 1500 loaded 41.3s
+
+[2026-05-01 14:40:38] [probe] push A_shuffled contact_force_log1p_mag L00: r2_mean=0.348 std=0.039 15.4s
+
+[2026-05-01 14:40:42] [r3m_extract] strike 2250/3000 eps 401778 win 217.3 win/s ETA 10.3min
+
+[2026-05-01 14:40:52] [probe] push A_shuffled contact_flag L00: r2_mean=0.375 std=0.029 17.2s
+
+[2026-05-01 14:40:54] [probe] push A_shuffled contact_force_log1p_mag L01: r2_mean=0.508 std=0.025 13.5s
+
+[2026-05-01 14:40:59] [r3m_extract] strike 2275/3000 eps 406201 win 217.7 win/s ETA 9.9min
+
+[2026-05-01 14:41:08] [probe] push A_shuffled contact_flag L01: r2_mean=0.520 std=0.017 14.4s
+
+[2026-05-01 14:41:08] [probe] push A_shuffled contact_force_log1p_mag L02: r2_mean=0.527 std=0.030 13.5s
+
+[2026-05-01 14:41:16] [r3m_extract] strike 2300/3000 eps 410651 win 218.1 win/s ETA 9.6min
+
+[2026-05-01 14:41:23] [probe] push A_shuffled contact_force_log1p_mag L03: r2_mean=0.551 std=0.021 13.0s
+
+[2026-05-01 14:41:24] [probe] push A_shuffled contact_flag L02: r2_mean=0.547 std=0.015 14.6s
+
+[2026-05-01 14:41:33] [r3m_extract] strike 2325/3000 eps 415116 win 218.5 win/s ETA 9.2min
+
+[2026-05-01 14:41:38] [probe] push A_shuffled contact_force_log1p_mag L04: r2_mean=0.578 std=0.020 13.8s
+
+[2026-05-01 14:41:41] [probe] push A_shuffled contact_flag L03: r2_mean=0.572 std=0.012 15.4s
+
+[2026-05-01 14:41:50] [r3m_extract] strike 2350/3000 eps 419766 win 218.9 win/s ETA 8.8min
+
+[2026-05-01 14:41:54] [probe] push A_shuffled contact_force_log1p_mag L05: r2_mean=0.588 std=0.012 13.6s
+
+[2026-05-01 14:41:59] [probe] push A_shuffled contact_flag L04: r2_mean=0.596 std=0.009 15.5s
+
+[2026-05-01 14:42:08] [r3m_extract] strike 2375/3000 eps 424216 win 219.3 win/s ETA 8.5min
+
+[2026-05-01 14:42:09] [probe] push A_shuffled contact_force_log1p_mag L06: r2_mean=0.603 std=0.017 14.2s
+
+[2026-05-01 14:42:16] [probe] push A_shuffled contact_flag L05: r2_mean=0.603 std=0.009 15.0s
+
+[2026-05-01 14:42:24] [r3m_extract] strike 2400/3000 eps 428449 win 219.6 win/s ETA 8.1min
+
+[2026-05-01 14:42:25] [probe] push A_shuffled contact_force_log1p_mag L07: r2_mean=0.625 std=0.015 14.0s
+
+[2026-05-01 14:42:33] [probe] push A_shuffled contact_flag L06: r2_mean=0.622 std=0.011 15.7s
+
+[2026-05-01 14:42:41] [probe] push A_shuffled contact_force_log1p_mag L08: r2_mean=0.638 std=0.009 14.4s
+
+[2026-05-01 14:42:41] [r3m_extract] strike 2425/3000 eps 432865 win 219.9 win/s ETA 7.8min
+
+[2026-05-01 14:42:49] [probe] push A_shuffled contact_flag L07: r2_mean=0.637 std=0.010 14.2s
+
+[2026-05-01 14:42:57] [probe] push A_shuffled contact_force_log1p_mag L09: r2_mean=0.656 std=0.015 14.3s
+
+[2026-05-01 14:42:59] [r3m_extract] strike 2450/3000 eps 437471 win 220.3 win/s ETA 7.4min
+
+[2026-05-01 14:43:06] [probe] push A_shuffled contact_flag L08: r2_mean=0.649 std=0.004 15.4s
+
+[2026-05-01 14:43:12] [probe] push A_shuffled contact_force_log1p_mag L10: r2_mean=0.664 std=0.014 13.4s
+
+[2026-05-01 14:43:16] [r3m_extract] strike 2475/3000 eps 441838 win 220.6 win/s ETA 7.1min
+
+[2026-05-01 14:43:23] [probe] push A_shuffled contact_flag L09: r2_mean=0.667 std=0.006 14.3s
+
+[2026-05-01 14:43:27] [probe] push A_shuffled contact_force_log1p_mag L11: r2_mean=0.672 std=0.015 13.5s
+
+[2026-05-01 14:43:33] [r3m_extract] strike 2500/3000 eps 446318 win 221.0 win/s ETA 6.7min
+
+[2026-05-01 14:43:41] [extract] strike sh0 1800/3000 eps 321063 win 24.3 win/s ETA 147.0min
+
+[2026-05-01 14:43:42] [probe] push A_shuffled contact_force_log1p_mag L12: r2_mean=0.685 std=0.015 13.6s
+
+[2026-05-01 14:43:42] [probe] push A_shuffled contact_flag L10: r2_mean=0.675 std=0.005 18.4s
+
+[2026-05-01 14:43:48] [r3m_extract] strike 2525/3000 eps 450759 win 221.5 win/s ETA 6.4min
+
+[2026-05-01 14:43:56] [probe] push A_shuffled contact_force_log1p_mag L13: r2_mean=0.692 std=0.014 12.6s
+
+[2026-05-01 14:43:58] [probe] push A_shuffled contact_flag L11: r2_mean=0.683 std=0.005 13.7s
+
+[2026-05-01 14:44:05] [r3m_extract] strike 2550/3000 eps 455142 win 221.8 win/s ETA 6.0min
+
+[2026-05-01 14:44:11] [probe] push A_shuffled contact_force_log1p_mag L14: r2_mean=0.705 std=0.015 13.8s
+
+[2026-05-01 14:44:13] [probe] push A_shuffled contact_flag L12: r2_mean=0.696 std=0.007 14.0s
+
+[2026-05-01 14:44:22] [r3m_extract] strike 2575/3000 eps 459718 win 222.2 win/s ETA 5.7min
+
+[2026-05-01 14:44:26] [probe] push A_shuffled contact_force_log1p_mag L15: r2_mean=0.709 std=0.016 13.3s
+
+[2026-05-01 14:44:30] [probe] push A_shuffled contact_flag L13: r2_mean=0.703 std=0.005 15.1s
+
+[2026-05-01 14:44:39] [r3m_extract] strike 2600/3000 eps 464268 win 222.5 win/s ETA 5.3min
+
+[2026-05-01 14:44:41] [probe] push A_shuffled contact_force_log1p_mag L16: r2_mean=0.713 std=0.015 13.4s
+
+[2026-05-01 14:44:47] [probe] push A_shuffled contact_flag L14: r2_mean=0.714 std=0.008 15.1s
+
+[2026-05-01 14:44:56] [r3m_extract] strike 2625/3000 eps 468518 win 222.8 win/s ETA 5.0min
+
+[2026-05-01 14:44:56] [probe] push A_shuffled contact_force_log1p_mag L17: r2_mean=0.717 std=0.011 13.8s
+
+[2026-05-01 14:45:02] [probe] push A_shuffled contact_flag L15: r2_mean=0.715 std=0.009 13.7s
+
+[2026-05-01 14:45:11] [probe] push A_shuffled contact_force_log1p_mag L18: r2_mean=0.716 std=0.011 13.3s
+
+[2026-05-01 14:45:12] [r3m_extract] strike 2650/3000 eps 472968 win 223.2 win/s ETA 4.7min
+
+[2026-05-01 14:45:18] [probe] push A_shuffled contact_flag L16: r2_mean=0.723 std=0.007 14.7s
+
+[2026-05-01 14:45:26] [probe] push A_shuffled contact_force_log1p_mag L19: r2_mean=0.716 std=0.009 13.5s
+
+[2026-05-01 14:45:30] [r3m_extract] strike 2675/3000 eps 477618 win 223.5 win/s ETA 4.3min
+
+[2026-05-01 14:45:33] [probe] push A_shuffled contact_flag L17: r2_mean=0.723 std=0.005 13.3s
+
+[2026-05-01 14:45:41] [probe] push A_shuffled contact_force_log1p_mag L20: r2_mean=0.715 std=0.012 14.2s
+
+[2026-05-01 14:45:47] [r3m_extract] strike 2700/3000 eps 482168 win 223.8 win/s ETA 4.0min
+
+[2026-05-01 14:45:50] [probe] push A_shuffled contact_flag L18: r2_mean=0.724 std=0.007 14.7s
+
+[2026-05-01 14:45:57] [probe] push A_shuffled contact_force_log1p_mag L21: r2_mean=0.718 std=0.012 14.2s
+
+[2026-05-01 14:46:04] [r3m_extract] strike 2725/3000 eps 486718 win 224.2 win/s ETA 3.7min
+
+[2026-05-01 14:46:05] [probe] push A_shuffled contact_flag L19: r2_mean=0.723 std=0.004 13.7s
+
+[2026-05-01 14:46:12] [probe] push A_shuffled contact_force_log1p_mag L22: r2_mean=0.716 std=0.014 13.6s
+
+[2026-05-01 14:46:21] [r3m_extract] strike 2750/3000 eps 491068 win 224.5 win/s ETA 3.3min
+
+[2026-05-01 14:46:21] [probe] push A_shuffled contact_flag L20: r2_mean=0.724 std=0.007 14.7s
+
+[2026-05-01 14:46:27] [probe] push A_shuffled contact_force_log1p_mag L23: r2_mean=0.710 std=0.017 13.4s
+
+[2026-05-01 14:46:27] [probe] push A_shuffled DONE in 6.8min
+
+[2026-05-01 14:46:38] [r3m_extract] strike 2775/3000 eps 495472 win 224.7 win/s ETA 3.0min
+
+[2026-05-01 14:46:39] [probe] push A_shuffled contact_flag L21: r2_mean=0.725 std=0.006 15.6s
+
+[2026-05-01 14:46:54] [extract] strike sh0 1825/3000 eps 325513 win 24.3 win/s ETA 144.0min
+
+[2026-05-01 14:46:55] [probe] push A_shuffled contact_flag L22: r2_mean=0.721 std=0.008 15.2s
+
+[2026-05-01 14:46:56] [r3m_extract] strike 2800/3000 eps 500122 win 225.0 win/s ETA 2.6min
+
+[2026-05-01 14:47:13] [probe] push A_shuffled contact_flag L23: r2_mean=0.712 std=0.008 15.7s
+
+[2026-05-01 14:47:14] [probe] push A_shuffled DONE in 7.4min
+
+[2026-05-01 14:47:14] [r3m_extract] strike 2825/3000 eps 504769 win 225.3 win/s ETA 2.3min
+
+[2026-05-01 14:47:31] [r3m_extract] strike 2850/3000 eps 509019 win 225.5 win/s ETA 2.0min
+
+[2026-05-01 14:47:47] [r3m_extract] strike 2875/3000 eps 513406 win 225.7 win/s ETA 1.6min
+
+[2026-05-01 14:48:05] [r3m_extract] strike 2900/3000 eps 517956 win 226.0 win/s ETA 1.3min
+
+[2026-05-01 14:48:22] [r3m_extract] strike 2925/3000 eps 522419 win 226.3 win/s ETA 1.0min
+
+[2026-05-01 14:48:40] [r3m_extract] strike 2950/3000 eps 527042 win 226.5 win/s ETA 0.7min
+
+[2026-05-01 14:48:57] [r3m_extract] strike 2975/3000 eps 531329 win 226.6 win/s ETA 0.3min
+
+[2026-05-01 14:49:14] [r3m_extract] strike 3000/3000 eps 535779 win 226.9 win/s ETA 0.0min
+
+[2026-05-01 14:49:14] [r3m_extract] strike DONE: 3000 eps 535779 win in 39.4min
+
+[2026-05-01 14:49:18] [r3m_extract] drawer loading R3M ResNet50 on cuda:0
+
+[2026-05-01 14:49:21] [r3m_extract] drawer model loaded 3.1s
+
+[2026-05-01 14:49:21] [r3m_extract] drawer: total 2000 cached 0 todo 2000
+
+[2026-05-01 14:49:48] [r3m_extract] drawer 25/2000 eps 7000 win 264.1 win/s ETA 34.9min
+
+[2026-05-01 14:49:56] [r3m_probe] task=strike targets=['ee_acceleration', 'contact_flag', 'contact_force_log1p_mag'] stages=['stage_0', 'stage_1', 'stage_2', 'stage_3', 'stage_4'] gpu=0 dry_run=False
+
+[2026-05-01 14:50:04] [r3m_probe] strike stage_0: loaded X=(535779, 64) eps=2999 in 7.9s
+
+[2026-05-01 14:50:12] [extract] strike sh0 1850/3000 eps 329989 win 24.2 win/s ETA 141.1min
+
+[2026-05-01 14:50:14] [r3m_extract] drawer 50/2000 eps 14000 win 264.9 win/s ETA 34.4min
+
+[2026-05-01 14:50:20] [r3m_probe] strike stage_0 ee_acceleration: r2_mean=0.106 std=0.007 14.9s
+
+[2026-05-01 14:50:32] [r3m_probe] strike stage_0 contact_flag: r2_mean=0.533 std=0.014 11.5s
+
+[2026-05-01 14:50:40] [r3m_extract] drawer 75/2000 eps 21000 win 266.5 win/s ETA 33.7min
+
+[2026-05-01 14:50:44] [r3m_probe] strike stage_0 contact_force_log1p_mag: r2_mean=0.518 std=0.017 10.9s
+
+[2026-05-01 14:50:52] [r3m_probe] strike stage_1: loaded X=(535779, 256) eps=2999 in 8.5s
+
+[2026-05-01 14:51:06] [r3m_extract] drawer 100/2000 eps 28000 win 268.2 win/s ETA 33.1min
+
+[2026-05-01 14:51:07] [r3m_probe] strike stage_1 ee_acceleration: r2_mean=0.164 std=0.001 13.9s
+
+[2026-05-01 14:51:20] [r3m_probe] strike stage_1 contact_flag: r2_mean=0.641 std=0.009 12.7s
+
+[2026-05-01 14:51:31] [r3m_extract] drawer 125/2000 eps 35000 win 268.8 win/s ETA 32.5min
+
+[2026-05-01 14:51:35] [r3m_probe] strike stage_1 contact_force_log1p_mag: r2_mean=0.649 std=0.012 13.4s
+
+[2026-05-01 14:51:45] [r3m_probe] strike stage_2: loaded X=(535779, 512) eps=2999 in 10.1s
+
+[2026-05-01 14:51:57] [r3m_extract] drawer 150/2000 eps 42000 win 269.1 win/s ETA 32.1min
+
+[2026-05-01 14:52:03] [r3m_probe] strike stage_2 ee_acceleration: r2_mean=0.176 std=0.002 16.9s
+
+[2026-05-01 14:52:19] [r3m_probe] strike stage_2 contact_flag: r2_mean=0.649 std=0.016 15.3s
+
+[2026-05-01 14:52:22] [r3m_extract] drawer 175/2000 eps 49000 win 271.6 win/s ETA 31.4min
+
+[2026-05-01 14:52:34] [r3m_probe] strike stage_2 contact_force_log1p_mag: r2_mean=0.663 std=0.023 15.2s
+
+[2026-05-01 14:52:46] [r3m_probe] strike stage_3: loaded X=(535779, 1024) eps=2999 in 12.0s
+
+[2026-05-01 14:52:47] [r3m_extract] drawer 200/2000 eps 56000 win 272.6 win/s ETA 30.8min
+
+[2026-05-01 14:53:11] [r3m_extract] drawer 225/2000 eps 63000 win 273.7 win/s ETA 30.3min
+
+[2026-05-01 14:53:12] [r3m_probe] strike stage_3 ee_acceleration: r2_mean=0.187 std=0.002 24.5s
+
+[2026-05-01 14:53:33] [extract] strike sh0 1875/3000 eps 334539 win 24.2 win/s ETA 138.2min
+
+[2026-05-01 14:53:35] [r3m_probe] strike stage_3 contact_flag: r2_mean=0.678 std=0.011 22.6s
+
+[2026-05-01 14:53:36] [r3m_extract] drawer 250/2000 eps 70000 win 275.1 win/s ETA 29.7min
+
+[2026-05-01 14:53:58] [r3m_probe] strike stage_3 contact_force_log1p_mag: r2_mean=0.694 std=0.015 22.6s
+
+[2026-05-01 14:53:59] [r3m_extract] drawer 275/2000 eps 77000 win 277.3 win/s ETA 29.0min
+
+[2026-05-01 14:54:15] [r3m_probe] strike stage_4: loaded X=(535779, 2048) eps=2999 in 16.5s
+
+[2026-05-01 14:54:21] [r3m_extract] drawer 300/2000 eps 84000 win 280.1 win/s ETA 28.3min
+
+[2026-05-01 14:54:44] [r3m_extract] drawer 325/2000 eps 91000 win 282.3 win/s ETA 27.7min
+
+[2026-05-01 14:54:59] [r3m_probe] strike stage_4 ee_acceleration: r2_mean=0.189 std=0.006 43.7s
+
+[2026-05-01 14:55:07] [r3m_extract] drawer 350/2000 eps 98000 win 283.8 win/s ETA 27.1min
+
+[2026-05-01 14:55:31] [r3m_extract] drawer 375/2000 eps 105000 win 284.2 win/s ETA 26.7min
+
+[2026-05-01 14:55:43] [r3m_probe] strike stage_4 contact_flag: r2_mean=0.669 std=0.012 42.9s
+
+[2026-05-01 14:55:55] [r3m_extract] drawer 400/2000 eps 112000 win 284.3 win/s ETA 26.3min
+
+[2026-05-01 14:56:17] [extract] strike sh0 1900/3000 eps 338937 win 24.2 win/s ETA 135.0min
+
+[2026-05-01 14:56:19] [r3m_extract] drawer 425/2000 eps 119000 win 284.6 win/s ETA 25.8min
+
+[2026-05-01 14:56:26] [r3m_probe] strike stage_4 contact_force_log1p_mag: r2_mean=0.682 std=0.014 41.7s
+
+[2026-05-01 14:56:26] [r3m_probe] strike DONE; comparison updated at /home/solee/physrepa_tasks/probe/results/r3m_vs_vjepa_summary.csv
+
+[2026-05-01 14:56:44] [r3m_extract] drawer 450/2000 eps 126000 win 284.4 win/s ETA 25.4min
+
+[2026-05-01 14:57:10] [r3m_extract] drawer 475/2000 eps 133000 win 283.8 win/s ETA 25.1min
+
+[2026-05-01 14:57:36] [r3m_extract] drawer 500/2000 eps 140000 win 282.9 win/s ETA 24.7min
+
+[2026-05-01 14:58:03] [r3m_extract] drawer 525/2000 eps 147000 win 281.8 win/s ETA 24.4min
+
+[2026-05-01 14:58:29] [r3m_extract] drawer 550/2000 eps 154000 win 281.0 win/s ETA 24.1min
+
+[2026-05-01 14:58:56] [r3m_extract] drawer 575/2000 eps 161000 win 280.2 win/s ETA 23.7min
+
+[2026-05-01 14:59:22] [r3m_extract] drawer 600/2000 eps 168000 win 279.5 win/s ETA 23.4min
+
+[2026-05-01 14:59:48] [r3m_extract] drawer 625/2000 eps 175000 win 279.1 win/s ETA 23.0min
+
+[2026-05-01 15:00:12] [r3m_extract] drawer 650/2000 eps 182000 win 279.7 win/s ETA 22.5min
+
+[2026-05-01 15:00:22] [extract] strike sh0 1925/3000 eps 343487 win 24.1 win/s ETA 132.4min
+
+[2026-05-01 15:00:35] [r3m_extract] drawer 675/2000 eps 189000 win 280.7 win/s ETA 22.0min
+
+[2026-05-01 15:00:57] [r3m_extract] drawer 700/2000 eps 196000 win 281.8 win/s ETA 21.5min
+
+[2026-05-01 15:01:21] [r3m_extract] drawer 725/2000 eps 203000 win 282.1 win/s ETA 21.1min
+
+[2026-05-01 15:01:45] [r3m_extract] drawer 750/2000 eps 210000 win 282.2 win/s ETA 20.7min
+
+[2026-05-01 15:02:09] [r3m_extract] drawer 775/2000 eps 217000 win 282.5 win/s ETA 20.2min
+
+[2026-05-01 15:02:34] [r3m_extract] drawer 800/2000 eps 224000 win 282.7 win/s ETA 19.8min
+
+[2026-05-01 15:02:58] [r3m_extract] drawer 825/2000 eps 231000 win 282.8 win/s ETA 19.4min
+
+[2026-05-01 15:03:23] [r3m_extract] drawer 850/2000 eps 238000 win 282.6 win/s ETA 19.0min
+
+[2026-05-01 15:03:25] [extract] strike sh0 1950/3000 eps 347793 win 24.1 win/s ETA 129.4min
+
+[2026-05-01 15:03:49] [r3m_extract] drawer 875/2000 eps 245000 win 282.2 win/s ETA 18.6min
+
+[2026-05-01 15:04:15] [r3m_extract] drawer 900/2000 eps 252000 win 281.8 win/s ETA 18.2min
+
+[2026-05-01 15:04:41] [r3m_extract] drawer 925/2000 eps 259000 win 281.5 win/s ETA 17.8min
+
+[2026-05-01 15:05:07] [r3m_extract] drawer 950/2000 eps 266000 win 281.2 win/s ETA 17.4min
+
+[2026-05-01 15:05:33] [r3m_extract] drawer 975/2000 eps 273000 win 280.9 win/s ETA 17.0min
+
+[2026-05-01 15:05:59] [r3m_extract] drawer 1000/2000 eps 280000 win 280.7 win/s ETA 16.6min
+
+[2026-05-01 15:06:24] [r3m_extract] drawer 1025/2000 eps 287000 win 280.5 win/s ETA 16.2min
+
+[2026-05-01 15:06:50] [r3m_extract] drawer 1050/2000 eps 294000 win 280.3 win/s ETA 15.8min
+
+[2026-05-01 15:07:15] [r3m_extract] drawer 1075/2000 eps 301000 win 280.2 win/s ETA 15.4min
+
+[2026-05-01 15:07:40] [r3m_extract] drawer 1100/2000 eps 308000 win 280.3 win/s ETA 15.0min
+
+[2026-05-01 15:08:06] [r3m_extract] drawer 1125/2000 eps 315000 win 280.2 win/s ETA 14.6min
+
+[2026-05-01 15:08:07] [extract] strike sh0 1975/3000 eps 352395 win 24.0 win/s ETA 127.1min
+
+[2026-05-01 15:08:31] [r3m_extract] drawer 1150/2000 eps 322000 win 280.1 win/s ETA 14.2min
+
+[2026-05-01 15:08:56] [r3m_extract] drawer 1175/2000 eps 329000 win 280.0 win/s ETA 13.7min
+
+[2026-05-01 15:09:21] [r3m_extract] drawer 1200/2000 eps 336000 win 280.1 win/s ETA 13.3min
+
+[2026-05-01 15:09:45] [r3m_extract] drawer 1225/2000 eps 343000 win 280.2 win/s ETA 12.9min
+
+[2026-05-01 15:10:10] [r3m_extract] drawer 1250/2000 eps 350000 win 280.3 win/s ETA 12.5min
+
+[2026-05-01 15:10:34] [r3m_extract] drawer 1275/2000 eps 357000 win 280.4 win/s ETA 12.1min
+
+[2026-05-01 15:10:59] [r3m_extract] drawer 1300/2000 eps 364000 win 280.4 win/s ETA 11.6min
+
+[2026-05-01 15:11:24] [r3m_extract] drawer 1325/2000 eps 371000 win 280.6 win/s ETA 11.2min
+
+[2026-05-01 15:11:48] [r3m_extract] drawer 1350/2000 eps 378000 win 280.6 win/s ETA 10.8min
+
+[2026-05-01 15:12:11] [extract] strike sh0 2000/3000 eps 356945 win 23.9 win/s ETA 124.5min
+
+[2026-05-01 15:12:13] [r3m_extract] drawer 1375/2000 eps 385000 win 280.7 win/s ETA 10.4min
+
+[2026-05-01 15:12:37] [r3m_extract] drawer 1400/2000 eps 392000 win 280.8 win/s ETA 10.0min
+
+[2026-05-01 15:13:02] [r3m_extract] drawer 1425/2000 eps 399000 win 280.9 win/s ETA 9.6min
+
+[2026-05-01 15:13:26] [r3m_extract] drawer 1450/2000 eps 406000 win 281.0 win/s ETA 9.1min
+
+[2026-05-01 15:13:50] [r3m_extract] drawer 1475/2000 eps 413000 win 281.1 win/s ETA 8.7min
+
+[2026-05-01 15:14:14] [r3m_extract] drawer 1500/2000 eps 420000 win 281.4 win/s ETA 8.3min
+
+[2026-05-01 15:14:38] [r3m_extract] drawer 1525/2000 eps 427000 win 281.5 win/s ETA 7.9min
+
+[2026-05-01 15:15:03] [r3m_extract] drawer 1550/2000 eps 434000 win 281.5 win/s ETA 7.5min
+
+[2026-05-01 15:15:27] [r3m_extract] drawer 1575/2000 eps 441000 win 281.7 win/s ETA 7.0min
+
+[2026-05-01 15:15:28] [extract] strike sh0 2025/3000 eps 361295 win 23.9 win/s ETA 121.5min
+
+[2026-05-01 15:15:50] [r3m_extract] drawer 1600/2000 eps 448000 win 281.9 win/s ETA 6.6min
+
+[2026-05-01 15:16:14] [r3m_extract] drawer 1625/2000 eps 455000 win 282.1 win/s ETA 6.2min
+
+[2026-05-01 15:16:37] [r3m_extract] drawer 1650/2000 eps 462000 win 282.5 win/s ETA 5.8min
+
+[2026-05-01 15:16:59] [r3m_extract] drawer 1675/2000 eps 469000 win 282.9 win/s ETA 5.4min
+
+[2026-05-01 15:17:21] [r3m_extract] drawer 1700/2000 eps 476000 win 283.3 win/s ETA 4.9min
+
+[2026-05-01 15:17:44] [r3m_extract] drawer 1725/2000 eps 483000 win 283.7 win/s ETA 4.5min
+
+[2026-05-01 15:18:07] [r3m_extract] drawer 1750/2000 eps 490000 win 283.9 win/s ETA 4.1min
+
+[2026-05-01 15:18:14] [extract] strike sh0 2050/3000 eps 365690 win 23.9 win/s ETA 118.2min
+
+[2026-05-01 15:18:31] [r3m_extract] drawer 1775/2000 eps 497000 win 284.0 win/s ETA 3.7min
+
+[2026-05-01 15:18:55] [r3m_extract] drawer 1800/2000 eps 504000 win 284.1 win/s ETA 3.3min
+
+[2026-05-01 15:19:19] [r3m_extract] drawer 1825/2000 eps 511000 win 284.2 win/s ETA 2.9min
+
+[2026-05-01 15:19:44] [r3m_extract] drawer 1850/2000 eps 518000 win 284.2 win/s ETA 2.5min
+
+[2026-05-01 15:20:09] [r3m_extract] drawer 1875/2000 eps 525000 win 284.1 win/s ETA 2.1min
+
+[2026-05-01 15:20:35] [r3m_extract] drawer 1900/2000 eps 532000 win 284.0 win/s ETA 1.6min
+
+[2026-05-01 15:21:01] [r3m_extract] drawer 1925/2000 eps 539000 win 283.8 win/s ETA 1.2min
+
+[2026-05-01 15:21:26] [r3m_extract] drawer 1950/2000 eps 546000 win 283.6 win/s ETA 0.8min
+
+[2026-05-01 15:21:52] [r3m_extract] drawer 1975/2000 eps 553000 win 283.5 win/s ETA 0.4min
+
+[2026-05-01 15:22:17] [r3m_probe] task=drawer targets=['ee_acceleration', 'contact_flag', 'contact_force_log1p_mag'] stages=['stage_0', 'stage_1', 'stage_2', 'stage_3', 'stage_4'] gpu=0 dry_run=False
+
+[2026-05-01 15:22:18] [r3m_extract] drawer 2000/2000 eps 560000 win 283.3 win/s ETA 0.0min
+
+[2026-05-01 15:22:18] [r3m_extract] drawer DONE: 2000 eps 560000 win in 32.9min
+
+[2026-05-01 15:22:19] [extract] strike sh0 2075/3000 eps 370309 win 23.8 win/s ETA 115.5min
+
+[2026-05-01 15:22:23] [r3m_probe] drawer stage_0: loaded X=(559440, 64) eps=1998 in 6.5s
+
+[2026-05-01 15:22:42] [r3m_probe] drawer stage_0 ee_acceleration: r2_mean=0.002 std=0.000 17.5s
+
+[2026-05-01 15:22:55] [r3m_probe] drawer stage_0 contact_flag: r2_mean=0.309 std=0.011 12.8s
+
+[2026-05-01 15:23:09] [r3m_probe] drawer stage_0 contact_force_log1p_mag: r2_mean=0.228 std=0.008 13.3s
+
+[2026-05-01 15:23:17] [r3m_probe] drawer stage_1: loaded X=(560000, 256) eps=2000 in 7.7s
+
+[2026-05-01 15:23:34] [r3m_probe] drawer stage_1 ee_acceleration: r2_mean=0.004 std=0.001 15.7s
+
+[2026-05-01 15:23:49] [r3m_probe] drawer stage_1 contact_flag: r2_mean=0.462 std=0.007 14.8s
+
+[2026-05-01 15:24:06] [r3m_probe] drawer stage_1 contact_force_log1p_mag: r2_mean=0.363 std=0.006 15.8s
+
+[2026-05-01 15:24:14] [r3m_probe] drawer stage_2: loaded X=(560000, 512) eps=2000 in 8.5s
+
+[2026-05-01 15:24:34] [r3m_probe] drawer stage_2 ee_acceleration: r2_mean=0.003 std=0.001 18.4s
+
+[2026-05-01 15:24:51] [r3m_probe] drawer stage_2 contact_flag: r2_mean=0.470 std=0.009 16.6s
+
+[2026-05-01 15:25:10] [r3m_probe] drawer stage_2 contact_force_log1p_mag: r2_mean=0.374 std=0.020 18.2s
+
+[2026-05-01 15:25:21] [r3m_probe] drawer stage_3: loaded X=(560000, 1024) eps=2000 in 10.7s
+
+[2026-05-01 15:25:48] [r3m_probe] drawer stage_3 ee_acceleration: r2_mean=-0.352 std=0.337 26.1s
+
+[2026-05-01 15:26:11] [r3m_probe] drawer stage_3 contact_flag: r2_mean=0.497 std=0.025 23.1s
+
+[2026-05-01 15:26:36] [r3m_probe] drawer stage_3 contact_force_log1p_mag: r2_mean=0.413 std=0.017 23.5s
+
+[2026-05-01 15:26:46] [extract] strike sh0 2100/3000 eps 374859 win 23.7 win/s ETA 113.0min
+
+[2026-05-01 15:26:55] [r3m_probe] drawer stage_4: loaded X=(560000, 2048) eps=2000 in 19.3s
+
+[2026-05-01 15:27:39] [r3m_probe] drawer stage_4 ee_acceleration: r2_mean=-0.141 std=0.107 42.6s
+
+[2026-05-01 15:28:18] [r3m_probe] drawer stage_4 contact_flag: r2_mean=0.509 std=0.011 38.7s
+
+[2026-05-01 15:28:56] [r3m_probe] drawer stage_4 contact_force_log1p_mag: r2_mean=0.425 std=0.004 37.7s
+
+[2026-05-01 15:28:57] [r3m_probe] drawer DONE; comparison updated at /home/solee/physrepa_tasks/probe/results/r3m_vs_vjepa_summary.csv
+
+[2026-05-01 15:30:34] [extract] strike sh0 2125/3000 eps 379409 win 23.6 win/s ETA 110.1min
+
+[2026-05-01 15:33:45] [extract] strike sh0 2150/3000 eps 383859 win 23.6 win/s ETA 107.0min
+
+[2026-05-01 15:36:41] [extract] strike sh0 2175/3000 eps 388128 win 23.7 win/s ETA 103.7min
+
+[2026-05-01 15:39:46] [extract] strike sh0 2200/3000 eps 392678 win 23.7 win/s ETA 100.6min
+
+[2026-05-01 15:42:51] [extract] strike sh0 2225/3000 eps 397328 win 23.7 win/s ETA 97.4min
+
+[2026-05-01 15:45:49] [extract] strike sh0 2250/3000 eps 401778 win 23.7 win/s ETA 94.2min
+
+[2026-05-01 15:48:47] [extract] strike sh0 2275/3000 eps 406201 win 23.7 win/s ETA 91.0min
+
+[2026-05-01 15:51:44] [extract] strike sh0 2300/3000 eps 410651 win 23.7 win/s ETA 87.8min
+
+[2026-05-01 15:54:44] [extract] strike sh0 2325/3000 eps 415116 win 23.7 win/s ETA 84.6min
+
+[2026-05-01 15:57:46] [extract] strike sh0 2350/3000 eps 419766 win 23.7 win/s ETA 81.5min
+
+[2026-05-01 16:00:43] [extract] strike sh0 2375/3000 eps 424216 win 23.8 win/s ETA 78.3min
+
+[2026-05-01 16:05:03] [extract] strike sh0 2400/3000 eps 428449 win 23.7 win/s ETA 75.5min
+
+[2026-05-01 16:09:03] [extract] strike sh0 2425/3000 eps 432865 win 23.6 win/s ETA 72.5min
+
+[2026-05-01 16:12:37] [extract] strike sh0 2450/3000 eps 437471 win 23.6 win/s ETA 69.5min
+
+[2026-05-01 16:15:35] [extract] strike sh0 2475/3000 eps 441838 win 23.6 win/s ETA 66.3min
+
+[2026-05-01 16:18:37] [extract] strike sh0 2500/3000 eps 446318 win 23.6 win/s ETA 63.1min
+
+[2026-05-01 16:21:36] [extract] strike sh0 2525/3000 eps 450759 win 23.6 win/s ETA 59.9min
+
+[2026-05-01 16:24:33] [extract] strike sh0 2550/3000 eps 455142 win 23.6 win/s ETA 56.7min
+
+[2026-05-01 16:27:38] [extract] strike sh0 2575/3000 eps 459718 win 23.6 win/s ETA 53.5min
+
+[2026-05-01 16:30:41] [extract] strike sh0 2600/3000 eps 464268 win 23.6 win/s ETA 50.4min
+
+[2026-05-01 16:33:31] [extract] strike sh0 2625/3000 eps 468518 win 23.6 win/s ETA 47.2min
+
+[2026-05-01 16:36:30] [extract] strike sh0 2650/3000 eps 472968 win 23.6 win/s ETA 44.0min
+
+[2026-05-01 16:39:35] [extract] strike sh0 2675/3000 eps 477618 win 23.7 win/s ETA 40.9min
+
+[2026-05-01 16:42:36] [extract] strike sh0 2700/3000 eps 482168 win 23.7 win/s ETA 37.7min
+
+[2026-05-01 16:47:23] [extract] strike sh0 2725/3000 eps 486718 win 23.6 win/s ETA 34.7min
+
+[2026-05-01 16:51:36] [extract] strike sh0 2750/3000 eps 491068 win 23.5 win/s ETA 31.7min
+
+[2026-05-01 16:54:57] [extract] strike sh0 2775/3000 eps 495472 win 23.5 win/s ETA 28.5min
+
+[2026-05-01 16:59:10] [extract] strike sh0 2800/3000 eps 500122 win 23.4 win/s ETA 25.4min
+
+[2026-05-01 17:03:55] [extract] strike sh0 2825/3000 eps 504769 win 23.3 win/s ETA 22.3min
+
+[2026-05-01 17:08:14] [extract] strike sh0 2850/3000 eps 509019 win 23.2 win/s ETA 19.2min
+
+[2026-05-01 17:11:46] [extract] strike sh0 2875/3000 eps 513406 win 23.2 win/s ETA 16.0min
+
+[2026-05-01 17:14:50] [extract] strike sh0 2900/3000 eps 517956 win 23.2 win/s ETA 12.8min
+
+[2026-05-01 17:17:52] [extract] strike sh0 2925/3000 eps 522419 win 23.2 win/s ETA 9.6min
+
+[2026-05-01 17:20:32] [extract] strike sh0 2950/3000 eps 527042 win 23.3 win/s ETA 6.4min
+
+[2026-05-01 17:23:26] [extract] strike sh0 2975/3000 eps 531329 win 23.3 win/s ETA 3.2min
+
+[2026-05-01 17:26:43] [extract] strike sh0 3000/3000 eps 535779 win 23.3 win/s ETA 0.0min
+
+[2026-05-01 17:26:43] [extract] strike sh0 DONE: 3000 eps 535779 win in 383.5min
+
+[2026-05-01 17:27:34] [probe] task=strike variant=A_shuffled targets=['ee_velocity'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 17:27:34] [probe] task=strike variant=A_shuffled targets=['ee_acceleration'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 17:27:34] [probe] task=strike variant=A_shuffled targets=['contact_flag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 17:27:35] [probe] task=strike variant=A_shuffled targets=['contact_force_log1p_mag'] layers=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] gpu=0 per_layer_load=False
+
+[2026-05-01 17:28:35] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 60.7s
+
+[2026-05-01 17:28:38] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 63.2s
+
+[2026-05-01 17:28:38] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 63.4s
+
+[2026-05-01 17:28:39] [probe] strike: features [(535779, 24, 1024)] eps 2999 loaded 64.4s
+
+[2026-05-01 17:28:57] [probe] strike A_shuffled contact_force_log1p_mag L00: r2_mean=0.409 std=0.018 19.0s
+
+[2026-05-01 17:29:02] [probe] strike A_shuffled ee_velocity L00: r2_mean=0.384 std=0.014 21.5s
+
+[2026-05-01 17:29:02] [probe] strike A_shuffled contact_flag L00: r2_mean=0.435 std=0.012 20.2s
+
+[2026-05-01 17:29:06] [probe] strike A_shuffled ee_acceleration L00: r2_mean=0.088 std=0.002 26.0s
+
+[2026-05-01 17:29:17] [probe] strike A_shuffled contact_force_log1p_mag L01: r2_mean=0.605 std=0.018 17.8s
+
+[2026-05-01 17:29:23] [probe] strike A_shuffled contact_flag L01: r2_mean=0.596 std=0.016 17.7s
+
+[2026-05-01 17:29:24] [probe] strike A_shuffled ee_velocity L01: r2_mean=0.522 std=0.012 19.1s
+
+[2026-05-01 17:29:35] [probe] strike A_shuffled ee_acceleration L01: r2_mean=0.115 std=0.003 24.9s
+
+[2026-05-01 17:29:36] [probe] strike A_shuffled contact_force_log1p_mag L02: r2_mean=0.636 std=0.019 16.8s
+
+[2026-05-01 17:29:43] [probe] strike A_shuffled contact_flag L02: r2_mean=0.621 std=0.019 18.1s
+
+[2026-05-01 17:29:46] [probe] strike A_shuffled ee_velocity L02: r2_mean=0.542 std=0.011 20.5s
+
+[2026-05-01 17:29:57] [probe] strike A_shuffled contact_force_log1p_mag L03: r2_mean=0.652 std=0.018 18.0s
+
+[2026-05-01 17:30:02] [probe] strike A_shuffled ee_acceleration L02: r2_mean=0.125 std=0.002 24.8s
+
+[2026-05-01 17:30:05] [probe] strike A_shuffled contact_flag L03: r2_mean=0.635 std=0.018 18.6s
+
+[2026-05-01 17:30:10] [probe] strike A_shuffled ee_velocity L03: r2_mean=0.592 std=0.009 20.5s
+
+[2026-05-01 17:30:16] [probe] strike A_shuffled contact_force_log1p_mag L04: r2_mean=0.681 std=0.018 17.3s
+
+[2026-05-01 17:30:26] [probe] strike A_shuffled contact_flag L04: r2_mean=0.660 std=0.016 18.5s
+
+[2026-05-01 17:30:30] [probe] strike A_shuffled ee_acceleration L03: r2_mean=0.140 std=0.003 24.3s
+
+[2026-05-01 17:30:32] [probe] strike A_shuffled ee_velocity L04: r2_mean=0.592 std=0.006 20.3s
+
+[2026-05-01 17:30:36] [probe] strike A_shuffled contact_force_log1p_mag L05: r2_mean=0.686 std=0.020 17.3s
+
+[2026-05-01 17:30:48] [probe] strike A_shuffled contact_flag L05: r2_mean=0.668 std=0.020 18.8s
+
+[2026-05-01 17:30:55] [probe] strike A_shuffled contact_force_log1p_mag L06: r2_mean=0.703 std=0.017 17.3s
+
+[2026-05-01 17:30:55] [probe] strike A_shuffled ee_velocity L05: r2_mean=0.625 std=0.017 20.0s
+
+[2026-05-01 17:30:57] [probe] strike A_shuffled ee_acceleration L04: r2_mean=0.144 std=0.002 24.2s
+
+[2026-05-01 17:31:08] [probe] strike A_shuffled contact_flag L06: r2_mean=0.678 std=0.014 17.8s
+
+[2026-05-01 17:31:15] [probe] strike A_shuffled contact_force_log1p_mag L07: r2_mean=0.716 std=0.016 17.2s
+
+[2026-05-01 17:31:17] [probe] strike A_shuffled ee_velocity L06: r2_mean=0.646 std=0.019 19.1s
+
+[2026-05-01 17:31:24] [probe] strike A_shuffled ee_acceleration L05: r2_mean=0.158 std=0.007 24.6s
+
+[2026-05-01 17:31:29] [probe] strike A_shuffled contact_flag L07: r2_mean=0.692 std=0.013 17.7s
+
+[2026-05-01 17:31:35] [probe] strike A_shuffled contact_force_log1p_mag L08: r2_mean=0.723 std=0.017 18.4s
+
+[2026-05-01 17:31:41] [probe] strike A_shuffled ee_velocity L07: r2_mean=0.662 std=0.018 21.3s
+
+[2026-05-01 17:31:50] [probe] strike A_shuffled ee_acceleration L06: r2_mean=0.168 std=0.006 22.6s
+
+[2026-05-01 17:31:51] [probe] strike A_shuffled contact_flag L08: r2_mean=0.699 std=0.014 19.3s
+
+[2026-05-01 17:31:57] [probe] strike A_shuffled contact_force_log1p_mag L09: r2_mean=0.736 std=0.015 19.1s
+
+[2026-05-01 17:32:02] [probe] strike A_shuffled ee_velocity L08: r2_mean=0.706 std=0.013 19.4s
+
+[2026-05-01 17:32:12] [probe] strike A_shuffled contact_flag L09: r2_mean=0.713 std=0.011 18.2s
+
+[2026-05-01 17:32:15] [probe] strike A_shuffled ee_acceleration L07: r2_mean=0.174 std=0.002 22.0s
+
+[2026-05-01 17:32:15] [probe] strike A_shuffled contact_force_log1p_mag L10: r2_mean=0.750 std=0.017 16.6s
+
+[2026-05-01 17:32:25] [probe] strike A_shuffled ee_velocity L09: r2_mean=0.704 std=0.008 19.7s
+
+[2026-05-01 17:32:32] [probe] strike A_shuffled contact_flag L10: r2_mean=0.728 std=0.014 18.1s
+
+[2026-05-01 17:32:36] [probe] strike A_shuffled contact_force_log1p_mag L11: r2_mean=0.755 std=0.020 18.1s
+
+[2026-05-01 17:32:40] [probe] strike A_shuffled ee_acceleration L08: r2_mean=0.193 std=0.007 22.3s
+
+[2026-05-01 17:32:46] [probe] strike A_shuffled ee_velocity L10: r2_mean=0.720 std=0.015 19.4s
+
+[2026-05-01 17:32:54] [probe] strike A_shuffled contact_flag L11: r2_mean=0.736 std=0.013 18.5s
+
+[2026-05-01 17:32:55] [probe] strike A_shuffled contact_force_log1p_mag L12: r2_mean=0.778 std=0.013 17.0s
+
+[2026-05-01 17:33:05] [probe] strike A_shuffled ee_acceleration L09: r2_mean=0.195 std=0.001 22.4s
+
+[2026-05-01 17:33:09] [probe] strike A_shuffled ee_velocity L11: r2_mean=0.733 std=0.008 19.7s
+
+[2026-05-01 17:33:13] [probe] strike A_shuffled contact_flag L12: r2_mean=0.765 std=0.011 17.4s
+
+[2026-05-01 17:33:14] [probe] strike A_shuffled contact_force_log1p_mag L13: r2_mean=0.781 std=0.014 17.4s
+
+[2026-05-01 17:33:30] [probe] strike A_shuffled ee_acceleration L10: r2_mean=0.207 std=0.005 22.2s
+
+[2026-05-01 17:33:30] [probe] strike A_shuffled ee_velocity L12: r2_mean=0.742 std=0.011 19.4s
+
+[2026-05-01 17:33:34] [probe] strike A_shuffled contact_force_log1p_mag L14: r2_mean=0.786 std=0.014 17.4s
+
+[2026-05-01 17:33:34] [probe] strike A_shuffled contact_flag L13: r2_mean=0.769 std=0.011 17.6s
+
+[2026-05-01 17:33:53] [probe] strike A_shuffled ee_velocity L13: r2_mean=0.752 std=0.007 19.8s
+
+[2026-05-01 17:33:53] [probe] strike A_shuffled contact_force_log1p_mag L15: r2_mean=0.789 std=0.016 17.1s
+
+[2026-05-01 17:33:54] [probe] strike A_shuffled ee_acceleration L11: r2_mean=0.214 std=0.001 22.1s
+
+[2026-05-01 17:33:54] [probe] strike A_shuffled contact_flag L14: r2_mean=0.772 std=0.012 17.9s
+
+[2026-05-01 17:34:13] [probe] strike A_shuffled contact_force_log1p_mag L16: r2_mean=0.790 std=0.013 18.1s
+
+[2026-05-01 17:34:15] [probe] strike A_shuffled ee_velocity L14: r2_mean=0.746 std=0.008 20.1s
+
+[2026-05-01 17:34:16] [probe] strike A_shuffled contact_flag L15: r2_mean=0.775 std=0.013 18.5s
+
+[2026-05-01 17:34:19] [probe] strike A_shuffled ee_acceleration L12: r2_mean=0.235 std=0.006 22.9s
+
+[2026-05-01 17:34:34] [probe] strike A_shuffled contact_force_log1p_mag L17: r2_mean=0.796 std=0.015 18.1s
+
+[2026-05-01 17:34:37] [probe] strike A_shuffled contact_flag L16: r2_mean=0.777 std=0.008 18.2s
+
+[2026-05-01 17:34:39] [probe] strike A_shuffled ee_velocity L15: r2_mean=0.756 std=0.009 20.6s
+
+[2026-05-01 17:34:45] [probe] strike A_shuffled ee_acceleration L13: r2_mean=0.236 std=0.005 22.5s
+
+[2026-05-01 17:34:54] [probe] strike A_shuffled contact_force_log1p_mag L18: r2_mean=0.789 std=0.018 17.8s
+
+[2026-05-01 17:34:58] [probe] strike A_shuffled contact_flag L17: r2_mean=0.785 std=0.012 18.8s
+
+[2026-05-01 17:35:00] [probe] strike A_shuffled ee_velocity L16: r2_mean=0.743 std=0.013 19.3s
+
+[2026-05-01 17:35:10] [probe] strike A_shuffled ee_acceleration L14: r2_mean=0.240 std=0.004 22.9s
+
+[2026-05-01 17:35:15] [probe] strike A_shuffled contact_force_log1p_mag L19: r2_mean=0.800 std=0.016 18.4s
+
+[2026-05-01 17:35:19] [probe] strike A_shuffled contact_flag L18: r2_mean=0.777 std=0.015 17.7s
+
+[2026-05-01 17:35:23] [probe] strike A_shuffled ee_velocity L17: r2_mean=0.751 std=0.003 20.0s
+
+[2026-05-01 17:35:34] [probe] strike A_shuffled contact_force_log1p_mag L20: r2_mean=0.801 std=0.017 16.8s
+
+[2026-05-01 17:35:37] [probe] strike A_shuffled ee_acceleration L15: r2_mean=0.238 std=0.004 23.2s
+
+[2026-05-01 17:35:39] [probe] strike A_shuffled contact_flag L19: r2_mean=0.784 std=0.013 17.4s
+
+[2026-05-01 17:35:46] [probe] strike A_shuffled ee_velocity L18: r2_mean=0.759 std=0.008 20.3s
+
+[2026-05-01 17:35:54] [probe] strike A_shuffled contact_force_log1p_mag L21: r2_mean=0.805 std=0.012 18.0s
+
+[2026-05-01 17:36:00] [probe] strike A_shuffled contact_flag L20: r2_mean=0.786 std=0.012 18.3s
+
+[2026-05-01 17:36:02] [probe] strike A_shuffled ee_acceleration L16: r2_mean=0.237 std=0.009 22.7s
+
+[2026-05-01 17:36:10] [probe] strike A_shuffled ee_velocity L19: r2_mean=0.752 std=0.005 21.3s
+
+[2026-05-01 17:36:14] [probe] strike A_shuffled contact_force_log1p_mag L22: r2_mean=0.803 std=0.015 17.8s
+
+[2026-05-01 17:36:21] [probe] strike A_shuffled contact_flag L21: r2_mean=0.789 std=0.008 18.3s
+
+[2026-05-01 17:36:26] [probe] strike A_shuffled ee_acceleration L17: r2_mean=0.245 std=0.002 21.3s
+
+[2026-05-01 17:36:32] [probe] strike A_shuffled ee_velocity L20: r2_mean=0.759 std=0.003 20.0s
+
+[2026-05-01 17:36:35] [probe] strike A_shuffled contact_force_log1p_mag L23: r2_mean=0.802 std=0.015 17.9s
+
+[2026-05-01 17:36:35] [probe] strike A_shuffled DONE in 9.0min
+
+[2026-05-01 17:36:40] [probe] strike A_shuffled contact_flag L22: r2_mean=0.787 std=0.010 16.9s
+
+[2026-05-01 17:36:51] [probe] strike A_shuffled ee_acceleration L18: r2_mean=0.251 std=0.007 22.5s
+
+[2026-05-01 17:36:56] [probe] strike A_shuffled ee_velocity L21: r2_mean=0.754 std=0.006 20.8s
+
+[2026-05-01 17:37:01] [probe] strike A_shuffled contact_flag L23: r2_mean=0.785 std=0.010 17.9s
+
+[2026-05-01 17:37:01] [probe] strike A_shuffled DONE in 9.4min
+
+[2026-05-01 17:37:16] [probe] strike A_shuffled ee_acceleration L19: r2_mean=0.249 std=0.002 22.3s
+
+[2026-05-01 17:37:17] [probe] strike A_shuffled ee_velocity L22: r2_mean=0.751 std=0.007 19.5s
+
+[2026-05-01 17:37:39] [probe] strike A_shuffled ee_velocity L23: r2_mean=0.749 std=0.013 19.7s
+
+[2026-05-01 17:37:39] [probe] strike A_shuffled DONE in 10.1min
+
+[2026-05-01 17:37:41] [probe] strike A_shuffled ee_acceleration L20: r2_mean=0.253 std=0.002 22.6s
+
+[2026-05-01 17:38:06] [probe] strike A_shuffled ee_acceleration L21: r2_mean=0.254 std=0.006 22.3s
+
+[2026-05-01 17:38:30] [probe] strike A_shuffled ee_acceleration L22: r2_mean=0.248 std=0.002 22.7s
+
+[2026-05-01 17:38:54] [probe] strike A_shuffled ee_acceleration L23: r2_mean=0.247 std=0.006 21.8s
+
+[2026-05-01 17:38:54] [probe] strike A_shuffled DONE in 11.3min

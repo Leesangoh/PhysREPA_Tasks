@@ -55,7 +55,7 @@ class DrawerSceneCfg(InteractiveSceneCfg):
         prim_path="{ENV_REGEX_NS}/Cabinet",
         spawn=sim_utils.UsdFileCfg(
             usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Sektion_Cabinet/sektion_cabinet_instanceable.usd",
-            activate_contact_sensors=False,
+            activate_contact_sensors=True,
         ),
         init_state=ArticulationCfg.InitialStateCfg(
             pos=(0.8, 0, 0.4),  # cabinet origin is at center — z=0.4 puts it on table surface
@@ -132,7 +132,7 @@ class DrawerSceneCfg(InteractiveSceneCfg):
         track_air_time=True,
         track_contact_points=True,
         force_threshold=0.5,
-        filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top.*"],
     )
 
     # Contact sensor — right finger ↔ drawer handle
@@ -143,7 +143,7 @@ class DrawerSceneCfg(InteractiveSceneCfg):
         track_air_time=False,
         track_contact_points=False,
         force_threshold=0.5,
-        filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top"],
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Cabinet/drawer_handle_top.*"],
     )
 
     # Ground plane

@@ -127,8 +127,31 @@ class PegInsertSceneCfg(InteractiveSceneCfg):
         history_length=1,
         track_air_time=True,
         track_contact_points=True,
+        max_contact_data_count_per_prim=64,
         force_threshold=0.5,
-        filter_prim_paths_expr=["{ENV_REGEX_NS}/Peg", "{ENV_REGEX_NS}/Hole"],
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Peg/.*", "{ENV_REGEX_NS}/Hole/.*"],
+    )
+
+    contact_sensor_r: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Robot/panda_rightfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=64,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Peg/.*", "{ENV_REGEX_NS}/Hole/.*"],
+    )
+
+    held_fixed_contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Peg/.*",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=128,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["{ENV_REGEX_NS}/Hole/.*"],
     )
 
     # Table

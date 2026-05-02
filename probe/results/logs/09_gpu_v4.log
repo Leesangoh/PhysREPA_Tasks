@@ -1,0 +1,44 @@
+[09_phys_split] push/object_0_mass starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv (288 rows)
+[09_phys_split] push/object_0_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv (288 rows)
+[09_phys_split] push/object_0_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv (288 rows)
+[09_phys_split] push/surface_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv (288 rows)
+[09_phys_split] push/surface_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv (288 rows)
+[09_phys_split] strike/object_0_mass starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv (288 rows)
+[09_phys_split] strike/object_0_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv (288 rows)
+[09_phys_split] strike/object_0_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv (288 rows)
+[09_phys_split] strike/surface_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv (288 rows)
+[09_phys_split] strike/surface_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv (288 rows)
+[09_phys_split] strike/object_0_restitution starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv (288 rows)
+[09_phys_split] drawer/drawer_joint_damping starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv (288 rows)
+[09_phys_split] peg_insert/peg_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv (288 rows)
+[09_phys_split] peg_insert/peg_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv (288 rows)
+[09_phys_split] peg_insert/peg_mass starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv (288 rows)
+[09_phys_split] peg_insert/hole_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_static_friction.csv (288 rows)
+[09_phys_split] peg_insert/hole_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_dynamic_friction.csv (288 rows)
+[09_phys_split] nut_thread/nut_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_static_friction.csv (288 rows)
+[09_phys_split] nut_thread/nut_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_dynamic_friction.csv (288 rows)
+[09_phys_split] nut_thread/nut_mass starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_mass.csv (288 rows)
+[09_phys_split] nut_thread/bolt_static_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_static_friction.csv (288 rows)
+[09_phys_split] nut_thread/bolt_dynamic_friction starting
+[09_phys_split] wrote /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_dynamic_friction.csv (288 rows)

@@ -63,6 +63,25 @@ class PhysREPAPushSceneCfg(PhysREPALiftSceneCfg):
         ),
     )
 
+    # Generic robot-object contact.
+    # Read from the object side and filter against the striking robot bodies so
+    # push contact is captured even when the palm or right finger makes first
+    # contact.
+    contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="{ENV_REGEX_NS}/Object",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=True,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=256,
+        force_threshold=0.5,
+        filter_prim_paths_expr=[
+            "{ENV_REGEX_NS}/Robot/panda_hand",
+            "{ENV_REGEX_NS}/Robot/panda_leftfinger",
+            "{ENV_REGEX_NS}/Robot/panda_rightfinger",
+        ],
+    )
+
     # Pair-specific contact: object ↔ surface
     object_surface_contact: ContactSensorCfg = ContactSensorCfg(
         prim_path="{ENV_REGEX_NS}/Object",
@@ -70,6 +89,7 @@ class PhysREPAPushSceneCfg(PhysREPALiftSceneCfg):
         history_length=1,
         track_air_time=False,
         track_contact_points=False,
+        max_contact_data_count_per_prim=256,
         force_threshold=0.5,
         filter_prim_paths_expr=["{ENV_REGEX_NS}/Surface"],
     )

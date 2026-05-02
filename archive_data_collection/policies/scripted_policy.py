@@ -425,7 +425,7 @@ class StrikePolicy(ScriptedPolicy):
     """
 
     WINDUP_DIST = 0.15  # increased distance behind ball
-    SWING_Z = 0.04  # ball center height (ball radius = 0.04)
+    SWING_Z = 0.03  # align closer to ball center height (ball radius = 0.025)
     ABOVE_Z = 0.10
     THRESH = 0.02
     POSITION_T = 100

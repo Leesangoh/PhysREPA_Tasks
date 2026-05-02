@@ -1,0 +1,13 @@
+[18_phase_space] push: sampling episodes
+[18_phase_space] push: kept 30/30 episodes
+[18_phase_space] strike: sampling episodes
+[18_phase_space] strike: kept 30/30 episodes
+[18_phase_space] reach: sampling episodes
+[18_phase_space] reach: kept 30/30 episodes
+[18_phase_space] drawer: sampling episodes
+[18_phase_space] drawer: kept 30/30 episodes
+[18_phase_space] peg_insert: sampling episodes
+[18_phase_space] peg_insert: kept 30/30 episodes
+[18_phase_space] nut_thread: sampling episodes
+[18_phase_space] nut_thread: kept 30/30 episodes
+[18_phase_space] wrote 360 rows -> /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_space.csv

@@ -11,7 +11,7 @@ from __future__ import annotations
 import torch
 
 import isaaclab.sim as sim_utils
-from isaaclab.sensors import TiledCamera, TiledCameraCfg
+from isaaclab.sensors import ContactSensor, ContactSensorCfg, TiledCamera, TiledCameraCfg
 from isaaclab.utils import configclass
 
 from isaaclab_tasks.direct.factory.factory_env import FactoryEnv
@@ -61,6 +61,39 @@ class PegInsertCameraCfg(FactoryTaskPegInsertCfg):
         height=384,
     )
 
+    contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/Robot/panda_leftfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=True,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=64,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["/World/envs/env_.*/HeldAsset/forge_round_peg_8mm"],
+    )
+
+    contact_sensor_r: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/Robot/panda_rightfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=64,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["/World/envs/env_.*/HeldAsset/forge_round_peg_8mm"],
+    )
+
+    held_fixed_contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/HeldAsset/forge_round_peg_8mm",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=False,
+        max_contact_data_count_per_prim=2048,
+        force_threshold=0.5,
+        filter_prim_paths_expr=[],
+    )
+
     # Physics randomization ranges for PEZ probing
     held_friction_range: tuple[float, float] = (0.1, 1.2)
     fixed_friction_range: tuple[float, float] = (0.1, 1.2)
@@ -101,6 +134,39 @@ class NutThreadCameraCfg(FactoryTaskNutThreadCfg):
         height=384,
     )
 
+    contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/Robot/panda_leftfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=True,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=64,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["/World/envs/env_.*/HeldAsset/factory_nut_loose"],
+    )
+
+    contact_sensor_r: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/Robot/panda_rightfinger",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=64,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["/World/envs/env_.*/HeldAsset/factory_nut_loose"],
+    )
+
+    held_fixed_contact_sensor: ContactSensorCfg = ContactSensorCfg(
+        prim_path="/World/envs/env_.*/HeldAsset/factory_nut_loose",
+        update_period=0.0,
+        history_length=1,
+        track_air_time=False,
+        track_contact_points=True,
+        max_contact_data_count_per_prim=2048,
+        force_threshold=0.5,
+        filter_prim_paths_expr=["/World/envs/env_.*/FixedAsset/factory_bolt_loose"],
+    )
+
     # Physics randomization ranges for PEZ probing
     held_friction_range: tuple[float, float] = (0.05, 0.8)
     fixed_friction_range: tuple[float, float] = (0.05, 0.8)
@@ -132,6 +198,12 @@ class FactoryCameraEnv(FactoryEnv):
         self._wrist_cam = TiledCamera(self.cfg.wrist_cam)
         self.scene.sensors["table_cam"] = self._table_cam
         self.scene.sensors["wrist_cam"] = self._wrist_cam
+        self._contact_sensor = ContactSensor(self.cfg.contact_sensor)
+        self._contact_sensor_r = ContactSensor(self.cfg.contact_sensor_r)
+        self._held_fixed_contact_sensor = ContactSensor(self.cfg.held_fixed_contact_sensor)
+        self.scene.sensors["contact_sensor"] = self._contact_sensor
+        self.scene.sensors["contact_sensor_r"] = self._contact_sensor_r
+        self.scene.sensors["held_fixed_contact_sensor"] = self._held_fixed_contact_sensor
 
         # Default masses stored lazily (root_physx_view not ready at scene setup time)
         self._held_default_masses = None
@@ -175,18 +247,48 @@ class FactoryCameraEnv(FactoryEnv):
 
     def get_physics_data(self):
         """Get physics ground truth for data collection, including contact forces.
-
-        Note: Factory assets are Articulations, not RigidObjects, so
-        root_physx_view is ArticulationView (no get_net_contact_forces).
-        Contact forces are zeros for now — pair-specific contact requires
-        adding ContactSensor to Factory scene (future work).
         """
-        _zeros1 = torch.zeros(self.num_envs, 1, device=self.device)
-        _zeros3 = torch.zeros(self.num_envs, 3, device=self.device)
-
         # --- Held asset velocity (actual, not zeros) ---
         held_vel = self._held_asset.data.root_lin_vel_w
         held_angvel = self._held_asset.data.root_ang_vel_w
+
+        def _sensor_force_and_point(sensor: ContactSensor):
+            data = sensor.data
+            if data.force_matrix_w is not None:
+                forces = data.force_matrix_w[:, 0].sum(dim=1)
+            else:
+                forces = data.net_forces_w[:, 0]
+
+            if data.contact_pos_w is not None and data.contact_pos_w.numel() > 0:
+                points = torch.nan_to_num(data.contact_pos_w[:, 0, 0, :], nan=0.0)
+            else:
+                points = torch.zeros((self.num_envs, 3), device=self.device)
+            return forces, points
+
+        left_forces, left_points = _sensor_force_and_point(self._contact_sensor)
+        right_forces, right_points = _sensor_force_and_point(self._contact_sensor_r)
+        held_sensor_forces, held_sensor_points = _sensor_force_and_point(self._held_fixed_contact_sensor)
+
+        if isinstance(self.cfg, PegInsertCameraCfg):
+            # GPU pair filtering on the hole collider is unsupported in the direct Factory env.
+            # Recover peg↔socket contact by removing finger-on-peg reactions from the peg body's total contact force.
+            held_fixed_forces = held_sensor_forces + left_forces + right_forces
+            held_fixed_points = held_sensor_points
+        else:
+            held_fixed_forces = held_sensor_forces
+            held_fixed_points = held_sensor_points
+
+        left_flags = (torch.norm(left_forces, dim=-1, keepdim=True) > 0.5).float()
+        right_flags = (torch.norm(right_forces, dim=-1, keepdim=True) > 0.5).float()
+        held_fixed_flags = (torch.norm(held_fixed_forces, dim=-1, keepdim=True) > 0.5).float()
+
+        any_flags = ((left_flags + right_flags + held_fixed_flags) > 0).float()
+        any_forces = left_forces + right_forces + held_fixed_forces
+        any_points = left_points.clone()
+        use_right = (left_flags.squeeze(-1) < 0.5) & (right_flags.squeeze(-1) > 0.5)
+        use_held_fixed = (left_flags.squeeze(-1) < 0.5) & (right_flags.squeeze(-1) < 0.5) & (held_fixed_flags.squeeze(-1) > 0.5)
+        any_points[use_right] = right_points[use_right]
+        any_points[use_held_fixed] = held_fixed_points[use_held_fixed]
 
         return {
             "ee_position": self.fingertip_midpoint_pos.clone(),
@@ -201,13 +303,16 @@ class FactoryCameraEnv(FactoryEnv):
             "fixed_orientation": self.fixed_quat.clone(),
             "joint_pos": self.joint_pos[:, :7].clone(),
             "joint_vel": self.joint_vel[:, :7].clone(),
-            # Contact forces — zeros placeholder (ArticulationView has no get_net_contact_forces)
-            "contact_flag": _zeros1,
-            "contact_force": _zeros3,
-            "finger_l_contact_flag": _zeros1,
-            "finger_l_contact_force": _zeros3,
-            "finger_r_contact_flag": _zeros1,
-            "finger_r_contact_force": _zeros3,
-            "held_fixed_contact_flag": _zeros1,
-            "held_fixed_contact_force": _zeros3,
+            "contact_flag": any_flags,
+            "contact_force": any_forces,
+            "contact_point": any_points,
+            "finger_l_contact_flag": left_flags,
+            "finger_l_contact_force": left_forces,
+            "finger_l_contact_point": left_points,
+            "finger_r_contact_flag": right_flags,
+            "finger_r_contact_force": right_forces,
+            "finger_r_contact_point": right_points,
+            "held_fixed_contact_flag": held_fixed_flags,
+            "held_fixed_contact_force": held_fixed_forces,
+            "held_fixed_contact_point": held_fixed_points,
         }

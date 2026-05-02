@@ -126,7 +126,7 @@ def contact_force(
 ) -> torch.Tensor:
     """Contact force from the contact sensor (3D normal force)."""
     sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
-    return sensor.data.net_forces_w[:, 0, :]
+    return sensor.data.force_matrix_w[:, 0].sum(dim=1)
 
 
 def ee_acceleration_w(
@@ -197,11 +197,14 @@ def contact_point_w(
 ) -> torch.Tensor:
     """Contact point position in world frame (3D). NaN if no contact."""
     sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
-    # Shape: (N, B, M, 3) -> take first body, first filter
-    contact_pos = sensor.data.contact_pos_w[:, 0, 0, :]
-    # Replace NaN with zeros for parquet storage
-    contact_pos = torch.nan_to_num(contact_pos, nan=0.0)
-    return contact_pos
+    contact_pos = sensor.data.contact_pos_w[:, 0]
+    valid = torch.isfinite(contact_pos).all(dim=-1)
+    point = torch.zeros(contact_pos.shape[0], 3, device=contact_pos.device, dtype=contact_pos.dtype)
+    for env_idx in range(contact_pos.shape[0]):
+        valid_idx = torch.where(valid[env_idx])[0]
+        if len(valid_idx) > 0:
+            point[env_idx] = torch.nan_to_num(contact_pos[env_idx, valid_idx[0]], nan=0.0)
+    return point
 
 
 def contact_flag(
@@ -211,7 +214,7 @@ def contact_flag(
 ) -> torch.Tensor:
     """Binary contact flag (1 if contact force > threshold, else 0)."""
     sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
-    force_magnitude = torch.norm(sensor.data.net_forces_w[:, 0, :], dim=-1, keepdim=True)
+    force_magnitude = torch.norm(sensor.data.force_matrix_w[:, 0].sum(dim=1), dim=-1, keepdim=True)
     return (force_magnitude > threshold).float()
 
 

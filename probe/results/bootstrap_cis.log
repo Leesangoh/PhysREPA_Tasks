@@ -1,0 +1,1183 @@
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping push/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping push/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping push/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping push/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping push/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping push/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer.csv; skipping
+[10] no fold-level sidecar found among: /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer.csv, /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer__per_fold.csv, /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer_per_fold.csv
+[10:transfer] cross_task_transfer has no fold-level sidecar; skipped
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping push/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping push/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping push/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping push/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer.csv; skipping
+[10] no fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer_per_fold.csv; skipping
+[10] no fold-level sidecar found among: /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer.csv, /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer__per_fold.csv, /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/cross_task_transfer_per_fold.csv
+[10:transfer] cross_task_transfer has no fold-level sidecar; skipped
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping push/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping push/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping push/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping push/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping push/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping push/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/push/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping push/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_velocity.csv
+[10:F5] skipping strike/ee_velocity due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/ee_acceleration.csv
+[10:F5] skipping strike/ee_acceleration due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_flag.csv
+[10:F5] skipping strike/contact_flag due to missing fold-level un/shuffled CSV
+[10] missing file: /home/solee/physrepa_tasks/probe/results/strike/variant_A_shuffled/contact_force_log1p_mag.csv
+[10:F5] skipping strike/contact_force_log1p_mag due to missing fold-level un/shuffled CSV
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/drawer__drawer_joint_damping.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__bolt_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/bolt_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/nut_thread__nut_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for nut_thread/nut_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__hole_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/hole_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_dynamic_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_dynamic_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_mass.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_mass/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/peg_insert__peg_static_friction.csv: need ['fold', 'r2']
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L0: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L1: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L2: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L3: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L4: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L5: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L6: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L7: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L8: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L9: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L10: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L11: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L12: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L13: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L14: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L15: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L16: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L17: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L18: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L19: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L20: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L21: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L22: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10:F4A] bootstrap failed for peg_insert/peg_static_friction/contact_flag/L23: bootstrap_diff_ci confidence interval is not ordered: (0.0, 0.0).
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/push__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_mass.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_restitution.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__object_0_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_dynamic_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/results/physics_condition_split/strike__surface_static_friction.csv: need ['fold', 'r2']
+[10] missing required fold-level columns in /home/solee/physrepa_tasks/probe/trajectory_analysis_B/results/stats/phase_conditional.csv: need ['fold', 'r2']
